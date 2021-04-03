@@ -1,0 +1,23 @@
+.day-schedule {
+    background-color: #FFFFFF;
+    box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 29px;
+    padding: 1rem;
+    width: fit-content;
+    width: 400px;
+    img {
+        width: 60px;
+    }
+
+    .head{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 30px;
+        margin: 1rem 0rem;
+    }
+}

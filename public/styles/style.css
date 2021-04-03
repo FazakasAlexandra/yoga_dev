@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
+html,
+body {
+  color: #646262;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #F8F7F7;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.week-schedule.page .day-schedule-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.day-schedule {
+  background-color: #FFFFFF;
+  box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+  padding: 1rem;
+  width: fit-content;
+  width: 400px;
+}
+.day-schedule img {
+  width: 60px;
+}
+.day-schedule .head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.day-schedule h3 {
+  font-weight: 400;
+  font-size: 30px;
+  margin: 1rem 0rem;
+}
+
+/*# sourceMappingURL=style.css.map */
