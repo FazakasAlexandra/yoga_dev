@@ -1,0 +1,24 @@
+header {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        align-items: center;
+        padding: 2rem 5rem;
+        box-shadow: -1px 5px 5px rgb(0 0 0 / 4%);
+        border-radius: 0px;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        margin-bottom: 2rem;
+        ul{
+            display: flex;
+            align-items: center;
+            a{
+                font-size: 20px;
+            }
+            a:hover{
+                font-weight: 500;
+            }
+        }
+    }
+}

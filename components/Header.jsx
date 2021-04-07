@@ -1,0 +1,95 @@
+import Link from 'next/link'
+import { signIn, signOut, useSession, getSession } from 'next-auth/client'
+import { useEffect } from 'react'
+import styles from './header.module.css'
+import Image from 'next/image'
+import db from '../db'
+import { useState } from 'react'
+
+// The approach used in this component shows how to built a sign in and sign out
+// component that works on pages which support both client and server side
+// rendering, and avoids any flash incorrect content on initial page load.
+export default function Header() {
+  const [session, loading] = useSession()
+  const [is_admin, setIsAdmin] = useState(0)
+
+  useEffect(() => {
+    if (session) {
+      fetch('http://localhost:3000/api/examples/jwt').then(res => res.json()).then(res => {
+        if (res) setSession(res)
+      })
+    }
+  }, [session])
+
+  function setSession(res) {
+    const jwt = res.jwtToken
+    db.queryUsers('jwt', jwt).then((res) => {
+      if (!res.data) {
+        db.postUser({
+          email: session.user.email,
+          name: session.user.name,
+          jwt
+        })
+      } else {
+        if (res.data.is_admin === '1') setIsAdmin(1)
+      }
+    })
+  }
+
+  return (
+    <header>
+      <noscript>
+        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
+      </noscript>
+      <div className={styles.signedInStatus}>
+        <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
+          {!session && <>
+            <span className={styles.notSignedInText}>You are not signed in</span>
+            <a
+              href={`/api/auth/signin`}
+              className={styles.buttonPrimary}
+              onClick={(e) => {
+                e.preventDefault()
+                signIn()
+              }}
+            >
+              Sign in
+                  </a>
+          </>}
+          {session && <>
+            {session.user.image && <span style={{ backgroundImage: `url(${session.user.image})` }} className={styles.avatar} />}
+            <span className={styles.signedInText}>
+              <small>Signed in as</small><br />
+              <strong>{session.user.email || session.user.name}</strong>
+            </span>
+            <a
+              href={`/api/auth/signout`}
+              className={styles.button}
+              onClick={(e) => {
+                e.preventDefault()
+                signOut()
+              }}
+            >
+              Sign out
+                  </a>
+          </>}
+        </p>
+      </div>
+      <nav>
+        <Image
+          src="/assets/logo.png"
+          height={60}
+          width={60}
+        />
+        <ul className={styles.navItems}>
+          <li className={styles.navItem}><Link href="/"><a>Home</a></Link></li>
+          <li className={styles.navItem}><Link href="/weekSchedule"><a>Week Schedule</a></Link></li>
+          <li className={styles.navItem}><Link href="/subscriptions"><a>Subscriptions</a></Link></li>
+          {!is_admin ?
+            <li className={styles.navItem}><Link href="/accounts/client"><a>Account</a></Link></li> :
+            <li className={styles.navItem}><Link href="/accounts/admin"><a>Account</a></Link></li>}
+        </ul>
+      </nav>
+    </header>
+  )
+}

@@ -1,16 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import DayScheduleCard from '../components/DayScheduleCard'
-
+import Layout from '../components/Layout'
 export default function Home() {
   return (
-    <div className="week-schedule page">
-      <Head>
-        <title>Yoga</title>
-        <link rel="icon" href="/assets/yogalogo.png" />
-      </Head>
-      <h1>week schedule page here !</h1>
-
+    <Layout>
       <div className="day-schedule-cards">
         <DayScheduleCard
           day="Monday"
@@ -21,8 +15,6 @@ export default function Home() {
           src="flowerdesign2.png"
         />
       </div>
-      
-      <Link href="/"><a>link to pages/index</a></Link>
-    </div>
+    </Layout>
   )
 }
