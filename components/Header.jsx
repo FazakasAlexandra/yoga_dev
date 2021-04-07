@@ -85,9 +85,13 @@ export default function Header() {
           <li className={styles.navItem}><Link href="/"><a>Home</a></Link></li>
           <li className={styles.navItem}><Link href="/weekSchedule"><a>Week Schedule</a></Link></li>
           <li className={styles.navItem}><Link href="/subscriptions"><a>Subscriptions</a></Link></li>
-          {!is_admin ?
-            <li className={styles.navItem}><Link href="/accounts/client"><a>Account</a></Link></li> :
-            <li className={styles.navItem}><Link href="/accounts/admin"><a>Account</a></Link></li>}
+          {
+            session && !is_admin ?
+              <li className={styles.navItem}><Link href="/accounts/client"><a>Account</a></Link></li> :
+              session && is_admin ?
+                <li className={styles.navItem}><Link href="/accounts/admin"><a>Account</a></Link></li> :
+                null
+          }
         </ul>
       </nav>
     </header>
