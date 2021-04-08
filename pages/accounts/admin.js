@@ -10,7 +10,6 @@ export default function Page() {
     console.log('hi')
 
     useEffect(() => {
-        console.log(session)
         if (!session) router.push({ pathname: '/' })
     }, [])
 

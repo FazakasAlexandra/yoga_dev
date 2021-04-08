@@ -11,18 +11,19 @@ import { useState } from 'react'
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const [session, loading] = useSession()
-  const [is_admin, setIsAdmin] = useState(0)
+  const [is_admin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     if (session) {
       fetch('http://localhost:3000/api/examples/jwt').then(res => res.json()).then(res => {
-        if (res) setSession(res)
+        if (res) queryUser(res)
       })
     }
-  }, [session])
+  }, [])
 
-  function setSession(res) {
+  function queryUser(res) {
     const jwt = res.jwtToken
+
     db.queryUsers('jwt', jwt).then((res) => {
       if (!res.data) {
         db.postUser({
@@ -31,7 +32,9 @@ export default function Header() {
           jwt
         })
       } else {
-        if (res.data.is_admin === '1') setIsAdmin(1)
+        session.user = {...session.user, ...res.data};
+        console.log(session)
+        if (res.data.is_admin === 'true') setIsAdmin(true)
       }
     })
   }
