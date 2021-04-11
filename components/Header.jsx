@@ -19,7 +19,7 @@ export default function Header() {
         if (res) queryUser(res)
       })
     }
-  }, [])
+  }, [session])
 
   function queryUser(res) {
     const jwt = res.jwtToken
@@ -32,7 +32,7 @@ export default function Header() {
           jwt
         })
       } else {
-        session.user = {...session.user, ...res.data};
+        session.user = { ...session.user, ...res.data };
         console.log(session)
         if (res.data.is_admin === 'true') setIsAdmin(true)
       }
@@ -90,10 +90,11 @@ export default function Header() {
           <li className={styles.navItem}><Link href="/subscriptions"><a>Subscriptions</a></Link></li>
           {
             session && !is_admin ?
-              <li className={styles.navItem}><Link href="/accounts/client"><a>Account</a></Link></li> :
-              session && is_admin ?
-                <li className={styles.navItem}><Link href="/accounts/admin"><a>Account</a></Link></li> :
-                null
+              <li className={styles.navItem}><Link href="/accounts/client"><a>Account</a></Link></li> : null
+          }
+          {
+            session && is_admin ?
+              <li className={styles.navItem}><Link href="/accounts/admin"><a>Account</a></Link></li> : null
           }
         </ul>
       </nav>
