@@ -1,0 +1,26 @@
+.admin-layout {
+    background-color: white;
+    box-shadow: -1px 5px 5px rgb(0 0 0 / 4%);
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    margin: 0 auto;
+    min-height: 500px;
+    font-size: 18px;
+    border-radius: 15px;
+    hr {
+        border-color: #efeaea57;
+        width: 95%;
+    }
+
+    .header {
+        padding: 1.5rem;
+        padding-top: 1.8rem;
+
+        a {
+            margin: 0rem 2rem;
+        }
+    }
+}

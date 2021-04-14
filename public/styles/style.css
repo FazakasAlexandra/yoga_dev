@@ -26,19 +26,35 @@ ul {
   justify-content: space-evenly;
 }
 
+.button-white {
+  padding: 0.8rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.button-white.active,
+.active-tab {
+  font-weight: 900;
+}
+
+.button-white.active {
+  border-style: solid;
+}
+
 .day-schedule-cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .day-schedule {
   background-color: #FFFFFF;
   box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 29px;
+  border-radius: 15px;
   padding: 1rem;
   width: fit-content;
   width: 400px;
+  margin: 1rem 0rem;
 }
 .day-schedule img {
   width: 60px;
@@ -55,6 +71,9 @@ ul {
   margin: 1rem 0rem;
 }
 
+header {
+  /* Set min-height to avoid page reflow while session loading */
+}
 header nav {
   display: flex;
   justify-content: space-between;
@@ -67,6 +86,15 @@ header nav {
   border-bottom-right-radius: 7px;
   margin-bottom: 2rem;
 }
+header nav .small-menu {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+header nav .fa-bars {
+  display: none;
+}
 header nav ul {
   display: flex;
   align-items: center;
@@ -76,6 +104,174 @@ header nav ul a {
 }
 header nav ul a:hover {
   font-weight: 500;
+}
+header .signedInStatus {
+  display: block;
+  min-height: 4rem;
+  width: 100%;
+}
+header .loading,
+header .loaded {
+  position: relative;
+  top: 0;
+  opacity: 1;
+  overflow: hidden;
+  border-radius: 0 0 0.6rem 0.6rem;
+  padding: 0.6rem 1rem;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in;
+}
+header .loading {
+  top: -2rem;
+  opacity: 0;
+}
+header .signedInText,
+header .notSignedInText {
+  position: absolute;
+  padding-top: 0.8rem;
+  left: 1rem;
+  right: 6.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inherit;
+  z-index: 1;
+  line-height: 1.3rem;
+}
+header .signedInText {
+  padding-top: 0rem;
+  left: 4.6rem;
+}
+header .avatar {
+  border-radius: 2rem;
+  float: left;
+  height: 2.8rem;
+  width: 2.8rem;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+header .button,
+header .buttonPrimary {
+  float: right;
+  margin-right: -0.4rem;
+  font-weight: 500;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  padding: 0.7rem 0.8rem;
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+  color: #555;
+}
+header .buttonPrimary {
+  background-color: #346df1;
+  border-color: #346df1;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+}
+header .buttonPrimary:hover {
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.2);
+}
+header .navItems {
+  margin-bottom: 2rem;
+  padding: 0;
+  list-style: none;
+}
+header .navItem {
+  display: inline-block;
+  margin-right: 3.5rem;
+}
+
+.admin-layout {
+  background-color: white;
+  box-shadow: -1px 5px 5px rgba(0, 0, 0, 0.04);
+  width: 1000px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 auto;
+  min-height: 500px;
+  font-size: 18px;
+  border-radius: 15px;
+}
+.admin-layout hr {
+  border-color: #efeaea57;
+  width: 95%;
+}
+.admin-layout .header {
+  padding: 1.5rem;
+  padding-top: 1.8rem;
+}
+.admin-layout .header a {
+  margin: 0rem 2rem;
+}
+
+.admin-classes-layout {
+  width: 100%;
+}
+.admin-classes-layout .chart-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0rem;
+}
+.admin-classes-layout .classes-header {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+  background-color: #CAC6EB;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.admin-classes-layout .classes-header .button-white {
+  margin: 0.5rem;
+}
+.admin-classes-layout .classes-header aside {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.admin-clients {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+@media (max-width: 1000px) {
+  .admin-layout {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  header nav {
+    flex-direction: column;
+  }
+  header nav .fa-bars {
+    display: flex;
+  }
+  header nav .navItems {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: fit-content;
+    justify-content: center;
+  }
+  header nav .navItem {
+    margin: 0rem !important;
+    padding: 1rem !important;
+  }
+  header nav .hamburger {
+    display: flex;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

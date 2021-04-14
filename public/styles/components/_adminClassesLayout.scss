@@ -1,0 +1,37 @@
+.admin-classes-layout {
+    width: 100%;
+
+    .chart-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0rem;
+    }
+
+    .classes-header {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        align-items: center;
+        padding: 1rem;
+        background-color: #CAC6EB;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+
+        .button-white {
+            margin: 0.5rem;
+        }
+
+        aside {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.admin-clients {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}

@@ -5,7 +5,7 @@ body {
   color: #646262;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;    
+  font-family: 'Roboto', sans-serif;
   background-color: #F8F7F7;
 }
 
@@ -18,13 +18,29 @@ a {
   box-sizing: border-box;
 }
 
-ul{
+ul {
   margin: 0rem !important;
 }
 
-.week-schedule.page{ 
-  .day-schedule-cards{
+.week-schedule.page {
+  .day-schedule-cards {
     display: flex;
     justify-content: space-evenly;
   }
+}
+
+.button-white {
+  padding: 0.8rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+
+.button-white.active,
+.active-tab{
+  font-weight: 900;
+}
+
+.button-white.active{
+  border-style: solid;
 }

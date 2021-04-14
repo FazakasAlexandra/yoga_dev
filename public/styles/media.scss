@@ -1,0 +1,29 @@
+@media(max-width: 1000px){
+    .admin-layout{
+        width: 100%;
+    }
+}
+
+@media(max-width: 900px){
+    header nav{
+        .fa-bars{
+            display: flex;
+        }
+        flex-direction: column;
+        .navItems{
+            //display: none;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: fit-content;
+            justify-content: center;
+        }
+        .navItem{
+            margin: 0rem !important;
+            padding: 1rem !important;
+        }
+        .hamburger{
+            display: flex;
+        }
+    }
+}
