@@ -31,8 +31,9 @@ export default function AdminClassesLayout({ children, activeTab }) {
                     </Link>
                 </aside>
             </div>
-
-            {children}
+            <div className="class-body">
+                {children}
+            </div>
         </div>
 
     )

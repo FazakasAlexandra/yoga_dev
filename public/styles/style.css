@@ -239,11 +239,46 @@ header .navItem {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.admin-classes-layout .class-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 
 .admin-clients {
   display: flex;
   width: 100%;
   justify-content: space-around;
+}
+
+.class-card {
+  background: #edecf4;
+  height: 320px;
+  width: 280px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 25px 25px;
+  margin: 20px;
+}
+.class-card .card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid thin #646262;
+  padding-bottom: 10px;
+}
+.class-card .dlt-button-white {
+  padding: 0.6rem 0.8rem;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  color: #646262;
+}
+.class-card button:focus {
+  outline: 0 !important;
 }
 
 @media (max-width: 1000px) {

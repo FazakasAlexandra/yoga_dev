@@ -4,6 +4,7 @@ import Layout from '../../../../components/Layout'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../../components/AdminLayout'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
+import ClassCard from '../../../../components/ClassCard'
 
 export default function Page() {
     const router = useRouter()
@@ -18,7 +19,12 @@ export default function Page() {
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"list"}>
-                    <h3 style={{textAlign : 'center'}}>Classes cards come here</h3>
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
+                    <ClassCard name="Morning Yoga" offprice="25" onprice="20" attend="170" />
                 </AdminClassesLayout>
             </AdminLayout>
         </Layout>
