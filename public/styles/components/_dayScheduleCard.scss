@@ -2,6 +2,42 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+
+    .closed-sign{
+        display: flex;
+        justify-content: center;
+        margin: 2rem;
+    }
+
+    .class.wraper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1.5rem 0rem;
+
+        .button-white {
+            height: fit-content;
+            margin-left: 1.5rem;
+        }
+        .info-wraper{
+            display: flex;
+            align-items: center;
+        }
+        .info {
+            p{
+                margin-bottom: 0.2rem;
+            }
+            span{
+                font-size: 14px;
+            }
+            border-right-style: solid;
+            border-right-width: thin;
+            /* padding: 0rem 0.5rem; */
+            padding-right: 1rem;
+            margin-right: 1rem;
+            min-width: 57px;
+        }
+    }
 }
 
 

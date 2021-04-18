@@ -45,14 +45,14 @@ header {
 
     .loading,
     .loaded {
+        color: white;
         position: relative;
         top: 0;
         opacity: 1;
         overflow: hidden;
-        border-radius: 0 0 .6rem .6rem;
         padding: .6rem 1rem;
         margin: 0;
-        background-color: rgba(0, 0, 0, .05);
+        background-color: #253239;
         transition: all 0.2s ease-in;
     }
 
@@ -103,7 +103,7 @@ header {
         position: relative;
         z-index: 10;
         background-color: transparent;
-        color: #555;
+        color: white;
     }
 
     .buttonPrimary {

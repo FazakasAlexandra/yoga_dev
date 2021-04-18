@@ -6,7 +6,6 @@ import { useEffect } from 'react/cjs/react.development'
 
 export default function Layout({ children, activeTab }) {
     const [session, loading] = useSession()
-    console.log(activeTab)
     return (
         <>
             <Head>

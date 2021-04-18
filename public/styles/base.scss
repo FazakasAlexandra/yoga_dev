@@ -33,9 +33,16 @@ ul {
   padding: 0.8rem 1rem;
   background-color: white;
   border-radius: 5px;
+  border: solid;
+  border-width: thin;
 }
 
+.button-white:hover{
+  border-width: medium;
+  cursor: pointer;
+}
 
+.button-white:hover,
 .button-white.active,
 .active-tab{
   font-weight: 900;
@@ -43,4 +50,5 @@ ul {
 
 .button-white.active{
   border-style: solid;
+  border-width: medium;
 }

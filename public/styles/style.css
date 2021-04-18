@@ -30,8 +30,16 @@ ul {
   padding: 0.8rem 1rem;
   background-color: white;
   border-radius: 5px;
+  border: solid;
+  border-width: thin;
 }
 
+.button-white:hover {
+  border-width: medium;
+  cursor: pointer;
+}
+
+.button-white:hover,
 .button-white.active,
 .active-tab {
   font-weight: 900;
@@ -39,12 +47,46 @@ ul {
 
 .button-white.active {
   border-style: solid;
+  border-width: medium;
 }
 
 .day-schedule-cards {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.day-schedule-cards .closed-sign {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+.day-schedule-cards .class.wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0rem;
+}
+.day-schedule-cards .class.wraper .button-white {
+  height: fit-content;
+  margin-left: 1.5rem;
+}
+.day-schedule-cards .class.wraper .info-wraper {
+  display: flex;
+  align-items: center;
+}
+.day-schedule-cards .class.wraper .info {
+  border-right-style: solid;
+  border-right-width: thin;
+  /* padding: 0rem 0.5rem; */
+  padding-right: 1rem;
+  margin-right: 1rem;
+  min-width: 57px;
+}
+.day-schedule-cards .class.wraper .info p {
+  margin-bottom: 0.2rem;
+}
+.day-schedule-cards .class.wraper .info span {
+  font-size: 14px;
 }
 
 .day-schedule {
@@ -112,14 +154,14 @@ header .signedInStatus {
 }
 header .loading,
 header .loaded {
+  color: white;
   position: relative;
   top: 0;
   opacity: 1;
   overflow: hidden;
-  border-radius: 0 0 0.6rem 0.6rem;
   padding: 0.6rem 1rem;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #253239;
   transition: all 0.2s ease-in;
 }
 header .loading {
@@ -165,7 +207,7 @@ header .buttonPrimary {
   position: relative;
   z-index: 10;
   background-color: transparent;
-  color: #555;
+  color: white;
 }
 header .buttonPrimary {
   background-color: #346df1;
@@ -246,6 +288,14 @@ header .navItem {
   justify-content: space-around;
 }
 
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  height: fit-content;
+}
+
 @media (max-width: 1000px) {
   .admin-layout {
     width: 100%;
@@ -253,6 +303,7 @@ header .navItem {
 }
 @media (max-width: 900px) {
   header nav {
+    padding: 2rem 1rem;
     flex-direction: column;
   }
   header nav .fa-bars {
