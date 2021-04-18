@@ -58,9 +58,10 @@ export default function WeekSchedule() {
   }
 
   return (
-    <Layout activeTab={"week_schedule"}>F
+    <Layout activeTab={"week_schedule"}>
       <div className="date-container">
         <DateRange
+          className="dateRange"
           editableDateInputs={true}
           showPreview={false}
           showSelectionPreview={false}
@@ -82,8 +83,8 @@ export default function WeekSchedule() {
           <Image
             src="/assets/illustration.png"
             alt=""
-            width={750}
-            height={750}
+            width={600}
+            height={600}
           />
         </div>
       </div>

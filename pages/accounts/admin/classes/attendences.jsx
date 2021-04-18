@@ -20,7 +20,7 @@ export default function Page() {
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"attendences"}>
-                    <div className="chart-container">
+                    <div className="chart-container" style={{width:"100%"}}>
                         <Chart
                             width={"100%"}
                             height={'500px'}
