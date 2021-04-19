@@ -50,6 +50,14 @@ ul {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.day-schedule-cards .class.radio {
+  border-left-style: solid;
+  border-width: thin;
+  padding-left: 1rem;
+}
+.day-schedule-cards .class.radio p {
+  margin-bottom: 0px;
+}
 .day-schedule-cards .closed-sign {
   display: flex;
   justify-content: center;
@@ -69,13 +77,14 @@ ul {
   display: flex;
   align-items: center;
 }
+.day-schedule-cards .class.wraper .fa-info-circle:hover {
+  color: #6CBBC7 !important;
+}
 .day-schedule-cards .class.wraper .info {
-  border-right-style: solid;
-  border-right-width: thin;
-  /* padding: 0rem 0.5rem; */
-  padding-right: 1rem;
-  margin-right: 1rem;
   min-width: 57px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .day-schedule-cards .class.wraper .info p {
   margin-bottom: 0.2rem;
@@ -299,6 +308,13 @@ header .navItem {
   min-height: 750px;
   margin-bottom: 30px;
 }
+.date-container .wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 800px;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+}
 
 .week-schedule.page .day-schedule-cards {
   display: flex;
@@ -365,6 +381,50 @@ header .navItem {
   }
   header nav .hamburger {
     display: flex;
+  }
+}
+@media (max-width: 799px) {
+  .date-container {
+    margin-bottom: 0px;
+  }
+  .date-container .wrapper {
+    align-items: center;
+    flex-direction: column-reverse;
+    justify-content: center;
+    width: fit-content;
+  }
+
+  .day-schedule.card {
+    width: 430px;
+  }
+
+  .dateRange {
+    width: 100%;
+  }
+  .dateRange .rdrMonth {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .day-schedule.card {
+    width: 100%;
+  }
+  .day-schedule.card .class.wraper {
+    flex-direction: column;
+  }
+  .day-schedule.card .class.wraper .info-wraper {
+    width: 100%;
+  }
+  .day-schedule.card .class.wraper .button-white {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+  }
+}
+@media (max-width: 350px) {
+  .date-container {
+    min-height: fit-content;
+    margin: 2rem 0rem;
   }
 }
 

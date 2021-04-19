@@ -6,6 +6,14 @@
     height: fit-content;
     min-height: 750px;
     margin-bottom: 30px;
+
+    .wrapper {
+        display: flex;
+        align-items: flex-start;
+        width: 800px;
+        justify-content: space-between;
+        flex-wrap: wrap-reverse;
+    }
 }
 
 .week-schedule.page {

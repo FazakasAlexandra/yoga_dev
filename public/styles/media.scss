@@ -1,17 +1,20 @@
-@media(max-width: 1000px){
-    .admin-layout{
+@media(max-width: 1000px) {
+    .admin-layout {
         width: 100%;
     }
 }
 
-@media(max-width: 900px){
-    header nav{
+@media(max-width: 900px) {
+    header nav {
         padding: 2rem 1rem;
-        .fa-bars{
+
+        .fa-bars {
             display: flex;
         }
+
         flex-direction: column;
-        .navItems{
+
+        .navItems {
             //display: none;
             display: flex;
             flex-direction: column;
@@ -19,12 +22,59 @@
             width: fit-content;
             justify-content: center;
         }
-        .navItem{
+
+        .navItem {
             margin: 0rem !important;
             padding: 1rem !important;
         }
-        .hamburger{
+
+        .hamburger {
             display: flex;
         }
+    }
+}
+
+@media(max-width: 799px){
+    .date-container{
+        margin-bottom: 0px;
+        .wrapper{
+            align-items: center;
+            flex-direction: column-reverse;
+            justify-content: center;
+            width: fit-content;
+        }
+    }
+    .day-schedule.card{
+        width: 430px;
+    }
+    .dateRange{
+        width: 100%;
+        .rdrMonth{
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width: 400px) {
+
+    .day-schedule.card {
+        width: 100%;
+        .class.wraper {
+            flex-direction: column;
+            .info-wraper{
+                width: 100%;
+            }
+            .button-white{
+                width: 100%;
+                text-align: center;
+                margin: 0px;
+            }
+        }
+    }
+}
+@media(max-width: 350px){
+    .date-container{
+        min-height: fit-content;
+        margin: 2rem 0rem;
     }
 }

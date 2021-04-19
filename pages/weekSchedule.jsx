@@ -60,6 +60,7 @@ export default function WeekSchedule() {
   return (
     <Layout activeTab={"week_schedule"}>
       <div className="date-container">
+        <div className="wrapper">
         <DateRange
           className="dateRange"
           editableDateInputs={true}
@@ -81,11 +82,12 @@ export default function WeekSchedule() {
         />
         <div>
           <Image
-            src="/assets/illustration.png"
+            src="/assets/yoga_img2.png"
             alt=""
-            width={600}
-            height={600}
+            width={430}
+            height={300}
           />
+        </div>
         </div>
       </div>
       <div className="day-schedule-cards">

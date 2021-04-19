@@ -3,7 +3,17 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 
-    .closed-sign{
+    .class.radio {
+        p {
+            margin-bottom: 0px;
+        }
+
+        border-left-style: solid;
+        border-width: thin;
+        padding-left: 1rem;
+    }
+
+    .closed-sign {
         display: flex;
         justify-content: center;
         margin: 2rem;
@@ -19,23 +29,28 @@
             height: fit-content;
             margin-left: 1.5rem;
         }
-        .info-wraper{
+
+        .info-wraper {
             display: flex;
             align-items: center;
         }
+        .fa-info-circle:hover {
+            color: #6CBBC7 !important;
+        }
+
         .info {
-            p{
+            p {
                 margin-bottom: 0.2rem;
             }
-            span{
+
+            span {
                 font-size: 14px;
             }
-            border-right-style: solid;
-            border-right-width: thin;
-            /* padding: 0rem 0.5rem; */
-            padding-right: 1rem;
-            margin-right: 1rem;
+
             min-width: 57px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     }
 }
