@@ -32,7 +32,6 @@ export default function Header({ activeTab }) {
         })
       } else {
         session.user = { ...session.user, ...res.data };
-        console.log(session)
         if (res.data.is_admin === 'true') setIsAdmin(true)
       }
     })

@@ -7,7 +7,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function AlertDialog(props) {
-    console.log(props.yogaClass)
   return (
     <div>
       <Dialog
@@ -15,13 +14,12 @@ export default function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{props.yogaClass.className}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
         <hr style={{width:"90%"}}/>
-        <DialogContent>
-              <p><b>Class level</b></p>
-              <p>{props.yogaClass.classLevel}</p>
-              <p><b>Description</b></p>
-              <p>{props.yogaClass.classDescription}</p>
+        <DialogContent
+                style={{minWidth : '300px'}}
+        >
+              {props.content}
         </DialogContent>
         <DialogActions>
           <Button onClick={props.closeDialog} color="primary" autoFocus>

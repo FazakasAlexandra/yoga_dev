@@ -16,6 +16,16 @@ const db = {
         getLatestSchedule : () => {
            return fetch(`${db.baseURL}/schedules/latest`).then(res => res.json())
         }
+    },
+    bookings : {
+        postBooking: (jwt, scheduleWeekId) => {
+            return fetch(`${db.baseURL}/bookings/${scheduleWeekId}`, {
+                headers: {
+                    'Authorization' : jwt,
+                },
+                method: "POST",
+            }).then(res => res.json())
+        }
     }
 }
 

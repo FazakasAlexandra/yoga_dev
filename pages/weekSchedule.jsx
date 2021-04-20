@@ -51,8 +51,7 @@ export default function WeekSchedule() {
     return schedule.map((daySchedule, idx) => {
       return <DayScheduleCard
         key={idx}
-        daySchedule={daySchedule}
-        src='flowerdesign1.png'
+        dayData={daySchedule}
       />
     })
   }
