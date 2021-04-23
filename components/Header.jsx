@@ -14,28 +14,19 @@ export default function Header({ activeTab }) {
 
   useEffect(() => {
     if (session) {
-      fetch('http://localhost:3000/api/examples/jwt').then(res => res.json()).then(res => {
-        if (res) queryUser(res)
+      db.queryUsers('email', session.user.email).then((res) => {
+        if (!res.data) {
+          db.postUser({
+            email: session.user.email,
+            name: session.user.name,
+            jwt
+          })
+        } else {
+          if (res.data.is_admin === 'true') setIsAdmin(true)
+        }
       })
     }
   }, [session])
-
-  function queryUser(res) {
-    const jwt = res.jwtToken
-
-    db.queryUsers('jwt', jwt).then((res) => {
-      if (!res.data) {
-        db.postUser({
-          email: session.user.email,
-          name: session.user.name,
-          jwt
-        })
-      } else {
-        session.user = { ...session.user, ...res.data };
-        if (res.data.is_admin === 'true') setIsAdmin(true)
-      }
-    })
-  }
 
   return (
     <header>
@@ -83,9 +74,9 @@ export default function Header({ activeTab }) {
             height={60}
             width={60}
           />
-          <FontAwesomeIcon icon={faBars} size="2x" onClick={()=>setMenuOn(!menuOn)}/>
+          <FontAwesomeIcon icon={faBars} size="2x" onClick={() => setMenuOn(!menuOn)} />
         </div>
-        <ul className="navItems" style={{display: menuOn ? "flex" : "none"}}>
+        <ul className="navItems" style={{ display: menuOn ? "flex" : "none" }}>
           <li className="navItem">
             <Link href="/">
               <a className={activeTab === "home" ? "active-tab" : null}>Home</a>

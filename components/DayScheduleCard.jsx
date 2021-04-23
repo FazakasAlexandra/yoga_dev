@@ -1,16 +1,13 @@
-import { session } from 'next-auth/client';
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import ClassDialog from './ClassDialog';
 import DayScheduleClass from './DayScheduleClass';
 import { useSession } from 'next-auth/client'
-import  db  from '../db.js'
+import db from '../db.js'
 
-export default function DayScheduleCard({ dayData }) {
-  const [session] = useSession()
+export default function DayScheduleCard({ dayData, userData, updateUserData }) {
   const [open, setOpen] = useState(false);
   const [yogaClass, setYogaClass] = useState(null);
-
   const handleDialogClose = () => {
     setOpen(false);
   };
@@ -18,11 +15,14 @@ export default function DayScheduleCard({ dayData }) {
   const handleInfoIconClick = (yogaClass) => {
     setOpen(true);
     setYogaClass(yogaClass)
+    console.log(yogaClass)
   }
 
   const handleBookClick = (yogaClass) => {
-    db.bookings.postBooking(session.user.jwt, yogaClass.schedulesWeeksId)
-    console.log('booked !')
+     db.bookings.postBooking(userData.jwt, yogaClass.schedulesWeeksId).then(() => {
+      console.log('booked !')
+      updateUserData()
+    })
   }
 
   const getSchedule = () => {
@@ -31,6 +31,7 @@ export default function DayScheduleCard({ dayData }) {
       yogaClass.classType = yogaClass.classType || 'online'
       return (
         <DayScheduleClass
+          userData={userData}
           key={idx}
           dayScheduleClass={yogaClass}
           handleInfoIconClick={handleInfoIconClick}
@@ -64,10 +65,10 @@ export default function DayScheduleCard({ dayData }) {
           title={yogaClass.className}
           content={
             <>
-            <p><b>Class level</b></p>
-            <p>{yogaClass.classLevel}</p>
-            <p><b>Description</b></p>
-            <p>{yogaClass.classDescription}</p>
+              <p><b>Class level</b></p>
+              <p>{yogaClass.classLevel}</p>
+              <p><b>Description</b></p>
+              <p>{yogaClass.classDescription}</p>
             </>
           }
           closeDialog={handleDialogClose}

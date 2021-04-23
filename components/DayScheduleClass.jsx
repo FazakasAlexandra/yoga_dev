@@ -5,10 +5,21 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/client';
 
 
-export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick }) {
+export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, userData}) {
     const [yogaClass, setYogaClass] = useState(dayScheduleClass)
+    const [booked, setBooked] = useState(false)
+
+    useEffect(()=>{
+        if(userData){
+            console.log(userData)
+            userData.bookingIds.forEach(bookingId => {
+                if(bookingId === yogaClass.schedulesWeeksId) setBooked(true)
+            });
+        }
+    }, [])
 
     const handleRadioChange = (e) => {
         setYogaClass({ ...yogaClass, classType: e.target.value })
@@ -29,7 +40,6 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
         name: 'color-radio-button-demo',
         inputProps: { 'aria-label': item },
     });
-
 
     return (
         <ThemeProvider theme={theme} key={yogaClass.id}>
@@ -72,8 +82,9 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                     </div>
 
                 </div>
-
-                <a className="button-white" onClick={() => handleBookClick(yogaClass)}>Book</a>
+                {
+                   booked ? "BOOKED" : <a className="button-white" onClick={() => handleBookClick(yogaClass)}>Book</a>
+                }
             </div>
         </ThemeProvider>
     )

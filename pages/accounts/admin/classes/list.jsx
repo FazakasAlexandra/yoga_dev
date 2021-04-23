@@ -10,11 +10,10 @@ export default function Page() {
     const router = useRouter()
     const [session, loading] = useSession()
 
-    /*     useEffect(() => {
-            if (!session) router.push({ pathname: '/' })
-        }, []) */
+    useEffect(() => {
+        if (!session) router.push({ pathname: '/' })
+    }, [session])
 
-    // If session exists, display content
     return (
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
