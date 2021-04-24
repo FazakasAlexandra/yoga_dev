@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { signIn, signOut, useSession, getSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { farCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 import Image from 'next/image'
 import db from '../db'
 import { useState } from 'react'
@@ -83,6 +84,7 @@ export default function Header({ activeTab }) {
             </Link>
           </li>
           <li className="navItem">
+            <FontAwesomeIcon  icon={faCalendarAlt} style={{marginRight:"0.5rem", fontSize:"1.6rem"}}/>
             <Link href="/weekSchedule">
               <a className={activeTab === "week_schedule" ? "active-tab" : null}>Week Schedule</a>
             </Link>

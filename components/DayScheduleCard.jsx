@@ -5,7 +5,7 @@ import DayScheduleClass from './DayScheduleClass';
 import { useSession } from 'next-auth/client'
 import db from '../db.js'
 
-export default function DayScheduleCard({ dayData, userData, updateUserData }) {
+export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
   const [open, setOpen] = useState(false);
   const [yogaClass, setYogaClass] = useState(null);
   const handleDialogClose = () => {
@@ -29,11 +29,13 @@ export default function DayScheduleCard({ dayData, userData, updateUserData }) {
     return dayData.schedule.map((yogaClass, idx) => {
       yogaClass.id = idx
       yogaClass.classType = yogaClass.classType || 'online'
+      console.log(userBookings[yogaClass.schedulesWeeksId] || false)
       return (
         <DayScheduleClass
           userData={userData}
           key={idx}
           dayScheduleClass={yogaClass}
+          isBooked={userBookings[yogaClass.schedulesWeeksId] || false}
           handleInfoIconClick={handleInfoIconClick}
           handleBookClick={handleBookClick}
         />

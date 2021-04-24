@@ -11,18 +11,20 @@ header {
         border-bottom-right-radius: 7px;
         margin-bottom: 2rem;
 
-        .small-menu{
+        .small-menu {
             display: flex;
             align-items: center;
             width: 100%;
             justify-content: space-between;
         }
 
-        .fa-bars{
+        .fa-bars {
             display: none;
         }
-        
+
         ul {
+            width: 1500px;
+            justify-content: space-between;
             display: flex;
             align-items: center;
 
@@ -126,6 +128,6 @@ header {
 
     .navItem {
         display: inline-block;
-        margin-right: 3.5rem;
+       /*  margin-right: 3.5rem; */
     }
 }

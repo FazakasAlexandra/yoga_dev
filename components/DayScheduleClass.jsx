@@ -8,18 +8,8 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/client';
 
 
-export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, userData}) {
+export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, userData, isBooked}) {
     const [yogaClass, setYogaClass] = useState(dayScheduleClass)
-    const [booked, setBooked] = useState(false)
-
-    useEffect(()=>{
-        if(userData){
-            console.log(userData)
-            userData.bookingIds.forEach(bookingId => {
-                if(bookingId === yogaClass.schedulesWeeksId) setBooked(true)
-            });
-        }
-    }, [])
 
     const handleRadioChange = (e) => {
         setYogaClass({ ...yogaClass, classType: e.target.value })
@@ -83,7 +73,7 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
 
                 </div>
                 {
-                   booked ? "BOOKED" : <a className="button-white" onClick={() => handleBookClick(yogaClass)}>Book</a>
+                   isBooked ? "BOOKED" : <a className="button-white" onClick={() => handleBookClick(yogaClass)}>Book</a>
                 }
             </div>
         </ThemeProvider>
