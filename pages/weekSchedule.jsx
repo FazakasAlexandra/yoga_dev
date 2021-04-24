@@ -13,7 +13,9 @@ import { useRouter } from 'next/router'
 
 export default function WeekSchedule() {
   const [session, loading] = useSession()
-  const [schedule, setSchedule] = useState([]);
+  const [userData, setUserData] = useState(null)
+  const [weekSchedule, setWeekSchedule] = useState([]);
+  const [userBookings, setUserBookings] = useState({})
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -21,21 +23,25 @@ export default function WeekSchedule() {
       key: 'selection'
     }
   ]);
-  const [user, setUser] = useState(null)
-
-  const updateUser = () => db.queryUsers('email', session.user.email).then(res => {
-    setUser(res.data)
-    console.log('USER UPDATE')
+  
+  const updateUserData = () => db.queryUsers('email', session.user.email).then(res => {
+    setUserData(res.data)
+    let userBookingsMap = res.data.bookingIds.reduce((map, bookingId) => {
+      map[bookingId] = true
+      return map
+    }, {})
+    setUserBookings(userBookingsMap)
+    console.log('USER UPDATED')
   })
 
   useEffect(() => {
-    if (session) updateUser()
+    if (session) updateUserData()
   }, [session])
 
   useEffect(() => {
     db.schedules.getLatestSchedule().then((res) => {
-      setSchedule(res.data)
-      console.log(schedule)
+      setWeekSchedule(res.data)
+      console.log(weekSchedule)
 
       let startDate = new Date(res.data[0].dateWeekStart)
       let endDate = new Date(res.data[0].dateWeekEnd)
@@ -46,6 +52,7 @@ export default function WeekSchedule() {
         key: 'selection'
       }])
     })
+   // updateUserData()
   }, [])
 
   useEffect(() => {
@@ -53,7 +60,7 @@ export default function WeekSchedule() {
     let endDate = convertToISODate(date[0].endDate)
 
     db.schedules.getSchedule(startDate, endDate).then(res => {
-      setSchedule(res.data)
+      setWeekSchedule(res.data)
     })
   }, [date])
 
@@ -62,12 +69,13 @@ export default function WeekSchedule() {
   })
 
   const getDayScheduleCards = () => {
-    return schedule.map((daySchedule, idx) => {
+    return weekSchedule.map((daySchedule, idx) => {
       return <DayScheduleCard
         key={idx}
         dayData={daySchedule}
-        userData={user}
-        updateUserData={updateUser}
+        userData={userData}
+        userBookings={userBookings}
+        updateUserData={updateUserData}
       />
     })
   }
