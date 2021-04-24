@@ -30,6 +30,14 @@
             margin-left: 1.5rem;
         }
 
+        .buttons-container{
+            display: flex;
+            flex-direction: column;
+            button{
+                margin-bottom: 0.2rem;
+            }
+        }
+
         .info-wraper {
             display: flex;
             align-items: center;
@@ -81,4 +89,11 @@
         font-size: 30px;
         margin: 1rem 0rem;
     }
+}
+
+.dialog-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
 }

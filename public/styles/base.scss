@@ -31,18 +31,29 @@ ul {
   border-width: thin;
 }
 
-.button-white:hover{
+.button-white:hover {
   border-width: medium;
   cursor: pointer;
 }
 
 .button-white:hover,
 .button-white.active,
-.active-tab{
+.active-tab {
   font-weight: 900;
 }
 
-.button-white.active{
+.button-white.active {
   border-style: solid;
   border-width: medium;
+}
+
+.blue-text {
+  cursor: pointer;
+  color: rgb(108 187 199);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.blue-text:hover {
+  color: #a7d6dd;
 }

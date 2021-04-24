@@ -5,26 +5,55 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import { useState } from 'react/cjs/react.development';
 
-export default function AlertDialog(props) {
+export default function AlertDialog({ yogaClass, editMode, title, closeDialog, isOpen }) {
+  const classData = useState({
+    description: "",
+    level: ""
+  })
+
   return (
     <div>
       <Dialog
-        open={props.isOpen}
+        open={isOpen}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
-        <hr style={{width:"90%"}}/>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <hr style={{ width: "90%" }} />
         <DialogContent
-                style={{minWidth : '300px'}}
+          style={{ minWidth: '300px' }}
         >
-              {props.content}
+          {editMode ?
+            <div className="dialog-form">
+              <TextField
+                id="standard-basic"
+                label="Level"
+                defaultValue={yogaClass.classLevel}
+              />
+
+              <TextField
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={10}
+                defaultValue={yogaClass.classDescription}
+                variant="outlined"
+              />
+            </div>
+            : content}
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.closeDialog} color="primary" autoFocus>
+          <Button onClick={closeDialog} color="primary" autoFocus>
             Close
           </Button>
+          {editMode ?
+            <Button onClick={closeDialog} color="primary" autoFocus>
+              Save
+            </Button>
+            : null}
         </DialogActions>
       </Dialog>
     </div>

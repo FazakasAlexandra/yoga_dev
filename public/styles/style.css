@@ -45,6 +45,17 @@ ul {
   border-width: medium;
 }
 
+.blue-text {
+  cursor: pointer;
+  color: #6cbbc7;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.blue-text:hover {
+  color: #a7d6dd;
+}
+
 .day-schedule-cards {
   display: flex;
   justify-content: space-evenly;
@@ -72,6 +83,13 @@ ul {
 .day-schedule-cards .class.wraper .button-white {
   height: fit-content;
   margin-left: 1.5rem;
+}
+.day-schedule-cards .class.wraper .buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+.day-schedule-cards .class.wraper .buttons-container button {
+  margin-bottom: 0.2rem;
 }
 .day-schedule-cards .class.wraper .info-wraper {
   display: flex;
@@ -115,6 +133,13 @@ ul {
   font-weight: 400;
   font-size: 30px;
   margin: 1rem 0rem;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
 }
 
 header {
