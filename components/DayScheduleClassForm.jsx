@@ -11,30 +11,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/client';
 
-
-export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, removeClass }) {
-    const [yogaClass, setYogaClass] = useState(dayScheduleClass)
-    const [editMode, setEditMode] = useState(yogaClass.newClass || false)
-    const [className, setClassName] = useState(yogaClass.className)
-
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                main: "#6CBBC7",
-            },
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#6CBBC7",
         },
-    });
+    },
+});
+
+export default function DayScheduleClass({ yogaClass, handleInfoIconClick, removeClass, toggleEditMode }) {
+    const editMode = yogaClass.newClass || false
 
     const handleClassNameChange = (e) => {
         setClassName(e.target.value)
     }
-    const controlProps = (item) => ({
-        checked: yogaClass.classType === item,
-        value: item,
-        theme: theme,
-        name: 'color-radio-button-demo',
-        inputProps: { 'aria-label': item },
-    });
 
     return (
         <ThemeProvider theme={theme} key={yogaClass.id}>
@@ -54,16 +44,16 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                     <div className="class radio">
                         {editMode ?
                             <FormControl>
-                                <InputLabel htmlFor="age-native-helper">Class</InputLabel>
+                                <InputLabel htmlFor="age-native-helper"></InputLabel>
                                 <NativeSelect
-                                    value={className}
+                                    value={yogaClass.className}
                                     onChange={handleClassNameChange}
                                     inputProps={{
                                         name: 'age',
                                         id: 'age-native-helper',
                                     }}
                                 >
-                                    <option aria-label="None" value="" />
+                                    <option aria-label="None" value="">{yogaClass.id}</option>
                                     <option value="Yoga for back and sholders">Yoga for back and sholders</option>
                                     <option value="Yoga for intermediates">Yoga for intermediates</option>
                                     <option value="Fast flow">Fast flow</option>
@@ -79,14 +69,14 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                 {
                     editMode ?
                         <div className="buttons-container">
-                            <button className="button-white" onClick={() => setEditMode(false)} style={{ backgroundColor: "#76E294" }}>
+                            <button className="button-white" onClick={() => toggleEditMode(yogaClass.id, false)} style={{ backgroundColor: "#76E294" }}>
                                 <FontAwesomeIcon
                                     icon={faCheck}
                                     size="lg"
                                     className="info-icon"
                                 />
                             </button>
-                            <button className="button-white" onClick={() => setEditMode(false)}>
+                            <button className="button-white" onClick={() => toggleEditMode(yogaClass.id, false)}>
                                 <FontAwesomeIcon
                                     icon={faTimes}
                                     size="lg"
@@ -94,7 +84,7 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                                 />
                             </button>
                             <button className="button-white" onClick={() => {
-                                setEditMode(false)
+                                toggleEditMode(yogaClass.id, false)
                                 removeClass(yogaClass)
                             }} style={{ backgroundColor: "#FF5D23" }}>
                                 <FontAwesomeIcon
@@ -105,8 +95,7 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                             </button>
                         </div> :
                         <button className="button-white" onClick={() => {
-                            setEditMode(true)
-                            console.log(yogaClass)
+                            toggleEditMode(yogaClass.id, true)
                         }}>
                             <FontAwesomeIcon
                                 icon={faPen}

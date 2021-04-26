@@ -56,7 +56,6 @@ export default function Page() {
                 <AdminClassesLayout activeTab={"week_schedule"}>
                     <div className="day-schedule-cards">
                         <DayScheduleCardForm
-                            weekSchedule={weekSchedule}
                             dayData={weekSchedule[0]}
                         />
                     </div>

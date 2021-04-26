@@ -7,22 +7,20 @@ import db from '../db.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function DayScheduleCard({ dayData, changeDayData, dayNumber }) {
+export default function DayScheduleCard({ dayData }) {
     const [open, setOpen] = useState(false);
-    const [yogaClass, setYogaClass] = useState(dayData);
-    const [daySchedule, setDaySchedule] = useState(dayData.schedule)
+    const [daySchedule, setDaySchedule] = useState(dayData.schedule);
+    const [yogaClass, setYogaClass] = useState(dayData.schedule[0])
+
     const addNewClass = () => {
-        console.log(daySchedule)
         const newClass = {
             classDescription: "",
             classLevel: "",
             className: "",
-            classType: "",
             hour: "",
-            id: daySchedule.length,
             offlinePrice: "0",
             onlinePrice: "0",
-            schedulesWeeksId: "1",
+            schedulesWeeksId: null,
             newClass: true
         }
         setDaySchedule([...daySchedule, newClass])
@@ -31,12 +29,14 @@ export default function DayScheduleCard({ dayData, changeDayData, dayNumber }) {
     const removeClass = (removedClass) => {
         const newDaySchedule = daySchedule.filter((yogaClassItem) => yogaClassItem.id !== removedClass.id)
         setDaySchedule(newDaySchedule);
-        setYogaClass({...yogaClass, schedule: newDaySchedule});
     }
 
-    useEffect(()=>{
-        console.log(daySchedule)
-    }, [daySchedule])
+    const toggleEditMode = (classId, bool) => {
+        setDaySchedule(daySchedule.map(yogaClass => {
+            if (yogaClass.id === classId) return {...yogaClass, newClass: bool}
+            return yogaClass
+        }))
+    }
 
     const handleDialogClose = () => {
         setOpen(false);
@@ -45,19 +45,18 @@ export default function DayScheduleCard({ dayData, changeDayData, dayNumber }) {
     const handleInfoIconClick = (yogaClass) => {
         setOpen(true);
         setYogaClass(yogaClass)
-        console.log(yogaClass)
     }
 
     const getSchedule = () => {
-        console.log('getting schedule', daySchedule)
         return daySchedule.map((yogaClass, idx) => {
             yogaClass.id = idx
             return (
                 <DayScheduleClassForm
                     key={idx}
-                    dayScheduleClass={yogaClass}
+                    yogaClass={yogaClass}
                     handleInfoIconClick={handleInfoIconClick}
                     removeClass={removeClass}
+                    toggleEditMode={toggleEditMode}
                 />
             )
         })

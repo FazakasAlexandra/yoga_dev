@@ -26,6 +26,19 @@ const db = {
                 method: "POST",
             }).then(res => res.json())
         }
+    },
+    classes: {
+        getClasses : () => {
+            return fetch(`${db.baseURL}/classes`).then(res => res.json())
+        },
+        deleteClass: (id) => {
+            return fetch(`${db.baseURL}/classes/dlt/${id}`).then(res => res.json())
+        }
+    },
+    users: {
+        getClients: () => {
+            return fetch(`${db.baseURL}/users/clients`).then(res => res.json())
+        }
     }
 }
 
