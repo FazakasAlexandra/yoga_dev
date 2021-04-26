@@ -15,7 +15,6 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
   const handleInfoIconClick = (yogaClass) => {
     setOpen(true);
     setYogaClass(yogaClass)
-    console.log(yogaClass)
   }
 
   const handleBookClick = (yogaClass) => {
@@ -29,7 +28,6 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
     return dayData.schedule.map((yogaClass, idx) => {
       yogaClass.id = idx
       yogaClass.classType = yogaClass.classType || 'online'
-      console.log(userBookings[yogaClass.schedulesWeeksId] || false)
       return (
         <DayScheduleClass
           userData={userData}

@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react/cjs/react.development';
 
-export default function AlertDialog({ yogaClass, editMode, title, closeDialog, isOpen }) {
+export default function AlertDialog({ yogaClass, editMode, title, closeDialog, isOpen, content }) {
   const classData = useState({
     description: "",
     level: ""

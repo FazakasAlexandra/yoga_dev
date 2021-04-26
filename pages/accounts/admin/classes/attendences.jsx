@@ -11,7 +11,7 @@ export default function Page() {
     const [session, loading] = useSession()
 
     useEffect(() => {
-        if (!session) router.push({ pathname: '/' })
+        if (!loading && !session) router.push({ pathname: '/' })
     }, [session])
 
     return (

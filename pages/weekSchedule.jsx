@@ -24,7 +24,7 @@ export default function WeekSchedule() {
     }
   ]);
   
-  const updateUserData = () => db.queryUsers('email', session.user.email).then(res => {
+  const updateUserData = () => db.users.queryUsers('email', session.user.email).then(res => {
     setUserData(res.data)
     let userBookingsMap = res.data.bookingIds.reduce((map, bookingId) => {
       map[bookingId] = true

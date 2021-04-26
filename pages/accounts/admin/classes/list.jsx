@@ -13,7 +13,7 @@ export default function Page() {
     const [classesData, setClassesData] = useState([])
 
     useEffect(() => {
-        if (!session) router.push({ pathname: '/' })
+        if (!loading && !session) router.push({ pathname: '/' })
     }, [session])
 
     useEffect(() => {

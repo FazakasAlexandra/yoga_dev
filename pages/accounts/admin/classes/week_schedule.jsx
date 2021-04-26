@@ -5,8 +5,9 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../../components/AdminLayout'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import DayScheduleCardForm from '../../../../components/DayScheduleCardForm'
+import db from '../../../../db.js'
 
-export default function Page() {
+export default function WeekScheduleAdmin({ latestSchedule }) {
     const router = useRouter()
     const [session, loading] = useSession()
     const [weekSchedule, setWeekSchedule] = useState([{
@@ -45,19 +46,32 @@ export default function Page() {
         ]
     }])
 
+    useEffect(()=>{
+        db.schedules.getLatestSchedule().then(res => {
+            setWeekSchedule(res.data)
+        })
+    }, [])
+
 
     useEffect(() => {
         if (!loading && !session) router.push({ pathname: '/' })
     }, [session])
+
+    const getScheduleCards = () => {
+        return weekSchedule.map((day, idx) => {
+            return <DayScheduleCardForm
+              key={idx} 
+              dayData={day}
+            />
+        })
+    }
 
     return (
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"week_schedule"}>
                     <div className="day-schedule-cards">
-                        <DayScheduleCardForm
-                            dayData={weekSchedule[0]}
-                        />
+                        {getScheduleCards()}
                     </div>
                 </AdminClassesLayout>
             </AdminLayout>
