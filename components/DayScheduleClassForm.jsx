@@ -116,7 +116,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                 />
                             </button>
                             <button className="button-white" onClick={() => {
-                                removeClass(yogaClass, changedYogaClass)
+                                removeClass(yogaClass)
                             }} style={{ backgroundColor: "#FF5D23" }}>
                                 <FontAwesomeIcon
                                     icon={faTrashAlt}
