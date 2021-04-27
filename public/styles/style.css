@@ -142,6 +142,26 @@ ul {
   min-height: 300px;
 }
 
+.admin-classes-layout .day-schedule-cards .class.radio {
+  border-left-style: none;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info {
+  border-right-style: solid;
+  border-width: thin;
+  align-items: end;
+  min-width: 70px;
+  padding-right: 1rem;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info p {
+  font-weight: 300;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info b {
+  font-size: 13px;
+  color: #78999f;
+}
+
 header {
   /* Set min-height to avoid page reflow while session loading */
 }

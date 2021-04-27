@@ -4,12 +4,10 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/client';
+import db from '../db.js'
 
 const theme = createMuiTheme({
     palette: {
@@ -19,11 +17,44 @@ const theme = createMuiTheme({
     },
 });
 
-export default function DayScheduleClass({ yogaClass, handleInfoIconClick, removeClass, toggleEditMode }) {
+export default function DayScheduleClass({ yogaClass, handleInfoIconClick, removeClass, toggleEditMode, updateSchedule }) {
     const editMode = yogaClass.newClass || false
+    const [classes, setClasses] = useState([])
+    const [changedYogaClass, setChangedYogaClass] = useState({})
+    const [hour, setHour] = useState(yogaClass.hour)
 
-    const handleClassNameChange = (e) => {
-        setClassName(e.target.value)
+    useEffect(() => {
+        db.classes.getClasses().then((res) => {
+            setClasses(res.data)
+        })
+    }, [])
+
+    const handleClassChange = (e) => {
+        const newClass = classes.find((yogaClass) => yogaClass.id === e.target.value)
+        setChangedYogaClass(newClass)
+    }
+
+    const handleSaveClick = () => {
+        updateSchedule({
+            id: yogaClass.id,
+            schedulesWeeksId: yogaClass.schedulesWeeksId,
+            classDescription : changedYogaClass.description,
+            className : changedYogaClass.name,
+            classLevel : changedYogaClass.level,
+            onllinePrice : changedYogaClass.online_price,
+            offlinePrice : changedYogaClass.offline_price,
+            hour
+        })
+    }
+
+    const getOptions = () => {
+        return classes.map((fetchedYogaClass, idx) => {
+            return <option
+                selected={fetchedYogaClass.name === yogaClass.className ? true : false}
+                key={idx}
+                value={fetchedYogaClass.id}>{fetchedYogaClass.name}
+            </option>
+        })
     }
 
     return (
@@ -32,13 +63,17 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                 <div className="class info-wraper">
 
                     <div className="class info">
-                        {editMode ? 
-                        <TextField id="standard-basic" 
-                        defaultValue={yogaClass.hour} 
-                        label="Hour" 
-                        style={{maxWidth: "40px", marginBottom: '0.5rem'}}/> 
-                        : <p style={{ margin: "0px" }}>{yogaClass.hour}</p>}
-                        <span>{yogaClass.onlinePrice} lei</span>
+                        {editMode ?
+                            <TextField id="standard-basic"
+                                defaultValue={hour}
+                                label="Hour"
+                                onChange={(e) => setHour(e.target.value)}
+                                style={{ maxWidth: "40px", marginBottom: '0.5rem' }} />
+                            : <p>{hour}</p>}
+                        <b>OFFLINE</b>
+                        <span>{changedYogaClass.offline_price || yogaClass.offlinePrice} lei</span>
+                        <b>ONLINE</b>
+                        <span>{changedYogaClass.online_price || yogaClass.onlinePrice} lei</span>
                     </div>
 
                     <div className="class radio">
@@ -46,37 +81,35 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                             <FormControl>
                                 <InputLabel htmlFor="age-native-helper"></InputLabel>
                                 <NativeSelect
-                                    value={yogaClass.className}
-                                    onChange={handleClassNameChange}
-                                    inputProps={{
-                                        name: 'age',
-                                        id: 'age-native-helper',
-                                    }}
+                                    value={changedYogaClass.name}
+                                    onChange={handleClassChange}
                                 >
-                                    <option aria-label="None" value="">{yogaClass.id}</option>
-                                    <option value="Yoga for back and sholders">Yoga for back and sholders</option>
-                                    <option value="Yoga for intermediates">Yoga for intermediates</option>
-                                    <option value="Fast flow">Fast flow</option>
+                                    <option value={changedYogaClass.id}>{changedYogaClass.name}</option>
+                                    {getOptions()}
                                 </NativeSelect>
                                 <FormHelperText>Chose one of the existing classes</FormHelperText>
                             </FormControl>
                             : <p style={{ marginTop: "0px" }}>{yogaClass.className}</p>
                         }
-                        {editMode ? <span className="blue-text" onClick={()=>handleInfoIconClick(yogaClass)}>Change class description</span> : null}
+                        {/*{editMode ? <span className="blue-text" onClick={()=>handleInfoIconClick(yogaClass)}>Change class description</span> : null}*/}
                     </div>
 
                 </div>
                 {
                     editMode ?
                         <div className="buttons-container">
-                            <button className="button-white" onClick={() => toggleEditMode(yogaClass.id, false)} style={{ backgroundColor: "#76E294" }}>
+                            <button className="button-white" onClick={() => handleSaveClick()} style={{ backgroundColor: "#76E294" }}>
                                 <FontAwesomeIcon
                                     icon={faCheck}
                                     size="lg"
                                     className="info-icon"
                                 />
                             </button>
-                            <button className="button-white" onClick={() => toggleEditMode(yogaClass.id, false)}>
+                            <button className="button-white" onClick={() => {
+                                toggleEditMode(yogaClass.id, false)
+                                setChangedYogaClass({})
+                                setHour(yogaClass.hour)
+                            }}>
                                 <FontAwesomeIcon
                                     icon={faTimes}
                                     size="lg"
@@ -93,8 +126,8 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                                     className="info-icon"
                                 />
                             </button>
-                        </div> :
-                        <button className="button-white" onClick={() => {
+                        </div> 
+                        : <button className="button-white" onClick={() => {
                             toggleEditMode(yogaClass.id, true)
                         }}>
                             <FontAwesomeIcon
@@ -105,6 +138,6 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                         </button>
                 }
             </div>
-        </ThemeProvider>
+        </ThemeProvider >
     )
 }

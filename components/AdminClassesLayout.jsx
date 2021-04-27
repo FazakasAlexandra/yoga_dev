@@ -9,7 +9,7 @@ export default function AdminClassesLayout({ children, activeTab }) {
             <div className="classes-header">
                 <Link href="/accounts/admin/classes/week_schedule">
                     <a className={activeTab === "week_schedule" ? "button-white active" : "button-white"}>
-                        WeekSchedule
+                        Week Schedule
                     </a>
                 </Link>
 

@@ -7,44 +7,10 @@ import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import DayScheduleCardForm from '../../../../components/DayScheduleCardForm'
 import db from '../../../../db.js'
 
-export default function WeekScheduleAdmin({ latestSchedule }) {
+export default function WeekScheduleAdmin() {
     const router = useRouter()
     const [session, loading] = useSession()
-    const [weekSchedule, setWeekSchedule] = useState([{
-        day: "Monday",
-        date: "2021-04-05",
-        dateWeekStart: "2021-04-05",
-        dateWeekEnd: "2021-04-11",
-        schedule: [
-            {
-                schedulesWeeksId: "1",
-                hour: "8:00",
-                className: "Morning yoga",
-                classDescription: "For morning people",
-                classLevel: "begginer",
-                onlinePrice: "25",
-                offlinePrice: "35"
-            },
-            {
-                schedulesWeeksId: "2",
-                hour: "18:00",
-                className: "Back, neck, and shoulders",
-                classDescription: "For those with back and posture problems",
-                classLevel: "begginer",
-                onlinePrice: "25",
-                offlinePrice: "35"
-            },
-            {
-                schedulesWeeksId: "5",
-                hour: "19:45",
-                className: "Complete Class (Strength, Stretch, Relaxation/Pranayama)",
-                classDescription: "Everything you can get",
-                classLevel: "begginer",
-                onlinePrice: "25",
-                offlinePrice: "35"
-            }
-        ]
-    }])
+    const [weekSchedule, setWeekSchedule] = useState([])
 
     useEffect(()=>{
         db.schedules.getLatestSchedule().then(res => {
@@ -52,16 +18,24 @@ export default function WeekScheduleAdmin({ latestSchedule }) {
         })
     }, [])
 
-
     useEffect(() => {
         if (!loading && !session) router.push({ pathname: '/' })
     }, [session])
 
+    const updateWeekSchedule = (dayData, dayNumber) => {
+        const updatedWeekSchedule = [...weekSchedule]
+        updatedWeekSchedule[dayNumber] = dayData
+        setWeekSchedule(updatedWeekSchedule)
+    }
+
     const getScheduleCards = () => {
         return weekSchedule.map((day, idx) => {
             return <DayScheduleCardForm
-              key={idx} 
+              key={idx}
+              dayNumber={idx} 
               dayData={day}
+              updateWeekSchedule={updateWeekSchedule}
+              schedule={day.schedule}
             />
         })
     }

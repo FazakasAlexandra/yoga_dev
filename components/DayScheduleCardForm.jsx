@@ -7,11 +7,9 @@ import db from '../db.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function DayScheduleCard({ dayData }) {
-    const [open, setOpen] = useState(false);
-    const [daySchedule, setDaySchedule] = useState(dayData.schedule);
-    const [yogaClass, setYogaClass] = useState(dayData.schedule[0])
-
+export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
+    const [daySchedule, setDaySchedule] = useState(schedule);
+    
     const addNewClass = () => {
         const newClass = {
             classDescription: "",
@@ -25,6 +23,15 @@ export default function DayScheduleCard({ dayData }) {
         }
         setDaySchedule([...daySchedule, newClass])
     }
+
+    const updateSchedule = (updatedYogaClass) => {
+        const newDaySchedule = dayData.schedule.map(dayYogaClass => {
+            if(dayYogaClass.schedulesWeeksId == updatedYogaClass.schedulesWeeksId) return updatedYogaClass
+            return dayYogaClass
+        })
+        setDaySchedule(newDaySchedule)
+        updateWeekSchedule({...dayData, schedule: newDaySchedule}, dayNumber)
+    } 
 
     const removeClass = (removedClass) => {
         const newDaySchedule = daySchedule.filter((yogaClassItem) => yogaClassItem.id !== removedClass.id)
@@ -42,21 +49,16 @@ export default function DayScheduleCard({ dayData }) {
         setOpen(false);
     };
 
-    const handleInfoIconClick = (yogaClass) => {
-        setOpen(true);
-        setYogaClass(yogaClass)
-    }
-
     const getSchedule = () => {
-        return daySchedule.map((yogaClass, idx) => {
-            yogaClass.id = idx
+        return daySchedule.map((dayScheduleYogaClass, idx) => {
+            dayScheduleYogaClass.id = idx
             return (
                 <DayScheduleClassForm
                     key={idx}
-                    yogaClass={yogaClass}
-                    handleInfoIconClick={handleInfoIconClick}
+                    yogaClass={dayScheduleYogaClass}
                     removeClass={removeClass}
                     toggleEditMode={toggleEditMode}
+                    updateSchedule={updateSchedule}
                 />
             )
         })
@@ -84,23 +86,6 @@ export default function DayScheduleCard({ dayData }) {
                     {getSchedule()}
                 </div>
             }
-            {open ?
-                <ClassDialog
-                    isOpen={open}
-                    title={yogaClass.className}
-                    yogaClass={yogaClass}
-                    content={
-                        <>
-                            <p><b>Class level</b></p>
-                            <p>{yogaClass.classLevel}</p>
-                            <p><b>Description</b></p>
-                            <p>{yogaClass.classDescription}</p>
-                        </>
-                    }
-                    closeDialog={handleDialogClose}
-                    editMode={true}
-                />
-                : null}
         </div>
     )
 }
