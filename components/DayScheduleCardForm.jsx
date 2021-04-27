@@ -19,35 +19,37 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
             offlinePrice: "0",
             onlinePrice: "0",
             schedulesWeeksId: null,
-            newClass: true
+            newClass: true,
+            editMode: true
         }
         setDaySchedule([...daySchedule, newClass])
     }
 
+    useEffect(()=>{
+        console.log(daySchedule)
+        updateWeekSchedule({...dayData, schedule: daySchedule}, dayNumber)
+    }, [daySchedule])
+
     const updateSchedule = (updatedYogaClass) => {
+        console.log(updatedYogaClass)
         const newDaySchedule = dayData.schedule.map(dayYogaClass => {
-            if(dayYogaClass.schedulesWeeksId == updatedYogaClass.schedulesWeeksId) return updatedYogaClass
+            if(dayYogaClass.id == updatedYogaClass.id) return updatedYogaClass
             return dayYogaClass
         })
         setDaySchedule(newDaySchedule)
-        updateWeekSchedule({...dayData, schedule: newDaySchedule}, dayNumber)
     } 
 
-    const removeClass = (removedClass) => {
+    const removeClass = (removedClass, changedYogaClass) => {
         const newDaySchedule = daySchedule.filter((yogaClassItem) => yogaClassItem.id !== removedClass.id)
         setDaySchedule(newDaySchedule);
     }
 
     const toggleEditMode = (classId, bool) => {
         setDaySchedule(daySchedule.map(yogaClass => {
-            if (yogaClass.id === classId) return {...yogaClass, newClass: bool}
+            if (yogaClass.id === classId) return {...yogaClass, editMode: bool}
             return yogaClass
         }))
     }
-
-    const handleDialogClose = () => {
-        setOpen(false);
-    };
 
     const getSchedule = () => {
         return daySchedule.map((dayScheduleYogaClass, idx) => {

@@ -17,8 +17,8 @@ const theme = createMuiTheme({
     },
 });
 
-export default function DayScheduleClass({ yogaClass, handleInfoIconClick, removeClass, toggleEditMode, updateSchedule }) {
-    const editMode = yogaClass.newClass || false
+export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMode, updateSchedule }) {
+    const editMode = yogaClass.editMode || false
     const [classes, setClasses] = useState([])
     const [changedYogaClass, setChangedYogaClass] = useState({})
     const [hour, setHour] = useState(yogaClass.hour)
@@ -91,7 +91,6 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                             </FormControl>
                             : <p style={{ marginTop: "0px" }}>{yogaClass.className}</p>
                         }
-                        {/*{editMode ? <span className="blue-text" onClick={()=>handleInfoIconClick(yogaClass)}>Change class description</span> : null}*/}
                     </div>
 
                 </div>
@@ -117,8 +116,7 @@ export default function DayScheduleClass({ yogaClass, handleInfoIconClick, remov
                                 />
                             </button>
                             <button className="button-white" onClick={() => {
-                                toggleEditMode(yogaClass.id, false)
-                                removeClass(yogaClass)
+                                removeClass(yogaClass, changedYogaClass)
                             }} style={{ backgroundColor: "#FF5D23" }}>
                                 <FontAwesomeIcon
                                     icon={faTrashAlt}
