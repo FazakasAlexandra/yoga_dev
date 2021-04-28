@@ -22,7 +22,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     const [classes, setClasses] = useState([])
     const [changedYogaClass, setChangedYogaClass] = useState({})
     const [hour, setHour] = useState(yogaClass.hour)
-
+    
     useEffect(() => {
         db.classes.getClasses().then((res) => {
             setClasses(res.data)
@@ -67,7 +67,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                 defaultValue={hour}
                                 label="Hour"
                                 onChange={(e) => setHour(e.target.value)}
-                                style={{ width: "70px", marginBottom: '0.5rem' }} />
+                                style={{ width: "50px", marginBottom: '0.5rem' }} />
                             : 
                             <p>{hour}</p>}
                         <b>OFFLINE</b>

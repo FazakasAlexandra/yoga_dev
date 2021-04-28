@@ -9,10 +9,12 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
 export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
     const [daySchedule, setDaySchedule] = useState(schedule);
+
+    console.log(dayData)
     
     const addNewClass = () => {
         const newClass = {
-            id: _.uniqueId(),
+            id: _.uniqueId('id'),
             classDescription: "",
             classLevel: "",
             className: "",
