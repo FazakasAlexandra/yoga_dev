@@ -11,10 +11,10 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
     const [daySchedule, setDaySchedule] = useState(schedule);
 
     console.log(dayData)
-    
+
     const addNewClass = () => {
         const newClass = {
-            id: _.uniqueId('id'),
+            id: Date.now(),
             classDescription: "",
             classLevel: "",
             className: "",

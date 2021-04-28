@@ -22,7 +22,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     const [classes, setClasses] = useState([])
     const [changedYogaClass, setChangedYogaClass] = useState({})
     const [hour, setHour] = useState(yogaClass.hour)
-    
+
     useEffect(() => {
         db.classes.getClasses().then((res) => {
             setClasses(res.data)
@@ -31,12 +31,14 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
 
     const handleClassChange = (e) => {
         const newClass = classes.find((yogaClass) => yogaClass.id === e.target.value)
+        newClass.class_id = newClass.id
         setChangedYogaClass(newClass)
     }
 
     const handleSaveClick = () => {
         updateSchedule({
             id: yogaClass.id,
+            classId: changedYogaClass.id,
             schedulesWeeksId: yogaClass.schedulesWeeksId,
             classDescription : changedYogaClass.description,
             className : changedYogaClass.name,
@@ -84,7 +86,6 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                     value={changedYogaClass.id || yogaClass.id}
                                     onChange={handleClassChange}
                                 >
-                                    <option value=""></option>
                                     {getOptions()}
                                 </NativeSelect>
                                 <FormHelperText style={{padding:"0px"}}>Chose a class</FormHelperText>

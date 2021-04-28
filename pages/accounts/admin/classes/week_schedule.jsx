@@ -90,7 +90,7 @@ export default function WeekScheduleAdmin() {
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"week_schedule"}>
-                    <div style={{ display: "flex", margin: "1rem" }}>
+                    <div style={{ display: "flex", flexDirection:"column", margin: "1rem" }}>
                         <ThemeProvider theme={theme}>
                             <TextField
                                 id="date"
@@ -109,7 +109,15 @@ export default function WeekScheduleAdmin() {
                                 }}
                             />
                         </ThemeProvider>
-                        <a className="button-white">Post Schedule</a>
+                        <a
+                            className="button-white"
+                            style={{ marginTop: "1rem" }}
+                            onClick={() => {
+                                console.log(weekSchedule, weekDates)
+                            }}
+                        >
+                            Post Schedule
+                            </a>
                     </div>
                     <div className="day-schedule-cards">
                         {getScheduleCards()}
