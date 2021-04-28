@@ -148,7 +148,6 @@ ul {
 .admin-classes-layout .day-schedule-cards .class.wraper .info {
   border-right-style: solid;
   border-width: thin;
-  align-items: end;
   min-width: 70px;
   padding-right: 1rem;
 }
@@ -157,7 +156,11 @@ ul {
   margin-top: 0rem;
   margin-bottom: 0.5rem;
 }
+.admin-classes-layout .day-schedule-cards .class.wraper .info span {
+  align-self: flex-end;
+}
 .admin-classes-layout .day-schedule-cards .class.wraper .info b {
+  align-self: flex-end;
   font-size: 13px;
   color: #78999f;
 }

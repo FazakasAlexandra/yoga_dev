@@ -6,12 +6,13 @@ import { useSession } from 'next-auth/client'
 import db from '../db.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
+import _ from 'lodash'
 export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
     const [daySchedule, setDaySchedule] = useState(schedule);
     
     const addNewClass = () => {
         const newClass = {
+            id: _.uniqueId(),
             classDescription: "",
             classLevel: "",
             className: "",
@@ -50,7 +51,6 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
 
     const getSchedule = () => {
         return daySchedule.map((dayScheduleYogaClass, idx) => {
-            dayScheduleYogaClass.id = idx
             return (
                 <DayScheduleClassForm
                     key={idx}

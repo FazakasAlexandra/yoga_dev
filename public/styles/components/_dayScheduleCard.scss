@@ -109,7 +109,6 @@
         .class.wraper .info {
             border-right-style: solid;
             border-width: thin;
-            align-items: end;
             min-width: 70px;
             padding-right: 1rem;
 
@@ -118,8 +117,11 @@
                 margin-top: 0rem;
                 margin-bottom: 0.5rem;
             }
-
+            span{
+                align-self: flex-end;
+            }
             b {
+                align-self: flex-end;
                 font-size: 13px;
                 color: #78999f;
             }

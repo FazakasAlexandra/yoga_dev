@@ -50,7 +50,6 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     const getOptions = () => {
         return classes.map((fetchedYogaClass, idx) => {
             return <option
-                selected={fetchedYogaClass.name === yogaClass.className ? true : false}
                 key={idx}
                 value={fetchedYogaClass.id}>{fetchedYogaClass.name}
             </option>
@@ -68,8 +67,9 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                 defaultValue={hour}
                                 label="Hour"
                                 onChange={(e) => setHour(e.target.value)}
-                                style={{ maxWidth: "40px", marginBottom: '0.5rem' }} />
-                            : <p>{hour}</p>}
+                                style={{ width: "70px", marginBottom: '0.5rem' }} />
+                            : 
+                            <p>{hour}</p>}
                         <b>OFFLINE</b>
                         <span>{changedYogaClass.offline_price || yogaClass.offlinePrice} lei</span>
                         <b>ONLINE</b>
@@ -81,13 +81,13 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                             <FormControl>
                                 <InputLabel htmlFor="age-native-helper"></InputLabel>
                                 <NativeSelect
-                                    value={changedYogaClass.name}
+                                    value={changedYogaClass.id || yogaClass.id}
                                     onChange={handleClassChange}
                                 >
-                                    <option value={changedYogaClass.id}>{changedYogaClass.name}</option>
+                                    <option value=""></option>
                                     {getOptions()}
                                 </NativeSelect>
-                                <FormHelperText>Chose one of the existing classes</FormHelperText>
+                                <FormHelperText style={{padding:"0px"}}>Chose a class</FormHelperText>
                             </FormControl>
                             : <p style={{ marginTop: "0px" }}>{yogaClass.className}</p>
                         }
@@ -106,7 +106,6 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                             </button>
                             <button className="button-white" onClick={() => {
                                 toggleEditMode(yogaClass.id, false)
-                                setChangedYogaClass({})
                                 setHour(yogaClass.hour)
                             }}>
                                 <FontAwesomeIcon
