@@ -10,11 +10,10 @@ import _ from 'lodash'
 export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
     const [daySchedule, setDaySchedule] = useState(schedule);
 
-    console.log(dayData)
-
     const addNewClass = () => {
         const newClass = {
-            id: Date.now(),
+            id: _.uniqueId('newclass'),
+            class_id: '',
             classDescription: "",
             classLevel: "",
             className: "",
@@ -40,7 +39,9 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
     } 
 
     const removeClass = (removedClass) => {
+        console.log('from daySchedule', daySchedule, 'remove', removedClass.id)
         const newDaySchedule = daySchedule.filter((yogaClassItem) => yogaClassItem.id !== removedClass.id)
+        console.log('resulting in', newDaySchedule)
         setDaySchedule(newDaySchedule);
     }
 
@@ -60,6 +61,7 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
                     removeClass={removeClass}
                     toggleEditMode={toggleEditMode}
                     updateSchedule={updateSchedule}
+                    day={dayNumber}
                 />
             )
         })

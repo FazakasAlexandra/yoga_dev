@@ -9,11 +9,20 @@ const db = {
         },
         getLatestSchedule: () => {
             return fetch(`${db.baseURL}/schedules/latest`).then(res => res.json())
+        },
+        postSchedule: (weekSchedule, jwt) =>{
+            fetch(`${db.baseURL}/schedules`, {
+                method:"POST",
+                headers:{
+                    Authorization : jwt
+                },
+                body: JSON.stringify(weekSchedule)
+            }).then((res) => res.json()).then(console.log)
         }
     },
     bookings: {
-        postBooking: (jwt, scheduleWeekId) => {
-            return fetch(`${db.baseURL}/bookings/${scheduleWeekId}`, {
+        postBooking: (jwt, scheduleWeekId, classType) => {
+            return fetch(`${db.baseURL}/bookings/${scheduleWeekId}/${classType}`, {
                 headers: {
                     'Authorization': jwt,
                 },

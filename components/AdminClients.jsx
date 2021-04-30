@@ -83,7 +83,7 @@ export default function AdminClients() {
                         <FontAwesomeIcon icon={faSearch} size="lg" />
                     </button>
                 </form>
-                <div class="users-list">
+                <div className="users-list">
                     {listNames()}
                 </div>
             </div>

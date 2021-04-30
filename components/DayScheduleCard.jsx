@@ -18,10 +18,11 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
   }
 
   const handleBookClick = (yogaClass) => {
-     db.bookings.postBooking(userData.jwt, yogaClass.schedulesWeeksId).then(() => {
+    console.log(yogaClass)
+      db.bookings.postBooking(userData.jwt, yogaClass.schedulesWeeksId, yogaClass.classType).then(() => {
       console.log('booked !')
       updateUserData()
-    })
+    }) 
   }
 
   const getSchedule = () => {

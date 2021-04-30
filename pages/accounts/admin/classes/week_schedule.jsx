@@ -7,15 +7,8 @@ import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import DayScheduleCardForm from '../../../../components/DayScheduleCardForm'
 import db from '../../../../db.js'
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#6CBBC7",
-        },
-    },
-});
+import { ThemeProvider } from "@material-ui/core";
+import { formatWeekSchedule, theme } from '../../../../utilities.js'
 
 const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -36,6 +29,14 @@ export default function WeekScheduleAdmin() {
     const [weekSchedule, setWeekSchedule] = useState([])
     const [weekStartDate, setWeekStartDate] = useState(new Date().toISOString().slice(0, 10))
     const [weekDates, setWeekDates] = useState(getWeekDates(Date.now(), false))
+    
+    const handlePostSchedule = () => {
+        db.getJWT().then((jwt)=>{
+            const formatedWeekSchedule = formatWeekSchedule(weekSchedule, weekDates[0].date, weekDates[6].date)
+            console.log(formatedWeekSchedule)
+            db.schedules.postSchedule(formatedWeekSchedule, jwt.jwtToken)
+        })
+    }
 
     const changeWeekScheduleDates = (weekSchedule) => {
         const datedWeekSchedule = weekSchedule.map((dayData, idx) => {
@@ -54,19 +55,19 @@ export default function WeekScheduleAdmin() {
     }, [])
 
     useEffect(() => {
+        if (!loading && !session) router.push({ pathname: '/' })
+    }, [session])
+
+    useEffect(() => {
         setWeekDates(getWeekDates(new Date(weekStartDate).getTime(), true))
     }, [weekStartDate])
 
     useEffect(() => {
         if (weekSchedule.length > 0) {
-            const datedWeekSchedule = changeWeekScheduleDates(weekDates)
+            const datedWeekSchedule = changeWeekScheduleDates(weekSchedule)
             setWeekSchedule(datedWeekSchedule)
         }
     }, [weekDates])
-
-    useEffect(() => {
-        if (!loading && !session) router.push({ pathname: '/' })
-    }, [session])
 
     const updateWeekSchedule = (dayData, dayNumber) => {
         const updatedWeekSchedule = [...weekSchedule]
@@ -90,7 +91,7 @@ export default function WeekScheduleAdmin() {
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"week_schedule"}>
-                    <div style={{ display: "flex", flexDirection:"column", margin: "1rem" }}>
+                    <div className="week_schedule-form" style={{  }}>
                         <ThemeProvider theme={theme}>
                             <TextField
                                 id="date"
@@ -112,12 +113,10 @@ export default function WeekScheduleAdmin() {
                         <a
                             className="button-white"
                             style={{ marginTop: "1rem" }}
-                            onClick={() => {
-                                console.log(weekSchedule, weekDates)
-                            }}
+                            onClick={() => handlePostSchedule()}
                         >
                             Post Schedule
-                            </a>
+                        </a>
                     </div>
                     <div className="day-schedule-cards">
                         {getScheduleCards()}
