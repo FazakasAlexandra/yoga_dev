@@ -78,7 +78,7 @@ export default function WeekScheduleAdmin() {
     const getScheduleCards = () => {
         return weekSchedule.map((day, idx) => {
             return <DayScheduleCardForm
-                key={idx}
+                key={day.date}
                 dayNumber={idx}
                 dayData={day}
                 updateWeekSchedule={updateWeekSchedule}

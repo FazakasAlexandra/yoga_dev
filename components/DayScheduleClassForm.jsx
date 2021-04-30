@@ -55,7 +55,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     const getOptions = () => {
         return classes.map((fetchedYogaClass, idx) => {
             return <option
-                key={idx}
+                key={fetchedYogaClass.id}
                 value={fetchedYogaClass.id}>{fetchedYogaClass.name}
             </option>
         })
@@ -68,7 +68,8 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
 
                     <div className="class info">
                         {editMode ?
-                            <TextField id="standard-basic"
+                            <TextField 
+                                id="standard-basic"
                                 defaultValue={hour}
                                 label="Hour"
                                 id={`${yogaClass.id}-hour`}

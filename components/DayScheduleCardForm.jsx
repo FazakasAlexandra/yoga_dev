@@ -1,12 +1,9 @@
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import ClassDialog from './ClassDialog';
 import DayScheduleClassForm from './DayScheduleClassForm';
-import { useSession } from 'next-auth/client'
-import db from '../db.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
+
 export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
     const [daySchedule, setDaySchedule] = useState(schedule);
 
@@ -39,9 +36,7 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
     } 
 
     const removeClass = (removedClass) => {
-        console.log('from daySchedule', daySchedule, 'remove', removedClass.id)
         const newDaySchedule = daySchedule.filter((yogaClassItem) => yogaClassItem.id !== removedClass.id)
-        console.log('resulting in', newDaySchedule)
         setDaySchedule(newDaySchedule);
     }
 
@@ -53,10 +48,10 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
     }
 
     const getSchedule = () => {
-        return daySchedule.map((dayScheduleYogaClass, idx) => {
+        return daySchedule.map((dayScheduleYogaClass) => {
             return (
                 <DayScheduleClassForm
-                    key={idx}
+                    key={dayScheduleYogaClass.id}
                     yogaClass={dayScheduleYogaClass}
                     removeClass={removeClass}
                     toggleEditMode={toggleEditMode}
