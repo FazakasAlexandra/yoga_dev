@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/client';
+import { theme } from '../utilities.js';
 
 
 export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, userData, isBooked}) {
@@ -14,14 +14,6 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
     const handleRadioChange = (e) => {
         setYogaClass({ ...yogaClass, classType: e.target.value })
     };
-
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                main: "#6CBBC7",
-            },
-        },
-    });
 
     const controlProps = (item) => ({
         checked: yogaClass.classType === item,

@@ -1,29 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTimes, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { createMuiTheme, MenuItem, Select, ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { useEffect, useState } from 'react';
-import db from '../db.js'
+import db from '../db.js';
+import { theme } from '../utilities.js';
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#6CBBC7",
-        },
-    },
-});
 
 export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMode, updateSchedule, day }) {
     const editMode = yogaClass.editMode || false
+   // const {id, class_id, online_price, offline_price} = yogaClass
     const [classes, setClasses] = useState([])
     const [changedYogaClass, setChangedYogaClass] = useState({})
     const [hour, setHour] = useState(yogaClass.hour)
-
-    console.log('changed yoga class : ', changedYogaClass, 'for day ', day)
 
     useEffect(() => {
         db.classes.getClasses().then((res) => {
@@ -39,6 +32,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     }
 
     const handleSaveClick = () => {
+        // change names here
         updateSchedule({
             id: yogaClass.id,
             class_id: changedYogaClass.class_id,
@@ -53,7 +47,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     }
 
     const getOptions = () => {
-        return classes.map((fetchedYogaClass, idx) => {
+        return classes.map((fetchedYogaClass) => {
             return <option
                 key={fetchedYogaClass.id}
                 value={fetchedYogaClass.id}>{fetchedYogaClass.name}
@@ -91,7 +85,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                     value={changedYogaClass.class_id || yogaClass.class_id}
                                     onChange={handleClassChange}
                                 >
-                                    <option value=''>Select</option>
+                                    <option value=''>Please select</option>
                                     {getOptions()}
                                 </NativeSelect>
                                 <FormHelperText style={{ padding: "0px" }}>Chose a class</FormHelperText>
@@ -128,7 +122,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                     icon={faTrashAlt}
                                     size="lg"
                                     className="info-icon"
-                                />{yogaClass.id}
+                                />
                             </button>
                         </div>
                         : <button className="button-white" onClick={() => {

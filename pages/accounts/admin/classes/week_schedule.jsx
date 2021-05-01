@@ -10,16 +10,18 @@ import TextField from '@material-ui/core/TextField';
 import { ThemeProvider } from "@material-ui/core";
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 
-const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const getWeekDates = (startDate, isTodayIncluded) => {
-    const days = isTodayIncluded ? [0, 1, 2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6, 7]
-    return days.map((day) => {
-        day = {
-            date: new Date(startDate + day * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-            day: weekDays[new Date(startDate + day * 24 * 60 * 60 * 1000).getDay() - 1] || 'Sunday'
+    const daysIdxs = isTodayIncluded ? [0, 1, 2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6, 7]
+
+    return daysIdxs.map((day) => {
+        let date = new Date(startDate + day * 24 * 60 * 60 * 1000)
+
+        return {
+            date: date.toISOString().slice(0, 10),
+            day: weekDays[date.getDay()]
         }
-        return day
     })
 }
 
@@ -33,7 +35,6 @@ export default function WeekScheduleAdmin() {
     const handlePostSchedule = () => {
         db.getJWT().then((jwt)=>{
             const formatedWeekSchedule = formatWeekSchedule(weekSchedule, weekDates[0].date, weekDates[6].date)
-            console.log(formatedWeekSchedule)
             db.schedules.postSchedule(formatedWeekSchedule, jwt.jwtToken)
         })
     }
@@ -91,7 +92,7 @@ export default function WeekScheduleAdmin() {
         <Layout activeTab={"account"}>
             <AdminLayout activeTab={"classes"}>
                 <AdminClassesLayout activeTab={"week_schedule"}>
-                    <div className="week_schedule-form" style={{  }}>
+                    <div className="week_schedule-form">
                         <ThemeProvider theme={theme}>
                             <TextField
                                 id="date"
@@ -105,7 +106,6 @@ export default function WeekScheduleAdmin() {
                                     min: new Date().toISOString().slice(0, 10)
                                 }}
                                 onChange={(e) => {
-                                    console.log(new Date(e.target.value))
                                     setWeekStartDate(e.target.value)
                                 }}
                             />
