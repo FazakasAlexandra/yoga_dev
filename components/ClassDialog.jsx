@@ -3,17 +3,10 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import { useState } from 'react/cjs/react.development';
 
-export default function AlertDialog({ yogaClass, editMode, title, closeDialog, isOpen, content }) {
-  const classData = useState({
-    description: "",
-    level: ""
-  })
-
+export default function AlertDialog({ yogaClass, closeDialog, isOpen }) {
+  console.log(yogaClass)
   return (
     <div>
       <Dialog
@@ -21,39 +14,20 @@ export default function AlertDialog({ yogaClass, editMode, title, closeDialog, i
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{yogaClass.name}</DialogTitle>
         <hr style={{ width: "90%" }} />
         <DialogContent
           style={{ minWidth: '300px' }}
         >
-          {editMode ?
-            <div className="dialog-form">
-              <TextField
-                id="standard-basic"
-                label="Level"
-                defaultValue={yogaClass.classLevel}
-              />
-
-              <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                multiline
-                rows={10}
-                defaultValue={yogaClass.classDescription}
-                variant="outlined"
-              />
-            </div>
-            : content}
+          <p><b>Class level</b></p>
+          <p>{yogaClass.level}</p>
+          <p><b>Description</b></p>
+          <p>{yogaClass.description}</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDialog} color="primary" autoFocus>
             Close
           </Button>
-          {editMode ?
-            <Button onClick={closeDialog} color="primary" autoFocus>
-              Save
-            </Button>
-            : null}
         </DialogActions>
       </Dialog>
     </div>

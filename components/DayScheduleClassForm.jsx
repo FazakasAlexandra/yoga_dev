@@ -11,9 +11,8 @@ import db from '../db.js';
 import { theme } from '../utilities.js';
 
 
-export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMode, updateSchedule, day }) {
+export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMode, updateSchedule }) {
     const editMode = yogaClass.editMode || false
-   // const {id, class_id, online_price, offline_price} = yogaClass
     const [classes, setClasses] = useState([])
     const [changedYogaClass, setChangedYogaClass] = useState({})
     const [hour, setHour] = useState(yogaClass.hour)
@@ -25,31 +24,25 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
     }, [])
 
     const handleClassChange = (e) => {
-        const newChangedYogaClass = {...classes.find((yogaClass) => yogaClass.id == e.target.value)}
+        const newChangedYogaClass = { ...classes.find((yogaClass) => yogaClass.id == e.target.value) }
         newChangedYogaClass.class_id = newChangedYogaClass.id
         newChangedYogaClass.id = yogaClass.id
         setChangedYogaClass(newChangedYogaClass)
     }
 
     const handleSaveClick = () => {
-        // change names here
         updateSchedule({
+            ...changedYogaClass,
             id: yogaClass.id,
-            class_id: changedYogaClass.class_id,
-            schedulesWeeksId: yogaClass.schedulesWeeksId,
-            classDescription: changedYogaClass.description,
-            className: changedYogaClass.name,
-            classLevel: changedYogaClass.level,
-            onllinePrice: changedYogaClass.online_price,
-            offlinePrice: changedYogaClass.offline_price,
+            schedules_weeks_id: yogaClass.schedules_weeks_id,
             hour
         })
     }
 
     const getOptions = () => {
-        return classes.map((fetchedYogaClass) => {
+        return classes.map((fetchedYogaClass, idx) => {
             return <option
-                key={fetchedYogaClass.id}
+                key={fetchedYogaClass.id + idx}
                 value={fetchedYogaClass.id}>{fetchedYogaClass.name}
             </option>
         })
@@ -62,7 +55,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
 
                     <div className="class info">
                         {editMode ?
-                            <TextField 
+                            <TextField
                                 id="standard-basic"
                                 defaultValue={hour}
                                 label="Hour"
@@ -72,9 +65,9 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                             :
                             <p>{hour}</p>}
                         <b>OFFLINE</b>
-                        <span>{changedYogaClass.offline_price || yogaClass.offlinePrice} lei</span>
+                        <span>{changedYogaClass.offline_price || yogaClass.offline_price} lei</span>
                         <b>ONLINE</b>
-                        <span>{changedYogaClass.online_price || yogaClass.onlinePrice} lei</span>
+                        <span>{changedYogaClass.online_price || yogaClass.online_price} lei</span>
                     </div>
 
                     <div className="class radio">
@@ -90,7 +83,7 @@ export default function DayScheduleClass({ yogaClass, removeClass, toggleEditMod
                                 </NativeSelect>
                                 <FormHelperText style={{ padding: "0px" }}>Chose a class</FormHelperText>
                             </FormControl>
-                            : <p style={{ marginTop: "0px" }}>{yogaClass.className}</p>
+                            : <p style={{ marginTop: "0px" }}>{yogaClass.name}</p>
                         }
                     </div>
 

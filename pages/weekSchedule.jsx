@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Link from 'next/link'
 import DayScheduleCard from '../components/DayScheduleCard'
 import Layout from '../components/Layout'
 import { DateRange } from 'react-date-range';
@@ -9,7 +7,6 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import Image from 'next/image';
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
-import { useRouter } from 'next/router'
 
 export default function WeekSchedule() {
   const [session, loading] = useSession()
@@ -52,7 +49,7 @@ export default function WeekSchedule() {
         key: 'selection'
       }])
     })
-   // updateUserData()
+   //updateUserData()
   }, [])
 
   useEffect(() => {

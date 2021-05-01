@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ClassDialog from './ClassDialog';
 import DayScheduleClass from './DayScheduleClass';
-import { useSession } from 'next-auth/client'
 import db from '../db.js'
 
 export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
@@ -18,8 +17,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
   }
 
   const handleBookClick = (yogaClass) => {
-    console.log(yogaClass)
-      db.bookings.postBooking(userData.jwt, yogaClass.schedulesWeeksId, yogaClass.classType).then(() => {
+      db.bookings.postBooking(userData.jwt, yogaClass.schedules_weeks_id, yogaClass.classType).then(() => {
       console.log('booked !')
       updateUserData()
     }) 
@@ -34,7 +32,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
           userData={userData}
           key={idx}
           dayScheduleClass={yogaClass}
-          isBooked={userBookings[yogaClass.schedulesWeeksId] || false}
+          isBooked={userBookings[yogaClass.schedules_weeks_id] || false}
           handleInfoIconClick={handleInfoIconClick}
           handleBookClick={handleBookClick}
         />
@@ -63,15 +61,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
       {open ?
         <ClassDialog
           isOpen={open}
-          title={yogaClass.className}
-          content={
-            <>
-              <p><b>Class level</b></p>
-              <p>{yogaClass.classLevel}</p>
-              <p><b>Description</b></p>
-              <p>{yogaClass.classDescription}</p>
-            </>
-          }
+          yogaClass={yogaClass}
           closeDialog={handleDialogClose}
         />
         : null}

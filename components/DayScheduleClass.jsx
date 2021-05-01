@@ -8,12 +8,10 @@ import { useEffect, useState } from 'react';
 import { theme } from '../utilities.js';
 
 
-export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, userData, isBooked}) {
+export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, isBooked}) {
     const [yogaClass, setYogaClass] = useState(dayScheduleClass)
 
-    const handleRadioChange = (e) => {
-        setYogaClass({ ...yogaClass, classType: e.target.value })
-    };
+    const handleRadioChange = (e) => setYogaClass({ ...yogaClass, classType: e.target.value });
 
     const controlProps = (item) => ({
         checked: yogaClass.classType === item,
@@ -37,11 +35,11 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                             onClick={() => handleInfoIconClick(yogaClass)}
                         />
                         <p>{yogaClass.hour}</p>
-                        <span>{yogaClass.onlinePrice} lei</span>
+                        <span>{yogaClass.online_price} lei</span>
                     </div>
 
                     <div className="class radio">
-                        <p>{yogaClass.className}</p>
+                        <p>{yogaClass.name}</p>
                         <RadioGroup
                             aria-label="class-type"
                             name="class-type"
