@@ -7,6 +7,7 @@ import db from '../db.js'
 export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
   const [open, setOpen] = useState(false);
   const [yogaClass, setYogaClass] = useState(null);
+  
   const handleDialogClose = () => {
     setOpen(false);
   };
