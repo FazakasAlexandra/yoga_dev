@@ -1,4 +1,7 @@
 header {
+    z-index: 3;
+    position: relative;
+
     nav {
         display: flex;
         justify-content: space-between;
@@ -10,7 +13,7 @@ header {
         border-bottom-left-radius: 7px;
         border-bottom-right-radius: 7px;
         margin-bottom: 2rem;
-
+        
         .small-menu {
             display: flex;
             align-items: center;

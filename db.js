@@ -10,14 +10,34 @@ const db = {
         getLatestSchedule: () => {
             return fetch(`${db.baseURL}/schedules/latest`).then(res => res.json())
         },
-        postSchedule: (weekSchedule, jwt) =>{
+        postSchedule: (weekSchedule, jwt) => {
             fetch(`${db.baseURL}/schedules`, {
-                method:"POST",
-                headers:{
-                    Authorization : jwt
+                method: "POST",
+                headers: {
+                    Authorization: jwt
                 },
                 body: JSON.stringify(weekSchedule)
             }).then((res) => res.json()).then(console.log)
+        }
+    },
+    subscriptions: {
+        getSubscriptions: () => {
+            return fetch(`${db.baseURL}/subscriptions`).then(res => res.json())
+        },
+        removeSubscription: (jwt, id) => fetch(`${db.baseURL}/subscriptions/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: jwt
+            }
+        }).then(res => res.json()),
+        postSubscription: (subscription, jwt) => {
+             return fetch(`${db.baseURL}/subscriptions`, {
+                method: "POST",
+                body: JSON.stringify(subscription),
+                headers: {
+                    Authorization: jwt.jwtToken
+                }
+            }).then(res => res.json())
         }
     },
     bookings: {
