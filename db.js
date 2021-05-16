@@ -38,6 +38,9 @@ const db = {
     users: {
         getClients: () => {
             return fetch(`${db.baseURL}/users/clients`).then(res => res.json())
+        },
+        getClientHistory: (id) => {
+            return fetch(`${db.baseURL}/clientshistory/client/${id}`).then(res => res.json())
         }
     }
 }

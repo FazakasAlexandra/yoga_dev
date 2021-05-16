@@ -275,7 +275,7 @@ header .navItem {
   width: 100%;
   align-items: center;
   padding: 1rem;
-  background-color: #CAC6EB;
+  background-color: #cac6eb;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
@@ -295,10 +295,24 @@ header .navItem {
   justify-content: space-evenly;
 }
 
-.admin-clients {
+.bottomPagination ul {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+}
+.bottomPagination ul li {
+  list-style-type: none;
+  margin: 5px 10px 30px 10px;
+}
+.bottomPagination ul li button {
+  padding: 0.8rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+  border: solid;
+  border-width: thin;
+}
+.bottomPagination ul li button:hover {
+  background: #edecf4;
 }
 
 .date-container {
@@ -448,7 +462,7 @@ header .navItem {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: #EDECF4;
+  background: #edecf4;
   margin: 10px 0;
   border-radius: 20px;
 }
@@ -502,15 +516,11 @@ header .navItem {
   color: #646262;
 }
 
-.client-last-booking {
-  display: flex;
-  flex-direction: column;
+.client-last-booking .active-bookings-details {
+  width: 70%;
 }
-.client-last-booking p {
-  margin: 0;
-}
-.client-last-booking p:first-child {
-  font-size: 16px;
+.client-last-booking button {
+  display: none;
 }
 
 @media (max-width: 1000px) {
