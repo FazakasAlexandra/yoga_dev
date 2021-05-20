@@ -11,9 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { theme } from '../utilities.js';
-import { getWeekWithOptions } from 'date-fns/fp';
 import MenuItem from '@material-ui/core/MenuItem';
-import { setMonth } from 'date-fns';
 
 const controlProps = (item) => ({
     value: item,
@@ -23,7 +21,7 @@ const controlProps = (item) => ({
 });
 
 export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, id }) {
-    const [image, setImage] = useState("http://localhost/yoga/public/assets/subscriptions/icon.svg")
+    const [image, setImage] = useState("http://localhost/yoga/public/assets/subscriptions/icon.png")
     const [yogaClasses, setYogaClasses] = useState([])
 
     const [months, setMonths] = useState(0)
@@ -94,7 +92,6 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
         db.getJWT().then((jwt) => {
             console.log('gives : ', newSubscription)
             db.subscriptions.postSubscription(newSubscription, jwt).then((res) => {
-                console.log('recieves : ', res.data)
                 addNewSubscriptionCard(res.data)
                 removeForm(id)
             })

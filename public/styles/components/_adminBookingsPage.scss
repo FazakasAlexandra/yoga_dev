@@ -1,0 +1,63 @@
+.admin-bookings {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    
+    .day-schedule-cards .class.wraper {
+        width: 400px;
+    }
+
+    .booking-card {
+        .outer-list-wraper {
+            display: flex;
+            align-items: center;
+        }
+
+        .inner-list-wraper {
+            display: flex;
+            flex-direction: column;
+            margin-left: 0.5rem;
+        }
+
+        .list-name,
+        .list-initial {
+            font-weight: 500;
+        }
+
+        .list-initial {
+            background-color: #B7B3D7;
+            padding: 0.7rem 1.2rem;
+            border-radius: 100%;
+            font-size: 25px;
+        }
+    }
+
+    .icon-chevron {
+        cursor: pointer;
+        color: rgb(180, 180, 180);
+    }
+
+    .fa-chevron-right {
+        color: #646262;
+    }
+
+    .active-booking-card {
+        min-width: 400px;
+    }
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0rem;
+
+    img {
+        width: 4rem;
+    }
+
+    p {
+        text-align: center;
+    }
+}

@@ -23,6 +23,14 @@ ul {
   margin: 0rem !important;
 }
 
+.bold-text{
+  font-weight: bolder;
+}
+
+.thin-text{
+  font-weight: 300;
+}
+
 .button-white {
   padding: 0.8rem 1rem;
   text-align: center;
@@ -33,7 +41,6 @@ ul {
 }
 
 .button-white:hover {
-  border-width: medium;
   cursor: pointer;
 }
 
@@ -57,4 +64,8 @@ ul {
 
 .blue-text:hover {
   color: #a7d6dd;
+}
+
+.button-green{
+  background-color: #76E294 !important;
 }

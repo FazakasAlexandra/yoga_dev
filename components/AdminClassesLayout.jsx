@@ -24,9 +24,9 @@ export default function AdminClassesLayout({ children, activeTab }) {
                             <FontAwesomeIcon icon={faChartBar} size="lg" />
                         </a>
                     </Link>
-                    <Link href="/accounts/admin/classes/create">
-                        <a className={activeTab === "create" ? "button-white active" : "button-white"}>
-                            Add class
+                    <Link href="/accounts/admin/classes/bookings">
+                        <a className={activeTab === "bookings" ? "button-white active" : "button-white"}>
+                            Bookings
                         </a>
                     </Link>
                 </aside>

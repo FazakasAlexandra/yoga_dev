@@ -21,6 +21,14 @@ ul {
   margin: 0rem !important;
 }
 
+.bold-text {
+  font-weight: bolder;
+}
+
+.thin-text {
+  font-weight: 300;
+}
+
 .button-white {
   padding: 0.8rem 1rem;
   text-align: center;
@@ -31,7 +39,6 @@ ul {
 }
 
 .button-white:hover {
-  border-width: medium;
   cursor: pointer;
 }
 
@@ -55,6 +62,20 @@ ul {
 
 .blue-text:hover {
   color: #a7d6dd;
+}
+
+.button-green {
+  background-color: #76E294 !important;
+}
+
+.day-schedule-cards.bookings {
+  flex-direction: column;
+}
+.day-schedule-cards.bookings .icon-chevron {
+  margin-left: 1.5rem;
+}
+.day-schedule-cards.bookings .class.radio p {
+  margin: 0px;
 }
 
 .day-schedule-cards {
@@ -120,6 +141,9 @@ ul {
   width: fit-content;
   width: 400px;
   margin: 1rem 0rem;
+}
+.day-schedule hr {
+  margin: 2rem 0.5rem;
 }
 .day-schedule img {
   width: 60px;
@@ -404,7 +428,7 @@ header .navItem {
 }
 .subscription-card.form .form-body img {
   margin-top: 0.5rem;
-  max-width: 190px;
+  max-height: 190px;
 }
 .subscription-card.form .form-body .free-class {
   display: flex;
@@ -529,6 +553,7 @@ header .navItem {
   border-radius: 1rem;
   flex-wrap: wrap;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 400px;
 }
 .week_schedule-form .button-white {
   margin-left: 2rem;
@@ -658,6 +683,7 @@ header .navItem {
   background: #EDECF4;
   margin: 10px 0;
   border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .active-booking-card .active-bookings-numbers {
   width: 50px;
@@ -718,6 +744,58 @@ header .navItem {
 }
 .client-last-booking p:first-child {
   font-size: 16px;
+}
+
+.admin-bookings {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.admin-bookings .day-schedule-cards .class.wraper {
+  width: 400px;
+}
+.admin-bookings .booking-card .outer-list-wraper {
+  display: flex;
+  align-items: center;
+}
+.admin-bookings .booking-card .inner-list-wraper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+.admin-bookings .booking-card .list-name,
+.admin-bookings .booking-card .list-initial {
+  font-weight: 500;
+}
+.admin-bookings .booking-card .list-initial {
+  background-color: #B7B3D7;
+  padding: 0.7rem 1.2rem;
+  border-radius: 100%;
+  font-size: 25px;
+}
+.admin-bookings .icon-chevron {
+  cursor: pointer;
+  color: #b4b4b4;
+}
+.admin-bookings .fa-chevron-right {
+  color: #646262;
+}
+.admin-bookings .active-booking-card {
+  min-width: 400px;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0rem;
+}
+.not-found img {
+  width: 4rem;
+}
+.not-found p {
+  text-align: center;
 }
 
 @media (max-width: 1000px) {

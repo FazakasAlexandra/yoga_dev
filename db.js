@@ -48,6 +48,9 @@ const db = {
                 },
                 method: "POST",
             }).then(res => res.json())
+        },
+        getClassBookings : (weekScheduleId) => {
+            return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(res => res.json())
         }
     },
     classes: {
@@ -59,6 +62,9 @@ const db = {
         },
         attendences: () => {
             return fetch(`${db.baseURL}/classes/attendences`).then(res => res.json())
+        },
+        getDayClasses: (date) => {
+            return fetch(`${db.baseURL}/classes/date/${date}`).then(res => res.json())
         }
     },
     users: {

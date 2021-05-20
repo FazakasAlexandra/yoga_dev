@@ -27,7 +27,6 @@ export default function SubscriptionCard({ subscription, admin, removeSubscripti
         if (yes) {
             db.getJWT().then((jwt) => {
                 db.subscriptions.removeSubscription(jwt, id).then((res) => {
-                    console.log(res)
                     removeSubscriptionCard(id)
                 })
             })
