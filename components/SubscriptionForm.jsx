@@ -12,6 +12,7 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { theme } from '../utilities.js';
 import MenuItem from '@material-ui/core/MenuItem';
+import SubscriptionFormInput from './SubscriptionFormInputs';
 
 const controlProps = (item) => ({
     value: item,
@@ -25,9 +26,11 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
     const [yogaClasses, setYogaClasses] = useState([])
 
     const [months, setMonths] = useState(0)
-    const [entrences, setEntrences] = useState(0)
     const [price, setPrice] = useState(0)
     const [subscriptionName, setName] = useState("")
+
+    const [entrences, setEntrences] = useState({})
+    const [entrence, setEntrence] = useState({})
 
     const [discountedYogaClass, setDiscountedYogaClass] = useState({ id: '' })
     const [discountPercentage, setDiscountPercentege] = useState(0)
@@ -90,7 +93,6 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
         }
 
         db.getJWT().then((jwt) => {
-            console.log('gives : ', newSubscription)
             db.subscriptions.postSubscription(newSubscription, jwt).then((res) => {
                 addNewSubscriptionCard(res.data)
                 removeForm(id)
@@ -117,9 +119,9 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
         setFreeEntrences([newFreeEntrence, ...free_entrences])
     }
 
-    useEffect(() => {
-        console.log(free_entrences)
-    }, [free_entrences])
+    const addEntrence = () => {
+        const newEntrence = {}
+    }
 
     useEffect(() => {
         db.classes.getClasses().then(res => setYogaClasses(res.data))
@@ -164,7 +166,6 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
                     </Button>
                 </label>
                 <img src={image} />
-
                 <div className="nr-inputs">
                     <TextField
                         id="standard-basic"
@@ -176,20 +177,59 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
                     />
                     <TextField
                         id="standard-basic"
-                        label="Entrences"
-                        variant='outlined'
-                        type='number'
-                        style={{ width: "100%" }}
-                        onChange={(e) => setEntrences(e.target.value)}
-                    />
-                    <TextField
-                        id="standard-basic"
                         label="Price €"
                         variant='outlined'
                         type='number'
                         style={{ width: "100%" }}
                         onChange={(e) => setPrice(e.target.value)}
                     />
+                </div>
+                <hr />
+                <div style={{ width: "100%" }}>
+                    <TextField
+                        id="standard-basic"
+                        label="Entrences"
+                        variant='outlined'
+                        type='number'
+                        style={{ width: "35%" }}
+                        onChange={(e) => setEntrences(e.target.value)}
+                    />
+                    <FormControl variant='outlined' style={{ width: "65%", maxWidth: "200px" }}>
+                        <InputLabel htmlFor="age-native-helper">Select a class</InputLabel>
+                        <Select
+                            value={discountedYogaClass.id}
+                            onChange={(e) => discountedClassChange(e.target.value)}
+                        >
+                            {getSelectOptions()}
+                        </Select>
+                    </FormControl>
+                    <RadioGroup
+                        aria-label="class-type"
+                        name="class-type"
+                        value={freeYogaClassType}
+                        style={{ flexDirection: "row", marginBottom: "1rem" }}
+                        onChange={(e) => setFreeYogaClassType(e.target.value)}
+                    >
+                        <FormControlLabel
+                            value="offline"
+                            control={<Radio {...controlProps('offline')} color="primary" />}
+                            label="offline"
+                        />
+
+                        <FormControlLabel
+                            value="online"
+                            control={<Radio {...controlProps('online')} color="primary" />}
+                            label="online"
+                        />
+                    </RadioGroup>
+                    <Button color="primary" variant="contained" component="span" style={{ width: "100%" }} onClick={addFreeClass}>
+                        <FontAwesomeIcon
+                            icon={faPlus}
+                            size="2x"
+                            style={{ marginRight: "1rem" }}
+                        />
+                        <span>Entrences</span>
+                    </Button>
                 </div>
                 <hr />
                 <div style={{ width: "100%" }}>

@@ -3,7 +3,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import db from '../db'
 
 export default function SubscriptionCard({ subscription, admin, removeSubscriptionCard }) {
-    const { name, price, months, image, attendences, free_entrences, discounts, id } = subscription
+    const { name, price, months, image, attendences, free_entrences, discounts, id, entrences } = subscription
 
     const getDiscounts = () => {
         return discounts.map((subDiscount, idx) => {
@@ -33,6 +33,12 @@ export default function SubscriptionCard({ subscription, admin, removeSubscripti
         }
     }
 
+    const getEntrences = () => {
+        return entrences.map(({entrences, class_name, class_type, subscription_id}) => {
+            return <p style={{ marginTop: "0rem" }}><b>{entrences}</b> entrences for {class_type} <i>{class_name}</i></p>
+        })
+    }
+
     return (
         <div className="subscription-card">
             {admin ?
@@ -51,7 +57,7 @@ export default function SubscriptionCard({ subscription, admin, removeSubscripti
                 <span className="months"> / {months} {months > 1 ? 'months' : 'month'}</span>
             </div>
             <hr />
-            <p style={{ marginTop: "0rem" }}><b>{attendences}</b> entrances</p>
+            {getEntrences()}
             {getDiscounts()}
             {getFreeEntrances()}
         </div>

@@ -20,7 +20,7 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
             schedulesWeeksId: null,
             editMode: true
         }
-        setDaySchedule([...daySchedule, newClass])
+        setDaySchedule([newClass, ...daySchedule])
     }
 
     useEffect(()=>{

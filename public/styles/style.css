@@ -545,6 +545,7 @@ header .navItem {
 
 .week_schedule-form {
   display: flex;
+  flex-direction: row;
   margin: 1rem;
   align-items: center;
   background-color: #EDECF4;
@@ -553,7 +554,7 @@ header .navItem {
   border-radius: 1rem;
   flex-wrap: wrap;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 400px;
+  min-width: 400px;
 }
 .week_schedule-form .button-white {
   margin-left: 2rem;
@@ -659,15 +660,18 @@ header .navItem {
   align-items: flex-start;
   border-bottom: 1px solid #646262;
   padding: 0;
+  /*     
+      svg{
+          height: 150px;
+      }
+   */
 }
 .client-chart h3 {
   margin: 0 0 30px 0;
 }
-.client-chart svg {
-  height: 150px;
-}
 .client-chart rect {
-  height: 150px;
+  /*         height: 150px;
+   */
 }
 .client-chart rect g:first-of-type {
   height: 100px;
@@ -785,16 +789,16 @@ header .navItem {
   min-width: 400px;
 }
 
-.not-found {
+.feedback {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1rem 0rem;
 }
-.not-found img {
+.feedback img {
   width: 4rem;
 }
-.not-found p {
+.feedback p {
   text-align: center;
 }
 

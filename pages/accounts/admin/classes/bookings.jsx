@@ -6,9 +6,8 @@ import AdminLayout from '../../../../components/AdminLayout'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import DayScheduleClass from '../../../../components/DayScheduleClass'
 import BookingCard from '../../../../components/BookingCard'
-import { ThemeProvider } from "@material-ui/core"
+import Feedback from '../../../../components/Feedback'
 import TextField from '@material-ui/core/TextField'
-import { theme } from '../../../../utilities.js'
 import db from '../../../../db'
 
 export default function Page() {
@@ -75,21 +74,17 @@ export default function Page() {
 
     const displayMessages = () => {
         if (classes.length > 0 && activeClass) {
-            return (
-                <div className="not-found">
-                    <img src="http://localhost/yoga/public/assets/sadface.svg" />
-                    <p>No bookings for this class yet</p>
-                </div>
-            )
+            return <Feedback
+                iconName="sadface"
+                message="No bookings for this class yet"
+            />
         }
 
         if (classes.length > 0 && !activeClass) {
-            return (
-                <div className="not-found">
-                    <img src="http://localhost/yoga/public/assets/smile.svg" />
-                    <p>Check bookings for a class</p>
-                </div>
-            )
+            return <Feedback
+                iconName="smile"
+                message="Check bookings for a class"
+            />
         }
     }
 
@@ -117,10 +112,10 @@ export default function Page() {
                             <div className="day-schedule-cards bookings">
                                 {
                                     classes.length > 0 ? getDayScheduleClasses() :
-                                        <div className="not-found">
-                                            <img src="http://localhost/yoga/public/assets/sadface.svg" />
-                                            <p style={{ textAlign: 'center' }}>No classes scheduled for <i>{date}</i></p>
-                                        </div>
+                                        <Feedback
+                                            iconName="sadface"
+                                            message={`No classes scheduled for ${date}`}
+                                        />
                                 }
                             </div>
                         </div>
