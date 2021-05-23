@@ -1,18 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons'
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
 import { useEffect, useState } from 'react'
 import db from '../db'
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { theme } from '../utilities.js';
-import MenuItem from '@material-ui/core/MenuItem';
-import SubscriptionFormInput from './SubscriptionFormInputs';
+import SubscriptionFormInputs from './SubscriptionFormInputs';
+import _ from 'lodash'
 
 const controlProps = (item) => ({
     value: item,
@@ -22,82 +16,56 @@ const controlProps = (item) => ({
 });
 
 export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, id }) {
-    const [image, setImage] = useState("http://localhost/yoga/public/assets/subscriptions/icon.png")
+    const [image, setImage] = useState("")
     const [yogaClasses, setYogaClasses] = useState([])
-
     const [months, setMonths] = useState(0)
     const [price, setPrice] = useState(0)
     const [subscriptionName, setName] = useState("")
-
-    const [entrences, setEntrences] = useState({})
-    const [entrence, setEntrence] = useState({})
-
-    const [discountedYogaClass, setDiscountedYogaClass] = useState({ id: '' })
-    const [discountPercentage, setDiscountPercentege] = useState(0)
-    const [discountedYogaClassType, setDiscountedYogaClassType] = useState("online")
+    const [entrences, setEntrences] = useState([])
     const [discounts, setDiscounts] = useState([])
-
-    const [freeYogaClass, setFreeYogaClass] = useState({ id: '' })
-    const [freeYogaClassNr, setFreeYogaClassNr] = useState(0)
-    const [freeYogaClassType, setFreeYogaClassType] = useState("online")
     const [free_entrences, setFreeEntrences] = useState([])
 
-    const getSelectOptions = () => {
-        return yogaClasses.map(({ id, name }) => {
-            return <MenuItem key={id} value={id}>{name}</MenuItem>
+    useEffect(() => {
+        db.classes.getClasses().then(res => setYogaClasses(res.data))
+    }, [])
+
+    const getEntrencesList = () => {
+        return entrences.map(({ amount, class_name, class_type }) => {
+            return <li key={_.uniqueId()}><b>{amount}</b> entrences for {class_type} <i>{class_name}</i> classes</li>
         })
     }
 
-    const getFreeEntrences = () => {
+    const getFreeEntrencesList = () => {
         return free_entrences.map(({ amount, class_name, class_type }) => {
-            return <li><b>{amount} free</b> classes for {class_type} <i>{class_name}</i></li>
+            return <li key={_.uniqueId()}><b>{amount} free</b> {amount > 1 ? 'classes' : 'class'} for {class_type} <i>{class_name}</i></li>
         })
     }
 
-    const getDiscounts = () => {
-        return discounts.map(({ discount, class_name, class_type }) => {
-            return <li><b>{discount} %</b> off from all <i>{class_name}</i> {class_type} classes</li>
+    const getDiscountsList = () => {
+        return discounts.map(({ amount, class_name, class_type }) => {
+            return <li key={_.uniqueId()}><b>{amount} %</b> off from all <i>{class_name}</i> {class_type} classes</li>
         })
-    }
-
-    const discountedClassChange = (id) => {
-        const selectedClass = yogaClasses.find(yogaClass => yogaClass.id == id)
-        console.log(selectedClass)
-        setDiscountedYogaClass(selectedClass)
-    }
-
-    const freeClassChange = (id) => {
-        const selectedClass = yogaClasses.find(yogaClass => yogaClass.id == id)
-        setFreeYogaClass(selectedClass)
-    }
-
-    const addClassDiscount = () => {
-        const discount = {
-            class_id: discountedYogaClass.id,
-            class_name: discountedYogaClass.name,
-            class_type: discountedYogaClassType,
-            discount: +discountPercentage
-        }
-        setDiscounts([discount, ...discounts])
     }
 
     const addNewSubscription = () => {
         const newSubscription = {
             name: subscriptionName,
             months,
-            attendences: entrences,
             price,
             image,
             discounts,
-            free_entrences
+            free_entrences,
+            entrences
         }
 
+        console.log(newSubscription)
+ 
         db.getJWT().then((jwt) => {
             db.subscriptions.postSubscription(newSubscription, jwt).then((res) => {
                 addNewSubscriptionCard(res.data)
                 removeForm(id)
             })
-        })
+        }) 
     }
 
     function handleFileInputChange(e) {
@@ -107,25 +75,6 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
             setImage(reader.result)
         });
     }
-
-    const addFreeClass = () => {
-        const newFreeEntrence = {
-            class_id: freeYogaClass.id,
-            class_name: freeYogaClass.name,
-            amount: +freeYogaClassNr,
-            class_type: freeYogaClassType
-        }
-
-        setFreeEntrences([newFreeEntrence, ...free_entrences])
-    }
-
-    const addEntrence = () => {
-        const newEntrence = {}
-    }
-
-    useEffect(() => {
-        db.classes.getClasses().then(res => setYogaClasses(res.data))
-    }, [])
 
     return (
         <div className="subscription-card form">
@@ -165,7 +114,7 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
                         Upload Picture
                     </Button>
                 </label>
-                <img src={image} />
+                <img src={image || `${db.baseURL}/public/assets/subscriptions/icon.png`} />
                 <div className="nr-inputs">
                     <TextField
                         id="standard-basic"
@@ -185,157 +134,29 @@ export default function subscriptionsForm({ removeForm, addNewSubscriptionCard, 
                     />
                 </div>
                 <hr />
-                <div style={{ width: "100%" }}>
-                    <TextField
-                        id="standard-basic"
-                        label="Entrences"
-                        variant='outlined'
-                        type='number'
-                        style={{ width: "35%" }}
-                        onChange={(e) => setEntrences(e.target.value)}
-                    />
-                    <FormControl variant='outlined' style={{ width: "65%", maxWidth: "200px" }}>
-                        <InputLabel htmlFor="age-native-helper">Select a class</InputLabel>
-                        <Select
-                            value={discountedYogaClass.id}
-                            onChange={(e) => discountedClassChange(e.target.value)}
-                        >
-                            {getSelectOptions()}
-                        </Select>
-                    </FormControl>
-                    <RadioGroup
-                        aria-label="class-type"
-                        name="class-type"
-                        value={freeYogaClassType}
-                        style={{ flexDirection: "row", marginBottom: "1rem" }}
-                        onChange={(e) => setFreeYogaClassType(e.target.value)}
-                    >
-                        <FormControlLabel
-                            value="offline"
-                            control={<Radio {...controlProps('offline')} color="primary" />}
-                            label="offline"
-                        />
-
-                        <FormControlLabel
-                            value="online"
-                            control={<Radio {...controlProps('online')} color="primary" />}
-                            label="online"
-                        />
-                    </RadioGroup>
-                    <Button color="primary" variant="contained" component="span" style={{ width: "100%" }} onClick={addFreeClass}>
-                        <FontAwesomeIcon
-                            icon={faPlus}
-                            size="2x"
-                            style={{ marginRight: "1rem" }}
-                        />
-                        <span>Entrences</span>
-                    </Button>
-                </div>
+                <SubscriptionFormInputs
+                    buttonText="entrences"
+                    yogaClasses={yogaClasses}
+                    fieldText="entrences"
+                    addSelection={(entrance) => setEntrences([...entrences, entrance])}
+                    selectionList={getEntrencesList()}
+                />
                 <hr />
-                <div style={{ width: "100%" }}>
-                    <div className="free-class">
-                        <TextField
-                            id="standard-basic"
-                            label="Number"
-                            variant='outlined'
-                            type='number'
-                            style={{ width: "35%" }}
-                            onChange={(e) => setFreeYogaClassNr(e.target.value)}
-                        />
-                        <FormControl variant='outlined' style={{ width: "65%", maxWidth: "200px" }}>
-                            <InputLabel htmlFor="age-native-helper">Select a class</InputLabel>
-                            <Select
-                                value={freeYogaClass.id}
-                                onChange={(e) => freeClassChange(e.target.value)}
-                            >
-                                {getSelectOptions()}
-                            </Select>
-                        </FormControl>
-                    </div>
-                    <RadioGroup
-                        aria-label="class-type"
-                        name="class-type"
-                        value={freeYogaClassType}
-                        style={{ flexDirection: "row", marginBottom: "1rem" }}
-                        onChange={(e) => setFreeYogaClassType(e.target.value)}
-                    >
-                        <FormControlLabel
-                            value="offline"
-                            control={<Radio {...controlProps('offline')} color="primary" />}
-                            label="offline"
-                        />
-
-                        <FormControlLabel
-                            value="online"
-                            control={<Radio {...controlProps('online')} color="primary" />}
-                            label="online"
-                        />
-                    </RadioGroup>
-                    <Button color="primary" variant="contained" component="span" style={{ width: "100%" }} onClick={addFreeClass}>
-                        <FontAwesomeIcon
-                            icon={faPlus}
-                            size="2x"
-                            style={{ marginRight: "1rem" }}
-                        />
-                        <span>Free Entrences</span>
-                    </Button>
-                    <ul>
-                        {getFreeEntrences()}
-                    </ul>
-                    <hr />
-                    <div>
-                        <TextField
-                            id="standard-basic"
-                            label="Discount %"
-                            variant='outlined'
-                            type='Number'
-                            style={{ width: "35%" }}
-                            onChange={(e) => setDiscountPercentege(e.target.value)}
-                        />
-                        <FormControl variant='outlined' style={{ width: "65%", maxWidth: "200px" }}>
-                            <InputLabel htmlFor="age-native-helper">Select a class</InputLabel>
-                            <Select
-                                value={discountedYogaClass.id}
-                                onChange={(e) => discountedClassChange(e.target.value)}
-                            >
-                                {getSelectOptions()}
-                            </Select>
-                        </FormControl>
-                        <div className="subscription radio" style={{ marginBottom: "1rem" }}>
-                            <RadioGroup
-                                aria-label="class-type"
-                                name="class-type"
-                                value={discountedYogaClassType}
-                                style={{ flexDirection: "row", marginBottom: "1rem" }}
-                                onChange={(e) => setDiscountedYogaClassType(e.target.value)}
-                            >
-                                <FormControlLabel
-                                    value="offline"
-                                    control={<Radio {...controlProps('offline')} color="primary" />}
-                                    label="offline"
-                                />
-
-                                <FormControlLabel
-                                    value="online"
-                                    control={<Radio {...controlProps('online')} color="primary" />}
-                                    label="online"
-                                />
-                            </RadioGroup>
-                            <Button color="primary" variant="contained" component="span" style={{ width: "100%" }} onClick={() => addClassDiscount()}>
-                                <FontAwesomeIcon
-                                    icon={faPlus}
-                                    size="2x"
-                                    style={{ marginRight: "1rem" }}
-                                />
-                                <span>Class Discount</span>
-                            </Button>
-                            <ul>
-                                {getDiscounts()}
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
+                <SubscriptionFormInputs
+                    buttonText="free entrences"
+                    yogaClasses={yogaClasses}
+                    fieldText="entrences"
+                    addSelection={(freeEntrence) => setFreeEntrences([...free_entrences, freeEntrence])}
+                    selectionList={getFreeEntrencesList()}
+                />
+                <hr />
+                <SubscriptionFormInputs
+                    buttonText="discount"
+                    yogaClasses={yogaClasses}
+                    fieldText="discount %"
+                    addSelection={(discount) => setDiscounts([...discounts, discount])}
+                    selectionList={getDiscountsList()}
+                />
             </div>
         </div>
     )

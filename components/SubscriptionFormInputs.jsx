@@ -10,10 +10,18 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import { theme } from '../utilities.js';
 
-export default function SubscriptionFormInputs({ buttonText, yogaClasses, selectionList, addSelection }) {
+const controlProps = (item) => ({
+    value: item,
+    theme: theme,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+});
+
+export default function SubscriptionFormInputs({ buttonText, fieldText, yogaClasses, selectionList, addSelection }) {
     const [selectedYogaClass, setSelectedYogaClass] = useState({ id: '' })
-    const [yogaClassAmount, setYogaClassAmount] = useState(0)
+    const [yogaClassAmount, setYogaClassAmount] = useState('')
     const [yogaClassType, setYogaClassType] = useState("online")
 
     const getSelectOptions = () => {
@@ -25,7 +33,8 @@ export default function SubscriptionFormInputs({ buttonText, yogaClasses, select
     return (
         <div style={{ width: "100%" }}>
             <TextField
-                label={yogaClassAmount}
+                value={yogaClassAmount}
+                label={fieldText}
                 variant='outlined'
                 type='number'
                 style={{ width: "35%" }}
@@ -35,12 +44,14 @@ export default function SubscriptionFormInputs({ buttonText, yogaClasses, select
                 <InputLabel>Select a class</InputLabel>
                 <Select
                     value={selectedYogaClass.id}
-                    onChange={(e) => setSelectedYogaClass(e.target.value)}
+                    onChange={(e) => {
+                        const selectedClass = yogaClasses.find(yogaClass => yogaClass.id == e.target.value)
+                        setSelectedYogaClass(selectedClass)
+                    }}
                 >
                     {getSelectOptions()}
                 </Select>
             </FormControl>
-
             <RadioGroup
                 aria-label="class-type"
                 name="class-type"
@@ -65,13 +76,13 @@ export default function SubscriptionFormInputs({ buttonText, yogaClasses, select
                 variant="contained"
                 component="span"
                 style={{ width: "100%" }}
-                onClick={
-                    () => addSelection({
-                        selectedYogaClass,
-                        yogaClassAmount,
-                        yogaClassType
-                    })
-                }>
+                onClick={() => addSelection({
+                    class_name: selectedYogaClass.name,
+                    class_id: selectedYogaClass.id,
+                    class_type: yogaClassType,
+                    amount: yogaClassAmount
+                })}
+            >
                 <FontAwesomeIcon
                     icon={faPlus}
                     size="2x"
@@ -80,7 +91,7 @@ export default function SubscriptionFormInputs({ buttonText, yogaClasses, select
                 <span>{buttonText}</span>
             </Button>
             <ul>
-                {selectionList()}
+                {selectionList}
             </ul>
         </div>
     )

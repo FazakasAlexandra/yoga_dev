@@ -14,31 +14,25 @@ export default function Page() {
   const router = useRouter()
   const [session, loading] = useSession()
   const [subscriptions, setSubscriptions] = useState([])
-  const [subscriptionsForms, setSubscriptionsForms] = useState([])
-
-  const removeSubscription = (id) => {
-    const newSubscriptions = subscriptions.filter(subscription => +subscription.id != +id)
-    setSubscriptions(newSubscriptions)
-  }
-
-  const removeForm = (id) => {
-    const newForms = subscriptionsForms.filter(form => form !== id)
-    setSubscriptionsForms(newForms)
-  }
-
-  const addNewSubscription = (subscription) => {
-    setSubscriptions([subscription, ...subscriptions])
-  }
+  const [subscriptionsForms, setSubscriptionsForms] = useState([]) // [1, 2, 3, ...]
 
   useEffect(() => {
-    db.subscriptions.getSubscriptions().then(res => {
-      setSubscriptions(res.data)
-    })
+    if (!loading && !session) router.push({ pathname: '/' })
+  }, [session])
+
+  useEffect(() => {
+    db.subscriptions.getSubscriptions().then(res => setSubscriptions(res.data))
   }, [])
+
+  const removeSubscription = (id) => setSubscriptions(subscriptions.filter(subscription => +subscription.id != +id))
+
+  const removeForm = (id) => setSubscriptionsForms(subscriptionsForms.filter(form => form !== id))
+
+  const addNewSubscription = (subscription) => setSubscriptions([subscription, ...subscriptions])
+  
 
   const getSubscriptions = () => {
     return subscriptions.map(subscription => {
-      console.log(subscription.id)
       return <SubscriptionCard
         key={subscription.id}
         subscription={subscription}
@@ -58,10 +52,6 @@ export default function Page() {
       />
     })
   }
-
-  useEffect(() => {
-    if (!loading && !session) router.push({ pathname: '/' })
-  }, [session])
 
   return (
     <Layout activeTab={"account"}>
