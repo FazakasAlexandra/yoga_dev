@@ -3,7 +3,6 @@ import { signIn, signOut, useSession, getSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { farCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 import Image from 'next/image'
 import db from '../db'
 import { useState } from 'react'
@@ -12,15 +11,17 @@ export default function Header({ activeTab }) {
   const [session, loading] = useSession()
   const [is_admin, setIsAdmin] = useState(false)
   const [menuOn, setMenuOn] = useState(true)
-
+  
   useEffect(() => {
     if (session) {
-      db.queryUsers('email', session.user.email).then((res) => {
+      db.users.queryUsers('email', session.user.email).then((res) => {
         if (!res.data) {
-          db.postUser({
-            email: session.user.email,
-            name: session.user.name,
-            jwt
+          db.getJWT().then((res) => {
+            db.users.postUser({
+              email: session.user.email,
+              name: session.user.name,
+              jwt : res.jwtToken
+            })
           })
         } else {
           if (res.data.is_admin === 'true') setIsAdmin(true)
@@ -84,7 +85,7 @@ export default function Header({ activeTab }) {
             </Link>
           </li>
           <li className="navItem">
-            <FontAwesomeIcon  icon={faCalendarAlt} style={{marginRight:"0.5rem", fontSize:"1.6rem"}}/>
+            <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: "0.5rem", fontSize: "1.6rem" }} />
             <Link href="/weekSchedule">
               <a className={activeTab === "week_schedule" ? "active-tab" : null}>Week Schedule</a>
             </Link>

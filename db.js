@@ -1,48 +1,94 @@
 const db = {
-    baseURL: "http://localhost/yoga",
+  baseURL: 'http://localhost/yoga',
+  getJWT: () => {
+    return fetch('/api/examples/jwt').then((res) => res.json())
+  },
+  schedules: {
+    getSchedule: (startDate, endDate) => {
+      return fetch(`${db.baseURL}/schedules/${startDate}/${endDate}`).then(
+        (res) => res.json()
+      )
+    },
+    getLatestSchedule: () => {
+      return fetch(`${db.baseURL}/schedules/latest`).then((res) => res.json())
+    },
+    postSchedule: (weekSchedule, jwt) => {
+      fetch(`${db.baseURL}/schedules`, {
+        method: 'POST',
+        headers: {
+          Authorization: jwt,
+        },
+        body: JSON.stringify(weekSchedule),
+      })
+        .then((res) => res.json())
+        .then(console.log)
+    },
+  },
+  subscriptions: {
+    getSubscriptions: () => {
+      return fetch(`${db.baseURL}/subscriptions`).then((res) => res.json())
+    },
+    removeSubscription: (jwt, id) =>
+      fetch(`${db.baseURL}/subscriptions/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => res.json()),
+    postSubscription: (subscription, jwt) => {
+      return fetch(`${db.baseURL}/subscriptions`, {
+        method: 'POST',
+        body: JSON.stringify(subscription),
+        headers: {
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
+    },
+  },
+  bookings: {
+    postBooking: (jwt, scheduleWeekId, classType) => {
+      return fetch(`${db.baseURL}/bookings/${scheduleWeekId}/${classType}`, {
+        headers: {
+          Authorization: jwt,
+        },
+        method: 'POST',
+      }).then((res) => res.json())
+    },
+  },
+  classes: {
+    getClasses: () => {
+      return fetch(`${db.baseURL}/classes`).then((res) => res.json())
+    },
+    deleteClass: (id) => {
+      return fetch(`${db.baseURL}/classes/dlt/${id}`).then((res) => res.json())
+    },
+    attendences: () => {
+      return fetch(`${db.baseURL}/classes/attendences`).then((res) =>
+        res.json()
+      )
+    },
+  },
+  users: {
+    getClients: () => {
+      return fetch(`${db.baseURL}/users/clients`).then((res) => res.json())
+    },
+    getClientHistory: (id) => {
+      return fetch(`${db.baseURL}/clientshistory/client/${id}`).then((res) =>
+        res.json()
+      )
+    },
     queryUsers: (criteria, value) => {
-        return fetch(`${db.baseURL}/users/${criteria}/${value}`).then(res=>res.json())
+      return fetch(`${db.baseURL}/users/${criteria}/${value}`).then((res) =>
+        res.json()
+      )
     },
     postUser: (user) => {
-        return fetch(`${db.baseURL}/users`, {
-            method: "POST",
-            body: JSON.stringify(user)
-        }).then(res => res.json())
+      return fetch(`${db.baseURL}/users`, {
+        method: 'POST',
+        body: JSON.stringify(user),
+      }).then((res) => res.json())
     },
-    schedules : {
-        getSchedule: (startDate, endDate) => {
-            return fetch(`${db.baseURL}/schedules/${startDate}/${endDate}`).then(res => res.json())
-        },
-        getLatestSchedule : () => {
-           return fetch(`${db.baseURL}/schedules/latest`).then(res => res.json())
-        }
-    },
-    bookings : {
-        postBooking: (jwt, scheduleWeekId) => {
-            return fetch(`${db.baseURL}/bookings/${scheduleWeekId}`, {
-                headers: {
-                    'Authorization' : jwt,
-                },
-                method: "POST",
-            }).then(res => res.json())
-        }
-    },
-    classes: {
-        getClasses : () => {
-            return fetch(`${db.baseURL}/classes`).then(res => res.json())
-        },
-        deleteClass: (id) => {
-            return fetch(`${db.baseURL}/classes/dlt/${id}`).then(res => res.json())
-        }
-    },
-    users: {
-        getClients: () => {
-            return fetch(`${db.baseURL}/users/clients`).then(res => res.json())
-        },
-        getClientHistory: (id) => {
-            return fetch(`${db.baseURL}/clientshistory/client/${id}`).then(res => res.json())
-        }
-    }
+  },
 }
 
 export default db

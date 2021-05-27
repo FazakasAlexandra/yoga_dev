@@ -30,10 +30,20 @@
             margin-left: 1.5rem;
         }
 
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                margin-bottom: 0.2rem;
+            }
+        }
+
         .info-wraper {
             display: flex;
             align-items: center;
         }
+
         .fa-info-circle:hover {
             color: #6CBBC7 !important;
         }
@@ -80,5 +90,41 @@
         font-weight: 400;
         font-size: 30px;
         margin: 1rem 0rem;
+    }
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+}
+
+.admin-classes-layout {
+    .day-schedule-cards {
+        .class.radio {
+            border-left-style: none
+        }
+
+        .class.wraper .info {
+            border-right-style: solid;
+            border-width: thin;
+            min-width: 70px;
+            padding-right: 1rem;
+
+            p {
+                font-weight: 300;
+                margin-top: 0rem;
+                margin-bottom: 0.5rem;
+            }
+            span{
+                align-self: flex-end;
+            }
+            b {
+                align-self: flex-end;
+                font-size: 13px;
+                color: #78999f;
+            }
+        }
     }
 }

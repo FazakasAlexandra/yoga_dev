@@ -3,26 +3,29 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function AlertDialog(props) {
+export default function AlertDialog({ yogaClass, closeDialog, isOpen }) {
+  console.log(yogaClass)
   return (
     <div>
       <Dialog
-        open={props.isOpen}
+        open={isOpen}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
-        <hr style={{width:"90%"}}/>
+        <DialogTitle id="alert-dialog-title">{yogaClass.name}</DialogTitle>
+        <hr style={{ width: "90%" }} />
         <DialogContent
-                style={{minWidth : '300px'}}
+          style={{ minWidth: '300px' }}
         >
-              {props.content}
+          <p><b>Class level</b></p>
+          <p>{yogaClass.level}</p>
+          <p><b>Description</b></p>
+          <p>{yogaClass.description}</p>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.closeDialog} color="primary" autoFocus>
+          <Button onClick={closeDialog} color="primary" autoFocus>
             Close
           </Button>
         </DialogActions>
