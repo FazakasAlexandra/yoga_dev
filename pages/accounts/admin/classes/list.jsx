@@ -47,20 +47,32 @@ export default function Page() {
     })
   }
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber) => {
+    //e.preventDefault()
+    // e.target.style.background == 'white'
+    //   ? (e.target.style.background = 'red')
+    //   : (e.target.style.background = 'white')
+    // console.log(e.target.style.background)
+    setCurrentPage(pageNumber)
+  }
 
   const Pagination = ({ cardsPerPage, totalCards, paginate }) => {
     const pageNumbers = []
     for (let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
       pageNumbers.push(i)
     }
+
     return (
       <div className='bottomPagination'>
         <ul className='pagination'>
           {pageNumbers.map((number) => (
             <li key={number} className='page-item'>
               <button
-                onClick={() => paginate(number)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.target.style.background = 'red'
+                  paginate(number)
+                }}
                 id={`pagination${number}`}
               >
                 {number}

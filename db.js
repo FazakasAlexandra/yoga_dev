@@ -54,6 +54,14 @@ const db = {
         method: 'POST',
       }).then((res) => res.json())
     },
+    changeStatus: (jwt, id, status) => {
+      return fetch(`${db.baseURL}/chgstatus/${id}/${status}`, {
+        headers: {
+          Authorization: jwt,
+        },
+        method: 'GET',
+      }).then((res) => res.json())
+    },
   },
   classes: {
     getClasses: () => {

@@ -30,6 +30,7 @@
 
 .week_schedule-form{
     display: flex;
+    flex-direction: row;
     margin: 1rem;
     align-items: center;
     background-color: #EDECF4;
@@ -38,6 +39,7 @@
     border-radius: 1rem;
     flex-wrap: wrap;
     box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 25%);
+    min-width: 400px;
 
     .button-white{
         margin-left: 2rem;

@@ -9,9 +9,14 @@ export default function ClientsInfo({ client, selectClient }) {
   const router = useRouter()
   const [session, loading] = useSession()
   const [clientHistory, setClientHistory] = useState()
+  const [userData, setUserData] = useState(null)
 
   useEffect(() => {
     if (!session) router.push({ pathname: '/' })
+  }, [session])
+
+  useEffect(() => {
+    if (session) updateUserData()
   }, [session])
 
   useEffect(() => {
@@ -22,8 +27,17 @@ export default function ClientsInfo({ client, selectClient }) {
     selectClient(client)
   }
 
+  const updateUserData = () =>
+    db.users.queryUsers('email', session.user.email).then((res) => {
+      setUserData(res.data)
+      let userBookingsMap = res.data.bookingIds.reduce((map, bookingId) => {
+        map[bookingId] = true
+        return map
+      }, {})
+    })
+
   const ClientInfo = () => {
-    if (clientHistory) {
+    if (clientHistory && userData) {
       return clientHistory
         .filter((history) => history.state == 'pending')
         .filter((history, i) => i < 2)
@@ -31,7 +45,11 @@ export default function ClientsInfo({ client, selectClient }) {
           return (
             <>
               <h3>Active Bookings</h3>
-              <ActiveBookingCard key={history.id} history={history} />
+              <ActiveBookingCard
+                history={history}
+                userData={userData.jwt}
+                buttonVisible='buttonVisible'
+              />
             </>
           )
         })
@@ -48,7 +66,11 @@ export default function ClientsInfo({ client, selectClient }) {
       return (
         <>
           <h3>Last Booking</h3>
-          <ActiveBookingCard history={latestBooking[0]} />
+          <ActiveBookingCard
+            history={latestBooking[0]}
+            userData={userData.jwt}
+            buttonVisible='buttonInvisible'
+          />
         </>
       )
     }

@@ -14,6 +14,7 @@ export default function AdminClients() {
   const [clients, setClients] = useState([])
   const [client, setClient] = useState()
   const [icon, setIcon] = useState(faSearch)
+  const [newClass, setnewClass] = useState('classNotSelected')
 
   useEffect(() => {
     if (!session) router.push({ pathname: '/' })
@@ -34,6 +35,13 @@ export default function AdminClients() {
   const selectClient = (id) => {
     setClient(id)
     return client
+  }
+
+  const changeClass = (e) => {
+    e.preventDefault()
+    newClass == 'classNotSelected'
+      ? setnewClass('classSelected')
+      : setnewClass('classNotSelected')
   }
 
   const handleSubmit = (event) => {
@@ -57,8 +65,9 @@ export default function AdminClients() {
           key={client.id}
           id={client.id}
           name={client.name}
-          // first={firstclient.id}
           selectClient={selectClient}
+          changeClass={changeClass}
+          newClass={newClass}
         />
       )
     })
