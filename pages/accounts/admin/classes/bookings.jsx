@@ -68,7 +68,8 @@ export default function Page() {
 
     const getBookings = () => {
         return bookings.map((booking) => {
-            return <BookingCard booking={booking} />
+            console.log(booking)
+            return <BookingCard booking={booking} page="admin"/>
         })
     }
 

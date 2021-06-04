@@ -38,6 +38,9 @@ const db = {
                     Authorization: jwt.jwtToken
                 }
             }).then(res => res.json())
+        },
+        getUserSubscriptionByClass : (userId, classId) => {
+            return fetch(`${db.baseURL}/subscriptions/user/${userId}/class/${classId}`).then(res => res.json())
         }
     },
     bookings: {

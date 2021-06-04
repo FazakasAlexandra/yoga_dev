@@ -756,6 +756,28 @@ header .navItem {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.admin-bookings .active-booking-card {
+  flex-direction: column;
+  height: fit-content;
+  padding: 0.5rem;
+  align-items: baseline;
+}
+.admin-bookings .converage-desc {
+  margin: 0rem;
+  margin-left: 0.5rem;
+}
+.admin-bookings .converage-desc b {
+  color: #5E54AC;
+  font-size: 22px;
+}
+.admin-bookings .converage-desc i {
+  color: #646263a3;
+}
+.admin-bookings .wraper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
 .admin-bookings .day-schedule-cards .class.wraper {
   width: 400px;
 }
@@ -787,6 +809,14 @@ header .navItem {
 }
 .admin-bookings .active-booking-card {
   min-width: 400px;
+}
+
+.active-booking-user {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .feedback {
