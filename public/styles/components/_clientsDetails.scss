@@ -1,182 +1,217 @@
-.admin-clients{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding:20px;
-    width: 100%;
-    justify-content: space-around;
+.admin-clients {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 100%;
+  justify-content: space-around;
 }
 
-.client-search{
-    width: 40%;
+.client-search {
+  width: 40%;
 }
 
 .form-users {
-    display:flex;
-    flex-direction:row;
-    // border:1px solid grey;
-    padding:2px;
-    border: 1px solid $darkGreyWriting;
-    height: 51px;
-    width: 391px;
-    border-radius: 9px;
+  display: flex;
+  flex-direction: row;
+  // border:1px solid grey;
+  padding: 2px;
+  border: 1px solid $darkGreyWriting;
+  height: 51px;
+  width: 391px;
+  border-radius: 9px;
 
-    input {
-        flex-grow:2;
-        border:none;
-      }
-      
-      input:focus {
-        outline: none;
-      }
-      
-      button {
-        color:black;
-        border:none;
-        background: white;
-      }
+  input {
+    flex-grow: 2;
+    border: none;
   }
 
-  .user-list-items{
-      display:flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px;
-      font-size: 26px;
-
-
-      .list-initial{
-          background: $grayBackground;
-          padding:3px 12px;
-          border-radius:50%;
-          color: $darkGreyWriting;
-      }
-      
-      .list-name{
-          justify-content: start;
-          margin-left: 20px;
-      }
-
-      div{
-          display:flex;
-          flex-direction: row;
-          align-items: center;
-      }
+  input:focus {
+    outline: none;
   }
-  
-.client-info{
-    display:flex;
-    flex-direction: column;
 
+  button {
+    color: black;
+    border: none;
+    background: white;
+  }
 }
 
-.client-chart{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-bottom: 1px solid $darkGreyWriting;
-    padding:0;
+.user-list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  font-size: 26px;
 
-    h3{
-        margin:0 0 30px 0;
-    }
-/*     
+  .list-initial {
+    background: $grayBackground;
+    padding: 3px 12px;
+    border-radius: 50%;
+    color: $darkGreyWriting;
+  }
+
+  .list-name {
+    justify-content: start;
+    margin-left: 20px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #arrow {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+  }
+}
+
+.classSelected {
+  font-weight: bolder;
+
+  #arrow {
+    visibility: hidden;
+    position: relative;
+  }
+  #arrow:after {
+    background: $grayBackground;
+    content: '>';
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+  }
+}
+
+.client-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid $darkGreyWriting;
+  padding: 0;
+
+  h3 {
+    margin: 0 0 30px 0;
+  }
+  /*     
     svg{
         height: 150px;
     }
  */
-    rect{
-/*         height: 150px;
+  rect {
+    /*         height: 150px;
  */
-        g:first-of-type{
-            height: 100px;
-        }
+    g:first-of-type {
+      height: 100px;
     }
+  }
 }
 
-.active-booking-card{
-    width:100%;
-    height: 136px;
+.active-booking-card {
+  width: 100%;
+  height: 136px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: #edecf4;
+  margin: 10px 0;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 25%);
+
+  .active-bookings-numbers {
+    width: 50px;
+    height: auto;
+    border-right: 1px solid #646263;
+    color: $darkGreyWriting;
+    padding: 0 5px 0 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    background: #EDECF4;
-    margin:10px 0;
-    border-radius: 20px;
-    box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 25%);
 
-    .active-bookings-numbers{
-        width:50px;
-        height: auto;
-        border-right: 1px solid #646263;
-        color: $darkGreyWriting;
-        padding:0 5px 0 0;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-
-        p:first-child{
-            font-size:18px;
-            margin:0;
-        }
-
-        p:last-child{
-            font-size:13px;
-            margin:0;
-        }
+    p:first-child {
+      font-size: 18px;
+      margin: 0;
     }
 
-    .active-bookings-details{
-        display:flex;
-        flex-direction: column;
-        width: 190px;
-        
-        p {
-            margin:0;
-            font-size: 19px;
-        }
+    p:last-child {
+      font-size: 13px;
+      margin: 0;
+    }
+  }
 
-        p:first-child{
-            font-weight: bold;
-        }
+  .active-bookings-details {
+    display: flex;
+    flex-direction: column;
+    width: 190px;
 
-        p:last-child{
-            font-size: 15px;
-        }
-
+    p {
+      margin: 0;
+      font-size: 19px;
     }
 
-    .active-bookings-status{
-        display: flex;
-        flex-direction: column;
-
-        button{
-            margin:4px;
-            height: 42px;
-            width: 90px;
-            padding: 3px;
-            border-radius: 5px;
-            border: 1px solid #646263;
-            background: white;
-            font-size: 16px;
-            font-family: "Roboto", sans-serif;
-            color: $darkGreyWriting;
-        }
+    p:first-child {
+      font-weight: bold;
     }
-}
 
-.client-last-booking{
-    display:flex;
+    p:last-child {
+      font-size: 15px;
+    }
+  }
+
+  .active-bookings-status {
+    display: flex;
     flex-direction: column;
 
-    p{
-        margin:0;
+    button {
+      margin: 4px;
+      height: 42px;
+      width: 90px;
+      padding: 3px;
+      border-radius: 5px;
+      border: 1px solid #646263;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+      color: $darkGreyWriting;
     }
 
-    p:first-child{
-        font-size:16px;
+    .buttonPresent {
+      background: #33d460;
     }
 
+    .buttonAbsent {
+      background: white;
+    }
+
+    #buttonInvisible {
+      visibility: hidden;
+    }
+  }
+}
+
+.client-last-booking {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+  }
+
+  p:first-child {
+    font-size: 16px;
+  }
 }

@@ -1,149 +1,95 @@
 //import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import IndividualName from '../components/IndividualName'
+import ClientsInfo from '../components/ClientsInfo'
 import db from '../db'
-import Chart from 'react-google-charts'
 
 export default function AdminClients() {
-    //const users = ['Alexandra Fazakas', 'Hirtop Laura', 'Damian Mihai'];
-    const router = useRouter()
-    const [session, loading] = useSession()
-    const [clients, setClients] = useState([])
+  const router = useRouter()
+  const [session, loading] = useSession()
+  const [clients, setClients] = useState([])
+  const [client, setClient] = useState()
+  const [icon, setIcon] = useState(faSearch)
+  const [newClass, setnewClass] = useState('classNotSelected')
 
-    const pieOptions = {
-        title: "",
-        slices: [
-          {
-            color: "#33d460"
-          },
-          {
-            color: "#ff5d23"
-          },
-          {
-            color: "#c32121"
-          }
-        ],
-        legend: {
-            position: "right",
-            alignment: "start",
-            textStyle: {
-            color: "#646262",
-            fontSize: 16
-          }
-        },
-        pieSliceText: 'none',
-        tooltip: {
-          showColorCode: true
-        },
-        chartArea: {
-          left: 0,
-          top: 20,
-          width: "100%",
-          height: "65%"
-        },
-        fontName: "Roboto"
-      };
+  useEffect(() => {
+    if (!session) router.push({ pathname: '/' })
+  }, [session])
 
-    useEffect(() => {
-        if (!session) router.push({ pathname: '/' })
-    }, [session])
+  useEffect(() => {
+    db.users.getClients().then((res) => setClients(res.data))
+  }, [])
 
-    useEffect(() => {
-        db.users.getClients().then(res => setClients(res.data))
-    }, [])
-
-    const seeDetails = (id) => {
-        console.log(id)
+  useEffect(() => {
+    if (!client) {
+      setClient(2)
+    } else {
+      setClient(client)
     }
+  }, [client])
 
-    const listNames = () => {
-        return clients.map((client) => {
-            return <IndividualName
-                key={client.id}
-                id={client.id}
-                name={client.name}
-                seeDetails={seeDetails}/>
-        })
+  const selectClient = (id) => {
+    setClient(id)
+    return client
+  }
+
+  const changeClass = (e) => {
+    e.preventDefault()
+    newClass == 'classNotSelected'
+      ? setnewClass('classSelected')
+      : setnewClass('classNotSelected')
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (icon == faTimesCircle) {
+      db.users.getClients().then((res) => setClients(res.data))
+      setIcon(faSearch)
+      event.target[0].value = ''
+    } else {
+      setClients(
+        clients.filter(({ name }) => name.includes(event.target[0].value))
+      )
+      setIcon(faTimesCircle)
     }
+  }
 
-    return (
-        <div className="admin-clients">
-            <div className="client-search">
-                <form className="form-users" action="/" method="get">
-                    <input
-                        type="text"
-                        id="user-search"
-                        name="search" 
-                    />
-                    <button type="submit">
-                        <FontAwesomeIcon icon={faSearch} size="lg" />
-                    </button>
-                </form>
-                <div className="users-list">
-                    {listNames()}
-                </div>
-            </div>
-            <div className="client-info">
-                <div className="client-chart">
-                    <h3>Attendence</h3>
-                    <Chart
-                    width={'400px'}
-                    //height={'400px'}
-                    chartType="PieChart"
-                    loader={<div>Loading Chart</div>}
-                    data={[
-                        ['Classes', 'Attendence'],
-                        ['Attended classes', 24],
-                        ['Canceled Classes', 2],
-                        ['Absent Classes', 10]
-                    ]}
-                        options={pieOptions}
-                    rootProps={{ 'data-testid': '7' }}
-                    />
-                </div>
-                <div className="client-active-booking">
-                    <h3>Active Bookings</h3>
-                    <div className="active-booking-card">
-                        <div className="active-bookings-numbers">
-                            <p>7:30</p>
-                            <p>25 lei</p>
-                        </div>
-                        <div className="active-bookings-details">
-                            <p>Monday</p>
-                            <p>Morning Yoga</p>
-                            <p>online</p>
-                        </div>
-                        <div className="active-bookings-status">
-                            <button>Present</button>
-                            <button>Absent</button>
-                        </div>
-                    </div>
-                    <div className="active-booking-card">
-                        <div className="active-bookings-numbers">
-                            <p>17:35</p>
-                            <p>25 lei</p>
-                        </div>
-                        <div className="active-bookings-details">
-                            <p>Friday</p>
-                            <p>Yoga for intermediates and bla bla bla</p>
-                            <p>online</p>
-                        </div>
-                        <div className="active-bookings-status">
-                            <button>Present</button>
-                            <button>Absent</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="client-last-booking">
-                    <h3>Last Booking</h3>
-                    <p>2020/12/02</p>
-                    <p>Yoga for intermediates</p>
-                </div>
-            </div>
-        </div>
-    )
+  const listNames = () => {
+    return clients.map((client) => {
+      return (
+        <IndividualName
+          key={client.id}
+          id={client.id}
+          name={client.name}
+          selectClient={selectClient}
+          changeClass={changeClass}
+          newClass={newClass}
+        />
+      )
+    })
+  }
+
+  return (
+    <div className='admin-clients'>
+      <div className='client-search'>
+        <form className='form-users' onSubmit={handleSubmit} method='get'>
+          <input type='text' id='user-search' name='search' />
+          <button type='submit'>
+            <FontAwesomeIcon
+              icon={icon}
+              style={{ color: '#646262', fontSize: '150%' }}
+            />
+          </button>
+        </form>
+        <div className='users-list'>{listNames()}</div>
+      </div>
+      <div className='client-info'>
+        <ClientsInfo client={client} selectClient={selectClient} />
+      </div>
+    </div>
+  )
 }
