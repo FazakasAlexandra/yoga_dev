@@ -93,6 +93,9 @@ const db = {
         res.json()
       )
     },
+    getDayClasses: (date) => {
+      return fetch(`${db.baseURL}/classes/date/${date}`).then(res => res.json())
+    }
   },
   users: {
     getClients: () => {
