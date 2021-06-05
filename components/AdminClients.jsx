@@ -14,34 +14,24 @@ export default function AdminClients() {
   const [clients, setClients] = useState([])
   const [client, setClient] = useState()
   const [icon, setIcon] = useState(faSearch)
-  const [newClass, setnewClass] = useState('classNotSelected')
 
   useEffect(() => {
     if (!session) router.push({ pathname: '/' })
   }, [session])
 
   useEffect(() => {
-    db.users.getClients().then((res) => setClients(res.data))
+    db.users.getClients().then((res) => {
+      setClients(res.data)
+      setClient(res.data[0].id)
+    })
   }, [])
 
-  useEffect(() => {
-    if (!client) {
-      setClient(2)
-    } else {
-      setClient(client)
-    }
-  }, [client])
+  console.log(clients)
+  console.log(client)
 
   const selectClient = (id) => {
     setClient(id)
     return client
-  }
-
-  const changeClass = (e) => {
-    e.preventDefault()
-    newClass == 'classNotSelected'
-      ? setnewClass('classSelected')
-      : setnewClass('classNotSelected')
   }
 
   const handleSubmit = (event) => {
@@ -59,15 +49,14 @@ export default function AdminClients() {
   }
 
   const listNames = () => {
-    return clients.map((client) => {
+    return clients.map((cl) => {
       return (
         <IndividualName
-          key={client.id}
-          id={client.id}
-          name={client.name}
+          key={cl.id}
+          id={cl.id}
+          name={cl.name}
           selectClient={selectClient}
-          changeClass={changeClass}
-          newClass={newClass}
+          classStyle={client === cl.id ? 'classSelected' : 'classNotSelected'}
         />
       )
     })

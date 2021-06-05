@@ -5,7 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #F8F7F7;
+  background-color: #f8f7f7;
 }
 
 a {
@@ -65,7 +65,7 @@ ul {
 }
 
 .button-green {
-  background-color: #76E294 !important;
+  background-color: #76e294 !important;
 }
 
 .day-schedule-cards.bookings {
@@ -319,14 +319,14 @@ header .navItem {
 .subscriptions .color {
   width: 100%;
   height: 450px;
-  background-color: #CAC6EB;
+  background-color: #cac6eb;
   z-index: 1;
   position: absolute;
   top: 10%;
 }
 .subscriptions .radius {
   top: 10%;
-  background: linear-gradient(0deg, #F8F7F7 22.16%, rgba(255, 255, 255, 0) 97.61%);
+  background: linear-gradient(0deg, #f8f7f7 22.16%, rgba(255, 255, 255, 0) 97.61%);
   position: absolute;
   z-index: 2;
   height: 500px;
@@ -359,7 +359,7 @@ header .navItem {
   border-width: thin;
 }
 .subscription-card .dlt-button-white:hover {
-  background-color: #FF5D23;
+  background-color: #ff5d23;
   cursor: pointer;
   color: black;
 }
@@ -385,7 +385,7 @@ header .navItem {
   font-size: 30px;
 }
 .subscription-card .months {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .subscription-card img {
   margin: 1.5rem 0rem;
@@ -407,7 +407,7 @@ header .navItem {
   left: 5rem;
   padding: 0.6rem 0.8rem;
   color: #646262;
-  background-color: #76E294;
+  background-color: #76e294;
 }
 .subscription-card.form .button-white.checked:hover {
   position: absolute;
@@ -605,16 +605,11 @@ header .navItem {
 }
 
 .admin-clients {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 40% 55%;
   padding: 20px;
   width: 100%;
   justify-content: space-around;
-}
-
-.client-search {
-  width: 40%;
 }
 
 .form-users {
@@ -623,12 +618,15 @@ header .navItem {
   padding: 2px;
   border: 1px solid #646262;
   height: 51px;
-  width: 391px;
   border-radius: 9px;
 }
 .form-users input {
   flex-grow: 2;
   border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: larger;
+  color: #646262;
+  padding-left: 10px;
 }
 .form-users input:focus {
   outline: none;
@@ -645,7 +643,7 @@ header .navItem {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  font-size: 26px;
+  font-size: 22px;
 }
 .user-list-items .list-initial {
   background: #edecf4;
@@ -667,6 +665,7 @@ header .navItem {
   height: 35px;
   text-align: center;
   border-radius: 50%;
+  font-size: 26px;
 }
 
 .classSelected {
@@ -692,6 +691,7 @@ header .navItem {
 .client-info {
   display: flex;
   flex-direction: column;
+  margin: 0 10px 10px 40px;
 }
 
 .client-chart {
@@ -750,7 +750,7 @@ header .navItem {
 .active-booking-card .active-bookings-details {
   display: flex;
   flex-direction: column;
-  width: 190px;
+  width: 270px;
 }
 .active-booking-card .active-bookings-details p {
   margin: 0;
@@ -796,6 +796,28 @@ header .navItem {
 }
 .client-last-booking p:first-child {
   font-size: 16px;
+}
+
+.client-subscriptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.client-subscriptions .admin-subscription-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+  padding: 1rem;
+  width: 225px;
+}
+.client-subscriptions .admin-subscription-card p {
+  margin: 10px;
+}
+.client-subscriptions .admin-subscription-card img {
+  margin: 10px 0;
 }
 
 .admin-bookings {

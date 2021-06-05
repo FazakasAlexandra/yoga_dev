@@ -1,14 +1,13 @@
 .admin-clients {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 40% 55%;
   padding: 20px;
   width: 100%;
   justify-content: space-around;
 }
 
 .client-search {
-  width: 40%;
+  //margin: 0 0 10px 20px;
 }
 
 .form-users {
@@ -18,12 +17,15 @@
   padding: 2px;
   border: 1px solid $darkGreyWriting;
   height: 51px;
-  width: 391px;
   border-radius: 9px;
 
   input {
     flex-grow: 2;
     border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: larger;
+    color: $darkGreyWriting;
+    padding-left: 10px;
   }
 
   input:focus {
@@ -43,7 +45,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  font-size: 26px;
+  font-size: 22px;
 
   .list-initial {
     background: $grayBackground;
@@ -68,6 +70,7 @@
     height: 35px;
     text-align: center;
     border-radius: 50%;
+    font-size: 26px;
   }
 }
 
@@ -95,6 +98,7 @@
 .client-info {
   display: flex;
   flex-direction: column;
+  margin: 0 10px 10px 40px;
 }
 
 .client-chart {
@@ -157,7 +161,7 @@
   .active-bookings-details {
     display: flex;
     flex-direction: column;
-    width: 190px;
+    width: 270px;
 
     p {
       margin: 0;
@@ -213,5 +217,30 @@
 
   p:first-child {
     font-size: 16px;
+  }
+}
+
+.client-subscriptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .admin-subscription-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 29px;
+    padding: 1rem;
+    width: 225px;
+
+    p {
+      margin: 10px;
+    }
+
+    img {
+      margin: 10px 0;
+    }
   }
 }

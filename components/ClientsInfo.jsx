@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/client'
 import db from '../db'
 import ClientChart from '../components/ClientChart'
 import ActiveBookingCard from '../components/ActiveBookingCard'
+import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 
 export default function ClientsInfo({ client, selectClient }) {
   const router = useRouter()
@@ -44,7 +45,6 @@ export default function ClientsInfo({ client, selectClient }) {
         .map((history) => {
           return (
             <>
-              <h3>Active Bookings</h3>
               <ActiveBookingCard
                 history={history}
                 userData={userData.jwt}
@@ -76,12 +76,28 @@ export default function ClientsInfo({ client, selectClient }) {
     }
   }
 
+  const ClientSubscriptions = () => {
+    return (
+      <>
+        <AdminSubscriptionCard />
+        <AdminSubscriptionCard />
+      </>
+    )
+  }
+
   return (
     <>
       {Chart()}
       <div>
-        <div className='client-active-booking'>{ClientInfo()}</div>
+        <div className='client-active-booking'>
+          <h3>Active Bookings</h3>
+          {ClientInfo()}
+        </div>
         <div className='client-last-booking'>{LatestBooking()}</div>
+        <div>
+          <h3>Subscriptions</h3>
+          <div className='client-subscriptions'>{ClientSubscriptions()}</div>
+        </div>
       </div>
     </>
   )
