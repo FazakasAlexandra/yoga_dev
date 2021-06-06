@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ClientChart from '../components/ClientChart'
 import ActiveBookingCard from '../components/ActiveBookingCard'
 import db from '../db'
+import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 
 export default function ClientsInfo({ client, setClient }) {
    const reloadClientInfo = () => {
@@ -42,6 +43,15 @@ export default function ClientsInfo({ client, setClient }) {
     )
   }
 
+  const ClientSubscriptions = () => {
+    return (
+      <>
+        <AdminSubscriptionCard />
+        <AdminSubscriptionCard />
+      </>
+    )
+  }
+
   return (
     <>
       <ClientChart info={client.history} />
@@ -49,6 +59,10 @@ export default function ClientsInfo({ client, setClient }) {
         <h3>Active Bookings</h3>
         <div className='client-active-booking'>{ClientInfo()}</div>
         <div className='client-last-booking'>{LatestBooking()}</div>
+        <div>
+          <h3>Subscriptions</h3>
+          <div className='client-subscriptions'>{ClientSubscriptions()}</div>
+        </div>
       </div>
     </>
   )

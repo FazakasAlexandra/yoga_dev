@@ -9,7 +9,6 @@ export default function AdminClients({ myclients }) {
   const [clients, setClients] = useState(myclients)
   const [client, setClient] = useState(myclients[0])
   const [icon, setIcon] = useState(faSearch)
-  const [newClass, setnewClass] = useState('classNotSelected')
 
   const selectClient = (id) => {
     const selectedClient = clients.find(client => +client.id === +id)
@@ -25,13 +24,6 @@ export default function AdminClients({ myclients }) {
     setClient(updatedClient)
   }
 
-  const changeClass = (e) => {
-    e.preventDefault()
-    newClass == 'classNotSelected'
-      ? setnewClass('classSelected')
-      : setnewClass('classNotSelected')
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     if (icon == faTimesCircle) {
@@ -45,15 +37,14 @@ export default function AdminClients({ myclients }) {
   }
 
   const listNames = () => {
-    return clients.map((client) => {
+    return clients.map((cl) => {
       return (
         <IndividualName
-          key={client.id}
-          id={client.id}
-          name={client.name}
+          key={cl.id}
+          id={cl.id}
+          name={cl.name}
           selectClient={selectClient}
-          changeClass={changeClass}
-          newClass={newClass}
+          classStyle={client === cl.id ? 'classSelected' : 'classNotSelected'}
         />
       )
     })
