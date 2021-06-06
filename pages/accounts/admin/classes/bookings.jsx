@@ -17,7 +17,7 @@ export default function Page() {
     const [date, setDate] = useState(today)
     const [classes, setClasses] = useState([])
     const [bookings, setBookings] = useState([])
-    const [activeClass, setActiveClass] = useState(false)
+    const [activeClass, setActiveClass] = useState(null)
 
     useEffect(() => {
         if (!loading && !session) router.push({ pathname: '/' })
@@ -40,13 +40,14 @@ export default function Page() {
     const handleArrowButton = (weekScheduleId) => {
         const updatedActieClass = classes.map(yogaClass => {
             if (yogaClass.schedules_weeks_id == weekScheduleId) {
-                setActiveClass(true)
+                setActiveClass(yogaClass)
                 return { ...yogaClass, active: true }
             }
 
             return { ...yogaClass, active: false }
         })
 
+        console.log(updatedActieClass)
         setClasses(updatedActieClass)
 
         db.bookings.getClassBookings(weekScheduleId).then(res => {
@@ -66,10 +67,21 @@ export default function Page() {
         })
     }
 
+    const changeStatus = (status, bookingId) => {
+        db.getJWT().then(jwt => {
+            console.log(bookingId)
+            db.bookings.changeStatus(jwt.jwtToken, bookingId, status).then(res => {
+                console.log(res.status)
+                db.bookings.getClassBookings(activeClass.schedules_weeks_id).then(res => {
+                    setBookings(res.data)
+                })
+            })
+        })
+    }
+
     const getBookings = () => {
         return bookings.map((booking) => {
-            console.log(booking)
-            return <BookingCard booking={booking} page="admin"/>
+            return <BookingCard booking={booking} page="admin" changeStatus={changeStatus} />
         })
     }
 

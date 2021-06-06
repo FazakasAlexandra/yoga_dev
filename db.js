@@ -62,6 +62,10 @@ const db = {
         },
       }).then((res) => res.json())
     },
+    decreaseCoverage: (coverageType, id) => {
+      return fetch(`${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`)
+      .then(res => res.json())
+    }
   },
   bookings: {
     postBooking: (jwt, scheduleWeekId, classType) => {

@@ -3,24 +3,14 @@
     width: 100%;
     justify-content: space-evenly;
     flex-wrap: wrap;
-
+    .active-booking-card .wraper{
+        padding: 0rem;
+    }
     .active-booking-card{
         flex-direction: column;
         height: fit-content;
         padding: 0.5rem;
         align-items: baseline;
-    }
-
-    .converage-desc{
-        margin: 0rem;
-        margin-left: 0.5rem;
-        b{
-            color: #5E54AC;
-            font-size: 22px;
-        }
-        i{
-            color: #646263a3;
-        }
     }
 
     .wraper{

@@ -1,16 +1,15 @@
-import { useSession } from 'next-auth/client'
 import db from '../db'
+import ClassCoverage from './ClassCoverage'
 
 export default function ActiveBookingCard({
   history,
   buttonVisible,
   reloadClientInfo
 }) {
-  const [session, loading] = useSession()
 
   const changeStatus = (status) => {
-    db.users.queryUsers('email', session.user.email).then(res => {
-      db.bookings.changeStatus(res.data.jwt, history.booking_id, status)
+    db.getJWT().then(jwt => {
+      db.bookings.changeStatus(jwt.jwtToken, history.booking_id, status)
         .then((res) => {
           console.log(res.data)
           reloadClientInfo()
@@ -20,6 +19,7 @@ export default function ActiveBookingCard({
 
   return (
     <div className='active-booking-card'>
+      <div className='wraper'>
       <div className='active-bookings-numbers'>
         <p>{history.hour}</p>
         <p>{history.online_price}</p>
@@ -45,6 +45,8 @@ export default function ActiveBookingCard({
           Absent
         </button>
       </div>
+      </div>
+      <ClassCoverage userSubscriptions={history.user_subscriptions} changeStatus={changeStatus} />
     </div>
   )
 }
