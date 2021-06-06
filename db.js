@@ -80,6 +80,9 @@ const db = {
         method: 'GET',
       }).then((res) => res.json())
     },
+    getClassBookings: (weekScheduleId) => {
+      return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(res => res.json())
+    }
   },
   classes: {
     getClasses: () => {

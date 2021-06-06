@@ -4,20 +4,26 @@ import Layout from '../../../components/Layout'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../components/AdminLayout'
 import AdminClients from '../../../components/AdminClients'
+import db from '../../../db'
+  
+export default function Clients() {
+  const router = useRouter()
+  const [session, loading] = useSession()
+  const [clients, setClients] = useState([])
+  
+  useEffect(() => {
+    if (!loading && !session) router.push({ pathname: '/' })
+  }, [session])
 
-export default function Page() {
-    const router = useRouter()
-    const [session, loading] = useSession()
+  useEffect(() => {
+    db.users.getClients().then((res) => setClients(res.data))
+  }, [])
 
-    useEffect(() => {
-        if (!loading && !session) router.push({ pathname: '/' })
-    }, [session])
-    
-    return (
-        <Layout activeTab={"account"}>
-            <AdminLayout activeTab={"clients"}>
-                <AdminClients />
-            </AdminLayout>
-        </Layout>
-    )
+  return (
+    <Layout activeTab={"account"}>
+      <AdminLayout activeTab={"clients"}>
+        {clients.length > 0 ? <AdminClients myclients={clients}/> : null}
+      </AdminLayout>
+    </Layout>
+  )
 }

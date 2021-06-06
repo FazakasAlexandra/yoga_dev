@@ -1,25 +1,21 @@
-import { useState, useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/client'
 import db from '../db'
 
 export default function ActiveBookingCard({
   history,
-  userData,
   buttonVisible,
+  reloadClientInfo
 }) {
-  //const router = useRouter()
   const [session, loading] = useSession()
-  const [bookingStatus, setBookingStatus] = useState()
 
-  useEffect(() => {
-    if (!session) router.push({ pathname: '/' })
-  }, [session])
-
-  const changeStatus = (id, status) => {
-    db.bookings
-      .changeStatus(userData, id, status)
-      .then((res) => setBookingStatus(res.data))
-    window.location.reload()
+  const changeStatus = (status) => {
+    db.users.queryUsers('email', session.user.email).then(res => {
+      db.bookings.changeStatus(res.data.jwt, history.booking_id, status)
+        .then((res) => {
+          console.log(res.data)
+          reloadClientInfo()
+        })
+    })
   }
 
   return (
@@ -37,14 +33,14 @@ export default function ActiveBookingCard({
         <button
           className='buttonPresent'
           id={buttonVisible}
-          onClick={() => changeStatus(history.booking_id, 'present')}
+          onClick={() => changeStatus('present')}
         >
           Present
         </button>
         <button
           className='buttonAbsent'
           id={buttonVisible}
-          onClick={() => changeStatus(history.booking_id, 'absent')}
+          onClick={() => changeStatus('absent')}
         >
           Absent
         </button>

@@ -1,7 +1,3 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
-import db from '../db'
 import Chart from 'react-google-charts'
 
 export default function ClientChart({ info }) {

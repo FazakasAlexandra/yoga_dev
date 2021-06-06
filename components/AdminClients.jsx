@@ -1,40 +1,28 @@
 //import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import IndividualName from '../components/IndividualName'
 import ClientsInfo from '../components/ClientsInfo'
-import db from '../db'
 
-export default function AdminClients() {
-  const router = useRouter()
-  const [session, loading] = useSession()
-  const [clients, setClients] = useState([])
-  const [client, setClient] = useState()
+export default function AdminClients({ myclients }) {
+  const [clients, setClients] = useState(myclients)
+  const [client, setClient] = useState(myclients[0])
   const [icon, setIcon] = useState(faSearch)
   const [newClass, setnewClass] = useState('classNotSelected')
 
-  useEffect(() => {
-    if (!session) router.push({ pathname: '/' })
-  }, [session])
-
-  useEffect(() => {
-    db.users.getClients().then((res) => setClients(res.data))
-  }, [])
-
-  useEffect(() => {
-    if (!client) {
-      setClient(2)
-    } else {
-      setClient(client)
-    }
-  }, [client])
-
   const selectClient = (id) => {
-    setClient(id)
-    return client
+    const selectedClient = clients.find(client => +client.id === +id)
+    setClient(selectedClient)
+  }
+
+  const updateClients = (updatedClient) => {
+    const updatedClients = clients.map(client => {
+      if (+client.id === +updatedClient.id) return updatedClient
+      return client
+    })
+    setClients(updatedClients)
+    setClient(updatedClient)
   }
 
   const changeClass = (e) => {
@@ -47,13 +35,11 @@ export default function AdminClients() {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (icon == faTimesCircle) {
-      db.users.getClients().then((res) => setClients(res.data))
+      setClients(myclients)
       setIcon(faSearch)
       event.target[0].value = ''
     } else {
-      setClients(
-        clients.filter(({ name }) => name.includes(event.target[0].value))
-      )
+      setClients(clients.filter(({ name }) => name.includes(event.target[0].value)))
       setIcon(faTimesCircle)
     }
   }
@@ -88,7 +74,7 @@ export default function AdminClients() {
         <div className='users-list'>{listNames()}</div>
       </div>
       <div className='client-info'>
-        <ClientsInfo client={client} selectClient={selectClient} />
+        <ClientsInfo client={client} setClient={updateClients} />
       </div>
     </div>
   )
