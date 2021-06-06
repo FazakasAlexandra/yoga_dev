@@ -44,7 +44,7 @@ export default function AdminClients({ myclients }) {
           id={cl.id}
           name={cl.name}
           selectClient={selectClient}
-          classStyle={client === cl.id ? 'classSelected' : 'classNotSelected'}
+          classStyle={+client.id === +cl.id ? 'classSelected' : 'classNotSelected'}
         />
       )
     })
