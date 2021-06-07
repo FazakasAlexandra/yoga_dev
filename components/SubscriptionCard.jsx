@@ -13,7 +13,6 @@ export default function SubscriptionCard({
     price,
     months,
     image,
-    attendences,
     free_entrences,
     discounts,
     id,
@@ -80,10 +79,7 @@ export default function SubscriptionCard({
       />
       <div>
         <span className='price'>{price}€</span>
-        <span className='months'>
-          {' '}
-          / {months} {months > 1 ? 'months' : 'month'}
-        </span>
+        <span className='months'> / {months} {months > 1 ? 'months' : 'month'}</span>
       </div>
       <hr />
       {getEntrences()}

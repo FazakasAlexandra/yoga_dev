@@ -3,13 +3,14 @@
     width: 100%;
     justify-content: space-evenly;
     flex-wrap: wrap;
+
     .active-booking-card .wraper{
         padding: 0rem;
     }
     .active-booking-card{
         flex-direction: column;
         height: fit-content;
-        padding: 0.5rem;
+        padding: 1rem;        
         align-items: baseline;
     }
 

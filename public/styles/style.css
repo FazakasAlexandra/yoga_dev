@@ -728,7 +728,23 @@ header .navItem {
   margin: 10px 0;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  padding: 0.7rem;
+  padding: 1rem;
+}
+.active-booking-card .class-coverage-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.active-booking-card .class-coverage-arrow .class-coverage-arrow:hover .class-coverag p {
+  font-weight: bold;
+}
+.active-booking-card .class-coverage-arrow p {
+  margin: 0rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+.active-booking-card .class-coverage {
+  margin-top: 1rem;
 }
 .active-booking-card .class-coverage p {
   margin: 0px;
@@ -755,10 +771,10 @@ header .navItem {
 }
 .active-booking-card .active-bookings-numbers {
   width: 50px;
-  height: auto;
+  height: 60px;
   border-right: 1px solid #646263;
   color: #646262;
-  padding: 0 5px 0 0;
+  padding: 0 0.8rem 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -766,9 +782,10 @@ header .navItem {
 .active-booking-card .active-bookings-numbers p:first-child {
   font-size: 18px;
   margin: 0;
+  font-weight: 300;
 }
 .active-booking-card .active-bookings-numbers p:last-child {
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
 }
 .active-booking-card .active-bookings-details {
@@ -818,9 +835,6 @@ header .navItem {
 .client-last-booking p {
   margin: 0;
 }
-.client-last-booking p:first-child {
-  font-size: 16px;
-}
 
 .client-subscriptions {
   display: flex;
@@ -856,7 +870,7 @@ header .navItem {
 .admin-bookings .active-booking-card {
   flex-direction: column;
   height: fit-content;
-  padding: 0.5rem;
+  padding: 1rem;
   align-items: baseline;
 }
 .admin-bookings .wraper {
