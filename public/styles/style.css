@@ -606,7 +606,7 @@ header .navItem {
 
 .admin-clients {
   display: grid;
-  grid-template-columns: 40% 55%;
+  grid-template-columns: 37% 57%;
   padding: 20px;
   width: 100%;
   justify-content: space-around;
@@ -800,23 +800,72 @@ header .navItem {
 
 .client-subscriptions {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
+  margin-top: 20px;
 }
-.client-subscriptions .admin-subscription-card {
+.client-subscriptions .comboform {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.client-subscriptions .subscriptionform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+}
+.client-subscriptions .subscriptionform .comboSubs {
+  width: 220px;
+  height: 40px;
+  color: #646262;
+}
+.client-subscriptions .subscriptionform button {
+  margin: 0 10px;
+  height: 40px;
+  width: 50px;
+  font-size: 36px;
+  padding: 0;
+  background: white;
+  color: #646262;
+  border: 1px solid #edecf4;
+  border-radius: 20%;
+  font-weight: bolder;
+}
+.client-subscriptions .subscriptionform button:hover {
+  border: 1.5px solid black;
+}
+.client-subscriptions .subscriptionform button:active {
+  background: #edecf4;
+}
+.client-subscriptions .adminsubsection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 29px;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 225px;
+  margin: 0 10px 20px 0;
 }
-.client-subscriptions .admin-subscription-card p {
+.client-subscriptions .adminsubsection .admin-subscription-card h4 {
+  text-align: center;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card p {
   margin: 10px;
+  font-size: 15px;
 }
-.client-subscriptions .admin-subscription-card img {
+.client-subscriptions .adminsubsection .admin-subscription-card img {
   margin: 10px 0;
 }
 
@@ -908,6 +957,39 @@ header .navItem {
   }
 }
 @media (max-width: 900px) {
+  .admin-clients {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .client-search {
+    width: 450px;
+    align-self: center;
+  }
+
+  .client-info {
+    width: 740px;
+    align-self: center;
+    margin: 40px 0 0 0;
+  }
+
+  .client-chart {
+    align-items: center;
+  }
+
+  .active-booking-card {
+    width: 75%;
+  }
+
+  .comboform {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .adminsubsection {
+    justify-content: space-around;
+  }
+
   header nav {
     padding: 2rem 1rem;
     flex-direction: column;
@@ -939,6 +1021,36 @@ header .navItem {
     flex-direction: column-reverse;
     justify-content: center;
     width: fit-content;
+  }
+
+  .bellowChart {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+  }
+  .bellowChart h3 {
+    align-self: center;
+  }
+
+  .client-active-booking {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .client-last-booking {
+    align-self: center;
+    width: 100%;
+  }
+
+  .active-booking-card {
+    align-self: center;
+  }
+
+  .adminsubsection {
+    justify-content: space-between;
   }
 
   .day-schedule.card {

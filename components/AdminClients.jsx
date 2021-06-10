@@ -5,18 +5,18 @@ import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import IndividualName from '../components/IndividualName'
 import ClientsInfo from '../components/ClientsInfo'
 
-export default function AdminClients({ myclients }) {
+export default function AdminClients({ myclients, listSub }) {
   const [clients, setClients] = useState(myclients)
   const [client, setClient] = useState(myclients[0])
   const [icon, setIcon] = useState(faSearch)
 
   const selectClient = (id) => {
-    const selectedClient = clients.find(client => +client.id === +id)
+    const selectedClient = clients.find((client) => +client.id === +id)
     setClient(selectedClient)
   }
 
   const updateClients = (updatedClient) => {
-    const updatedClients = clients.map(client => {
+    const updatedClients = clients.map((client) => {
       if (+client.id === +updatedClient.id) return updatedClient
       return client
     })
@@ -31,7 +31,9 @@ export default function AdminClients({ myclients }) {
       setIcon(faSearch)
       event.target[0].value = ''
     } else {
-      setClients(clients.filter(({ name }) => name.includes(event.target[0].value)))
+      setClients(
+        clients.filter(({ name }) => name.includes(event.target[0].value))
+      )
       setIcon(faTimesCircle)
     }
   }
@@ -44,7 +46,9 @@ export default function AdminClients({ myclients }) {
           id={cl.id}
           name={cl.name}
           selectClient={selectClient}
-          classStyle={+client.id === +cl.id ? 'classSelected' : 'classNotSelected'}
+          classStyle={
+            +client.id === +cl.id ? 'classSelected' : 'classNotSelected'
+          }
         />
       )
     })
@@ -65,7 +69,11 @@ export default function AdminClients({ myclients }) {
         <div className='users-list'>{listNames()}</div>
       </div>
       <div className='client-info'>
-        <ClientsInfo client={client} setClient={updateClients} />
+        <ClientsInfo
+          client={client}
+          setClient={updateClients}
+          listSub={listSub}
+        />
       </div>
     </div>
   )

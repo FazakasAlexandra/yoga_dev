@@ -1,79 +1,142 @@
-@media(max-width: 1000px) {
-    .admin-layout {
+@media (max-width: 1000px) {
+  .admin-layout {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-clients {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .client-search {
+    width: 450px;
+    align-self: center;
+  }
+
+  .client-info {
+    width: 740px;
+    align-self: center;
+    margin: 40px 0 0 0;
+  }
+
+  .client-chart {
+    align-items: center;
+  }
+
+  .active-booking-card {
+    width: 75%;
+  }
+
+  .comboform {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .adminsubsection {
+    justify-content: space-around;
+  }
+
+  header nav {
+    padding: 2rem 1rem;
+
+    .fa-bars {
+      display: flex;
+    }
+
+    flex-direction: column;
+
+    .navItems {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      width: fit-content;
+      justify-content: center;
+    }
+
+    .navItem {
+      margin: 0rem !important;
+      padding: 1rem !important;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: 799px) {
+  .date-container {
+    margin-bottom: 0px;
+    .wrapper {
+      align-items: center;
+      flex-direction: column-reverse;
+      justify-content: center;
+      width: fit-content;
+    }
+  }
+
+  .bellowChart {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    h3 {
+      align-self: center;
+    }
+  }
+
+  .client-active-booking {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .client-last-booking {
+    align-self: center;
+    width: 100%;
+  }
+
+  .active-booking-card {
+    align-self: center;
+  }
+
+  .adminsubsection {
+    justify-content: space-between;
+  }
+
+  .day-schedule.card {
+    width: 430px;
+  }
+  .dateRange {
+    width: 100%;
+    .rdrMonth {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .day-schedule.card {
+    width: 100%;
+    .class.wraper {
+      flex-direction: column;
+      .info-wraper {
         width: 100%;
-    }
-}
-
-@media(max-width: 900px) {
-    header nav {
-        padding: 2rem 1rem;
-
-        .fa-bars {
-            display: flex;
-        }
-
-        flex-direction: column;
-
-        .navItems {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            width: fit-content;
-            justify-content: center;
-        }
-
-        .navItem {
-            margin: 0rem !important;
-            padding: 1rem !important;
-        }
-
-        .hamburger {
-            display: flex;
-        }
-    }
-}
-
-@media(max-width: 799px){
-    .date-container{
-        margin-bottom: 0px;
-        .wrapper{
-            align-items: center;
-            flex-direction: column-reverse;
-            justify-content: center;
-            width: fit-content;
-        }
-    }
-    .day-schedule.card{
-        width: 430px;
-    }
-    .dateRange{
+      }
+      .button-white {
         width: 100%;
-        .rdrMonth{
-            width: 100%;
-        }
+        text-align: center;
+        margin: 0px;
+      }
     }
+  }
 }
-
-@media(max-width: 400px) {
-
-    .day-schedule.card {
-        width: 100%;
-        .class.wraper {
-            flex-direction: column;
-            .info-wraper{
-                width: 100%;
-            }
-            .button-white{
-                width: 100%;
-                text-align: center;
-                margin: 0px;
-            }
-        }
-    }
-}
-@media(max-width: 350px){
-    .date-container{
-        min-height: fit-content;
-        margin: 2rem 0rem;
-    }
+@media (max-width: 350px) {
+  .date-container {
+    min-height: fit-content;
+    margin: 2rem 0rem;
+  }
 }
