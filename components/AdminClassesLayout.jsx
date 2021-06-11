@@ -9,7 +9,7 @@ export default function AdminClassesLayout({ children, activeTab }) {
             <div className="classes-header">
                 <Link href="/accounts/admin/classes/week_schedule">
                     <a className={activeTab === "week_schedule" ? "button-white active" : "button-white"}>
-                        WeekSchedule
+                        Week Schedule
                     </a>
                 </Link>
 
@@ -24,15 +24,16 @@ export default function AdminClassesLayout({ children, activeTab }) {
                             <FontAwesomeIcon icon={faChartBar} size="lg" />
                         </a>
                     </Link>
-                    <Link href="/accounts/admin/classes/create">
-                        <a className={activeTab === "create" ? "button-white active" : "button-white"}>
-                            Add class
+                    <Link href="/accounts/admin/classes/bookings">
+                        <a className={activeTab === "bookings" ? "button-white active" : "button-white"}>
+                            Bookings
                         </a>
                     </Link>
                 </aside>
             </div>
-
-            {children}
+            <div className="class-body">
+                {children}
+            </div>
         </div>
 
     )

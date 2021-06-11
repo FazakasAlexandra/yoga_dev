@@ -1,24 +1,42 @@
 import Image from 'next/image'
+import { useState } from 'react';
+import ClassDialog from './ClassDialog';
+import DayScheduleClass from './DayScheduleClass';
+import db from '../db.js'
 
-export default function DayScheduleCard({ daySchedule, src }) {
+export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
+  const [open, setOpen] = useState(false);
+  const [yogaClass, setYogaClass] = useState(null);
+  
+  const handleDialogClose = () => {
+    setOpen(false);
+  };
+
+  const handleInfoIconClick = (yogaClass) => {
+    setOpen(true);
+    setYogaClass(yogaClass)
+  }
+
+  const handleBookClick = (yogaClass) => {
+      db.bookings.postBooking(userData.jwt, yogaClass.schedules_weeks_id, yogaClass.classType).then(() => {
+      console.log('booked !')
+      updateUserData()
+    }) 
+  }
+
   const getSchedule = () => {
-    return daySchedule.schedule.map((yogaClass, idx) => {
+    return dayData.schedule.map((yogaClass, idx) => {
+      yogaClass.id = idx
+      yogaClass.classType = yogaClass.classType || 'online'
       return (
-        <div className="class wraper" key={idx}>
-          <div className="class info-wraper">
-            <div className="class info">
-              <p>{yogaClass.hour}</p>
-              <span>{yogaClass.onlinePrice} lei</span>
-            </div>
-
-            <div>
-              <p>{yogaClass.className}</p>
-            </div>
-
-          </div>
-
-          <a className="button-white">Book</a>
-        </div>
+        <DayScheduleClass
+          userData={userData}
+          key={idx}
+          dayScheduleClass={yogaClass}
+          isBooked={userBookings[yogaClass.schedules_weeks_id] || false}
+          handleInfoIconClick={handleInfoIconClick}
+          handleBookClick={handleBookClick}
+        />
       )
     })
   }
@@ -26,21 +44,28 @@ export default function DayScheduleCard({ daySchedule, src }) {
   return (
     <div className="day-schedule card">
       <div className="head">
-        <img src={`/assets/${src}`} alt="lotus flower" />
-        <h3>{daySchedule.day}</h3>
-        <span>{daySchedule.date}</span>
+        <img src={`/assets/lotus.svg`} alt="lotus flower" />
+        <h3>{dayData.day}</h3>
+        <span>{dayData.date}</span>
       </div>
 
       <hr />
 
       {
-        daySchedule.schedule.length == 0 ?
+        dayData.schedule.length == 0 ?
           <div className="closed-sign"><Image src="/assets/closed.png" width={100} height={100} /></div>
           :
           <div className="schedule">
             {getSchedule()}
           </div>
       }
+      {open ?
+        <ClassDialog
+          isOpen={open}
+          yogaClass={yogaClass}
+          closeDialog={handleDialogClose}
+        />
+        : null}
     </div>
   )
 }

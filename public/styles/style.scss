@@ -1,9 +1,14 @@
 @import 'base.scss';
+@import 'variables.scss';
 
 @import 'components/dayScheduleCard.scss';
 @import 'components/header.scss';
+@import 'components/subscriptions.scss';
 @import 'components/adminLayout.scss';
 @import 'components/adminClassesLayout.scss';
 @import 'components/weekSchedulePage.scss';
+@import 'components/adminClassCard.scss';
+@import 'components/clientsDetails.scss';
+@import 'components/adminBookingsPage.scss';
 
 @import './media.scss';

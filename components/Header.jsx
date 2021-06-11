@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { signIn, signOut, useSession, getSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import db from '../db'
 import { useState } from 'react'
@@ -11,32 +11,24 @@ export default function Header({ activeTab }) {
   const [session, loading] = useSession()
   const [is_admin, setIsAdmin] = useState(false)
   const [menuOn, setMenuOn] = useState(true)
-
+  
   useEffect(() => {
     if (session) {
-      fetch('http://localhost:3000/api/examples/jwt').then(res => res.json()).then(res => {
-        if (res) queryUser(res)
+      db.users.queryUsers('email', session.user.email).then((res) => {
+        if (!res.data) {
+          db.getJWT().then((res) => {
+            db.users.postUser({
+              email: session.user.email,
+              name: session.user.name,
+              jwt : res.jwtToken
+            })
+          })
+        } else {
+          if (res.data.is_admin === 'true') setIsAdmin(true)
+        }
       })
     }
   }, [session])
-
-  function queryUser(res) {
-    const jwt = res.jwtToken
-
-    db.queryUsers('jwt', jwt).then((res) => {
-      if (!res.data) {
-        db.postUser({
-          email: session.user.email,
-          name: session.user.name,
-          jwt
-        })
-      } else {
-        session.user = { ...session.user, ...res.data };
-        console.log(session)
-        if (res.data.is_admin === 'true') setIsAdmin(true)
-      }
-    })
-  }
 
   return (
     <header>
@@ -84,15 +76,16 @@ export default function Header({ activeTab }) {
             height={60}
             width={60}
           />
-          <FontAwesomeIcon icon={faBars} size="2x" onClick={()=>setMenuOn(!menuOn)}/>
+          <FontAwesomeIcon icon={faBars} size="2x" onClick={() => setMenuOn(!menuOn)} />
         </div>
-        <ul className="navItems" style={{display: menuOn ? "flex" : "none"}}>
+        <ul className="navItems" style={{ display: menuOn ? "flex" : "none" }}>
           <li className="navItem">
             <Link href="/">
               <a className={activeTab === "home" ? "active-tab" : null}>Home</a>
             </Link>
           </li>
           <li className="navItem">
+            <FontAwesomeIcon icon={faCalendarAlt} style={{ marginRight: "0.5rem", fontSize: "1.6rem" }} />
             <Link href="/weekSchedule">
               <a className={activeTab === "week_schedule" ? "active-tab" : null}>Week Schedule</a>
             </Link>

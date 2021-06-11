@@ -1,0 +1,298 @@
+.admin-clients {
+  display: grid;
+  grid-template-columns: 40% 55%;
+  padding: 20px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.client-search {
+  //margin: 0 0 10px 20px;
+}
+
+.form-users {
+  display: flex;
+  flex-direction: row;
+  // border:1px solid grey;
+  padding: 2px;
+  border: 1px solid $darkGreyWriting;
+  height: 51px;
+  border-radius: 9px;
+
+  input {
+    flex-grow: 2;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: larger;
+    color: $darkGreyWriting;
+    padding-left: 10px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  button {
+    color: black;
+    border: none;
+    background: white;
+  }
+}
+
+.user-list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  font-size: 22px;
+
+  .list-initial {
+    background: $grayBackground;
+    padding: 3px 12px;
+    border-radius: 50%;
+    color: $darkGreyWriting;
+  }
+
+  .list-name {
+    justify-content: start;
+    margin-left: 20px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #arrow {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 26px;
+  }
+}
+
+.classSelected {
+  font-weight: bolder;
+
+  #arrow {
+    visibility: hidden;
+    position: relative;
+  }
+
+  #arrow:after {
+    background: $grayBackground;
+    content: '>';
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+  }
+}
+
+.client-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px 10px 40px;
+}
+
+.client-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid $darkGreyWriting;
+  padding: 0;
+
+  h3 {
+    margin: 0 0 30px 0;
+  }
+
+  /*     
+    svg{
+        height: 150px;
+    }
+ */
+  rect {
+
+    /*         height: 150px;
+ */
+    g:first-of-type {
+      height: 100px;
+    }
+  }
+}
+
+.active-booking-card {
+  width: 100%;
+  min-height: 136px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background: #edecf4;
+  margin: 10px 0;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 25%);
+  padding: 1rem;
+  
+  .class-coverage-arrow {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .class-coverage-arrow:hover{
+      .class-coverag p{
+        font-weight: bold;
+      }
+    }
+
+    p{
+      margin: 0rem;
+      margin-right: 0.5rem;
+      font-weight: 500;
+    }
+  }
+  
+  .class-coverage{
+    margin-top: 1rem;
+  }
+
+  .class-coverage p {
+    margin: 0px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .converage-desc {
+    margin: 0rem;
+    margin-left: 0.5rem;
+
+    b {
+      color: #5E54AC;
+      font-size: 22px;
+    }
+
+    i {
+      color: #646263a3;
+    }
+  }
+
+  .wraper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+  }
+
+  .active-bookings-numbers {
+    width: 50px;
+    height: 60px;
+    border-right: 1px solid #646263;
+    color: $darkGreyWriting;
+    padding: 0 0.8rem 0 0;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p:first-child {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    p:last-child {
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+
+  .active-bookings-details {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+
+    p {
+      margin: 0;
+      font-size: 19px;
+    }
+
+    p:first-child {
+      font-weight: bold;
+    }
+
+    p:last-child {
+      font-size: 15px;
+    }
+  }
+
+  .active-bookings-status {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin: 4px;
+      height: 42px;
+      width: 90px;
+      padding: 3px;
+      border-radius: 5px;
+      border: 1px solid #646263;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+      color: $darkGreyWriting;
+    }
+
+    .buttonPresent {
+      background: #33d460;
+    }
+
+    .buttonAbsent {
+      background: white;
+    }
+
+    #buttonInvisible {
+      visibility: hidden;
+    }
+  }
+}
+
+.client-last-booking {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+  }
+
+}
+
+.client-subscriptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .admin-subscription-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 29px;
+    padding: 1rem;
+    width: 225px;
+
+    p {
+      margin: 10px;
+    }
+
+    img {
+      margin: 10px 0;
+    }
+  }
+}

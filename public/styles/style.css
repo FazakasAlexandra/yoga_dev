@@ -5,7 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #F8F7F7;
+  background-color: #f8f7f7;
 }
 
 a {
@@ -21,13 +21,17 @@ ul {
   margin: 0rem !important;
 }
 
-.week-schedule.page .day-schedule-cards {
-  display: flex;
-  justify-content: space-evenly;
+.bold-text {
+  font-weight: bolder;
+}
+
+.thin-text {
+  font-weight: 300;
 }
 
 .button-white {
   padding: 0.8rem 1rem;
+  text-align: center;
   background-color: white;
   border-radius: 5px;
   border: solid;
@@ -35,7 +39,6 @@ ul {
 }
 
 .button-white:hover {
-  border-width: medium;
   cursor: pointer;
 }
 
@@ -50,10 +53,43 @@ ul {
   border-width: medium;
 }
 
+.blue-text {
+  cursor: pointer;
+  color: #6cbbc7;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.blue-text:hover {
+  color: #a7d6dd;
+}
+
+.button-green {
+  background-color: #76e294 !important;
+}
+
+.day-schedule-cards.bookings {
+  flex-direction: column;
+}
+.day-schedule-cards.bookings .icon-chevron {
+  margin-left: 1.5rem;
+}
+.day-schedule-cards.bookings .class.radio p {
+  margin: 0px;
+}
+
 .day-schedule-cards {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.day-schedule-cards .class.radio {
+  border-left-style: solid;
+  border-width: thin;
+  padding-left: 1rem;
+}
+.day-schedule-cards .class.radio p {
+  margin-bottom: 0px;
 }
 .day-schedule-cards .closed-sign {
   display: flex;
@@ -70,17 +106,25 @@ ul {
   height: fit-content;
   margin-left: 1.5rem;
 }
+.day-schedule-cards .class.wraper .buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+.day-schedule-cards .class.wraper .buttons-container button {
+  margin-bottom: 0.2rem;
+}
 .day-schedule-cards .class.wraper .info-wraper {
   display: flex;
   align-items: center;
 }
+.day-schedule-cards .class.wraper .fa-info-circle:hover {
+  color: #6CBBC7 !important;
+}
 .day-schedule-cards .class.wraper .info {
-  border-right-style: solid;
-  border-right-width: thin;
-  /* padding: 0rem 0.5rem; */
-  padding-right: 1rem;
-  margin-right: 1rem;
   min-width: 57px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .day-schedule-cards .class.wraper .info p {
   margin-bottom: 0.2rem;
@@ -98,6 +142,9 @@ ul {
   width: 400px;
   margin: 1rem 0rem;
 }
+.day-schedule hr {
+  margin: 2rem 0.5rem;
+}
 .day-schedule img {
   width: 60px;
 }
@@ -113,7 +160,39 @@ ul {
   margin: 1rem 0rem;
 }
 
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+
+.admin-classes-layout .day-schedule-cards .class.radio {
+  border-left-style: none;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info {
+  border-right-style: solid;
+  border-width: thin;
+  min-width: 70px;
+  padding-right: 1rem;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info p {
+  font-weight: 300;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info span {
+  align-self: flex-end;
+}
+.admin-classes-layout .day-schedule-cards .class.wraper .info b {
+  align-self: flex-end;
+  font-size: 13px;
+  color: #78999f;
+}
+
 header {
+  z-index: 3;
+  position: relative;
   /* Set min-height to avoid page reflow while session loading */
 }
 header nav {
@@ -138,6 +217,8 @@ header nav .fa-bars {
   display: none;
 }
 header nav ul {
+  width: 1500px;
+  justify-content: space-between;
   display: flex;
   align-items: center;
 }
@@ -226,7 +307,147 @@ header .navItems {
 }
 header .navItem {
   display: inline-block;
-  margin-right: 3.5rem;
+  /*  margin-right: 3.5rem; */
+}
+
+.subscriptions {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+  flex-wrap: wrap;
+}
+.subscriptions .color {
+  width: 100%;
+  height: 450px;
+  background-color: #cac6eb;
+  z-index: 1;
+  position: absolute;
+  top: 10%;
+}
+.subscriptions .radius {
+  top: 10%;
+  background: linear-gradient(0deg, #f8f7f7 22.16%, rgba(255, 255, 255, 0) 97.61%);
+  position: absolute;
+  z-index: 2;
+  height: 500px;
+  width: 100%;
+}
+
+.subscription-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+  padding: 3rem;
+  width: 400px;
+  margin: 1rem;
+}
+.subscription-card .dlt-button-white {
+  padding: 0.6rem 0.8rem;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  color: #646262;
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  border: solid;
+  border-width: thin;
+}
+.subscription-card .dlt-button-white:hover {
+  background-color: #ff5d23;
+  cursor: pointer;
+  color: black;
+}
+.subscription-card i {
+  font-weight: 300;
+}
+.subscription-card h1 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-top: 0rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+.subscription-card hr {
+  width: 100%;
+  margin: 2rem 0rem;
+}
+.subscription-card p {
+  text-align: center;
+}
+.subscription-card .price {
+  font-weight: bold;
+  font-size: 30px;
+}
+.subscription-card .months {
+  color: #c4c4c4;
+}
+.subscription-card img {
+  margin: 1.5rem 0rem;
+  max-height: 170px;
+}
+
+.subscriptions-admin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.subscriptions-admin h1 {
+  margin-top: 1rem;
+}
+
+.subscription-card.form .button-white.checked {
+  position: absolute;
+  top: 0.8rem;
+  left: 5rem;
+  padding: 0.6rem 0.8rem;
+  color: #646262;
+  background-color: #76e294;
+}
+.subscription-card.form .button-white.checked:hover {
+  position: absolute;
+  top: 0.8rem;
+  left: 5rem;
+  padding: 0.6rem 0.8rem;
+}
+.subscription-card.form .form-body {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.subscription-card.form .form-body hr {
+  width: 100%;
+}
+.subscription-card.form .form-body img {
+  margin-top: 0.5rem;
+  max-height: 190px;
+}
+.subscription-card.form .form-body .free-class {
+  display: flex;
+}
+.subscription-card.form .form-body ul {
+  padding: 0;
+  padding-top: 1rem;
+}
+.subscription-card.form .form-body ul li {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+.subscription-card.form .nr-inputs {
+  display: flex;
+}
+
+.button-white.admin {
+  align-self: baseline;
+  margin-left: 1.5rem;
 }
 
 .admin-layout {
@@ -241,6 +462,7 @@ header .navItem {
   min-height: 500px;
   font-size: 18px;
   border-radius: 15px;
+  margin-bottom: 2rem;
 }
 .admin-layout hr {
   border-color: #efeaea57;
@@ -268,7 +490,7 @@ header .navItem {
   width: 100%;
   align-items: center;
   padding: 1rem;
-  background-color: #CAC6EB;
+  background-color: #cac6eb;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
@@ -281,11 +503,31 @@ header .navItem {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-
-.admin-clients {
+.admin-classes-layout .class-body {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.bottomPagination ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.bottomPagination ul li {
+  list-style-type: none;
+  margin: 5px 10px 30px 10px;
+}
+.bottomPagination ul li button {
+  padding: 0.8rem 1rem;
+  background: white;
+  border-radius: 5px;
+  border: solid;
+  border-width: thin;
+}
+.bottomPagination ul li button:hover {
+  background: #edecf4;
 }
 
 .date-container {
@@ -294,6 +536,400 @@ header .navItem {
   justify-content: center;
   flex-wrap: wrap-reverse;
   height: fit-content;
+  min-height: 750px;
+  margin-bottom: 30px;
+}
+.date-container .wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 800px;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+}
+
+.week-schedule.page .day-schedule-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dateRange {
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+}
+
+.week_schedule-form {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  align-items: center;
+  background-color: #EDECF4;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  flex-wrap: wrap;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  min-width: 400px;
+}
+.week_schedule-form .button-white {
+  margin-left: 2rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.class-card {
+  background: #edecf4;
+  height: 320px;
+  width: 280px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 25px 25px;
+  margin: 20px;
+}
+.class-card .card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid thin #646262;
+  padding-bottom: 10px;
+}
+.class-card .dlt-button-white {
+  padding: 0.6rem 0.8rem;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  color: #646262;
+}
+.class-card button:focus {
+  outline: 0 !important;
+}
+
+.admin-clients {
+  display: grid;
+  grid-template-columns: 40% 55%;
+  padding: 20px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.form-users {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  border: 1px solid #646262;
+  height: 51px;
+  border-radius: 9px;
+}
+.form-users input {
+  flex-grow: 2;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: larger;
+  color: #646262;
+  padding-left: 10px;
+}
+.form-users input:focus {
+  outline: none;
+}
+.form-users button {
+  color: black;
+  border: none;
+  background: white;
+}
+
+.user-list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  font-size: 22px;
+}
+.user-list-items .list-initial {
+  background: #edecf4;
+  padding: 3px 12px;
+  border-radius: 50%;
+  color: #646262;
+}
+.user-list-items .list-name {
+  justify-content: start;
+  margin-left: 20px;
+}
+.user-list-items div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-list-items #arrow {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 26px;
+}
+
+.classSelected {
+  font-weight: bolder;
+}
+.classSelected #arrow {
+  visibility: hidden;
+  position: relative;
+}
+.classSelected #arrow:after {
+  background: #edecf4;
+  content: ">";
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.client-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px 10px 40px;
+}
+
+.client-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid #646262;
+  padding: 0;
+  /*     
+     svg{
+         height: 150px;
+     }
+  */
+}
+.client-chart h3 {
+  margin: 0 0 30px 0;
+}
+.client-chart rect {
+  /*         height: 150px;
+  */
+}
+.client-chart rect g:first-of-type {
+  height: 100px;
+}
+
+.active-booking-card {
+  width: 100%;
+  min-height: 136px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background: #edecf4;
+  margin: 10px 0;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+}
+.active-booking-card .class-coverage-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.active-booking-card .class-coverage-arrow .class-coverage-arrow:hover .class-coverag p {
+  font-weight: bold;
+}
+.active-booking-card .class-coverage-arrow p {
+  margin: 0rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+.active-booking-card .class-coverage {
+  margin-top: 1rem;
+}
+.active-booking-card .class-coverage p {
+  margin: 0px;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.active-booking-card .converage-desc {
+  margin: 0rem;
+  margin-left: 0.5rem;
+}
+.active-booking-card .converage-desc b {
+  color: #5E54AC;
+  font-size: 22px;
+}
+.active-booking-card .converage-desc i {
+  color: #646263a3;
+}
+.active-booking-card .wraper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+}
+.active-booking-card .active-bookings-numbers {
+  width: 50px;
+  height: 60px;
+  border-right: 1px solid #646263;
+  color: #646262;
+  padding: 0 0.8rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.active-booking-card .active-bookings-numbers p:first-child {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 300;
+}
+.active-booking-card .active-bookings-numbers p:last-child {
+  font-size: 15px;
+  margin: 0;
+}
+.active-booking-card .active-bookings-details {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+}
+.active-booking-card .active-bookings-details p {
+  margin: 0;
+  font-size: 19px;
+}
+.active-booking-card .active-bookings-details p:first-child {
+  font-weight: bold;
+}
+.active-booking-card .active-bookings-details p:last-child {
+  font-size: 15px;
+}
+.active-booking-card .active-bookings-status {
+  display: flex;
+  flex-direction: column;
+}
+.active-booking-card .active-bookings-status button {
+  margin: 4px;
+  height: 42px;
+  width: 90px;
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid #646263;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  color: #646262;
+}
+.active-booking-card .active-bookings-status .buttonPresent {
+  background: #33d460;
+}
+.active-booking-card .active-bookings-status .buttonAbsent {
+  background: white;
+}
+.active-booking-card .active-bookings-status #buttonInvisible {
+  visibility: hidden;
+}
+
+.client-last-booking {
+  display: flex;
+  flex-direction: column;
+}
+.client-last-booking p {
+  margin: 0;
+}
+
+.client-subscriptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.client-subscriptions .admin-subscription-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 29px;
+  padding: 1rem;
+  width: 225px;
+}
+.client-subscriptions .admin-subscription-card p {
+  margin: 10px;
+}
+.client-subscriptions .admin-subscription-card img {
+  margin: 10px 0;
+}
+
+.admin-bookings {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.admin-bookings .active-booking-card .wraper {
+  padding: 0rem;
+}
+.admin-bookings .active-booking-card {
+  flex-direction: column;
+  height: fit-content;
+  padding: 1rem;
+  align-items: baseline;
+}
+.admin-bookings .wraper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.admin-bookings .day-schedule-cards .class.wraper {
+  width: 400px;
+}
+.admin-bookings .booking-card .outer-list-wraper {
+  display: flex;
+  align-items: center;
+}
+.admin-bookings .booking-card .inner-list-wraper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+.admin-bookings .booking-card .list-name,
+.admin-bookings .booking-card .list-initial {
+  font-weight: 500;
+}
+.admin-bookings .booking-card .list-initial {
+  background-color: #B7B3D7;
+  padding: 0.7rem 1.2rem;
+  border-radius: 100%;
+  font-size: 25px;
+}
+.admin-bookings .icon-chevron {
+  cursor: pointer;
+  color: #b4b4b4;
+}
+.admin-bookings .fa-chevron-right {
+  color: #646262;
+}
+.admin-bookings .active-booking-card {
+  min-width: 400px;
+}
+
+.active-booking-user {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0rem;
+}
+.feedback img {
+  width: 4rem;
+}
+.feedback p {
+  text-align: center;
 }
 
 @media (max-width: 1000px) {
@@ -322,6 +958,50 @@ header .navItem {
   }
   header nav .hamburger {
     display: flex;
+  }
+}
+@media (max-width: 799px) {
+  .date-container {
+    margin-bottom: 0px;
+  }
+  .date-container .wrapper {
+    align-items: center;
+    flex-direction: column-reverse;
+    justify-content: center;
+    width: fit-content;
+  }
+
+  .day-schedule.card {
+    width: 430px;
+  }
+
+  .dateRange {
+    width: 100%;
+  }
+  .dateRange .rdrMonth {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .day-schedule.card {
+    width: 100%;
+  }
+  .day-schedule.card .class.wraper {
+    flex-direction: column;
+  }
+  .day-schedule.card .class.wraper .info-wraper {
+    width: 100%;
+  }
+  .day-schedule.card .class.wraper .button-white {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+  }
+}
+@media (max-width: 350px) {
+  .date-container {
+    min-height: fit-content;
+    margin: 2rem 0rem;
   }
 }
 

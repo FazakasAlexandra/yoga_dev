@@ -6,7 +6,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #F8F7F7;
+  background-color: #f8f7f7;
 }
 
 a {
@@ -22,33 +22,49 @@ ul {
   margin: 0rem !important;
 }
 
-.week-schedule.page {
-  .day-schedule-cards {
-    display: flex;
-    justify-content: space-evenly;
-  }
+.bold-text {
+  font-weight: bolder;
+}
+
+.thin-text {
+  font-weight: 300;
 }
 
 .button-white {
   padding: 0.8rem 1rem;
+  text-align: center;
   background-color: white;
   border-radius: 5px;
   border: solid;
   border-width: thin;
 }
 
-.button-white:hover{
-  border-width: medium;
+.button-white:hover {
   cursor: pointer;
 }
 
 .button-white:hover,
 .button-white.active,
-.active-tab{
+.active-tab {
   font-weight: 900;
 }
 
-.button-white.active{
+.button-white.active {
   border-style: solid;
   border-width: medium;
+}
+
+.blue-text {
+  cursor: pointer;
+  color: rgb(108 187 199);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.blue-text:hover {
+  color: #a7d6dd;
+}
+
+.button-green {
+  background-color: #76e294 !important;
 }

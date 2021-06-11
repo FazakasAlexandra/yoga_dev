@@ -1,11 +1,33 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import DayScheduleCard from '../components/DayScheduleCard'
+import SubscriptionCard from '../components/SubscriptionCard'
 import Layout from '../components/Layout'
-export default function Home() {
+import { useState, useEffect } from 'react'
+import db from '../db.js'
+
+export default function Subscriptions() {
+  const [subscriptions, setSubscriptions] = useState([])
+
+  useEffect(() => {
+    db.subscriptions.getSubscriptions().then((res) => {
+      setSubscriptions(res.data)
+      console.log(res.data)
+    })
+  }, [])
+
+  const getSubscriptions = () => {
+    return subscriptions.map((subscription) => {
+      return (
+        <SubscriptionCard key={subscription.id} subscription={subscription} />
+      )
+    })
+  }
+
   return (
-    <Layout activeTab={"subscriptions"}>
-      <h1 style={{textAlign : 'center'}}>Subscriptions come here</h1>
+    <Layout activeTab={'subscriptions'}>
+      <div className='subscriptions'>
+        <div className='color'></div>
+        <div className='radius'></div>
+        {getSubscriptions()}
+      </div>
     </Layout>
   )
 }
