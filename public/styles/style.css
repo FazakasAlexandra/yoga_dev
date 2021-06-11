@@ -121,7 +121,7 @@ ul {
   color: #6CBBC7 !important;
 }
 .day-schedule-cards .class.wraper .info {
-  min-width: 57px;
+  min-width: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,7 +139,7 @@ ul {
   border-radius: 15px;
   padding: 1rem;
   width: fit-content;
-  width: 400px;
+  width: 440px;
   margin: 1rem 0rem;
 }
 .day-schedule hr {
@@ -547,6 +547,10 @@ header .navItem {
   flex-wrap: wrap-reverse;
 }
 
+.week-schedule.page .zoom-link-dialog {
+  display: flex;
+  flex-direction: column;
+}
 .week-schedule.page .day-schedule-cards {
   display: flex;
   justify-content: space-evenly;
@@ -982,7 +986,52 @@ header .navItem {
     width: 100%;
   }
 }
+@media (max-width: 470px) {
+  day-schedule.card {
+    width: 100%;
+  }
+
+  .week_schedule-form {
+    margin: 0rem;
+    min-width: 100%;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
+
+  .admin-bookings .day-schedule-cards .class.wraper {
+    width: 100%;
+  }
+
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .admin-layout .header {
+    padding: 1.5rem 0rem;
+    padding-top: 1.8rem;
+  }
+  .admin-layout .header a {
+    margin: 0rem 1rem;
+  }
+}
 @media (max-width: 400px) {
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .admin-layout .header {
+    padding: 1.5rem 0rem;
+    padding-top: 1.8rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+  }
+  .admin-layout .header a {
+    margin: 0rem 1rem;
+  }
+
   .day-schedule.card {
     width: 100%;
   }

@@ -17,6 +17,11 @@
 }
 
 .week-schedule.page {
+    .zoom-link-dialog{
+        display: flex;
+        flex-direction: column;
+    }
+    
     .day-schedule-cards {
         display: flex;
         justify-content: space-evenly;

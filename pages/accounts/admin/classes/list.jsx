@@ -40,7 +40,7 @@ export default function Page() {
           name={classesData.name}
           offprice={classesData.offline_price}
           onprice={classesData.online_price}
-          attend='170'
+          attend={classesData.attendences}
           deletion={deleteClass}
         />
       )

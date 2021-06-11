@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faChevronLeft, faChevronRight, faVideo } from '@fortawesome/free-solid-svg-icons'
 import { duration, ThemeProvider } from "@material-ui/core";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
@@ -7,7 +7,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useEffect, useState } from 'react';
 import { theme } from '../utilities.js';
 
-export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick, handleBookClick, isBooked, handleArrowButton, minimal, active}) {
+export default function DayScheduleClass({ dayScheduleClass,
+    handleInfoIconClick,
+    handleBookClick,
+    isBooked,
+    handleArrowButton,
+    minimal,
+    active,
+    handleZoomLinkClick
+}) {
     const [yogaClass, setYogaClass] = useState(dayScheduleClass)
     const handleRadioChange = (e) => setYogaClass({ ...yogaClass, classType: e.target.value });
 
@@ -25,13 +33,24 @@ export default function DayScheduleClass({ dayScheduleClass, handleInfoIconClick
                 <div className="class info-wraper">
 
                     <div className="class info">
-                        {minimal ? null : <FontAwesomeIcon
-                            icon={faInfoCircle}
-                            size="lg"
-                            style={{ color: "#C4E4E9", cursor: "pointer" }}
-                            className="info-icon"
-                            onClick={() => handleInfoIconClick(yogaClass)}
-                        />}
+                        {minimal ? null :
+                            <div style={{display:"flex"}}>
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    size="lg"
+                                    style={{ color: "#C4E4E9", cursor: "pointer", marginRight: '0.5rem' }}
+                                    className="info-icon"
+                                    onClick={() => handleInfoIconClick(yogaClass)}
+                                />
+                                <FontAwesomeIcon
+                                    icon={faVideo}
+                                    size="lg"
+                                    style={{ color: "#C4E4E9", cursor: "pointer" }}
+                                    className="info-icon"
+                                    onClick={() => handleZoomLinkClick(yogaClass)}
+                                />
+                            </div>
+                        }
                         <p>{yogaClass.hour}</p>
                         {minimal ? null : <span>{yogaClass.online_price} lei</span>}
                     </div>

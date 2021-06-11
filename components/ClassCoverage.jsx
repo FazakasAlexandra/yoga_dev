@@ -9,20 +9,28 @@ import { useState } from 'react'
 export default function getClassCoverage({ userSubscriptions, changeStatus, bookingId }) {
     const [hidden, setHidden] = useState(true)
 
-    const loop = (object, coverageType) => {
+    const loop = (object, coverageType, innerText) => {
         return object.map((coverage) => {
+            // turns "1 entrences" to "1 entrence" 
+            if (+coverage.remained_entrences === 1) {
+                innerText = innerText.slice(0, -1)
+            }
+
             return <ClassCoverageType
                 coverage={coverage}
                 coverageType={coverageType}
                 changeStatus={changeStatus}
-                bookingId={bookingId} />
+                bookingId={bookingId}
+                innerText={innerText}
+            />
         })
     }
 
-    const getClassCoverage = (coverageType) => {
+    const renderCoverage = (coverageType, innerText) => {
+        console.log(userSubscriptions)
         return userSubscriptions.map((coverage) => {
             if (coverage[coverageType]) {
-                return loop(coverage[coverageType], coverageType)
+                return loop(coverage[coverageType], coverageType, innerText)
             }
             return null
         })
@@ -35,9 +43,9 @@ export default function getClassCoverage({ userSubscriptions, changeStatus, book
                 <FontAwesomeIcon icon={hidden ? faChevronRight : faChevronDown} size='1x' />
             </div>
             <div className="class-coverage" style={{ display: hidden ? 'none' : 'block' }}>
-                {getClassCoverage('entrences')}
-                {getClassCoverage('free_entrences')}
-                {getClassCoverage('discount')}
+                {renderCoverage('entrences', 'entrences')}
+                {renderCoverage('free_entrences', 'free entrences')}
+                {renderCoverage('discounts', 'discount')}
             </div>
         </>
 
