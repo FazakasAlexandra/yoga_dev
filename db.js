@@ -23,8 +23,6 @@ const db = {
         .then((res) => res.json())
         .then(console.log)
     },
-<<<<<<< HEAD
-=======
     removeSubscription: (jwt, id) =>
       fetch(`${db.baseURL}/subscriptions/${id}`, {
         method: 'DELETE',
@@ -32,7 +30,6 @@ const db = {
           Authorization: jwt,
         },
       }).then((res) => res.json()),
->>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
     postSubscription: (subscription, jwt) => {
       return fetch(`${db.baseURL}/subscriptions`, {
         method: 'POST',
@@ -42,7 +39,6 @@ const db = {
         },
       }).then((res) => res.json())
     },
-<<<<<<< HEAD
     updateScheduledClassLink: (scheduleDayId, link, jwtToken) => {
       return fetch(`${db.baseURL}/schedules/links/classes/${scheduleDayId}/${link}`, {
         method: "PUT",
@@ -50,14 +46,12 @@ const db = {
           Authorization: jwtToken
         }
       }).then(res => res.json())
-    }
-=======
+    },
     getUserSubscriptionByClass: (userId, classId) => {
       return fetch(
         `${db.baseURL}/subscriptions/user/${userId}/class/${classId}`
       ).then((res) => res.json())
     },
->>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
   },
   subscriptions: {
     getSubscriptions: () => {
@@ -91,16 +85,9 @@ const db = {
       }).then((res) => res.json())
     },
     decreaseCoverage: (coverageType, id) => {
-<<<<<<< HEAD
       return fetch(`${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`)
         .then(res => res.json())
     }
-=======
-      return fetch(
-        `${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`
-      ).then((res) => res.json())
-    },
->>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
   },
   bookings: {
     postBooking: (jwt, scheduleWeekId, classType) => {

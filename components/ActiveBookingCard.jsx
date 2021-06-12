@@ -47,7 +47,7 @@ export default function ActiveBookingCard({
         </div>
       </div>
       <ClassCoverage
-        userSubscriptions={history.userSubscriptions}
+        userSubscriptions={history.user_subscriptions}
         changeStatus={changeStatus}
       />
     </div>

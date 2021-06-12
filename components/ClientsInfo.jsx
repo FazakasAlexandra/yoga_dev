@@ -4,8 +4,7 @@ import ActiveBookingCard from '../components/ActiveBookingCard'
 import db from '../db'
 import AdminClientSubscriptionSection from '../components/AdminClientSubscriptionSection'
 
-export default function ClientsInfo({ client, setClient }) {
-  console.log(client)
+export default function ClientsInfo({ client, setClient, listSub }) {
    const reloadClientInfo = () => {
      db.users.getClients().then((res) => {
        const targetClient = res.data.find((userClient) => +userClient.id === +client.id)
