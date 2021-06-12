@@ -975,6 +975,7 @@ header .navItem {
 }
 .admin-bookings .active-booking-card {
   min-width: 400px;
+  margin-top: 1rem;
 }
 
 .active-booking-user {
@@ -1068,6 +1069,10 @@ header .navItem {
 @media (max-width: 470px) {
   .day-schedule.card {
     width: 100%;
+  }
+
+  .admin-bookings .active-booking-card {
+    min-width: 100%;
   }
 
   .week_schedule-form {
