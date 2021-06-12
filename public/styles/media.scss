@@ -39,145 +39,125 @@
 
   header nav {
     padding: 2rem 1rem;
-
+    flex-wrap: wrap;
+    .navItems{
+      flex-direction: column;
+      width: 100%;
+      .navItem{
+        padding: 1rem;
+      }
+    }
     .fa-bars {
       display: flex;
     }
+  }
+}
 
 @media(max-width: 799px) {
-    .date-container {
-        margin-bottom: 0px;
+  .date-container {
+    margin-bottom: 0px;
 
-        .wrapper {
-            align-items: center;
-            flex-direction: column-reverse;
-            justify-content: center;
-            width: fit-content;
-        }
+    .wrapper {
+      align-items: center;
+      flex-direction: column-reverse;
+      justify-content: center;
+      width: fit-content;
     }
-
-    .day-schedule.card {
-        width: 430px;
-    }
-
-    .dateRange {
-        width: 100%;
-
-        .rdrMonth {
-            width: 100%;
-        }
-    }
-  }
-}
-
-@media(max-width: 470px) {
-    day-schedule.card {
-        width: 100%;
-    }
-    .week_schedule-form{
-        margin: 0rem;
-        min-width: 100%;
-        border-top-left-radius: 0rem;
-    border-top-right-radius: 0rem;
-    }
-    .admin-bookings .day-schedule-cards .class.wraper {
-        width: 100%;
-    }
-
-    .subscription-card {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .admin-layout {
-        .header {
-            padding: 1.5rem 0rem;
-            padding-top: 1.8rem;
-
-            a {
-                margin: 0rem 1rem;
-            }
-        }
-    }
-
-}
-
-@media(max-width: 400px) {
-
-    .subscription-card {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .admin-layout {
-        .header {
-            padding: 1.5rem 0rem;
-            padding-top: 1.8rem;
-            display: flex;
-            flex-wrap: wrap-reverse;
-            justify-content: space-around;
-
-            a {
-                margin: 0rem 1rem;
-            }
-        }
-    }
-
-    .day-schedule.card {
-        width: 100%;
-
-        .class.wraper {
-            flex-direction: column;
-
-            .info-wraper {
-                width: 100%;
-            }
-
-            .button-white {
-                width: 100%;
-                text-align: center;
-                margin: 0px;
-            }
-        }
-    }
-  }
-
-  .client-active-booking {
-    align-self: center;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .client-last-booking {
-    align-self: center;
-    width: 100%;
-  }
-
-  .active-booking-card {
-    align-self: center;
-  }
-
-  .adminsubsection {
-    justify-content: space-between;
   }
 
   .day-schedule.card {
     width: 430px;
   }
+
   .dateRange {
     width: 100%;
+
     .rdrMonth {
       width: 100%;
     }
   }
 }
 
-@media(max-width: 350px) {
-    .date-container {
-        min-height: fit-content;
-        margin: 2rem 0rem;
+@media(max-width: 470px) {
+  .day-schedule.card {
+    width: 100%;
+  }
+
+  .week_schedule-form {
+    margin: 0rem;
+    min-width: 100%;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
+
+  .admin-bookings .day-schedule-cards .class.wraper {
+    width: 100%;
+  }
+
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .admin-layout {
+    .header {
+      padding: 1.5rem 0rem;
+      padding-top: 1.8rem;
+
+      a {
+        margin: 0rem 1rem;
+      }
     }
   }
+}
+
+@media(max-width: 400px) {
+
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .admin-layout {
+    .header {
+      padding: 1.5rem 0rem;
+      padding-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap-reverse;
+      justify-content: space-around;
+
+      a {
+        margin: 0rem 1rem;
+      }
+    }
+  }
+
+  .day-schedule.card {
+    width: 100%;
+
+    .class.wraper {
+      flex-direction: column;
+
+      .info-wraper {
+        width: 100%;
+      }
+
+      .button-white {
+        width: 100%;
+        text-align: center;
+        margin: 0px;
+      }
+    }
+  }
+}
+
+
+@media(max-width: 350px) {
+  .date-container {
+    min-height: fit-content;
+    margin: 2rem 0rem;
+  }
+}
 
 @media (max-width: 350px) {
   .date-container {
