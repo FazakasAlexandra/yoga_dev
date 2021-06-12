@@ -12,6 +12,8 @@ export default function getClassCoverage({
 }) {
   const [hidden, setHidden] = useState(true)
 
+  console.log(userSubscriptions)
+
   const loop = (object, coverageType) => {
     return object.map((coverage) => {
       return (
