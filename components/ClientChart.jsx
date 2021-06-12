@@ -30,7 +30,7 @@ export default function ClientChart({ info }) {
       left: 0,
       top: 20,
       width: '100%',
-      height: '65%',
+      height: '100%',
     },
     fontName: 'Roboto',
   }
@@ -49,8 +49,7 @@ export default function ClientChart({ info }) {
     <div className='client-chart'>
       <h3>Attendences</h3>
       <Chart
-        width={'400px'}
-        //height={'400px'}
+        width={'100%'}
         chartType='PieChart'
         loader={<div>Loading Chart</div>}
         data={[
