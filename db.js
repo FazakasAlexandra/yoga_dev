@@ -23,15 +23,26 @@ const db = {
         .then((res) => res.json())
         .then(console.log)
     },
+<<<<<<< HEAD
+=======
+    removeSubscription: (jwt, id) =>
+      fetch(`${db.baseURL}/subscriptions/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => res.json()),
+>>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
     postSubscription: (subscription, jwt) => {
       return fetch(`${db.baseURL}/subscriptions`, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(subscription),
         headers: {
-          Authorization: jwt.jwtToken
-        }
-      }).then(res => res.json())
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
     },
+<<<<<<< HEAD
     updateScheduledClassLink: (scheduleDayId, link, jwtToken) => {
       return fetch(`${db.baseURL}/schedules/links/classes/${scheduleDayId}/${link}`, {
         method: "PUT",
@@ -40,6 +51,13 @@ const db = {
         }
       }).then(res => res.json())
     }
+=======
+    getUserSubscriptionByClass: (userId, classId) => {
+      return fetch(
+        `${db.baseURL}/subscriptions/user/${userId}/class/${classId}`
+      ).then((res) => res.json())
+    },
+>>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
   },
   subscriptions: {
     getSubscriptions: () => {
@@ -61,10 +79,28 @@ const db = {
         },
       }).then((res) => res.json())
     },
+    getSubscriptionNames: () => {
+      return fetch(`${db.baseURL}/subscriptionnames`).then((res) => res.json())
+    },
+    postSubscriptionToUser: (jwt, user, subscription) => {
+      return fetch(`${db.baseURL}/subscriptions/${user}/${subscription}`, {
+        method: 'POST',
+        headers: {
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
+    },
     decreaseCoverage: (coverageType, id) => {
+<<<<<<< HEAD
       return fetch(`${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`)
         .then(res => res.json())
     }
+=======
+      return fetch(
+        `${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`
+      ).then((res) => res.json())
+    },
+>>>>>>> 2aa157f8b9a7be37b0ad5a12a6e120c0a5690185
   },
   bookings: {
     postBooking: (jwt, scheduleWeekId, classType) => {
@@ -84,8 +120,10 @@ const db = {
       }).then((res) => res.json())
     },
     getClassBookings: (weekScheduleId) => {
-      return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(res => res.json())
-    }
+      return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(
+        (res) => res.json()
+      )
+    },
   },
   classes: {
     getClasses: () => {
@@ -100,8 +138,10 @@ const db = {
       )
     },
     getDayClasses: (date) => {
-      return fetch(`${db.baseURL}/classes/date/${date}`).then(res => res.json())
-    }
+      return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
+        res.json()
+      )
+    },
   },
   users: {
     getClients: () => {

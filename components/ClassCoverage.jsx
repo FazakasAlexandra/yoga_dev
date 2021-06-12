@@ -1,4 +1,3 @@
-
 import _ from 'lodash'
 import ClassCoverageType from './ClassCoverageType'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -48,6 +47,5 @@ export default function getClassCoverage({ userSubscriptions, changeStatus, book
                 {renderCoverage('discounts', 'discount')}
             </div>
         </>
-
     )
 }

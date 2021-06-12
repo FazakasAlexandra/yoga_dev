@@ -1,37 +1,49 @@
-@media(max-width: 1000px) {
-    .admin-layout {
-        width: 100%;
-    }
+@media (max-width: 1000px) {
+  .admin-layout {
+    width: 100%;
+  }
 }
 
-@media(max-width: 900px) {
-    header nav {
-        padding: 2rem 1rem;
+@media (max-width: 900px) {
+  .admin-clients {
+    display: flex;
+    flex-direction: column;
+  }
 
-        .fa-bars {
-            display: flex;
-        }
+  .client-search {
+    width: 450px;
+    align-self: center;
+  }
 
-        flex-direction: column;
+  .client-info {
+    width: 740px;
+    align-self: center;
+    margin: 40px 0 0 0;
+  }
 
-        .navItems {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            width: fit-content;
-            justify-content: center;
-        }
+  .client-chart {
+    align-items: center;
+  }
 
-        .navItem {
-            margin: 0rem !important;
-            padding: 1rem !important;
-        }
+  .active-booking-card {
+    width: 75%;
+  }
 
-        .hamburger {
-            display: flex;
-        }
+  .comboform {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .adminsubsection {
+    justify-content: space-around;
+  }
+
+  header nav {
+    padding: 2rem 1rem;
+
+    .fa-bars {
+      display: flex;
     }
-}
 
 @media(max-width: 799px) {
     .date-container {
@@ -56,6 +68,7 @@
             width: 100%;
         }
     }
+  }
 }
 
 @media(max-width: 470px) {
@@ -128,6 +141,36 @@
             }
         }
     }
+  }
+
+  .client-active-booking {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .client-last-booking {
+    align-self: center;
+    width: 100%;
+  }
+
+  .active-booking-card {
+    align-self: center;
+  }
+
+  .adminsubsection {
+    justify-content: space-between;
+  }
+
+  .day-schedule.card {
+    width: 430px;
+  }
+  .dateRange {
+    width: 100%;
+    .rdrMonth {
+      width: 100%;
+    }
+  }
 }
 
 @media(max-width: 350px) {
@@ -135,4 +178,11 @@
         min-height: fit-content;
         margin: 2rem 0rem;
     }
+  }
+
+@media (max-width: 350px) {
+  .date-container {
+    min-height: fit-content;
+    margin: 2rem 0rem;
+  }
 }

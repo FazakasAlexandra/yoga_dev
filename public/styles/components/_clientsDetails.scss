@@ -1,14 +1,15 @@
 .admin-clients {
   display: grid;
-  grid-template-columns: 40% 55%;
+  grid-template-columns: 37% 57%;
+
   padding: 20px;
   width: 100%;
   justify-content: space-around;
 }
 
-.client-search {
-  //margin: 0 0 10px 20px;
-}
+// .client-search {
+//   //margin: 0 0 10px 20px;
+// }
 
 .form-users {
   display: flex;
@@ -274,25 +275,83 @@
 
 .client-subscriptions {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
+  margin-top: 20px;
 
-  .admin-subscription-card {
+  .comboform {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 29px;
-    padding: 1rem;
-    width: 225px;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
 
-    p {
-      margin: 10px;
+  .subscriptionform {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: white;
+
+    .comboSubs {
+      width: 220px;
+      height: 40px;
+      color: $darkGreyWriting;
     }
 
-    img {
-      margin: 10px 0;
+    button {
+      margin: 0 10px;
+      height: 40px;
+      width: 50px;
+      font-size: 36px;
+      padding: 0;
+      background: white;
+      color: $darkGreyWriting;
+      border: 1px solid $grayBackground;
+      border-radius: 20%;
+      font-weight: bolder;
+    }
+
+    button:hover {
+      border: 1.5px solid black;
+      // font-weight: bolder;
+    }
+
+    button:active {
+      background: $grayBackground;
+    }
+  }
+
+  .adminsubsection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+    .admin-subscription-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
+      border-radius: 29px;
+      padding: 0.5rem;
+      width: 225px;
+      margin: 0 10px 20px 0;
+
+      h4 {
+        text-align: center;
+      }
+
+      p {
+        margin: 10px;
+        font-size: 15px;
+      }
+
+      img {
+        margin: 10px 0;
+      }
     }
   }
 }

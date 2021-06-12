@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ClientChart from '../components/ClientChart'
 import ActiveBookingCard from '../components/ActiveBookingCard'
 import db from '../db'
-import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
+import AdminClientSubscriptionSection from '../components/AdminClientSubscriptionSection'
 
 export default function ClientsInfo({ client, setClient }) {
   console.log(client)
@@ -14,7 +14,9 @@ export default function ClientsInfo({ client, setClient }) {
   } 
 
   const ClientInfo = () => {
-    const pendingHist = client.history.filter((history) => history.state === 'pending')
+    const pendingHist = client.history.filter(
+      (history) => history.state === 'pending'
+    )
     return pendingHist.map((history) => {
       return (
         <>
@@ -49,8 +51,12 @@ export default function ClientsInfo({ client, setClient }) {
   const ClientSubscriptions = () => {
     return (
       <>
-        <AdminSubscriptionCard />
-        <AdminSubscriptionCard />
+        <AdminClientSubscriptionSection
+          listSub={listSub}
+          reloadClientInfo={reloadClientInfo}
+          subscriptions={client.user_subscriptions}
+          clientid={client}
+        />
       </>
     )
   }
@@ -58,14 +64,11 @@ export default function ClientsInfo({ client, setClient }) {
   return (
     <>
       <ClientChart info={client.history} />
-      <div>
+      <div className='bellowChart'>
         <h3>Active Bookings</h3>
         <div className='client-active-booking'>{ClientInfo()}</div>
         <div className='client-last-booking'>{LatestBooking()}</div>
-        <div>
-          <h3>Subscriptions</h3>
-          <div className='client-subscriptions'>{ClientSubscriptions()}</div>
-        </div>
+        <div className='client-subscriptions'>{ClientSubscriptions()}</div>
       </div>
     </>
   )
