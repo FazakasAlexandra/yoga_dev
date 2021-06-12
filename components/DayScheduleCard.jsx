@@ -107,7 +107,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
         position="top-center"
         limit={1}
         progressStyle={{
-          background: "#CAC6EB"
+          background: "#5E54AC"
         }}
       />
     </div>

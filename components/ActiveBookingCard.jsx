@@ -4,6 +4,7 @@ import ClassCoverage from './ClassCoverage'
 export default function ActiveBookingCard({
   history,
   buttonVisible,
+  subscriptions,
   reloadClientInfo
 }) {
 

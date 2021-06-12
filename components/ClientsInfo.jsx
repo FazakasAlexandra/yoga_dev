@@ -5,6 +5,7 @@ import db from '../db'
 import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 
 export default function ClientsInfo({ client, setClient }) {
+  console.log(client)
    const reloadClientInfo = () => {
      db.users.getClients().then((res) => {
        const targetClient = res.data.find((userClient) => +userClient.id === +client.id)
@@ -18,6 +19,7 @@ export default function ClientsInfo({ client, setClient }) {
       return (
         <>
           <ActiveBookingCard
+            subscriptions={client.user_subscriptions}
             key={history.booking_id}
             history={history}
             buttonVisible='buttonVisible'
@@ -34,6 +36,7 @@ export default function ClientsInfo({ client, setClient }) {
       <>
         <h3>Last Booking</h3>
         <ActiveBookingCard
+          subscriptions={client.user_subscriptions}
           key={latestBooking[0].booking_id + 1}
           history={latestBooking[0]}
           buttonVisible='buttonInvisible'
