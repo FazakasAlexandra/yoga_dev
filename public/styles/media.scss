@@ -9,23 +9,14 @@
     display: flex;
     flex-direction: column;
   }
+  .client-info{
+    margin-left: 0rem;
+  }
 
   .client-search {
-    width: 450px;
+    width: 100%;
     align-self: center;
-  }
-
-  .client-info {
-    align-self: center;
-    margin: 40px 0 0 0;
-  }
-
-  .client-chart {
-    align-items: center;
-  }
-
-  .active-booking-card {
-    width: 75%;
+    margin-bottom: 2rem;
   }
 
   .comboform {
@@ -40,13 +31,16 @@
   header nav {
     padding: 2rem 1rem;
     flex-wrap: wrap;
-    .navItems{
+
+    .navItems {
       flex-direction: column;
       width: 100%;
-      .navItem{
+
+      .navItem {
         padding: 1rem;
       }
     }
+
     .fa-bars {
       display: flex;
     }
@@ -111,11 +105,18 @@
   }
 }
 
-@media(max-width: 400px) {
+@media(max-width: 411px) {
 
   .subscription-card {
     width: 100%;
     padding: 1rem;
+  }
+  .active-booking-card .active-bookings-status {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    margin: 1rem 0rem;
+    width: 100%;
   }
 
   .admin-layout {
@@ -156,6 +157,9 @@
   .date-container {
     min-height: fit-content;
     margin: 2rem 0rem;
+  }
+  .admin-clients{
+    padding: 10px;
   }
 }
 

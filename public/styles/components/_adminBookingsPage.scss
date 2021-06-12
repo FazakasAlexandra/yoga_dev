@@ -12,6 +12,10 @@
         height: fit-content;
         padding: 1rem;        
         align-items: baseline;
+
+        .l-side{
+            display: flex;
+        }
     }
 
     .wraper{

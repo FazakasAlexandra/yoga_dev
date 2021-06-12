@@ -23,7 +23,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
             subscriptions={client.user_subscriptions}
             key={history.booking_id}
             history={history}
-            buttonVisible='buttonVisible'
+            buttonVisible={true}
             reloadClientInfo={reloadClientInfo}
           />
         </>
@@ -40,7 +40,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
           subscriptions={client.user_subscriptions}
           key={latestBooking[0].booking_id + 1}
           history={latestBooking[0]}
-          buttonVisible='buttonInvisible'
+          buttonVisible={false}
           reloadClientInfo={reloadClientInfo}
         />
       </>
@@ -63,6 +63,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
   return (
     <>
       <ClientChart info={client.history} />
+      <hr />
       <div className='bellowChart'>
         <h3>Active Bookings</h3>
         <div className='client-active-booking'>{ClientInfo()}</div>

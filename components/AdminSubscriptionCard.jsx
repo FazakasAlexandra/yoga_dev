@@ -1,4 +1,11 @@
+import { useState } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+
 export default function AdminSubscriptionCard({ subscription }) {
+  const [hidden, setHidden] = useState(true)
+
   const discounts = () => {
     return subscription.discounts.map((disc) => {
       return (
@@ -10,8 +17,6 @@ export default function AdminSubscriptionCard({ subscription }) {
     })
   }
 
-  console.log(subscription.usersSubscriptionID)
-
   return (
     <div className='admin-subscription-card'>
       <h4>{subscription.name}</h4>
@@ -20,23 +25,28 @@ export default function AdminSubscriptionCard({ subscription }) {
         src={`http://localhost/yoga/public/assets/subscriptions/${subscription.image}`}
         alt={`subscription ${subscription.image} image`}
       />
-      <div>
-        <p>
-          <span style={{ color: '#5E54AC', fontWeight: 'bolder' }}>
-            {subscription.remainedEntrances
-              ? subscription.remainedEntrances
-              : 'Not remaining'}
-          </span>{' '}
-          entrances
-        </p>
-        <p>
-          <span style={{ color: '#5E54AC', fontWeight: 'bolder' }}>
-            {subscription.remainedFreeEntrances}
-          </span>{' '}
-          free entrances
-        </p>
-        {discounts()}
-      </div>
+      <FontAwesomeIcon className="arrow" icon={hidden ? faChevronRight : faChevronDown} size='1x' onClick={()=>setHidden(!hidden)}/>
+      {
+        !hidden ?
+          <div>
+            <p>
+              <span style={{ color: '#5E54AC', fontWeight: 'bolder' }}>
+                {subscription.remainedEntrances
+                  ? subscription.remainedEntrances
+                  : 'Not remaining'}
+              </span>{' '}
+              entrances
+            </p>
+            <p>
+              <span style={{ color: '#5E54AC', fontWeight: 'bolder' }}>
+                {subscription.remainedFreeEntrances}
+              </span>{' '}
+              free entrances
+            </p>
+            {discounts()}
+          </div>
+          : null
+      }
     </div>
   )
 }
