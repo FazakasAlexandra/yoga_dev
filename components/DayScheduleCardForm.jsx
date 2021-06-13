@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import DayScheduleClassForm from './DayScheduleClassForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { formatDate } from '../utilities.js'
 import _ from 'lodash'
 
 export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule, dayNumber }) {
@@ -20,7 +21,7 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
             schedulesWeeksId: null,
             editMode: true
         }
-        setDaySchedule([newClass, ...daySchedule])
+        setDaySchedule([...daySchedule, newClass])
     }
 
     useEffect(()=>{
@@ -62,12 +63,20 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
         })
     }
 
+    const getDate = (date) => {
+        return (
+          <span className="date">
+          <span>{date.day} </span><span>{date.month}</span>
+          </span>
+        )
+      }    
+
     return (
         <div className="day-schedule card">
             <div className="head">
                 <img src={`/assets/lotus.svg`} alt="lotus flower" />
                 <h3>{dayData.day}</h3>
-                <span>{dayData.date}</span>
+                {getDate(formatDate(dayData.date))}
                 <button className="button-white" style={{ alignSelf: "baseline" }} onClick={() => addNewClass()}>
                     <FontAwesomeIcon
                         icon={faPlus}
@@ -76,8 +85,6 @@ export default function DayScheduleCard({ dayData, schedule, updateWeekSchedule,
                     />
                 </button>
             </div>
-
-            <hr />
 
             {
                 <div className="schedule">

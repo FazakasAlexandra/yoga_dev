@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ClassDialog from './ClassDialog';
 import ClassZoomLinkDialog from './ClassZoomLinkDialog';
 import DayScheduleClass from './DayScheduleClass';
+import { formatDate } from '../utilities.js'
 import db from '../db.js'
 import _ from 'lodash'
 import { ToastContainer, toast } from 'react-toastify';
@@ -68,15 +69,21 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
     })
   }
 
+  const getDate = (date) => {
+    return (
+      <span className="date">
+      <span>{date.day} </span><span>{date.month}</span>
+      </span>
+    )
+  }
+
   return (
     <div className="day-schedule card">
       <div className="head">
         <img src={`/assets/lotus.svg`} alt="lotus flower" />
         <h3>{dayData.day}</h3>
-        <span>{dayData.date}</span>
+        {getDate(formatDate(dayData.date))}
       </div>
-
-      <hr />
 
       {
         daySchedule.length == 0 ?

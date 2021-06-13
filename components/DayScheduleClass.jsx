@@ -51,7 +51,7 @@ export default function DayScheduleClass({ dayScheduleClass,
                                 />
                             </div>
                         }
-                        <p>{yogaClass.hour}</p>
+                        <p className="hour">{yogaClass.hour}</p>
                         {minimal ? null : <span>{yogaClass.online_price} lei</span>}
                     </div>
 

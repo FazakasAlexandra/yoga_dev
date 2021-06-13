@@ -82,14 +82,18 @@ ul {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .day-schedule-cards .class.radio {
   border-left-style: solid;
   border-width: thin;
+  border-color: #dadada;
   padding-left: 1rem;
 }
 .day-schedule-cards .class.radio p {
   margin-bottom: 0px;
+  font-size: 17px;
 }
 .day-schedule-cards .closed-sign {
   display: flex;
@@ -100,7 +104,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1.5rem 0rem;
+  margin: 2rem 0rem;
 }
 .day-schedule-cards .class.wraper .button-white {
   height: fit-content;
@@ -120,8 +124,12 @@ ul {
 .day-schedule-cards .class.wraper .fa-info-circle:hover {
   color: #6CBBC7 !important;
 }
+.day-schedule-cards .class.wraper .fa-video:hover {
+  color: #6CBBC7 !important;
+}
 .day-schedule-cards .class.wraper .info {
   min-width: 75px;
+  margin-right: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,6 +141,10 @@ ul {
   font-size: 14px;
 }
 
+.admin-classes-layout .day-schedule .head {
+  margin-bottom: 0rem;
+}
+
 .day-schedule {
   background-color: #FFFFFF;
   box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
@@ -141,6 +153,15 @@ ul {
   width: fit-content;
   width: 440px;
   margin: 1rem 0rem;
+}
+.day-schedule .date {
+  font-weight: 300;
+  font-size: 20px;
+}
+.day-schedule .hour {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 0.5rem;
 }
 .day-schedule hr {
   margin: 2rem 0.5rem;
@@ -153,6 +174,8 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 .day-schedule h3 {
   font-weight: 400;
@@ -536,15 +559,23 @@ header .navItem {
   justify-content: center;
   flex-wrap: wrap-reverse;
   height: fit-content;
-  min-height: 750px;
   margin-bottom: 30px;
 }
 .date-container .wrapper {
   display: flex;
   align-items: flex-start;
-  width: 800px;
   justify-content: space-between;
   flex-wrap: wrap-reverse;
+}
+
+.dateRange .rdrMonth {
+  min-width: 430px;
+  padding: 0 2em 2em 2em;
+}
+
+.rdrMonthAndYearPickers {
+  font-size: 18px;
+  color: #6c6c6c;
 }
 
 .week-schedule.page .zoom-link-dialog {
@@ -759,6 +790,7 @@ header .navItem {
   border-radius: 20px;
 }
 .active-booking-card .active-bookings-details p {
+  word-wrap: break-word;
   margin: 0;
   font-size: 19px;
 }
@@ -905,6 +937,7 @@ header .navItem {
 }
 .client-info .bellowChart .active-booking-card .active-bookings-numbers {
   border-right: 1px solid #646263;
+  max-height: 60px;
   color: #646262;
   display: flex;
   flex-direction: column;
@@ -1071,6 +1104,16 @@ header .navItem {
     width: 100%;
   }
 
+  .date-container {
+    width: 100%;
+  }
+  .date-container .wrapper {
+    width: 100%;
+  }
+  .date-container .dateRange .rdrMonth {
+    min-width: 100%;
+  }
+
   .admin-bookings .active-booking-card {
     min-width: 100%;
   }
@@ -1123,6 +1166,11 @@ header .navItem {
   .admin-layout .header a {
     margin: 0rem 1rem;
   }
+  .admin-layout .day-schedule-cards .class.wraper .buttons-container {
+    flex-direction: row;
+    align-self: flex-end;
+    width: 100%;
+  }
 
   .day-schedule.card {
     width: 100%;
@@ -1137,6 +1185,7 @@ header .navItem {
     width: 100%;
     text-align: center;
     margin: 0px;
+    margin-top: 1.2rem;
   }
 }
 @media (max-width: 350px) {
