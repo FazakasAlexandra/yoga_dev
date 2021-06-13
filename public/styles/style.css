@@ -121,15 +121,17 @@ ul {
   display: flex;
   align-items: center;
 }
-.day-schedule-cards .class.wraper .fa-info-circle:hover {
-  color: #6CBBC7 !important;
-}
+.day-schedule-cards .class.wraper .fa-info-circle:hover,
 .day-schedule-cards .class.wraper .fa-video:hover {
   color: #6CBBC7 !important;
 }
+.day-schedule-cards .class.wraper .fa-info-circle,
+.day-schedule-cards .class.wraper .fa-video {
+  font-size: 1.8rem;
+}
 .day-schedule-cards .class.wraper .info {
   min-width: 75px;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -893,15 +895,27 @@ header .navItem {
   width: 225px;
   margin: 0 10px 20px 0;
 }
+.client-subscriptions .adminsubsection .admin-subscription-card .footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0rem 0.7rem 0.5rem;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card .footer span {
+  color: #ef6262;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bolder;
+}
 .client-subscriptions .adminsubsection .admin-subscription-card .arrow {
   align-self: self-end;
-  margin: 1rem;
   margin-top: 0rem;
   cursor: pointer;
 }
 .client-subscriptions .adminsubsection .admin-subscription-card h4 {
   text-align: center;
   margin-bottom: 0.5rem;
+  font-weight: 300;
 }
 .client-subscriptions .adminsubsection .admin-subscription-card p {
   margin: 10px;
@@ -1143,6 +1157,16 @@ header .navItem {
   }
 }
 @media (max-width: 411px) {
+  .info {
+    margin-right: 0px !important;
+    border-right-style: solid;
+    border-width: thin;
+    border-color: #dadada;
+  }
+  .info div {
+    flex-direction: column-reverse;
+  }
+
   .subscription-card {
     width: 100%;
     padding: 1rem;
@@ -1174,6 +1198,9 @@ header .navItem {
 
   .day-schedule.card {
     width: 100%;
+  }
+  .day-schedule.card .class.radio {
+    border-left-style: none;
   }
   .day-schedule.card .class.wraper {
     flex-direction: column;

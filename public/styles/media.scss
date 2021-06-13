@@ -123,7 +123,15 @@
 }
 
 @media(max-width: 411px) {
-
+  .info{
+    margin-right: 0px !important;
+    border-right-style: solid;
+    border-width: thin;
+    border-color: #dadada;
+    div{
+      flex-direction: column-reverse;
+    }
+  }
   .subscription-card {
     width: 100%;
     padding: 1rem;
@@ -159,6 +167,10 @@
 
   .day-schedule.card {
     width: 100%;
+
+    .class.radio{
+      border-left-style: none;
+    }
 
     .class.wraper {
       flex-direction: column;

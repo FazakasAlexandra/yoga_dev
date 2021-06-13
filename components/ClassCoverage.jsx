@@ -26,7 +26,6 @@ export default function getClassCoverage({ userSubscriptions, changeStatus, book
     }
 
     const renderCoverage = (coverageType, innerText) => {
-        console.log(userSubscriptions)
         return userSubscriptions.map((coverage) => {
             if (coverage[coverageType]) {
                 return loop(coverage[coverageType], coverageType, innerText)

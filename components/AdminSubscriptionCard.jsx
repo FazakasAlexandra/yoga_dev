@@ -5,7 +5,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 export default function AdminSubscriptionCard({ subscription }) {
   const [hidden, setHidden] = useState(true)
-
+  console.log(subscription)
   const discounts = () => {
     return subscription.discounts.map((disc) => {
       return (
@@ -25,7 +25,10 @@ export default function AdminSubscriptionCard({ subscription }) {
         src={`http://localhost/yoga/public/assets/subscriptions/${subscription.image}`}
         alt={`subscription ${subscription.image} image`}
       />
-      <FontAwesomeIcon className="arrow" icon={hidden ? faChevronRight : faChevronDown} size='1x' onClick={()=>setHidden(!hidden)}/>
+      <div className="footer">
+        <FontAwesomeIcon className="arrow" icon={hidden ? faChevronRight : faChevronDown} size='1x' onClick={() => setHidden(!hidden)} />
+        <span>Remove</span>
+      </div>
       {
         !hidden ?
           <div>

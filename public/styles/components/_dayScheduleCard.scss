@@ -62,20 +62,23 @@
             align-items: center;
         }
 
-        .fa-info-circle:hover {
-            color: #6CBBC7 !important;
-        }
-
+        .fa-info-circle:hover,
         .fa-video:hover {
             color: #6CBBC7 !important;
         }
 
+        .fa-info-circle,
+        .fa-video {
+            font-size: 1.8rem;
+        }
+
         .info {
             min-width: 75px;
-            margin-right: 0.5rem;
+            margin-right: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
+            
             p {
                 margin-bottom: 0.2rem;
             }
@@ -87,9 +90,9 @@
     }
 }
 
-.admin-classes-layout{
-    .day-schedule{
-        .head{
+.admin-classes-layout {
+    .day-schedule {
+        .head {
             margin-bottom: 0rem;
         }
     }

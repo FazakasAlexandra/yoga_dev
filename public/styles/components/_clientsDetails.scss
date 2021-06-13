@@ -3,7 +3,8 @@
   padding: 20px;
   width: 100%;
   justify-content: space-between;
-  .client-search{
+
+  .client-search {
     flex-grow: 2;
   }
 }
@@ -293,9 +294,22 @@
       width: 225px;
       margin: 0 10px 20px 0;
 
-      .arrow{
+      .footer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0rem 0.7rem 0.5rem;
+
+        span{
+          color: #ef6262;
+          cursor: pointer;
+          text-decoration: underline;
+          font-weight: bolder;
+        }
+      }
+
+      .arrow {
         align-self: self-end;
-        margin: 1rem;
         margin-top: 0rem;
         cursor: pointer;
       }
@@ -303,6 +317,7 @@
       h4 {
         text-align: center;
         margin-bottom: 0.5rem;
+        font-weight: 300;
       }
 
       p {
