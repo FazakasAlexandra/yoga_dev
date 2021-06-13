@@ -5,14 +5,12 @@ import db from '../db'
 import AdminClientSubscriptionSection from '../components/AdminClientSubscriptionSection'
 
 export default function ClientsInfo({ client, setClient, listSub }) {
-  const reloadClientInfo = () => {
-    db.users.getClients().then((res) => {
-      const targetClient = res.data.find(
-        (userClient) => +userClient.id === +client.id
-      )
-      setClient(targetClient)
-    })
-  }
+   const reloadClientInfo = () => {
+     db.users.getClients().then((res) => {
+       const targetClient = res.data.find((userClient) => +userClient.id === +client.id)
+       setClient(targetClient)
+     })
+  } 
 
   const ClientInfo = () => {
     const pendingHist = client.history.filter(
@@ -22,9 +20,10 @@ export default function ClientsInfo({ client, setClient, listSub }) {
       return (
         <>
           <ActiveBookingCard
+            subscriptions={client.user_subscriptions}
             key={history.booking_id}
             history={history}
-            buttonVisible='buttonVisible'
+            buttonVisible={true}
             reloadClientInfo={reloadClientInfo}
           />
         </>
@@ -38,9 +37,10 @@ export default function ClientsInfo({ client, setClient, listSub }) {
       <>
         <h3>Last Booking</h3>
         <ActiveBookingCard
+          subscriptions={client.user_subscriptions}
           key={latestBooking[0].booking_id + 1}
           history={latestBooking[0]}
-          buttonVisible='buttonInvisible'
+          buttonVisible={false}
           reloadClientInfo={reloadClientInfo}
         />
       </>
@@ -63,6 +63,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
   return (
     <>
       <ClientChart info={client.history} />
+      <hr />
       <div className='bellowChart'>
         <h3>Active Bookings</h3>
         <div className='client-active-booking'>{ClientInfo()}</div>

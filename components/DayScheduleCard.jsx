@@ -1,32 +1,58 @@
 import Image from 'next/image'
 import { useState } from 'react';
 import ClassDialog from './ClassDialog';
+import ClassZoomLinkDialog from './ClassZoomLinkDialog';
 import DayScheduleClass from './DayScheduleClass';
 import db from '../db.js'
+import _ from 'lodash'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
   const [open, setOpen] = useState(false);
-  const [yogaClass, setYogaClass] = useState(null);
-  
+  const [zoomLinkOpen, setZoomLinkOpen] = useState(false);
+  const [selectedYogaClass, setSelectedYogaClass] = useState({});
+  const [daySchedule, setDayClasses] = useState(dayData.schedule)
+  const notify = () => toast(`Added link for ${selectedYogaClass.name} !`);
+
+  const updateSelectedClassLink = (link) => {
+    selectedYogaClass.link = link
+    const newDayClasses = daySchedule.map(yogaClass => {
+      if (yogaClass.id === selectedYogaClass.id) yogaClass.link = link
+      return yogaClass
+    })
+    notify()
+    setDayClasses(newDayClasses)
+  }
+
   const handleDialogClose = () => {
     setOpen(false);
   };
 
-  const handleInfoIconClick = (yogaClass) => {
+  const handleZoomDialogClose = () => {
+    setZoomLinkOpen(false);
+  };
+
+  const handleInfoIconClick = (selectedYogaClass) => {
     setOpen(true);
-    setYogaClass(yogaClass)
+    setSelectedYogaClass(selectedYogaClass)
+  }
+
+  const handleZoomLinkClick = (selectedYogaClass) => {
+    setZoomLinkOpen(true)
+    setSelectedYogaClass(selectedYogaClass)
   }
 
   const handleBookClick = (yogaClass) => {
-      db.bookings.postBooking(userData.jwt, yogaClass.schedules_weeks_id, yogaClass.classType).then(() => {
+    db.bookings.postBooking(userData.jwt, yogaClass.schedules_weeks_id, yogaClass.classType).then(() => {
       console.log('booked !')
       updateUserData()
-    }) 
+    })
   }
 
   const getSchedule = () => {
-    return dayData.schedule.map((yogaClass, idx) => {
-      yogaClass.id = idx
+    return daySchedule.map((yogaClass, idx) => {
+      yogaClass.id = _.uniqueId('class_')
       yogaClass.classType = yogaClass.classType || 'online'
       return (
         <DayScheduleClass
@@ -35,6 +61,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
           dayScheduleClass={yogaClass}
           isBooked={userBookings[yogaClass.schedules_weeks_id] || false}
           handleInfoIconClick={handleInfoIconClick}
+          handleZoomLinkClick={handleZoomLinkClick}
           handleBookClick={handleBookClick}
         />
       )
@@ -52,7 +79,7 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
       <hr />
 
       {
-        dayData.schedule.length == 0 ?
+        daySchedule.length == 0 ?
           <div className="closed-sign"><Image src="/assets/closed.png" width={100} height={100} /></div>
           :
           <div className="schedule">
@@ -62,10 +89,27 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
       {open ?
         <ClassDialog
           isOpen={open}
-          yogaClass={yogaClass}
+          yogaClass={selectedYogaClass}
           closeDialog={handleDialogClose}
         />
         : null}
+      {zoomLinkOpen ?
+        <ClassZoomLinkDialog
+          isOpen={zoomLinkOpen}
+          userData={userData}
+          closeDialog={handleZoomDialogClose}
+          yogaClass={selectedYogaClass}
+          updateSelectedClassLink={updateSelectedClassLink}
+        />
+        : null}
+      <ToastContainer
+        closeButton={false}
+        position="top-center"
+        limit={1}
+        progressStyle={{
+          background: "#5E54AC"
+        }}
+      />
     </div>
   )
 }

@@ -39,6 +39,17 @@ const db = {
         },
       }).then((res) => res.json())
     },
+    updateScheduledClassLink: (scheduleDayId, link, jwtToken) => {
+      return fetch(
+        `${db.baseURL}/schedules/links/classes/${scheduleDayId}/${link}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      ).then((res) => res.json())
+    },
     getUserSubscriptionByClass: (userId, classId) => {
       return fetch(
         `${db.baseURL}/subscriptions/user/${userId}/class/${classId}`
@@ -121,6 +132,15 @@ const db = {
       return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
         res.json()
       )
+    },
+    postNewClass: (jwt, newclass) => {
+      return fetch(`${db.baseURL}/classes/newclass`, {
+        method: 'POST',
+        body: JSON.stringify(newclass),
+        headers: {
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
     },
   },
   users: {

@@ -12,6 +12,10 @@
         height: fit-content;
         padding: 1rem;        
         align-items: baseline;
+
+        .l-side{
+            display: flex;
+        }
     }
 
     .wraper{
@@ -60,6 +64,7 @@
 
     .active-booking-card {
         min-width: 400px;
+        margin-top: 1rem;
     }
 }
 

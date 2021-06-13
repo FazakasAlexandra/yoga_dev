@@ -8,14 +8,19 @@ export default function ClassCoverageType({
   coverageType,
   changeStatus,
   bookingId,
+  innerText,
 }) {
   const [hovered, setIsHover] = useState(false)
-  const { remained_entrences, subscription_name, user_subscription_id } =
-    coverage
+  const {
+    remained_entrences,
+    subscription_name,
+    user_subscription_id,
+    amount,
+  } = coverage
 
   const decreaseCoverage = () => {
     const yes = confirm(
-      `Are you sure you want to decrease the amount of ${coverageType}?`
+      `Are you sure you want to decrease the amount of ${innerText}?`
     )
     if (yes) {
       db.subscriptions
@@ -32,10 +37,12 @@ export default function ClassCoverageType({
       style={{ display: 'flex' }}
       key={user_subscription_id}
       onMouseLeave={
-        coverageType === 'discount' ? null : () => setIsHover(false)
+        coverageType === 'discounts' ? null : () => setIsHover(false)
       }
-      onMouseEnter={coverageType === 'discount' ? null : () => setIsHover(true)}
-      onClick={coverageType === 'discount' ? null : decreaseCoverage}
+      onMouseEnter={
+        coverageType === 'discounts' ? null : () => setIsHover(true)
+      }
+      onClick={coverageType === 'discounts' ? null : decreaseCoverage}
     >
       {hovered ? (
         <span>
@@ -47,15 +54,15 @@ export default function ClassCoverageType({
         </span>
       ) : null}
       <p
-        style={{ cursor: coverageType === 'discount' ? '' : 'pointer' }}
+        style={{ cursor: coverageType === 'discounts' ? '' : 'pointer' }}
         className='converage-desc'
       >
         {' '}
         <b>
-          {remained_entrences}
-          {coverageType === 'discount' ? '%' : ''}
+          {remained_entrences || amount}
+          {coverageType === 'discounts' ? '%' : ''}
         </b>{' '}
-        {coverageType} <br />
+        {innerText} <br />
         <i> {subscription_name}</i>
       </p>
     </div>

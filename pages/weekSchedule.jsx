@@ -21,13 +21,21 @@ export default function WeekSchedule() {
     },
   ])
 
+  const updateWeekData = () => {
+    
+  }
+
   const updateUserData = () =>
     db.users.queryUsers('email', session.user.email).then((res) => {
-      setUserData(res.data)
-      let userBookingsMap = res.data.bookingIds.reduce((map, bookingId) => {
+      const user = res.data
+
+      setUserData(user)
+
+      let userBookingsMap = user.bookingIds.reduce((map, bookingId) => {
         map[bookingId] = true
         return map
       }, {})
+      
       setUserBookings(userBookingsMap)
     })
 
@@ -37,8 +45,8 @@ export default function WeekSchedule() {
 
   useEffect(() => {
     db.schedules.getLatestSchedule().then((res) => {
+      console.log(res.data)
       setWeekSchedule(res.data)
-      console.log(weekSchedule)
 
       let startDate = new Date(res.data[0].dateWeekStart)
       let endDate = new Date(res.data[0].dateWeekEnd)
@@ -62,6 +70,7 @@ export default function WeekSchedule() {
           userData={userData}
           userBookings={userBookings}
           updateUserData={updateUserData}
+          updateWeekData={updateWeekData}
         />
       )
     })
@@ -78,7 +87,6 @@ export default function WeekSchedule() {
             showSelectionPreview={false}
             moveRangeOnFirstSelection={true}
             focusedRange={[0, 0]}
-            onChange={(item) => console.log}
             minDate={date[0].startDate}
             maxDate={date[0].endDate}
             moveRangeOnFirstSelection={true}
