@@ -16,12 +16,12 @@ export default function AdminClientSubscriptionSection({
 
   const addSubs = (user, sub) => {
     db.getJWT().then((jwt) => {
-      console.log(jwt)
       db.subscriptions.postSubscriptionToUser(jwt, user, sub).then((res) => {
-        console.log(res.data)
+        reloadClientInfo()
       })
     })
   }
+
 
   const subscriptionList = () => {
     return listSub.map((sub) => {
@@ -39,7 +39,7 @@ export default function AdminClientSubscriptionSection({
 
   const listOfCards = () => {
     return subscriptions.map((sub) => {
-      return <AdminSubscriptionCard subscription={sub} />
+      return <AdminSubscriptionCard subscription={sub} reloadClientInfo={reloadClientInfo}/>
     })
   }
 

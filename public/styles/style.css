@@ -648,7 +648,7 @@ header .navItem {
   justify-content: space-between;
 }
 .admin-clients .client-search {
-  flex-grow: 2;
+  flex: 1;
 }
 
 .form-users {
@@ -841,20 +841,27 @@ header .navItem {
   justify-content: space-around;
   margin-top: 20px;
 }
+.client-subscriptions .date {
+  font-size: 15px;
+  font-style: italic;
+  color: #a0a0a0;
+}
 .client-subscriptions .comboform {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  flex-direction: column;
 }
 .client-subscriptions .subscriptionform {
   display: flex;
   flex-direction: row;
   align-items: center;
   background: white;
+  margin-top: 1.1rem;
 }
 .client-subscriptions .subscriptionform .comboSubs {
-  width: 220px;
+  width: 100%;
   height: 40px;
   color: #646262;
 }
@@ -892,7 +899,7 @@ header .navItem {
   box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
   border-radius: 29px;
   padding: 0.5rem;
-  width: 225px;
+  width: 222px;
   margin: 0 10px 20px 0;
 }
 .client-subscriptions .adminsubsection .admin-subscription-card .footer {
@@ -928,6 +935,7 @@ header .navItem {
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
+  flex: 1;
 }
 .client-info h3 {
   margin: 0rem;

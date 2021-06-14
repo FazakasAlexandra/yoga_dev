@@ -54,6 +54,14 @@ const db = {
     },
   },
   subscriptions: {
+    removeUserSubscription: (userSubscriptionId, jwtToken) => {
+      return fetch(`${db.baseURL}/subscriptions/user/${userSubscriptionId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: jwtToken
+        }
+      }).then((res) => res.json())
+    },
     getSubscriptions: () => {
       return fetch(`${db.baseURL}/subscriptions`).then((res) => res.json())
     },

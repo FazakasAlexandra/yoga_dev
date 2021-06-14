@@ -5,7 +5,7 @@
   justify-content: space-between;
 
   .client-search {
-    flex-grow: 2;
+    flex: 1;
   }
 }
 
@@ -233,11 +233,18 @@
   justify-content: space-around;
   margin-top: 20px;
 
+  .date {
+    font-size: 15px;
+    font-style: italic;
+    color: #a0a0a0;
+  }
+
   .comboform {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
+    flex-direction: column;
   }
 
   .subscriptionform {
@@ -245,9 +252,10 @@
     flex-direction: row;
     align-items: center;
     background: white;
+    margin-top: 1.1rem;
 
     .comboSubs {
-      width: 220px;
+      width: 100%;
       height: 40px;
       color: $darkGreyWriting;
     }
@@ -291,7 +299,7 @@
       box-shadow: -1px 0px 5px rgba(0, 0, 0, 0.25);
       border-radius: 29px;
       padding: 0.5rem;
-      width: 225px;
+      width: 222px;
       margin: 0 10px 20px 0;
 
       .footer {
@@ -300,7 +308,7 @@
         justify-content: space-between;
         padding: 0rem 0.7rem 0.5rem;
 
-        span{
+        span {
           color: #ef6262;
           cursor: pointer;
           text-decoration: underline;

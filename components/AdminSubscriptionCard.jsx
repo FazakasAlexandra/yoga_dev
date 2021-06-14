@@ -2,8 +2,10 @@ import { useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { formatDate } from '../utilities.js'
+import db from '../db'
 
-export default function AdminSubscriptionCard({ subscription }) {
+export default function AdminSubscriptionCard({ subscription, reloadClientInfo }) {
   const [hidden, setHidden] = useState(true)
   console.log(subscription)
   const discounts = () => {
@@ -17,9 +19,28 @@ export default function AdminSubscriptionCard({ subscription }) {
     })
   }
 
+  const removeUserSubscription = () => {
+    db.getJWT().then(({ jwtToken }) => {
+      db.subscriptions.removeUserSubscription(subscription.usersSubscriptionID, jwtToken).then((res) => {
+        console.log(res)
+        reloadClientInfo()
+      })
+    })
+  }
+
+  const getDate = (date) => {
+    return (
+      <span className="date">
+        <span>Expires on </span>
+        <b>{date.day} {date.month} {date.year}</b>
+      </span>
+    )
+  }
+
   return (
     <div className='admin-subscription-card'>
       <h4>{subscription.name}</h4>
+      {getDate(formatDate(subscription.expiration_date))}
       <img
         style={{ width: '100px' }}
         src={`http://localhost/yoga/public/assets/subscriptions/${subscription.image}`}
@@ -27,7 +48,7 @@ export default function AdminSubscriptionCard({ subscription }) {
       />
       <div className="footer">
         <FontAwesomeIcon className="arrow" icon={hidden ? faChevronRight : faChevronDown} size='1x' onClick={() => setHidden(!hidden)} />
-        <span>Remove</span>
+        <span onClick={removeUserSubscription}>Remove</span>
       </div>
       {
         !hidden ?
