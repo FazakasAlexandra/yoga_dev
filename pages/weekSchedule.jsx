@@ -45,7 +45,6 @@ export default function WeekSchedule() {
 
   useEffect(() => {
     db.schedules.getLatestSchedule().then((res) => {
-      console.log(res.data)
       setWeekSchedule(res.data)
 
       let startDate = new Date(res.data[0].dateWeekStart)
@@ -86,21 +85,16 @@ export default function WeekSchedule() {
             showPreview={false}
             showSelectionPreview={false}
             moveRangeOnFirstSelection={true}
+            editableDateInputs={false}
             focusedRange={[0, 0]}
             minDate={date[0].startDate}
             maxDate={date[0].endDate}
             moveRangeOnFirstSelection={true}
             dragSelectionEnabled={false}
             ranges={date}
+            showMonthAndYearPickers={false}
+            showMonthArrow={false}
           />
-          <div>
-            <Image
-              src='/assets/yoga_img2.png'
-              alt=''
-              width={430}
-              height={300}
-            />
-          </div>
         </div>
       </div>
       <div className='day-schedule-cards'>{getDayScheduleCards()}</div>

@@ -1,8 +1,10 @@
-.day-schedule-cards.bookings{
+.day-schedule-cards.bookings {
     flex-direction: column;
-    .icon-chevron{
+
+    .icon-chevron {
         margin-left: 1.5rem;
     }
+
     .class.radio {
         p {
             margin: 0px;
@@ -14,14 +16,18 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 
     .class.radio {
         p {
             margin-bottom: 0px;
+            font-size: 17px;
         }
 
         border-left-style: solid;
         border-width: thin;
+        border-color: #dadada;
         padding-left: 1rem;
     }
 
@@ -35,7 +41,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 1.5rem 0rem;
+        margin: 2rem 0rem;
 
         .button-white {
             height: fit-content;
@@ -56,11 +62,23 @@
             align-items: center;
         }
 
-        .fa-info-circle:hover {
+        .fa-info-circle:hover,
+        .fa-video:hover {
             color: #6CBBC7 !important;
         }
 
+        .fa-info-circle,
+        .fa-video {
+            font-size: 1.8rem;
+        }
+
         .info {
+            min-width: 75px;
+            margin-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
             p {
                 margin-bottom: 0.2rem;
             }
@@ -68,11 +86,14 @@
             span {
                 font-size: 14px;
             }
+        }
+    }
+}
 
-            min-width: 75px;            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+.admin-classes-layout {
+    .day-schedule {
+        .head {
+            margin-bottom: 0rem;
         }
     }
 }
@@ -87,7 +108,18 @@
     width: 440px;
     margin: 1rem 0rem;
 
-    hr{
+    .date {
+        font-weight: 300;
+        font-size: 20px;
+    }
+
+    .hour {
+        font-size: 20px;
+        font-weight: 300;
+        margin-top: 0.5rem;
+    }
+
+    hr {
         margin: 2rem 0.5rem;
     }
 
@@ -100,6 +132,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
     }
 
     h3 {
@@ -133,9 +167,11 @@
                 margin-top: 0rem;
                 margin-bottom: 0.5rem;
             }
-            span{
+
+            span {
                 align-self: flex-end;
             }
+
             b {
                 align-self: flex-end;
                 font-size: 13px;

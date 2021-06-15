@@ -9,7 +9,8 @@
     display: flex;
     flex-direction: column;
   }
-  .client-info{
+
+  .client-info {
     margin-left: 0rem;
   }
 
@@ -77,7 +78,19 @@
     width: 100%;
   }
 
-  .admin-bookings .active-booking-card{
+  .date-container {
+    width: 100%;
+
+    .wrapper {
+      width: 100%;
+    }
+
+    .dateRange .rdrMonth {
+      min-width: 100%
+    }
+  }
+
+  .admin-bookings .active-booking-card {
     min-width: 100%
   }
 
@@ -110,11 +123,20 @@
 }
 
 @media(max-width: 411px) {
-
+  .info{
+    margin-right: 0px !important;
+    border-right-style: solid;
+    border-width: thin;
+    border-color: #dadada;
+    div{
+      flex-direction: column-reverse;
+    }
+  }
   .subscription-card {
     width: 100%;
     padding: 1rem;
   }
+
   .active-booking-card .active-bookings-status {
     display: flex;
     flex-direction: column;
@@ -135,10 +157,20 @@
         margin: 0rem 1rem;
       }
     }
+
+    .day-schedule-cards .class.wraper .buttons-container {
+      flex-direction: row;
+      align-self: flex-end;
+      width: 100%;
+    }
   }
 
   .day-schedule.card {
     width: 100%;
+
+    .class.radio{
+      border-left-style: none;
+    }
 
     .class.wraper {
       flex-direction: column;
@@ -151,6 +183,7 @@
         width: 100%;
         text-align: center;
         margin: 0px;
+        margin-top: 1.2rem;
       }
     }
   }
@@ -162,7 +195,8 @@
     min-height: fit-content;
     margin: 2rem 0rem;
   }
-  .admin-clients{
+
+  .admin-clients {
     padding: 10px;
   }
 }

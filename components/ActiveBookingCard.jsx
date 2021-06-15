@@ -17,8 +17,6 @@ export default function ActiveBookingCard({
     })
   }
 
-  console.log(history)
-
   return (
     <div className='active-booking-card'>
       <div className='wraper'>
@@ -33,7 +31,10 @@ export default function ActiveBookingCard({
             <p>{history.class_type}</p>
           </div>
         </div>
-        <div className='active-bookings-status' style={{display: buttonVisible ? 'flex' : 'none'}}>
+        <div
+          className='active-bookings-status'
+          style={{ display: buttonVisible ? 'flex' : 'none' }}
+        >
           <button
             className='buttonPresent'
             onClick={() => changeStatus('present')}

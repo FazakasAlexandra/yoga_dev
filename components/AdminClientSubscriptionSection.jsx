@@ -16,9 +16,8 @@ export default function AdminClientSubscriptionSection({
 
   const addSubs = (user, sub) => {
     db.getJWT().then((jwt) => {
-      console.log(jwt)
       db.subscriptions.postSubscriptionToUser(jwt, user, sub).then((res) => {
-        console.log(res.data)
+        reloadClientInfo()
       })
     })
   }
@@ -26,7 +25,7 @@ export default function AdminClientSubscriptionSection({
   const subscriptionList = () => {
     return listSub.map((sub) => {
       return (
-        <MenuItem value={sub.id} style={{ background: 'white' }}>
+        <MenuItem key={sub.id} value={sub.id} style={{ background: 'white' }}>
           {sub.name}
         </MenuItem>
       )
@@ -37,11 +36,15 @@ export default function AdminClientSubscriptionSection({
     setSelectedSub(event.target.value)
   }
 
-  console.log(subscriptions)
-
   const listOfCards = () => {
     return subscriptions.map((sub) => {
-      return <AdminSubscriptionCard subscription={sub} />
+      return (
+        <AdminSubscriptionCard
+          key={sub.usersSubscriptionID}
+          subscription={sub}
+          reloadClientInfo={reloadClientInfo}
+        />
+      )
     })
   }
 

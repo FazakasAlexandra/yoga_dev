@@ -9,6 +9,7 @@ import BookingCard from '../../../../components/BookingCard'
 import Feedback from '../../../../components/Feedback'
 import TextField from '@material-ui/core/TextField'
 import db from '../../../../db'
+import { formatDate } from '../../../../utilities.js'
 
 export default function Page() {
   const router = useRouter()
@@ -107,44 +108,54 @@ export default function Page() {
     }
   }
 
-  return (
-    <Layout activeTab={'account'}>
-      <AdminLayout activeTab={'classes'}>
-        <AdminClassesLayout activeTab={'bookings'}>
-          <div className='admin-bookings'>
-            <div>
-              <div className='week_schedule-form'>
-                <TextField
-                  id='date'
-                  label='Date'
-                  type='date'
-                  defaultValue={date}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    min: new Date().toISOString().slice(0, 10),
-                  }}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
-              <div className='day-schedule-cards bookings'>
-                {classes.length > 0 ? (
-                  getDayScheduleClasses()
-                ) : (
-                  <Feedback
-                    iconName='sadface'
-                    message={`No classes scheduled for ${date}`}
-                  />
-                )}
-              </div>
-            </div>
-            <div className='booking-cards'>
-              {bookings.length > 0 ? getBookings() : displayMessages()}
-            </div>
-          </div>
-        </AdminClassesLayout>
-      </AdminLayout>
-    </Layout>
-  )
+    const getDate = (date) => {
+        return (
+          <span className="date">
+          <span>{date.day} </span><span>{date.month}</span>
+          </span>
+        )
+      }
+    
+
+    return (
+        <Layout activeTab={"account"}>
+            <AdminLayout activeTab={"classes"}>
+                <AdminClassesLayout activeTab={"bookings"}>
+                    <div className="admin-bookings">
+                        <div>
+                            <div className="week_schedule-form">
+                                <TextField
+                                    id="date"
+                                    label="Date"
+                                    type="date"
+                                    defaultValue={date}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    inputProps={{
+                                        min: new Date().toISOString().slice(0, 10)
+                                    }}
+                                    onChange={(e) => setDate(e.target.value)}
+                                />
+                            </div>
+                            <div className="day-schedule-cards bookings">
+                                {
+                                    classes.length > 0 ? getDayScheduleClasses() :
+                                        <Feedback
+                                            iconName="sadface"
+                                            message={`No classes scheduled for ${formatDate(date, 'string')}`}
+                                        />
+                                }
+                            </div>
+                        </div>
+                        <div className="booking-cards">
+                            {
+                                bookings.length > 0 ? getBookings() : displayMessages()
+                            }
+                        </div>
+                    </div>
+                </AdminClassesLayout>
+            </AdminLayout>
+        </Layout>
+    )
 }

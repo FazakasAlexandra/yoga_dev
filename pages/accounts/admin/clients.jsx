@@ -10,7 +10,7 @@ export default function Clients() {
   const router = useRouter()
   const [session, loading] = useSession()
   const [clients, setClients] = useState([])
-  const [listSub, setListSub] = useState()
+  const [listSub, setListSub] = useState([])
 
   useEffect(() => {
     if (!loading && !session) router.push({ pathname: '/' })

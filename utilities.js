@@ -1,5 +1,19 @@
 import { createMuiTheme } from "@material-ui/core";
 
+const formatDate = (dayDate, outputType) => {
+    // recieves 2021-05-12
+    // returns string 12 May 2021 or an object {day: 12, month: 'May', year: 2021}
+    
+    let date = new Date(dayDate)
+    const month = date.toLocaleString('default', { month: 'long' });
+    const day = date.getUTCDate()
+    const year = date.getFullYear()
+
+    if(outputType === 'string') return day + ' ' + month
+
+    return {month, day, year: year}
+}
+
 const formatWeekSchedule = (weekSchedule, date_week_start, date_week_end) => {
     return weekSchedule.reduce((acc, weekDay) => {
         acc.push({
@@ -29,5 +43,6 @@ const theme = createMuiTheme({
 
 module.exports = {
     formatWeekSchedule,
+    formatDate,
     theme
 }
