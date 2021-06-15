@@ -3,7 +3,7 @@
   padding: 20px;
   width: 100%;
   justify-content: space-between;
-  .client-search{
+  .client-search {
     flex-grow: 2;
   }
 }
@@ -151,7 +151,7 @@
     margin-left: 0.5rem;
 
     b {
-      color: #5E54AC;
+      color: #5e54ac;
       font-size: 22px;
     }
 
@@ -168,7 +168,6 @@
     align-items: center;
     border-radius: 20px;
   }
-
 
   .active-bookings-details {
     p {
@@ -222,7 +221,6 @@
   p {
     margin: 0;
   }
-
 }
 
 .client-subscriptions {
@@ -292,7 +290,7 @@
       width: 225px;
       margin: 0 10px 20px 0;
 
-      .arrow{
+      .arrow {
         align-self: self-end;
         margin: 1rem;
         margin-top: 0rem;
@@ -305,11 +303,24 @@
       }
 
       p {
-        margin: 10px;
+        margin: 7px;
+        font-size: 16px;
+
+        .bold {
+          font-weight: bolder;
+        }
+
+        .blue {
+          color: #5e54ac;
+        }
       }
 
       img {
         margin: 10px 0;
+      }
+
+      hr {
+        margin: 10px;
       }
     }
   }

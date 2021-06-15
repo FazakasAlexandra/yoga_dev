@@ -37,6 +37,8 @@ export default function AdminClientSubscriptionSection({
     setSelectedSub(event.target.value)
   }
 
+  console.log(subscriptions)
+
   const listOfCards = () => {
     return subscriptions.map((sub) => {
       return <AdminSubscriptionCard subscription={sub} />

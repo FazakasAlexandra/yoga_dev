@@ -764,7 +764,7 @@ header .navItem {
   margin-left: 0.5rem;
 }
 .active-booking-card .converage-desc b {
-  color: #5E54AC;
+  color: #5e54ac;
   font-size: 22px;
 }
 .active-booking-card .converage-desc i {
@@ -892,10 +892,20 @@ header .navItem {
   margin-bottom: 0.5rem;
 }
 .client-subscriptions .adminsubsection .admin-subscription-card p {
-  margin: 10px;
+  margin: 7px;
+  font-size: 16px;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card p .bold {
+  font-weight: bolder;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card p .blue {
+  color: #5e54ac;
 }
 .client-subscriptions .adminsubsection .admin-subscription-card img {
   margin: 10px 0;
+}
+.client-subscriptions .adminsubsection .admin-subscription-card hr {
+  margin: 10px;
 }
 
 .client-info {
