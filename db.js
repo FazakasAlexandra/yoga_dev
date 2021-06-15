@@ -40,12 +40,15 @@ const db = {
       }).then((res) => res.json())
     },
     updateScheduledClassLink: (scheduleDayId, link, jwtToken) => {
-      return fetch(`${db.baseURL}/schedules/links/classes/${scheduleDayId}/${link}`, {
-        method: "PUT",
-        headers: {
-          Authorization: jwtToken
+      return fetch(
+        `${db.baseURL}/schedules/links/classes/${scheduleDayId}/${link}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: jwtToken,
+          },
         }
-      }).then(res => res.json())
+      ).then((res) => res.json())
     },
     getUserSubscriptionByClass: (userId, classId) => {
       return fetch(
@@ -93,9 +96,10 @@ const db = {
       }).then((res) => res.json())
     },
     decreaseCoverage: (coverageType, id) => {
-      return fetch(`${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`)
-        .then(res => res.json())
-    }
+      return fetch(
+        `${db.baseURL}/subscriptions/decrease/${coverageType}/${id}`
+      ).then((res) => res.json())
+    },
   },
   bookings: {
     postBooking: (jwt, scheduleWeekId, classType) => {
@@ -136,6 +140,15 @@ const db = {
       return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
         res.json()
       )
+    },
+    postNewClass: (jwt, newclass) => {
+      return fetch(`${db.baseURL}/classes/newclass`, {
+        method: 'POST',
+        body: JSON.stringify(newclass),
+        headers: {
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
     },
   },
   users: {

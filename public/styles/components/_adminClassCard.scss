@@ -1,31 +1,48 @@
-.class-card{
-    background: $grayBackground;
-    height: 320px;
-    width: 280px;
-    border-radius: 20px;
+.class-card {
+  background: $grayBackground;
+  height: 350px;
+  width: 280px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 18px;
+  margin: 20px;
+
+  .card-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: solid thin $darkGreyWriting;
+    padding-bottom: 10px;
+  }
+
+  .dlt-button-white {
+    padding: 0.6rem 0.8rem;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    color: $darkGreyWriting;
+  }
+
+  button:focus {
+    outline: 0 !important;
+  }
+
+  .buttons-classform {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+  }
+
+  form {
     display: flex;
     flex-direction: column;
-    //justify-content: space-evenly;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 25px 25px;
-    margin: 20px;
 
-    .card-buttons{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-between;
-        border-bottom: solid thin $darkGreyWriting;
-        padding-bottom: 10px;
+    button:first-child {
+      background: #76e294;
+      margin: 0 3px;
     }
-
-    .dlt-button-white{
-        padding: 0.6rem 0.8rem;
-        background-color: white;
-        border-radius: 5px;
-        border:none;
-        color:$darkGreyWriting;
-    }
-    button:focus {
-        outline: 0 !important;
-    }
+  }
 }

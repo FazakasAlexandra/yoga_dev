@@ -532,7 +532,13 @@ header .navItem {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+.admin-classes-layout .class-body .button-add-class {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .bottomPagination ul {
@@ -614,13 +620,13 @@ header .navItem {
 
 .class-card {
   background: #edecf4;
-  height: 320px;
+  height: 350px;
   width: 280px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  padding: 25px 25px;
+  padding: 18px;
   margin: 20px;
 }
 .class-card .card-buttons {
@@ -639,6 +645,20 @@ header .navItem {
 }
 .class-card button:focus {
   outline: 0 !important;
+}
+.class-card .buttons-classform {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+.class-card form {
+  display: flex;
+  flex-direction: column;
+}
+.class-card form button:first-child {
+  background: #76e294;
+  margin: 0 3px;
 }
 
 .admin-clients {

@@ -12,95 +12,101 @@ import db from '../../../../db'
 import { formatDate } from '../../../../utilities.js'
 
 export default function Page() {
-    const router = useRouter()
-    const today = new Date().toISOString().slice(0, 10)
-    const [session, loading] = useSession()
-    const [date, setDate] = useState(today)
-    const [classes, setClasses] = useState([])
-    const [bookings, setBookings] = useState([])
-    const [activeClass, setActiveClass] = useState(null)
+  const router = useRouter()
+  const today = new Date().toISOString().slice(0, 10)
+  const [session, loading] = useSession()
+  const [date, setDate] = useState(today)
+  const [classes, setClasses] = useState([])
+  const [bookings, setBookings] = useState([])
+  const [activeClass, setActiveClass] = useState(null)
 
-    useEffect(() => {
-        if (!loading && !session) router.push({ pathname: '/' })
-    }, [session])
+  useEffect(() => {
+    if (!loading && !session) router.push({ pathname: '/' })
+  }, [session])
 
-    useEffect(() => {
-        db.classes.getDayClasses(today).then(res => {
-            setClasses(res.data)
-        })
-    }, [])
+  useEffect(() => {
+    db.classes.getDayClasses(today).then((res) => {
+      setClasses(res.data)
+    })
+  }, [])
 
-    useEffect(() => {
-        db.classes.getDayClasses(date).then(res => {
-            setBookings([])
-            setActiveClass(false)
-            setClasses(res.data)
-        })
-    }, [date])
+  useEffect(() => {
+    db.classes.getDayClasses(date).then((res) => {
+      setBookings([])
+      setActiveClass(false)
+      setClasses(res.data)
+    })
+  }, [date])
 
-    const handleArrowButton = (weekScheduleId) => {
-        const updatedActieClass = classes.map(yogaClass => {
-            if (yogaClass.schedules_weeks_id == weekScheduleId) {
-                setActiveClass(yogaClass)
-                return { ...yogaClass, active: true }
-            }
+  const handleArrowButton = (weekScheduleId) => {
+    const updatedActieClass = classes.map((yogaClass) => {
+      if (yogaClass.schedules_weeks_id == weekScheduleId) {
+        setActiveClass(yogaClass)
+        return { ...yogaClass, active: true }
+      }
 
-            return { ...yogaClass, active: false }
-        })
+      return { ...yogaClass, active: false }
+    })
 
-        console.log(updatedActieClass)
-        setClasses(updatedActieClass)
+    console.log(updatedActieClass)
+    setClasses(updatedActieClass)
 
-        db.bookings.getClassBookings(weekScheduleId).then(res => {
+    db.bookings.getClassBookings(weekScheduleId).then((res) => {
+      setBookings(res.data)
+    })
+  }
+
+  const getDayScheduleClasses = () => {
+    return classes.map((yogaClass) => {
+      return (
+        <DayScheduleClass
+          key={yogaClass.schedules_weeks_id}
+          dayScheduleClass={yogaClass}
+          handleArrowButton={handleArrowButton}
+          minimal={true}
+          active={yogaClass.active}
+        />
+      )
+    })
+  }
+
+  const changeStatus = (status, bookingId) => {
+    db.getJWT().then((jwt) => {
+      console.log(bookingId)
+      db.bookings.changeStatus(jwt.jwtToken, bookingId, status).then((res) => {
+        console.log(res.status)
+        db.bookings
+          .getClassBookings(activeClass.schedules_weeks_id)
+          .then((res) => {
             setBookings(res.data)
-        })
+          })
+      })
+    })
+  }
+
+  const getBookings = () => {
+    return bookings.map((booking) => {
+      return (
+        <BookingCard
+          booking={booking}
+          page='admin'
+          changeStatus={changeStatus}
+        />
+      )
+    })
+  }
+
+  const displayMessages = () => {
+    if (classes.length > 0 && activeClass) {
+      return (
+        <Feedback iconName='sadface' message='No bookings for this class yet' />
+      )
     }
 
-    const getDayScheduleClasses = () => {
-        return classes.map(yogaClass => {
-            return <DayScheduleClass
-                key={yogaClass.schedules_weeks_id}
-                dayScheduleClass={yogaClass}
-                handleArrowButton={handleArrowButton}
-                minimal={true}
-                active={yogaClass.active}
-            />
-        })
+    if (classes.length > 0 && !activeClass) {
+      return <Feedback iconName='smile' message='Check bookings for a class' />
     }
-
-    const changeStatus = (status, bookingId) => {
-        db.getJWT().then(jwt => {
-            console.log(bookingId)
-            db.bookings.changeStatus(jwt.jwtToken, bookingId, status).then(res => {
-                console.log(res.status)
-                db.bookings.getClassBookings(activeClass.schedules_weeks_id).then(res => {
-                    setBookings(res.data)
-                })
-            })
-        })
-    }
-
-    const getBookings = () => {
-        return bookings.map((booking) => {
-            return <BookingCard booking={booking} page="admin" changeStatus={changeStatus} />
-        })
-    }
-
-    const displayMessages = () => {
-        if (classes.length > 0 && activeClass) {
-            return <Feedback
-                iconName="sadface"
-                message="No bookings for this class yet"
-            />
-        }
-
-        if (classes.length > 0 && !activeClass) {
-            return <Feedback
-                iconName="smile"
-                message="Check bookings for a class"
-            />
-        }
-    }
+  }
 
     const getDate = (date) => {
         return (

@@ -17,6 +17,8 @@ export default function ActiveBookingCard({
     })
   }
 
+  console.log(history)
+
   return (
     <div className='active-booking-card'>
       <div className='wraper'>

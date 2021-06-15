@@ -45,12 +45,10 @@ export default function AdminClientSubscriptionSection({
 
   return (
     <>
-      <div class='comboform'>
+      <div className='comboform'>
         <h3>Subscriptions</h3>
         <FormControl variant='outlined' className='subscriptionform'>
-          <InputLabel margin='dense'>
-            Subscription
-          </InputLabel>
+          <InputLabel margin='dense'>Subscription</InputLabel>
           <Select
             value={selectedSub ?? ''}
             name='selectSubs'

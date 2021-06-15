@@ -21,51 +21,61 @@ export default function Page() {
   }, [session])
 
   useEffect(() => {
-    db.subscriptions.getSubscriptions().then(res => setSubscriptions(res.data))
+    db.subscriptions
+      .getSubscriptions()
+      .then((res) => setSubscriptions(res.data))
   }, [])
 
-  const removeSubscription = (id) => setSubscriptions(subscriptions.filter(subscription => +subscription.id != +id))
+  const removeSubscription = (id) =>
+    setSubscriptions(
+      subscriptions.filter((subscription) => +subscription.id != +id)
+    )
 
-  const removeForm = (id) => setSubscriptionsForms(subscriptionsForms.filter(form => form !== id))
+  const removeForm = (id) =>
+    setSubscriptionsForms(subscriptionsForms.filter((form) => form !== id))
 
-  const addNewSubscription = (subscription) => setSubscriptions([subscription, ...subscriptions])
-  
+  const addNewSubscription = (subscription) =>
+    setSubscriptions([subscription, ...subscriptions])
 
   const getSubscriptions = () => {
-    return subscriptions.map(subscription => {
-      return <SubscriptionCard
-        key={subscription.id}
-        subscription={subscription}
-        admin={true}
-        removeSubscriptionCard={removeSubscription}
-      />
+    return subscriptions.map((subscription) => {
+      return (
+        <SubscriptionCard
+          key={subscription.id}
+          subscription={subscription}
+          admin={true}
+          removeSubscriptionCard={removeSubscription}
+        />
+      )
     })
   }
 
   const getSubscriptionForms = () => {
-    return subscriptionsForms.map(subscriptionForm => {
-      return <SubscriptionForm
-        id={subscriptionForm}
-        key={subscriptionForm}
-        removeForm={removeForm}
-        addNewSubscriptionCard={addNewSubscription}
-      />
+    return subscriptionsForms.map((subscriptionForm) => {
+      return (
+        <SubscriptionForm
+          id={subscriptionForm}
+          key={subscriptionForm}
+          removeForm={removeForm}
+          addNewSubscriptionCard={addNewSubscription}
+        />
+      )
     })
   }
 
   return (
-    <Layout activeTab={"account"}>
-      <AdminLayout activeTab={"subscriptions"}>
+    <Layout activeTab={'account'}>
+      <AdminLayout activeTab={'subscriptions'}>
         <button
-          className="button-white admin"
-          style={{ alignSelf: "baseline" }}
-          onClick={() => setSubscriptionsForms([_.uniqueId('form'), ...subscriptionsForms])}>
-          <FontAwesomeIcon
-            icon={faPlus}
-            size="lg"
-          />
+          className='button-white admin'
+          style={{ alignSelf: 'baseline' }}
+          onClick={() =>
+            setSubscriptionsForms([_.uniqueId('form'), ...subscriptionsForms])
+          }
+        >
+          <FontAwesomeIcon icon={faPlus} size='lg' />
         </button>
-        <div className="subscriptions-admin">
+        <div className='subscriptions-admin'>
           {getSubscriptionForms()}
           {getSubscriptions()}
         </div>

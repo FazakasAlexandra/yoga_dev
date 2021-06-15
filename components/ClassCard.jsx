@@ -6,6 +6,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 export default function ClassCard({
   id,
   name,
+  level,
   offprice,
   onprice,
   attend,
@@ -30,6 +31,9 @@ export default function ClassCard({
       <div className='classCardDetails'>
         <p>
           <b>Class name:</b> {name}
+        </p>
+        <p>
+          <b>Level:</b> {level}
         </p>
         <p>
           <b>Offline price:</b> {offprice}
