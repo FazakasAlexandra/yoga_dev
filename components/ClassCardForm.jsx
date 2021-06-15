@@ -20,9 +20,9 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
 
   const subscriptionList = () => {
     const levels = ['intermediate', 'beginner', 'advanced']
-    return levels.map((lev) => {
+    return levels.map((lev, index) => {
       return (
-        <MenuItem value={lev} style={{ background: 'white' }}>
+        <MenuItem key={index} value={lev} style={{ background: 'white' }}>
           {lev}
         </MenuItem>
       )
@@ -30,7 +30,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
   }
 
   const style = {
-    fontSize: '12px',
+    fontSize: '16px',
     margin: '3px',
     width: '100%',
     heigth: '20px',
@@ -43,16 +43,25 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
         <div className='buttons-classform'>
           <button
             className='button-white'
-            onClick={(e) =>
-              addNewClass(
-                e,
+            onClick={(e) => {
+              const arr = [
                 nameClass,
                 level,
                 onlinePrice,
                 offlinePrice,
-                description
-              )
-            }
+                description,
+              ]
+              arr.findIndex((e) => e === '') > -1
+                ? (e.target.style.animation = 'highlightbutton 1000ms ease-out')
+                : addNewClass(
+                    e,
+                    nameClass,
+                    level,
+                    onlinePrice,
+                    offlinePrice,
+                    description
+                  )
+            }}
           >
             <FontAwesomeIcon icon={faCheck} />
           </button>
@@ -73,7 +82,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
           value={nameClass}
           onChange={(e) => setNameClass(e.target.value)}
           placeholder='Class name'
-          required='true'
+          required={true}
         />
         <div
           style={{
@@ -87,9 +96,10 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
             style={style}
             size='small'
             placeholder='Online price'
+            type='number'
             value={onlinePrice}
             onChange={(e) => setOnlinePrice(e.target.value)}
-            required='true'
+            required={true}
           />
           <TextField
             id='standard-basic'
@@ -97,9 +107,10 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
             style={style}
             size='small'
             placeholder='Offline price'
+            type='number'
             value={offlinePrice}
             onChange={(e) => setOfflinePrice(e.target.value)}
-            required='true'
+            required={true}
           />
         </div>
         <FormControl
@@ -112,6 +123,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
         >
           <InputLabel>Level</InputLabel>
           <Select
+            required
             value={level ?? ''}
             name='selectlevel'
             onChange={handleChange}
@@ -129,7 +141,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Class description'
-          required='true'
+          required={true}
         />
       </form>
     </div>

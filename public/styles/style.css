@@ -636,13 +636,6 @@ header .navItem {
   border-bottom: solid thin #646262;
   padding-bottom: 10px;
 }
-.class-card .dlt-button-white {
-  padding: 0.6rem 0.8rem;
-  background-color: white;
-  border-radius: 5px;
-  border: none;
-  color: #646262;
-}
 .class-card button:focus {
   outline: 0 !important;
 }
@@ -660,7 +653,18 @@ header .navItem {
   background: #76e294;
   margin: 0 3px;
 }
+.class-card input {
+  padding: 14px 7px 14px 7px;
+}
 
+@keyframes highlightbutton {
+  0% {
+    background-color: rgba(243, 84, 84, 0.57);
+  }
+  100% {
+    background-color: #76e294;
+  }
+}
 .admin-clients {
   display: flex;
   padding: 20px;

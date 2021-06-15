@@ -24,7 +24,7 @@ export default function ClassCard({
             <FontAwesomeIcon icon={faChartBar} size='lg' />
           </a>
         </Link>
-        <button className='dlt-button-white' onClick={() => deletion(id)}>
+        <button className='button-white' onClick={() => deletion(id)}>
           <FontAwesomeIcon icon={faTrashAlt} size='2x' />
         </button>
       </div>

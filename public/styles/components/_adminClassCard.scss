@@ -17,14 +17,6 @@
     padding-bottom: 10px;
   }
 
-  .dlt-button-white {
-    padding: 0.6rem 0.8rem;
-    background-color: white;
-    border-radius: 5px;
-    border: none;
-    color: $darkGreyWriting;
-  }
-
   button:focus {
     outline: 0 !important;
   }
@@ -44,5 +36,18 @@
       background: #76e294;
       margin: 0 3px;
     }
+  }
+
+  input {
+    padding: 14px 7px 14px 7px;
+  }
+}
+
+@keyframes highlightbutton {
+  0% {
+    background-color: rgba(243, 84, 84, 0.57);
+  }
+  100% {
+    background-color: #76e294;
   }
 }
