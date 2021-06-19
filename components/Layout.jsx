@@ -2,6 +2,7 @@ import Header from './Header'
 import Head from 'next/head'
 /* import Footer from '../components/footer' */
 
+
 export default function Layout({ children, activeTab }) {
     return (
         <>
@@ -10,7 +11,7 @@ export default function Layout({ children, activeTab }) {
                 <link rel="icon" href="/assets/logo.png" />
             </Head>
             <Header activeTab={activeTab}/>
-            <main className={activeTab}>
+            <main className={`${activeTab}-main`}>
                 {children}
             </main>
         </>
