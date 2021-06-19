@@ -1,30 +1,45 @@
 import Layout from '../components/Layout'
-import ReactMapGL, { Marker }from "react-map-gl";
-import { useState } from 'react';
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import HomeSection from '../components/HomeSection';
+import Map from '../components/Map';
+import sectionsContent from '../homePageContent.json';
 
 export default function Home() {
-  const [viewport, setViewport] = useState({
-    latitude: 46.767382,
-    longitude: 23.602234,
-    zoom:18,
-    width: '100%',
-    height: '700px'
-  })
+  const getHomePageSections = () => {
+    return sectionsContent.map(({ src, title, content }, idx) => {
+      return <HomeSection
+        imgPosition={idx % 2 === 0 && idx != 0 ? 'left' : 'right'}
+        title={title}
+        src={src}
+        content={content}
+      />
+    })
+  }
+
   return (
     <Layout activeTab={"home"}>
-      <h1 style={{ textAlign: 'center' }}>Visit us !</h1>
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken="pk.eyJ1IjoiYWxleGFuZHJhZmF6YWthcyIsImEiOiJja3ExNjFsbW8wYnQzMm9xcmlmN3picXJmIn0.ueogbAfSS_LKncueRmefUQ"
-        onViewportChange={(viewport => {
-          setViewport(viewport);
-        })}
-        mapStyle="mapbox://styles/alexandrafazakas/ckq17nly31rj517p89e5b4nv9"
-     >
-         <Marker latitude={46.767217} longitude={23.602485} offsetLeft={-20} offsetTop={-10}>
-         🧘<strong>YOGA STUDIO</strong>
-         </Marker>
-      </ReactMapGL>
+      <div className="home-wraper">
+        {getHomePageSections()}
+        <div className="social-contact-container">
+          <h1>Keep in touch </h1>
+          <div className="phone-container">
+            <FontAwesomeIcon icon={faPhone} size="2x" className="social-icon" />
+            <span className="phone">0740858539</span>
+          </div>
+          <div className="icons-wraper">
+            <a href="https://www.facebook.com/Indian-School-of-Yoga-Therapy-187045138576522" target="_blank"><FontAwesomeIcon style={{ marginRight: "1rem" }} icon={faFacebook} size="3x" className="social-icon" /></a>
+            <a href="#" target="_blank"><FontAwesomeIcon icon={faInstagram} size="3x" className="social-icon" /></a>
+          </div>
+        </div>
+      </div>
+      <div className="home-wraper visit">
+        <h1>Visit our studio</h1>
+        <strong>Cluj-Napoca</strong>
+        <p>Bulevardul Titulescu, no. 1</p>
+      </div>
+      <Map />
     </Layout>
   )
 }
