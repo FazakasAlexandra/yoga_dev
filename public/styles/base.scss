@@ -30,6 +30,36 @@ ul {
   font-weight: 300;
 }
 
+.button-home {
+  cursor: pointer;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 5px;
+  padding: 17px 27px;
+  font-size: 20px;
+  border: 1px solid rgba(100, 98, 99, 0.64);
+  min-width: 200px;
+}
+
+.button-home.white {
+  background-color: white;
+  color: #646263;
+}
+
+.button-home.yellow {
+  background-color: #FFC67C;
+  color: white;
+  margin-right: 22px;
+}
+
+.button-home.yellow:hover{
+  background-color: #ffbc65;
+}
+
+.button-home.white:hover{
+  font-weight: bold;
+}
+
 .button-white {
   padding: 0.8rem 1rem;
   text-align: center;
