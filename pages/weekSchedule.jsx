@@ -21,9 +21,7 @@ export default function WeekSchedule() {
     },
   ])
 
-  const updateWeekData = () => {
-    
-  }
+  const updateWeekData = () => {}
 
   const updateUserData = () =>
     db.users.queryUsers('email', session.user.email).then((res) => {
@@ -35,7 +33,7 @@ export default function WeekSchedule() {
         map[bookingId] = true
         return map
       }, {})
-      
+
       setUserBookings(userBookingsMap)
     })
 

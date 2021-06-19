@@ -5,6 +5,8 @@ export default function ActiveBookingCard({
   history,
   buttonVisible,
   reloadClientInfo,
+  coverageVisible,
+  buttonCancel,
 }) {
   const changeStatus = (status) => {
     db.getJWT().then((jwt) => {
@@ -31,28 +33,54 @@ export default function ActiveBookingCard({
             <p>{history.class_type}</p>
           </div>
         </div>
-        <div
-          className='active-bookings-status'
-          style={{ display: buttonVisible ? 'flex' : 'none' }}
-        >
-          <button
-            className='buttonPresent'
-            onClick={() => changeStatus('present')}
-          >
-            Present
-          </button>
-          <button
-            className='buttonAbsent'
-            onClick={() => changeStatus('absent')}
-          >
-            Absent
-          </button>
+        <div className='active-bookings-status'>
+          {buttonVisible ? (
+            <>
+              <button
+                className='buttonPresent'
+                onClick={() => changeStatus('present')}
+              >
+                Present
+              </button>
+              <button
+                className='buttonAbsent'
+                onClick={() => changeStatus('absent')}
+              >
+                Absent
+              </button>
+            </>
+          ) : buttonCancel && !buttonVisible ? (
+            <button
+              className='buttonCancel'
+              onClick={() => changeStatus('canceled')}
+            >
+              Cancel
+            </button>
+          ) : (
+            <p
+              style={{
+                marginBlockStart: '4em',
+                marginBlockEnd: '0em',
+                marginInlineEnd: '10px',
+                fontSize: '16px',
+              }}
+            >
+              <i>
+                {history.state.charAt(0).toUpperCase() +
+                  history.state.slice(1).toLowerCase()}
+              </i>
+            </p>
+          )}
         </div>
       </div>
-      <ClassCoverage
-        userSubscriptions={history.user_subscriptions}
-        changeStatus={changeStatus}
-      />
+      {coverageVisible == true ? (
+        <ClassCoverage
+          userSubscriptions={history.user_subscriptions}
+          changeStatus={changeStatus}
+        />
+      ) : (
+        ''
+      )}
     </div>
   )
 }

@@ -26,7 +26,9 @@ export default function ClientsInfo({ client, setClient, listSub }) {
             key={history.booking_id}
             history={history}
             buttonVisible={true}
+            buttonCancel={false}
             reloadClientInfo={reloadClientInfo}
+            coverageVisible={true}
           />
         </>
       )
@@ -43,6 +45,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
           key={latestBooking[0].booking_id + 1}
           history={latestBooking[0]}
           buttonVisible={false}
+          buttonCancel={false}
           reloadClientInfo={reloadClientInfo}
         />
       </>

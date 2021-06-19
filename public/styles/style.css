@@ -915,7 +915,8 @@ header .navItem {
   margin-top: 20px;
   flex-wrap: wrap;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card {
+
+.admin-subscription-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -926,42 +927,42 @@ header .navItem {
   width: 222px;
   margin: 0 10px 20px 0;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card .footer {
+.admin-subscription-card .footer {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: 0rem 0.7rem 0.5rem;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card .footer span {
+.admin-subscription-card .footer span {
   color: #ef6262;
   cursor: pointer;
   text-decoration: underline;
   font-weight: bolder;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card .arrow {
+.admin-subscription-card .arrow {
   align-self: self-end;
   margin-top: 0rem;
   cursor: pointer;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card h4 {
+.admin-subscription-card h4 {
   text-align: center;
   margin-bottom: 0.5rem;
   font-weight: 300;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card p {
+.admin-subscription-card p {
   margin: 7px;
   font-size: 16px;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card p .bold {
+.admin-subscription-card p .bold {
   font-weight: bolder;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card p .blue {
+.admin-subscription-card p .blue {
   color: #5e54ac;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card img {
+.admin-subscription-card img {
   margin: 10px 0;
 }
-.client-subscriptions .adminsubsection .admin-subscription-card hr {
+.admin-subscription-card hr {
   margin: 10px;
 }
 
@@ -1086,6 +1087,110 @@ header .navItem {
 }
 .feedback p {
   text-align: center;
+}
+
+.client-account-wrapper {
+  background-color: white;
+  box-shadow: -1px 5px 5px rgba(0, 0, 0, 0.04);
+  width: 790px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 auto;
+  min-height: 500px;
+  font-size: 18px;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  padding: 2%;
+  font-family: "Roboto", sans-serif;
+}
+.client-account-wrapper .client-account-name-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #646262;
+  padding-bottom: 15px;
+}
+.client-account-wrapper .client-account-name-section .list-initial {
+  background: #edecf4;
+  padding: 3px 12px;
+  border-radius: 50%;
+  color: #646262;
+  font-size: 48px;
+  width: 75px;
+  height: 73px;
+  text-align: center;
+}
+.client-account-wrapper .client-account-name-section div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.client-account-wrapper .client-account-name-section div p {
+  margin: 0 15px;
+}
+.client-account-wrapper .client-account-name-section div p:first-child {
+  font-size: 28px;
+}
+.client-account-wrapper .client-account-name-section div p:nth-child(2) {
+  color: #646263a3;
+}
+.client-account-wrapper .client-account-bookings {
+  width: 100%;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card {
+  flex-direction: row;
+  align-items: center;
+  margin: 1.5rem 0rem;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .l-side {
+  display: flex;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .active-bookings-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .active-bookings-numbers {
+  border-right: 1px solid #646263;
+  max-height: 60px;
+  color: #646262;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 1rem;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .active-bookings-numbers p:first-child {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 300;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .active-bookings-numbers p:last-child {
+  font-size: 15px;
+  margin: 0;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .buttonCancel {
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+}
+.client-account-wrapper .client-account-subs-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+.client-account-wrapper .client-account-subs-section .client-account-subs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.client-account-wrapper .footer span {
+  display: none;
 }
 
 @media (max-width: 1000px) {

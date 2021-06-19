@@ -61,8 +61,8 @@ const db = {
       return fetch(`${db.baseURL}/subscriptions/user/${userSubscriptionId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: jwtToken
-        }
+          Authorization: jwtToken,
+        },
       }).then((res) => res.json())
     },
     getSubscriptions: () => {
@@ -154,11 +154,6 @@ const db = {
   users: {
     getClients: () => {
       return fetch(`${db.baseURL}/users/clients`).then((res) => res.json())
-    },
-    getClientHistory: (id) => {
-      return fetch(`${db.baseURL}/clientshistory/client/${id}`).then((res) =>
-        res.json()
-      )
     },
     queryUsers: (criteria, value) => {
       return fetch(`${db.baseURL}/users/${criteria}/${value}`).then((res) =>

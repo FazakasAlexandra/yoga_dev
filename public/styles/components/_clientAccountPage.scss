@@ -1,0 +1,121 @@
+.client-account-wrapper {
+  background-color: white;
+  box-shadow: -1px 5px 5px rgb(0 0 0 / 4%);
+  width: 790px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 auto;
+  min-height: 500px;
+  font-size: 18px;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  padding: 2%;
+  font-family: 'Roboto', sans-serif;
+
+  .client-account-name-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #646262;
+    padding-bottom: 15px;
+
+    .list-initial {
+      background: $grayBackground;
+      padding: 3px 12px;
+      border-radius: 50%;
+      color: $darkGreyWriting;
+      font-size: 48px;
+      width: 75px;
+      height: 73px;
+      text-align: center;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        margin: 0 15px;
+      }
+
+      p:first-child {
+        font-size: 28px;
+      }
+
+      p:nth-child(2) {
+        color: #646263a3;
+      }
+    }
+  }
+
+  .client-account-bookings {
+    width: 100%;
+
+    .active-booking-card {
+      flex-direction: row;
+      align-items: center;
+      margin: 1.5rem 0rem;
+
+      .l-side {
+        display: flex;
+      }
+
+      .active-bookings-details {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+      }
+
+      .active-bookings-numbers {
+        border-right: 1px solid #646263;
+        max-height: 60px;
+        color: #646262;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-right: 1rem;
+
+        p:first-child {
+          font-size: 18px;
+          margin: 0;
+          font-weight: 300;
+        }
+
+        p:last-child {
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+
+      .buttonCancel {
+        justify-content: space-around;
+        align-items: center;
+        background: white;
+      }
+    }
+  }
+
+  .client-account-subs-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+
+    .client-account-subs {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+
+  //Button remove not visible
+  .footer span {
+    display: none;
+  }
+}

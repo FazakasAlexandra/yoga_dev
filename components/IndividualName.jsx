@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 export default function IndividualName(props) {
   return (
     <div className={`user-list-items ${props.classStyle}`}>

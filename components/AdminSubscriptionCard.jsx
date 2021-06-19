@@ -37,7 +37,10 @@ export default function AdminSubscriptionCard({
       <span className='date'>
         <span>Expires on </span>
         <b>
-          {date.day} {date.month} {date.year}
+          {date.day}{' '}
+          {date.month.charAt(0).toUpperCase() +
+            date.month.slice(1).toLowerCase()}{' '}
+          {date.year}
         </b>
       </span>
     )
