@@ -72,7 +72,7 @@ export default function Page() {
               width={'99%'}
               height={'700px'}
               chartType='BarChart'
-              loader={<div>Loading Chart</div>}
+              loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
               data={[
                 ['Class', 'This Month', 'Last Three Months', 'This Year'],
                 ...attendences,

@@ -9,7 +9,7 @@ import Feedback from '../../../../../components/Feedback'
 import Chart from 'react-google-charts'
 import db from '../../../../../db'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Page() {
   const router = useRouter()
@@ -116,7 +116,7 @@ export default function Page() {
                 width={'100%'}
                 height={'500px'}
                 chartType='BarChart'
-                loader={<div>Loading Chart</div>}
+                loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
                 data={data}
                 options={{
                   title: className,
