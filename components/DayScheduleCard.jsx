@@ -1,24 +1,29 @@
 import Image from 'next/image'
-import { useState } from 'react';
-import ClassDialog from './ClassDialog';
-import ClassZoomLinkDialog from './ClassZoomLinkDialog';
-import DayScheduleClass from './DayScheduleClass';
+import { useState } from 'react'
+import ClassDialog from './ClassDialog'
+import ClassZoomLinkDialog from './ClassZoomLinkDialog'
+import DayScheduleClass from './DayScheduleClass'
 import { formatDate } from '../utilities.js'
 import db from '../db.js'
 import _ from 'lodash'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-export default function DayScheduleCard({ dayData, userData, updateUserData, userBookings }) {
-  const [open, setOpen] = useState(false);
-  const [zoomLinkOpen, setZoomLinkOpen] = useState(false);
-  const [selectedYogaClass, setSelectedYogaClass] = useState({});
+export default function DayScheduleCard({
+  dayData,
+  userData,
+  updateUserData,
+  userBookings,
+}) {
+  const [open, setOpen] = useState(false)
+  const [zoomLinkOpen, setZoomLinkOpen] = useState(false)
+  const [selectedYogaClass, setSelectedYogaClass] = useState({})
   const [daySchedule, setDayClasses] = useState(dayData.schedule)
-  const notify = () => toast(`Added link for ${selectedYogaClass.name} !`);
+  const notify = () => toast(`Added link for ${selectedYogaClass.name} !`)
 
   const updateSelectedClassLink = (link) => {
     selectedYogaClass.link = link
-    const newDayClasses = daySchedule.map(yogaClass => {
+    const newDayClasses = daySchedule.map((yogaClass) => {
       if (yogaClass.id === selectedYogaClass.id) yogaClass.link = link
       return yogaClass
     })
@@ -27,15 +32,15 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
   }
 
   const handleDialogClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleZoomDialogClose = () => {
-    setZoomLinkOpen(false);
-  };
+    setZoomLinkOpen(false)
+  }
 
   const handleInfoIconClick = (selectedYogaClass) => {
-    setOpen(true);
+    setOpen(true)
     setSelectedYogaClass(selectedYogaClass)
   }
 
@@ -45,10 +50,16 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
   }
 
   const handleBookClick = (yogaClass) => {
-    db.bookings.postBooking(userData.jwt, yogaClass.schedules_weeks_id, yogaClass.classType).then(() => {
-      console.log('booked !')
-      updateUserData()
-    })
+    console.log(userData.jwt)
+    db.bookings
+      .postBooking(
+        userData.jwt,
+        yogaClass.schedules_weeks_id,
+        yogaClass.classType
+      )
+      .then(() => {
+        updateUserData()
+      })
   }
 
   const getSchedule = () => {
@@ -71,36 +82,36 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
 
   const getDate = (date) => {
     return (
-      <span className="date">
-      <span>{date.day} </span><span>{date.month}</span>
+      <span className='date'>
+        <span>{date.day} </span>
+        <span>{date.month}</span>
       </span>
     )
   }
 
   return (
-    <div className="day-schedule card">
-      <div className="head">
-        <img src={`/assets/lotus.svg`} alt="lotus flower" />
+    <div className='day-schedule card'>
+      <div className='head'>
+        <img src={`/assets/lotus.svg`} alt='lotus flower' />
         <h3>{dayData.day}</h3>
         {getDate(formatDate(dayData.date))}
       </div>
 
-      {
-        daySchedule.length == 0 ?
-          <div className="closed-sign"><Image src="/assets/closed.png" width={100} height={100} /></div>
-          :
-          <div className="schedule">
-            {getSchedule()}
-          </div>
-      }
-      {open ?
+      {daySchedule.length == 0 ? (
+        <div className='closed-sign'>
+          <Image src='/assets/closed.png' width={100} height={100} />
+        </div>
+      ) : (
+        <div className='schedule'>{getSchedule()}</div>
+      )}
+      {open ? (
         <ClassDialog
           isOpen={open}
           yogaClass={selectedYogaClass}
           closeDialog={handleDialogClose}
         />
-        : null}
-      {zoomLinkOpen ?
+      ) : null}
+      {zoomLinkOpen ? (
         <ClassZoomLinkDialog
           isOpen={zoomLinkOpen}
           userData={userData}
@@ -108,13 +119,13 @@ export default function DayScheduleCard({ dayData, userData, updateUserData, use
           yogaClass={selectedYogaClass}
           updateSelectedClassLink={updateSelectedClassLink}
         />
-        : null}
+      ) : null}
       <ToastContainer
         closeButton={false}
-        position="top-center"
+        position='top-center'
         limit={1}
         progressStyle={{
-          background: "#5E54AC"
+          background: '#5E54AC',
         }}
       />
     </div>

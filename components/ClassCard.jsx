@@ -12,14 +12,10 @@ export default function ClassCard({
   attend,
   deletion,
 }) {
-  const newTo = {
-    pathname: '/accounts/admin/classes/class_attendences',
-    param: { id },
-  }
   return (
     <div className='class-card'>
       <div className='card-buttons'>
-        <Link href={newTo}>
+        <Link href={`/accounts/admin/classes/class_attendences/${id}`}>
           <a className='button-white' data-id={id}>
             <FontAwesomeIcon icon={faChartBar} size='lg' />
           </a>

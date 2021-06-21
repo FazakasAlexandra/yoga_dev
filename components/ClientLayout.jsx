@@ -1,8 +1,12 @@
 import ActiveBookingCard from '../components/ActiveBookingCard'
 import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 import db from '../db'
+import { useState } from 'react'
 
 export default function ClientLayout({ user, setUser }) {
+  const [limitActiveBooking, setLimitActiveBooking] = useState(2)
+  const [limitPastBooking, setLimitPastBooking] = useState(2)
+
   const reloadClientInfo = () => {
     db.users.getClients().then((res) => {
       setUser(
@@ -18,12 +22,12 @@ export default function ClientLayout({ user, setUser }) {
       (history) => history.state === 'pending'
     )
     return mybooks != '' ? (
-      mybooks.map((history) => {
+      mybooks.slice(0, limitActiveBooking).map((history, index) => {
         return (
           <>
             <ActiveBookingCard
               subscriptions={user.user_subscriptions}
-              key={history.booking_id}
+              key={index}
               history={history}
               buttonVisible={false}
               reloadClientInfo={reloadClientInfo}
@@ -45,7 +49,7 @@ export default function ClientLayout({ user, setUser }) {
       (history) => history.state != 'pending'
     )
     return pastbooks != '' ? (
-      pastbooks.map((history) => {
+      pastbooks.slice(0, limitPastBooking).map((history) => {
         return (
           <>
             <ActiveBookingCard
@@ -92,10 +96,28 @@ export default function ClientLayout({ user, setUser }) {
       </div>
       <div className='client-account-bookings'>
         <h2>My bookings</h2>
-        <div className='client-account-activeb'>{myBookings()}</div>
+        <div className='client-account-activeb'>
+          {myBookings()}
+          <div className='container'>
+            <div
+              className='dot'
+              onClick={() => {
+                setLimitActiveBooking(limitActiveBooking + 10)
+              }}
+            ></div>
+          </div>
+        </div>
         <div className='client-account-pastb'>
           <h2>Past bookings</h2>
           {pastBookings()}
+          <div className='container'>
+            <div
+              className='dot'
+              onClick={() => {
+                setLimitPastBooking(limitPastBooking + 10)
+              }}
+            ></div>
+          </div>
         </div>
       </div>
       <div className='client-account-subs-section'>

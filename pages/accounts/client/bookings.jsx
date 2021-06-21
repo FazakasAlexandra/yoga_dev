@@ -8,7 +8,7 @@ import db from '../../../db.js'
 export default function Clients() {
   const router = useRouter()
   const [session, loading] = useSession()
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     if (!loading && !session) router.push({ pathname: '/' })
@@ -16,21 +16,15 @@ export default function Clients() {
 
   useEffect(() => {
     db.getJWT().then(({ jwtToken }) => {
-      db.users.getClients().then((res) =>
-        setUser(
-          res.data.find((usr) => {
-            if (usr.jwt == jwtToken) return true
-          })
-        )
-      )
+      db.users.getClients().then((res) => {
+        setUser(res.data.find((usr) => usr.jwt == jwtToken))
+      })
     })
   }, [])
 
   return (
     <Layout activeTab={'account'}>
-      {user.length != '' ? (
-        <ClientLayout user={user} setUser={setUser} />
-      ) : null}
+      {user ? <ClientLayout user={user} setUser={setUser} /> : null}
     </Layout>
   )
 }
