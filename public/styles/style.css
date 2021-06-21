@@ -550,7 +550,7 @@ header .navItem {
 .admin-classes-layout .chart-container {
   display: flex;
   justify-content: center;
-  padding: 1rem 0rem;
+  padding: 0 1rem;
 }
 .admin-classes-layout .classes-header {
   display: flex;
@@ -1234,6 +1234,7 @@ header .navItem {
 }
 .client-account-wrapper .client-account-name-section div p:first-child {
   font-size: 28px;
+  text-transform: capitalize;
 }
 .client-account-wrapper .client-account-name-section div p:nth-child(2) {
   color: #646263a3;
@@ -1291,6 +1292,55 @@ header .navItem {
 }
 .client-account-wrapper .footer span {
   display: none;
+}
+.client-account-wrapper .container {
+  margin-left: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+.client-account-wrapper .dot {
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  background: #8d8d8d;
+  border-radius: 50%;
+  transition: all 0.35s ease;
+  backface-visibility: hidden;
+}
+.container.hover .client-account-wrapper .dot {
+  background: transparent;
+}
+.client-account-wrapper .dot::before, .client-account-wrapper .dot::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  background: #8d8d8d;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition: all 0.35s ease;
+}
+.container.hover .client-account-wrapper .dot::before, .container.hover .client-account-wrapper .dot::after {
+  height: 45px;
+  border-radius: 0;
+}
+.client-account-wrapper .dot::before {
+  left: -18px;
+}
+.container.hover .client-account-wrapper .dot::before {
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+  border-radius: 45px/5;
+}
+.client-account-wrapper .dot::after {
+  right: -18px;
+}
+.container.hover .client-account-wrapper .dot::after {
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  border-radius: 9px;
 }
 
 @media (max-width: 1240px) {

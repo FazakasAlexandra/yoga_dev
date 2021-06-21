@@ -45,6 +45,7 @@
 
       p:first-child {
         font-size: 28px;
+        text-transform: capitalize;
       }
 
       p:nth-child(2) {
@@ -117,5 +118,64 @@
   //Button remove not visible
   .footer span {
     display: none;
+  }
+
+  .container {
+    margin-left: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
+
+  .dot {
+    transform: translateX(-50%);
+    width: 9px;
+    height: 9px;
+    background: #8d8d8d;
+    border-radius: 50%;
+    transition: all 0.35s ease;
+    backface-visibility: hidden;
+
+    .container.hover & {
+      background: transparent;
+    }
+
+    &::before,
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      background: #8d8d8d;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      transition: all 0.35s ease;
+
+      .container.hover & {
+        height: 45px;
+        border-radius: 0;
+      }
+    }
+
+    &::before {
+      left: -((9px) * 2);
+
+      .container.hover & {
+        transform: rotate(45deg);
+        transform-origin: right bottom;
+        border-radius: 45px / 5;
+      }
+    }
+
+    &::after {
+      right: -((9px) * 2);
+
+      .container.hover & {
+        transform: rotate(-45deg);
+        transform-origin: left bottom;
+        border-radius: 9px;
+      }
+    }
   }
 }

@@ -39,7 +39,6 @@ export default function ClientChart({ info }) {
       width: '100%',
       height: '100%',
     },
-    fontName: 'Roboto',
   }
 
   const attendedClasses = info.filter(

@@ -150,6 +150,11 @@ const db = {
         },
       }).then((res) => res.json())
     },
+    dailyAttendences: (id) => {
+      return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
+        res.json()
+      )
+    },
   },
   users: {
     getClients: () => {
