@@ -11,14 +11,13 @@ export default function ClientLayout({ user, setUser }) {
         })
       )
     })
+
   }
 
-  const myBookings = () => {
-    const mybooks = user.history.filter(
-      (history) => history.state === 'pending'
-    )
-    return mybooks != '' ? (
-      mybooks.map((history) => {
+  const activeBookings = () => {
+    const bookings = user.history.filter((history) => history.state === 'pending')
+    return bookings.length != 0 ? (
+      bookings.map((history) => {
         return (
           <>
             <ActiveBookingCard
@@ -41,11 +40,9 @@ export default function ClientLayout({ user, setUser }) {
   }
 
   const pastBookings = () => {
-    const pastbooks = user.history.filter(
-      (history) => history.state != 'pending'
-    )
-    return pastbooks != '' ? (
-      pastbooks.map((history) => {
+    const pastbooks = user.history.filter((history) => history.state != 'pending')
+    return pastbooks.length != 0 ? (
+      pastbooks.reverse().map((history) => {
         return (
           <>
             <ActiveBookingCard
@@ -92,7 +89,7 @@ export default function ClientLayout({ user, setUser }) {
       </div>
       <div className='client-account-bookings'>
         <h2>My bookings</h2>
-        <div className='client-account-activeb'>{myBookings()}</div>
+        <div className='client-account-activeb'>{activeBookings()}</div>
         <div className='client-account-pastb'>
           <h2>Past bookings</h2>
           {pastBookings()}

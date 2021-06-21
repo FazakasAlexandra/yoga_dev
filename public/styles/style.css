@@ -60,6 +60,14 @@ ul {
   font-weight: bold;
 }
 
+svg > g > g:last-child {
+  pointer-events: none;
+}
+
+#reactgooglegraph-1 svg {
+  overflow: visible !important;
+}
+
 .button-white {
   padding: 0.8rem 1rem;
   text-align: center;
@@ -1216,7 +1224,6 @@ header .navItem {
 .client-account-wrapper .client-account-name-section div {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .client-account-wrapper .client-account-name-section div p {
   margin: 0 15px;

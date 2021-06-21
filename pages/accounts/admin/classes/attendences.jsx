@@ -6,6 +6,8 @@ import AdminLayout from '../../../../components/AdminLayout'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import Chart from 'react-google-charts'
 import db from '../../../../db'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Page() {
     const router = useRouter()
@@ -51,7 +53,7 @@ export default function Page() {
                             width={"100%"}
                             height={'500px'}
                             chartType="BarChart"
-                            loader={<div>Loading Chart</div>}
+                            loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
                             data={attendences} 
                             options={{
                                 // Material design options

@@ -1,4 +1,6 @@
 import Chart from 'react-google-charts'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function ClientChart({ info }) {
   const pieOptions = {
@@ -31,6 +33,7 @@ export default function ClientChart({ info }) {
       top: 20,
       width: '100%',
       height: '100%',
+      overflow: 'visible !important'
     },
     fontName: 'Roboto',
   }
@@ -41,7 +44,7 @@ export default function ClientChart({ info }) {
   const absentClasses = info.filter(
     (element) => element.state == 'absent'
   ).length
-  const cancelledClasses = info.filter(
+  const canceledClasses = info.filter(
     (element) => element.state == 'canceled'
   ).length
 
@@ -50,12 +53,13 @@ export default function ClientChart({ info }) {
       <h3>Attendences</h3>
       <Chart
         width={'100%'}
+        height={'250px'}
         chartType='PieChart'
-        loader={<div>Loading Chart</div>}
+        loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
         data={[
           ['Classes', 'Attendence'],
           ['Attended classes', attendedClasses],
-          ['Canceled Classes', cancelledClasses],
+          ['Canceled Classes', canceledClasses],
           ['Absent Classes', absentClasses],
         ]}
         options={pieOptions}
