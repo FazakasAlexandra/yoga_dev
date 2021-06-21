@@ -23,8 +23,8 @@ export default function SubscriptionCard({
     return discounts.map(({ amount, class_type, class_name }) => {
       return (
         <p key={_.uniqueId()}>
-          <b>{amount}%</b> off from all <i>{class_name} </i> {class_type}{' '}
-          classes
+          <b>{amount}</b><b>%</b> off from <i> {class_name} </i>
+          {class_type === 'online' ? 'online' : ''}
         </p>
       )
     })
@@ -35,10 +35,9 @@ export default function SubscriptionCard({
       return (
         <p key={_.uniqueId()}>
           <b>{amount} free</b>{' '}
-          <span>
-            {amount > 1 ? 'classes' : 'class'} for {class_type}{' '}
-            <i>{class_name}</i>
-          </span>
+          <i>{class_name}</i>
+          {class_type === 'online' ? 'online' : ''}
+          {amount > 1 ? ' entrences' : ' entrence'}
         </p>
       )
     })
@@ -48,7 +47,9 @@ export default function SubscriptionCard({
     return entrences.map(({ amount, class_name, class_type }) => {
       return (
         <p key={_.uniqueId()} style={{ marginTop: '0rem' }}>
-          <b>{amount}</b> entrences for {class_type} <i>{class_name}</i>
+          <b>{amount}</b> <i>{class_name}</i>
+          {class_type === 'online' ? 'online' : ''}
+          {amount > 1 ? ' entrences' : ' entrece'}
         </p>
       )
     })
@@ -82,9 +83,17 @@ export default function SubscriptionCard({
         <span className='months'> / {months} {months > 1 ? 'months' : 'month'}</span>
       </div>
       <hr />
-      {getEntrences()}
-      {getDiscounts()}
-      {getFreeEntrances()}
+      <div>
+        <div>
+          <h3>Entrences</h3>
+          {getEntrences()}
+          {getFreeEntrances()}
+        </div>
+        <div>
+          <h3>Discounts</h3>
+          {getDiscounts()}
+        </div>
+      </div>
     </div>
   )
 }
