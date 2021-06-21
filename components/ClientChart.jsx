@@ -27,13 +27,17 @@ export default function ClientChart({ info }) {
     pieSliceText: 'none',
     tooltip: {
       showColorCode: true,
+      text: 'value',
+      textStyle: {
+        fontName: 'roboto, sans-serif',
+        fontSize: 16,
+      }
     },
     chartArea: {
       left: 0,
       top: 20,
       width: '100%',
       height: '100%',
-      overflow: 'visible !important'
     },
     fontName: 'Roboto',
   }

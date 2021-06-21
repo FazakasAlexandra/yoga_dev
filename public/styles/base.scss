@@ -52,19 +52,22 @@ ul {
   margin-right: 22px;
 }
 
-.button-home.yellow:hover{
+.button-home.yellow:hover {
   background-color: #ffbc65;
 }
 
-.button-home.white:hover{
+.button-home.white:hover {
   font-weight: bold;
 }
-svg > g > g:last-child { 
-  pointer-events: none 
-  }
-  #reactgooglegraph-1 svg{
-    overflow: visible !important;
-  }
+
+svg>g>g:last-child {
+  pointer-events: none
+}
+
+#reactgooglegraph-1 svg {
+  overflow: visible !important;
+}
+
 .button-white {
   padding: 0.8rem 1rem;
   text-align: center;
