@@ -1,7 +1,7 @@
 import ActiveBookingCard from '../components/ActiveBookingCard'
 import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 import db from '../db'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ClientLayout({ user, setUser }) {
   const [limitActiveBooking, setLimitActiveBooking] = useState(2)
@@ -15,7 +15,6 @@ export default function ClientLayout({ user, setUser }) {
         })
       )
     })
-
   }
 
   const activeBookings = () => {
@@ -94,7 +93,7 @@ export default function ClientLayout({ user, setUser }) {
       <div className='client-account-bookings'>
         <h2>My bookings</h2>
         <div className='client-account-activeb'>
-          {myBookings()}
+          {activeBookings()}
           <div className='container'>
             <div
               className='dot'

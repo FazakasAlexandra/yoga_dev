@@ -14,12 +14,10 @@ const formatDate = (dayDate, outputType) => {
     return {month, day, year: year}
 }
 
-const formatWeekSchedule = (weekSchedule, date_week_start, date_week_end) => {
+const formatWeekSchedule = (weekSchedule) => {
     return weekSchedule.reduce((acc, weekDay) => {
         acc.push({
             date_day: weekDay.date,
-            date_week_start,
-            date_week_end,
             schedule: weekDay.schedule.reduce((acc, schedule)=>{
                 acc.push({
                     hour : schedule.hour,

@@ -12,16 +12,18 @@ const db = {
     getLatestSchedule: () => {
       return fetch(`${db.baseURL}/schedules/latest`).then((res) => res.json())
     },
-    postSchedule: (weekSchedule, jwt) => {
-      fetch(`${db.baseURL}/schedules`, {
+    postSchedule: (weekSchedule, jwt, startDate, endDate) => {
+      return fetch(`${db.baseURL}/schedules/${startDate}/${endDate}`, {
         method: 'POST',
         headers: {
           Authorization: jwt,
         },
         body: JSON.stringify(weekSchedule),
+      }).then((res) => {
+        if (!res.ok) return Promise.reject(res.statusText)
+
+        return res.json();
       })
-        .then((res) => res.json())
-        .then(console.log)
     },
     removeSubscription: (jwt, id) =>
       fetch(`${db.baseURL}/subscriptions/${id}`, {

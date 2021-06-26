@@ -9,7 +9,8 @@ import db from '../../../../db.js'
 import TextField from '@material-ui/core/TextField';
 import { ThemeProvider } from "@material-ui/core";
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
-
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
 const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const getWeekDates = (startDate, isTodayIncluded) => {
@@ -31,11 +32,18 @@ export default function WeekScheduleAdmin() {
     const [weekSchedule, setWeekSchedule] = useState([])
     const [weekStartDate, setWeekStartDate] = useState(new Date().toISOString().slice(0, 10))
     const [weekDates, setWeekDates] = useState(getWeekDates(Date.now(), false))
-    
+    const notifySucces = (message) => toast.success(message)
+    const notifyError = (message) => toast.error(message)
+
     const handlePostSchedule = () => {
-        db.getJWT().then((jwt)=>{
-            const formatedWeekSchedule = formatWeekSchedule(weekSchedule, weekDates[0].date, weekDates[6].date)
-            db.schedules.postSchedule(formatedWeekSchedule, jwt.jwtToken)
+        db.getJWT().then((jwt) => {
+            const formatedWeekSchedule = formatWeekSchedule(weekSchedule)
+            db.schedules.postSchedule(formatedWeekSchedule, jwt.jwtToken, weekDates[0].date, weekDates[6].date)
+                .then((res) => {
+                    notifySucces(res.message)
+                }).catch((message) => {
+                    notifyError(message)
+                })
         })
     }
 
@@ -121,6 +129,7 @@ export default function WeekScheduleAdmin() {
                     <div className="day-schedule-cards">
                         {getScheduleCards()}
                     </div>
+                    <ToastContainer />
                 </AdminClassesLayout>
             </AdminLayout>
         </Layout>
