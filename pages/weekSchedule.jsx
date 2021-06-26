@@ -43,7 +43,9 @@ export default function WeekSchedule() {
 
   useEffect(() => {
     db.schedules.getLatestSchedule().then((res) => {
-      setWeekSchedule(res.data)
+      const sortedSchedule = res.data.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+      setWeekSchedule(sortedSchedule)
 
       let startDate = new Date(res.data[0].dateWeekStart)
       let endDate = new Date(res.data[0].dateWeekEnd)
