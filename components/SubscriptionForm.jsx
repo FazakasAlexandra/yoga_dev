@@ -76,8 +76,6 @@ export default function subscriptionsForm({
       entrences,
     }
 
-    console.log(newSubscription)
-
     db.getJWT().then((jwt) => {
       db.subscriptions.postSubscription(newSubscription, jwt).then((res) => {
         addNewSubscriptionCard(res.data)

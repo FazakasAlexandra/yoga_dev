@@ -11,50 +11,14 @@ import { ThemeProvider } from "@material-ui/core";
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css';
-const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
-const getWeekDates = (startDate, isTodayIncluded) => {
-    const daysIdxs = isTodayIncluded ? [0, 1, 2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6, 7]
-
-    return daysIdxs.map((day) => {
-        let date = new Date(startDate + day * 24 * 60 * 60 * 1000)
-
-        return {
-            date: date.toISOString().slice(0, 10),
-            day: weekDays[date.getDay()]
-        }
-    })
-}
+import { getWeekDates } from '../../../../utilities.js'
 
 export default function WeekScheduleAdmin() {
     const router = useRouter()
     const [session, loading] = useSession()
     const [weekSchedule, setWeekSchedule] = useState([])
     const [weekStartDate, setWeekStartDate] = useState(new Date().toISOString().slice(0, 10))
-    const [weekDates, setWeekDates] = useState(getWeekDates(Date.now(), false))
-    const notifySucces = (message) => toast.success(message)
-    const notifyError = (message) => toast.error(message)
-
-    const handlePostSchedule = () => {
-        db.getJWT().then((jwt) => {
-            const formatedWeekSchedule = formatWeekSchedule(weekSchedule)
-            db.schedules.postSchedule(formatedWeekSchedule, jwt.jwtToken, weekDates[0].date, weekDates[6].date)
-                .then((res) => {
-                    notifySucces(res.message)
-                }).catch((message) => {
-                    notifyError(message)
-                })
-        })
-    }
-
-    const changeWeekScheduleDates = (weekSchedule) => {
-        const datedWeekSchedule = weekSchedule.map((dayData, idx) => {
-            dayData.date = weekDates[idx].date
-            dayData.day = weekDates[idx].day
-            return dayData
-        })
-        return datedWeekSchedule
-    }
+    const [weekDates, setWeekDates] = useState(getWeekDates(Date.now()))
 
     useEffect(() => {
         db.schedules.getLatestSchedule().then(res => {
@@ -68,7 +32,7 @@ export default function WeekScheduleAdmin() {
     }, [session])
 
     useEffect(() => {
-        setWeekDates(getWeekDates(new Date(weekStartDate).getTime(), true))
+        setWeekDates(getWeekDates(new Date(weekStartDate).getTime()))
     }, [weekStartDate])
 
     useEffect(() => {
@@ -77,6 +41,27 @@ export default function WeekScheduleAdmin() {
             setWeekSchedule(datedWeekSchedule)
         }
     }, [weekDates])
+
+    const handlePostSchedule = () => {
+        db.getJWT().then(({ jwtToken }) => {
+            const formatedWeekSchedule = formatWeekSchedule(weekSchedule)
+            db.schedules.postSchedule(formatedWeekSchedule, jwtToken, weekDates[0].date, weekDates[6].date)
+                .then((res) => {
+                    toast.success(res.message)
+                }).catch((message) => {
+                    toast.error(message)
+                })
+        })
+    }
+
+    const changeWeekScheduleDates = (weekSchedule) => {
+        const datedWeekSchedule = weekSchedule.map((dayData, idx) => {
+            dayData.date = weekDates[idx].date
+            dayData.day = weekDates[idx].day
+            return dayData
+        })
+        return datedWeekSchedule
+    }
 
     const updateWeekSchedule = (dayData, dayNumber) => {
         const updatedWeekSchedule = [...weekSchedule]

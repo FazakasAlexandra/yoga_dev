@@ -9,7 +9,6 @@ export default function Subscriptions() {
   useEffect(() => {
     db.subscriptions.getSubscriptions().then((res) => {
       setSubscriptions(res.data)
-      console.log(res.data)
     })
   }, [])
 

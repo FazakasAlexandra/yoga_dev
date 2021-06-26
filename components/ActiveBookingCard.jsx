@@ -13,7 +13,6 @@ export default function ActiveBookingCard({
       db.bookings
         .changeStatus(jwt.jwtToken, history.booking_id, status)
         .then((res) => {
-          console.log(res.data)
           reloadClientInfo()
         })
     })

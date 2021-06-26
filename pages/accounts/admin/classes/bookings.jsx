@@ -48,7 +48,6 @@ export default function Page() {
       return { ...yogaClass, active: false }
     })
 
-    console.log(updatedActieClass)
     setClasses(updatedActieClass)
 
     db.bookings.getClassBookings(weekScheduleId).then((res) => {
@@ -72,9 +71,7 @@ export default function Page() {
 
   const changeStatus = (status, bookingId) => {
     db.getJWT().then((jwt) => {
-      console.log(bookingId)
       db.bookings.changeStatus(jwt.jwtToken, bookingId, status).then((res) => {
-        console.log(res.status)
         db.bookings
           .getClassBookings(activeClass.schedules_weeks_id)
           .then((res) => {
