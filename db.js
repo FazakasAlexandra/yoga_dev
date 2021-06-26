@@ -136,6 +136,11 @@ const db = {
         res.json()
       )
     },
+    dailyAttendences: (id) => {
+      return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
+        res.json()
+      )
+    },
     getDayClasses: (date) => {
       return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
         res.json()
@@ -150,15 +155,13 @@ const db = {
         },
       }).then((res) => res.json())
     },
-    dailyAttendences: (id) => {
-      return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
-        res.json()
-      )
-    },
   },
   users: {
     getClients: () => {
       return fetch(`${db.baseURL}/users/clients`).then((res) => res.json())
+    },
+    getOneClient: (jwt) => {
+      return fetch(`${db.baseURL}/user/${jwt}`).then((res) => res.json())
     },
     queryUsers: (criteria, value) => {
       return fetch(`${db.baseURL}/users/${criteria}/${value}`).then((res) =>
@@ -171,6 +174,30 @@ const db = {
         body: JSON.stringify(user),
       }).then((res) => res.json())
     },
+  },
+  events: {
+    getEvents: () => {
+      return fetch(`${db.baseURL}/events`).then((res) => res.json())
+    },
+    getUpcomingEvents: (date) => {
+      return fetch(`${db.baseURL}/events/${date}`).then((res) => res.json())
+    },
+    postEvent: (jwt, newEvent) => {
+      return fetch(`${db.baseURL}/events/newevent`, {
+        method: 'POST',
+        body: JSON.stringify(newEvent),
+        headers: {
+          Authorization: jwt.jwtToken,
+        },
+      }).then((res) => res.json())
+    },
+    deleteEvent: (jwt, id) =>
+      fetch(`${db.baseURL}/events/dlt/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => res.json()),
   },
 }
 

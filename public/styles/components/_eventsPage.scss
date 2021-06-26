@@ -1,0 +1,98 @@
+.events-layout-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-card {
+  width: 900px;
+  height: 800px;
+  padding: 20px;
+  position: relative;
+
+  img:first-child {
+    width: 95%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 50px;
+    position: absolute;
+  }
+
+  .event-details-section {
+    background: white;
+    width: 77%;
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    z-index: 9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 20px;
+
+    img:first-child {
+      height: 60px;
+      width: 60px;
+      opacity: 0.6;
+      position: absolute;
+    }
+
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      margin-right: auto;
+      margin-left: auto;
+      color: rgba(63, 127, 154, 1);
+
+      div:first-child {
+        //width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+
+        h1 {
+          margin-bottom: 10px;
+        }
+        p {
+          margin: 0;
+        }
+      }
+      .description {
+        text-align: center;
+        font-size: 18px;
+        color: rgba(137, 170, 184, 1);
+      }
+    }
+  }
+
+  .buttons-eventsform {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+
+    .button-white {
+      padding: 0.6rem 0.8rem;
+      font-size: 16px;
+      margin: 0 3px;
+    }
+
+    .button-white:first-child {
+      background: #76e294;
+    }
+
+    .button-white:last-child {
+      background: #ff5d23;
+    }
+  }
+}
+
+@keyframes highlightbutton2 {
+  100% {
+    background: rgba(243, 84, 84, 0.57);
+  }
+  0% {
+    background-color: #76e294;
+  }
+}
