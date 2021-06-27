@@ -10,7 +10,6 @@ import TextField from '@material-ui/core/TextField';
 import { ThemeProvider } from "@material-ui/core";
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css';
 import { getWeekDates } from '../../../../utilities.js'
 
 export default function WeekScheduleAdmin() {

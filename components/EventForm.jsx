@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import { faTimes, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import TextField from '@material-ui/core/TextField'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function EventForm({ setEventsForm, addNewEvent }) {
   const [uploadedImage, setUploadedImage] = useState(false)
@@ -33,6 +34,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
 
   function handleFileInputChange(e) {
     const reader = new FileReader()
+    console.log('uploading')
     reader.readAsDataURL(e.target.files[0])
     reader.addEventListener('load', () => {
       setImage(reader.result)
@@ -71,10 +73,9 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                   e.preventDefault()
                   const arr = [name, date, hour, location, description]
                   uploadedImage === false
-                    ? alert('Please upload an image!')
+                    ? toast.error('Picture is required !')
                     : arr.findIndex((e) => e === '') > -1
-                    ? (e.target.style.animation =
-                        'highlightbutton2 1000ms ease-out')
+                    ? (e.target.style.animation = 'highlightbutton2 1000ms ease-out')
                     : addNewEvent(
                         e,
                         name,
@@ -100,7 +101,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
               </button>
               <button
                 className='button-white'
-                onClick={() => setEventsForm('false')}
+                onClick={() => setEventsForm(false)}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </button>
@@ -193,6 +194,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </form>
   )
 }
