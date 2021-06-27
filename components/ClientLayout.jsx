@@ -1,14 +1,15 @@
 import ActiveBookingCard from '../components/ActiveBookingCard'
 import AdminSubscriptionCard from '../components/AdminSubscriptionCard'
 import db from '../db'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function ClientLayout({ user, setUser }) {
   const [limitActiveBooking, setLimitActiveBooking] = useState(2)
   const [limitPastBooking, setLimitPastBooking] = useState(2)
-  const [display, setDisplay] = useState(false)
+  const [displayActive, setDisplayActive] = useState(false)
+  const [displayPast, setDisplayPast] = useState(false)
 
   const reloadClientInfo = () => {
     db.users.getOneClient(user.jwt).then((res) => {
@@ -20,14 +21,14 @@ export default function ClientLayout({ user, setUser }) {
     const elements = document.querySelectorAll(
       '.client-account-activeb .active-booking-card'
     ).length
-    elements < limitActiveBooking && elements > 2 ? setDisplay(true) : ''
+    elements < limitActiveBooking && elements > 2 ? setDisplayActive(true) : ''
   }, [limitActiveBooking])
 
   useEffect(() => {
     const elements = document.querySelectorAll(
       '.client-account-pastb .active-booking-card'
     ).length
-    elements < limitPastBooking && elements > 2 ? setDisplay(true) : ''
+    elements < limitPastBooking && elements > 2 ? setDisplayPast(true) : ''
   }, [limitPastBooking])
 
   const activeBookings = () => {
@@ -88,15 +89,21 @@ export default function ClientLayout({ user, setUser }) {
   }
 
   const listOfSubscriptions = () => {
-    return user.user_subscriptions.map((sub) => {
-      return (
-        <AdminSubscriptionCard
-          key={sub.usersSubscriptionID}
-          subscription={sub}
-          reloadClientInfo={reloadClientInfo}
-        />
-      )
-    })
+    return user.user_subscriptions.length != 0 ? (
+      user.user_subscriptions.map((sub) => {
+        return (
+          <AdminSubscriptionCard
+            key={sub.usersSubscriptionID}
+            subscription={sub}
+            reloadClientInfo={reloadClientInfo}
+          />
+        )
+      })
+    ) : (
+      <p>
+        <i>No Active Subscriptions</i>
+      </p>
+    )
   }
 
   return (
@@ -117,16 +124,16 @@ export default function ClientLayout({ user, setUser }) {
           <div className='container'>
             <div
               className='dot'
-              style={{ display: !display ? 'block' : 'none' }}
+              style={{ display: !displayActive ? 'block' : 'none' }}
               onClick={() => {
                 setLimitActiveBooking(limitActiveBooking + 10)
               }}
             ></div>
             <div
-              style={{ display: display ? 'block' : 'none' }}
+              style={{ display: displayActive ? 'block' : 'none' }}
               onClick={() => {
                 setLimitActiveBooking(2)
-                setDisplay(false)
+                setDisplayActive(false)
               }}
             >
               <FontAwesomeIcon icon={faTimes} className='info-icon' />
@@ -139,16 +146,16 @@ export default function ClientLayout({ user, setUser }) {
           <div className='container'>
             <div
               className='dot'
-              style={{ display: !display ? 'block' : 'none' }}
+              style={{ display: !displayPast ? 'block' : 'none' }}
               onClick={() => {
                 setLimitPastBooking(limitPastBooking + 10)
               }}
             ></div>
             <div
-              style={{ display: display ? 'block' : 'none' }}
+              style={{ display: displayPast ? 'block' : 'none' }}
               onClick={() => {
                 setLimitPastBooking(2)
-                setDisplay(false)
+                setDisplayPast(false)
               }}
             >
               <FontAwesomeIcon icon={faTimes} className='info-icon' />

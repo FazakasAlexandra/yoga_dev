@@ -19,7 +19,6 @@ export default function DayScheduleCard({
   const [zoomLinkOpen, setZoomLinkOpen] = useState(false)
   const [selectedYogaClass, setSelectedYogaClass] = useState({})
   const [daySchedule, setDayClasses] = useState(dayData.schedule)
-  const notify = () => toast(`Added link for ${selectedYogaClass.name} !`)
 
   const updateSelectedClassLink = (link) => {
     selectedYogaClass.link = link
@@ -27,7 +26,7 @@ export default function DayScheduleCard({
       if (yogaClass.id === selectedYogaClass.id) yogaClass.link = link
       return yogaClass
     })
-    notify()
+    toast.success(`Added link for ${selectedYogaClass.name} !`)
     setDayClasses(newDayClasses)
   }
 
@@ -50,7 +49,6 @@ export default function DayScheduleCard({
   }
 
   const handleBookClick = (yogaClass) => {
-    console.log(userData.jwt)
     db.bookings
       .postBooking(
         userData.jwt,
@@ -120,14 +118,7 @@ export default function DayScheduleCard({
           updateSelectedClassLink={updateSelectedClassLink}
         />
       ) : null}
-      <ToastContainer
-        closeButton={false}
-        position='top-center'
-        limit={1}
-        progressStyle={{
-          background: '#5E54AC',
-        }}
-      />
+      <ToastContainer/>
     </div>
   )
 }

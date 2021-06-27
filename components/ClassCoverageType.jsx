@@ -19,14 +19,11 @@ export default function ClassCoverageType({
   } = coverage
 
   const decreaseCoverage = () => {
-    const yes = confirm(
-      `Are you sure you want to decrease the amount of ${innerText}?`
-    )
+    const yes = confirm(`Are you sure you want to decrease the amount of ${innerText}?`)
     if (yes) {
       db.subscriptions
         .decreaseCoverage(coverageType, coverage.id)
         .then((res) => {
-          console.log(`remained ${coverageType} : `, res.data)
           changeStatus('present', bookingId)
         })
     }

@@ -12,7 +12,7 @@ export default function ClassZoomLinkDialog({ isOpen, userData, yogaClass, close
     
     const saveLink = () => {
         db.getJWT().then(({ jwtToken }) => {
-            db.schedules.updateScheduledClassLink(yogaClass.schedule_day_id, link, jwtToken)
+             db.schedules.updateScheduledClassLink(yogaClass.schedules_weeks_id, link, jwtToken)
                 .then((res) => {
                     updateSelectedClassLink(link)
                 })
