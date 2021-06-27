@@ -33,7 +33,6 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
     fontSize: '16px',
     margin: '3px',
     width: '100%',
-    heigth: '20px',
     background: 'white',
   }
 

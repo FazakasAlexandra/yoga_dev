@@ -72,7 +72,12 @@ export default function Page() {
               width={'99%'}
               height={'700px'}
               chartType='BarChart'
-              loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
+              loader={
+                <>
+                  <FontAwesomeIcon size='2x' icon={faSpinner} spin />
+                  <p>Loading chart...</p>
+                </>
+              }
               data={[
                 ['Class', 'This Month', 'Last Three Months', 'This Year'],
                 ...attendences,
@@ -83,14 +88,14 @@ export default function Page() {
                 colors: ['#8BDD7C', '#83BCFF', '#F46565'],
                 fontName: 'roboto, sans-serif',
                 fontSize: 17,
-                legend:{
+                legend: {
                   textStyle: {
                     fontSize: 14,
-                  }
+                  },
                 },
-                titleTextStyle : {
+                titleTextStyle: {
                   fontSize: 20,
-                }
+                },
               }}
             />
           </div>

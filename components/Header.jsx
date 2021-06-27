@@ -97,6 +97,13 @@ export default function Header({ activeTab }) {
             </Link>
           </li>
           <li className='navItem'>
+            <Link href='/events'>
+              <a className={activeTab === 'events' ? 'active-tab' : null}>
+                Events
+              </a>
+            </Link>
+          </li>
+          <li className='navItem'>
             <FontAwesomeIcon
               icon={faCalendarAlt}
               style={{ marginRight: '0.5rem', fontSize: '1.6rem' }}

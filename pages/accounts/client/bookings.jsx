@@ -16,8 +16,8 @@ export default function Clients() {
 
   useEffect(() => {
     db.getJWT().then(({ jwtToken }) => {
-      db.users.getClients().then((res) => {
-        setUser(res.data.find((usr) => usr.jwt == jwtToken))
+      db.users.getOneClient(jwtToken).then((res) => {
+        setUser(res.data)
       })
     })
   }, [])

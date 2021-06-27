@@ -1322,27 +1322,100 @@ header .navItem {
   border-radius: 50%;
   transition: all 0.35s ease;
 }
-.container.hover .client-account-wrapper .dot::before, .container.hover .client-account-wrapper .dot::after {
-  height: 45px;
-  border-radius: 0;
-}
 .client-account-wrapper .dot::before {
   left: -18px;
-}
-.container.hover .client-account-wrapper .dot::before {
-  transform: rotate(45deg);
-  transform-origin: right bottom;
-  border-radius: 45px/5;
 }
 .client-account-wrapper .dot::after {
   right: -18px;
 }
-.container.hover .client-account-wrapper .dot::after {
-  transform: rotate(-45deg);
-  transform-origin: left bottom;
-  border-radius: 9px;
+
+.events-layout-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.event-card {
+  width: 900px;
+  height: 800px;
+  padding: 20px;
+  position: relative;
+}
+.event-card img:first-child {
+  width: 95%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 50px;
+  position: absolute;
+}
+.event-card .event-details-section {
+  background: white;
+  width: 77%;
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  z-index: 9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+}
+.event-card .event-details-section img:first-child {
+  height: 60px;
+  width: 60px;
+  opacity: 0.6;
+  position: absolute;
+}
+.event-card .event-details-section .event-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  color: #3f7f9a;
+}
+.event-card .event-details-section .event-details div:first-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+.event-card .event-details-section .event-details div:first-child h1 {
+  margin-bottom: 10px;
+}
+.event-card .event-details-section .event-details div:first-child p {
+  margin: 0;
+}
+.event-card .event-details-section .event-details .description {
+  text-align: center;
+  font-size: 18px;
+  color: #89aab8;
+}
+.event-card .buttons-eventsform {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+.event-card .buttons-eventsform .button-white {
+  padding: 0.6rem 0.8rem;
+  font-size: 16px;
+  margin: 0 3px;
+}
+.event-card .buttons-eventsform .button-white:first-child {
+  background: #76e294;
+}
+.event-card .buttons-eventsform .button-white:last-child {
+  background: #ff5d23;
+}
+
+@keyframes highlightbutton2 {
+  100% {
+    background: rgba(243, 84, 84, 0.57);
+  }
+  0% {
+    background-color: #76e294;
+  }
+}
 @media (max-width: 1240px) {
   .home-content {
     justify-content: center;

@@ -1,0 +1,109 @@
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/client'
+import Layout from '../../../components/Layout'
+import { useRouter } from 'next/router'
+import AdminLayout from '../../../components/AdminLayout'
+import EventCard from '../../../components/EventCard'
+import EventForm from '../../../components/EventForm'
+import db from '../../../db'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+export default function Page() {
+  const router = useRouter()
+  const [session, loading] = useSession()
+  const [events, setEvents] = useState([])
+  const [eventsForm, setEventsForm] = useState(false)
+
+  useEffect(() => {
+    if (!loading && !session) router.push({ pathname: '/' })
+  }, [session])
+
+  useEffect(() => {
+    db.events.getEvents().then((res) => setEvents(res.data.reverse()))
+  }, [])
+
+  const getEvents = () => {
+    let content = []
+    eventsForm == 'true'
+      ? (content = [
+          <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
+          events.map((event, index) => {
+            return <EventCard key={index} event={event} />
+          }),
+        ])
+      : (content = [
+          events.map((event, index) => {
+            return (
+              <EventCard
+                key={index}
+                event={event}
+                adminInterface={true}
+                deleteEvent={deleteEvent}
+              />
+            )
+          }),
+        ])
+    return content
+  }
+
+  const addNewEvent = (
+    e,
+    name,
+    image,
+    date,
+    hour,
+    link,
+    location,
+    description
+  ) => {
+    e.preventDefault()
+    const newEvent = {
+      name: name,
+      image: image,
+      date: date,
+      hour: hour,
+      link: link,
+      location: location,
+      description: description,
+    }
+
+    db.getJWT().then((jwt) => {
+      db.events.postEvent(jwt, newEvent).then((res) => {
+        setEventsForm(false)
+        db.events.getEvents().then((res) => setEvents(res.data.reverse()))
+      })
+    })
+  }
+
+  const deleteEvent = (ev) => {
+    db.getJWT().then((jwt) => {
+      db.events
+        .deleteEvent(jwt, ev)
+        .then((res) => setEvents(res.data.reverse()))
+    })
+  }
+
+  return (
+    <Layout activeTab={'account'}>
+      <AdminLayout activeTab={'events'}>
+        <div>
+          <div className='button-add-class'>
+            <button
+              className='button-white admin'
+              style={{
+                margin: '15px 0 0 30px ',
+              }}
+              onClick={() => {
+                setEventsForm('true')
+              }}
+            >
+              <FontAwesomeIcon icon={faPlus} size='lg' />
+            </button>
+          </div>
+          <div className='events-layout'>{getEvents()}</div>
+        </div>
+      </AdminLayout>
+    </Layout>
+  )
+}
