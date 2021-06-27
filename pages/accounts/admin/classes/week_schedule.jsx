@@ -10,7 +10,6 @@ import TextField from '@material-ui/core/TextField';
 import { ThemeProvider } from "@material-ui/core";
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css';
 import { getWeekDates } from '../../../../utilities.js'
 
 export default function WeekScheduleAdmin() {
@@ -22,7 +21,13 @@ export default function WeekScheduleAdmin() {
 
     useEffect(() => {
         db.schedules.getLatestSchedule().then(res => {
-            const datedWeekSchedule = changeWeekScheduleDates(res.data)
+            const sortedSchedule = res.data.sort((a,b) => new Date(a.date) - new Date(b.date));
+            // 2 -> 5
+            // 1 -> 7 
+            // 26   23
+            // 27   24
+            const datedWeekSchedule = changeWeekScheduleDates(sortedSchedule)
+
             setWeekSchedule(datedWeekSchedule)
         })
     }, [])
@@ -38,6 +43,7 @@ export default function WeekScheduleAdmin() {
     useEffect(() => {
         if (weekSchedule.length > 0) {
             const datedWeekSchedule = changeWeekScheduleDates(weekSchedule)
+            console.log(datedWeekSchedule)
             setWeekSchedule(datedWeekSchedule)
         }
     }, [weekDates])
@@ -72,7 +78,7 @@ export default function WeekScheduleAdmin() {
     const getScheduleCards = () => {
         return weekSchedule.map((day, idx) => {
             return <DayScheduleCardForm
-                key={day.date}
+                key={idx}
                 dayNumber={idx}
                 dayData={day}
                 updateWeekSchedule={updateWeekSchedule}

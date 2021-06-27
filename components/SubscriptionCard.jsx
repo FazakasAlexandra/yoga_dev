@@ -23,7 +23,8 @@ export default function SubscriptionCard({
     return discounts.map(({ amount, class_type, class_name }) => {
       return (
         <p key={_.uniqueId()}>
-          <b>{amount}</b><b>%</b> off from <i> {class_name} </i>
+          <b>{amount}</b>
+          <b>%</b> off from <i> {class_name} </i>
           {class_type === 'online' ? 'online' : ''}
         </p>
       )
@@ -34,8 +35,7 @@ export default function SubscriptionCard({
     return free_entrences.map(({ amount, class_type, class_name }) => {
       return (
         <p key={_.uniqueId()}>
-          <b>{amount} free</b>{' '}
-          <i>{class_name}</i>
+          <b>{amount} free</b> <i>{class_name}</i>
           {class_type === 'online' ? 'online' : ''}
           {amount > 1 ? ' entrences' : ' entrence'}
         </p>
@@ -59,7 +59,7 @@ export default function SubscriptionCard({
     let yes = confirm(`Are you sure you want to delete ${name} subscription ?`)
     if (yes) {
       db.getJWT().then((jwt) => {
-        db.subscriptions.removeSubscription(jwt, id).then((res) => {
+        db.subscriptions.removeSubscription(jwt, id, image).then((res) => {
           removeSubscriptionCard(id)
         })
       })
@@ -80,7 +80,10 @@ export default function SubscriptionCard({
       />
       <div>
         <span className='price'>{price}€</span>
-        <span className='months'> / {months} {months > 1 ? 'months' : 'month'}</span>
+        <span className='months'>
+          {' '}
+          / {months} {months > 1 ? 'months' : 'month'}
+        </span>
       </div>
       <hr />
       <div>

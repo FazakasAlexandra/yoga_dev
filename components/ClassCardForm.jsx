@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function ClassCardForm({ setClassForm, addNewClass }) {
   const [nameClass, setNameClass] = useState('')
@@ -51,7 +52,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
                 description,
               ]
               arr.findIndex((e) => e === '') > -1
-                ? (e.target.style.animation = 'highlightbutton 1000ms ease-out')
+                ? toast.error('All fields are required!')
                 : addNewClass(
                     e,
                     nameClass,
@@ -81,7 +82,6 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
           value={nameClass}
           onChange={(e) => setNameClass(e.target.value)}
           placeholder='Class name'
-          required={true}
         />
         <div
           style={{
@@ -98,7 +98,6 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
             type='number'
             value={onlinePrice}
             onChange={(e) => setOnlinePrice(e.target.value)}
-            required={true}
           />
           <TextField
             id='standard-basic'
@@ -109,7 +108,6 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
             type='number'
             value={offlinePrice}
             onChange={(e) => setOfflinePrice(e.target.value)}
-            required={true}
           />
         </div>
         <FormControl
@@ -140,9 +138,9 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Class description'
-          required={true}
         />
       </form>
+      <ToastContainer />
     </div>
   )
 }

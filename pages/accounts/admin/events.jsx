@@ -25,11 +25,11 @@ export default function Page() {
 
   const getEvents = () => {
     let content = []
-    eventsForm == 'true'
+    eventsForm
       ? (content = [
           <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
           events.map((event, index) => {
-            return <EventCard key={index} event={event} />
+            return <EventCard key={index} event={event} adminInterface={true} />
           }),
         ])
       : (content = [
@@ -76,10 +76,10 @@ export default function Page() {
     })
   }
 
-  const deleteEvent = (ev) => {
+  const deleteEvent = (ev, img) => {
     db.getJWT().then((jwt) => {
       db.events
-        .deleteEvent(jwt, ev)
+        .deleteEvent(jwt, ev, img)
         .then((res) => setEvents(res.data.reverse()))
     })
   }
@@ -95,7 +95,7 @@ export default function Page() {
                 margin: '15px 0 0 30px ',
               }}
               onClick={() => {
-                setEventsForm('true')
+                setEventsForm(true)
               }}
             >
               <FontAwesomeIcon icon={faPlus} size='lg' />

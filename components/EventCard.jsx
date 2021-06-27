@@ -13,15 +13,15 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
           <img src='/assets/logo.png' />
           {adminInterface == true ? (
             <button
-              className='button-white'
-              onClick={() => deleteEvent(event.id)}
+              className='button-white delete-event'
+              onClick={() => deleteEvent(event.id, event.image)}
               style={{
                 position: 'absolute',
-                left: '90%',
-                background: '#ff5d23',
+                left: '88%',
+                color: '#646262',
               }}
             >
-              <FontAwesomeIcon icon={faTrashAlt} />
+              <FontAwesomeIcon icon={faTrashAlt} size='2x' />
             </button>
           ) : (
             ''
@@ -36,7 +36,7 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
                 <a
                   href={`http://${event.link}/`}
                   passHref={true}
-                  style={{ color: 'black' }}
+                  style={{ color: '#1518e8' }}
                   target='_blank'
                 >
                   <i>{event.location}</i>
@@ -54,7 +54,7 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
                   day: 'numeric',
                   month: 'long',
                 })}{' '}
-                at {event.hour}
+                {event.hour ? `at ${event.hour}` : ''}
               </i>
             </p>
           </div>

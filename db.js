@@ -4,6 +4,11 @@ const db = {
     return fetch('/api/examples/jwt').then((res) => res.json())
   },
   schedules: {
+    getDayClasses: (date) => {
+      return fetch(`${db.baseURL}/schedules/classes/date/${date}`).then((res) =>
+        res.json()
+      )
+    },
     getSchedule: (startDate, endDate) => {
       return fetch(`${db.baseURL}/schedules/${startDate}/${endDate}`).then(
         (res) => res.json()
@@ -70,8 +75,8 @@ const db = {
     getSubscriptions: () => {
       return fetch(`${db.baseURL}/subscriptions`).then((res) => res.json())
     },
-    removeSubscription: (jwt, id) =>
-      fetch(`${db.baseURL}/subscriptions/${id}`, {
+    removeSubscription: (jwt, id, image) =>
+      fetch(`${db.baseURL}/subscriptions/${id}/${image}`, {
         method: 'DELETE',
         headers: {
           Authorization: jwt,
@@ -121,7 +126,7 @@ const db = {
       }).then((res) => res.json())
     },
     getClassBookings: (weekScheduleId) => {
-      return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(
+      return fetch(`${db.baseURL}/bookings/classes/${weekScheduleId}`).then(
         (res) => res.json()
       )
     },
@@ -135,11 +140,6 @@ const db = {
     },
     dailyAttendences: (id) => {
       return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
-        res.json()
-      )
-    },
-    getDayClasses: (date) => {
-      return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
         res.json()
       )
     },
@@ -188,8 +188,8 @@ const db = {
         },
       }).then((res) => res.json())
     },
-    deleteEvent: (jwt, id) =>
-      fetch(`${db.baseURL}/events/dlt/${id}`, {
+    deleteEvent: (jwt, id, img) =>
+      fetch(`${db.baseURL}/events/dlt/${id}/${img}`, {
         method: 'DELETE',
         headers: {
           Authorization: jwt,

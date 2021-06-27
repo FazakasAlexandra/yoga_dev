@@ -1,6 +1,7 @@
 import '../public/styles/style.css'
 import { Provider } from 'next-auth/client'
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function MyApp({ Component, pageProps }) {
   return (
