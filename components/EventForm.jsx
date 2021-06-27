@@ -75,7 +75,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                   uploadedImage === false
                     ? toast.error('Picture is required !')
                     : arr.findIndex((e) => e === '') > -1
-                    ? (e.target.style.animation = 'highlightbutton2 1000ms ease-out')
+                    ? toast.error('All fields are required !')
                     : addNewEvent(
                         e,
                         name,
