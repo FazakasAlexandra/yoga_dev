@@ -4,6 +4,11 @@ const db = {
     return fetch('/api/examples/jwt').then((res) => res.json())
   },
   schedules: {
+    getDayClasses: (date) => {
+      return fetch(`${db.baseURL}/schedules/classes/date/${date}`).then((res) =>
+        res.json()
+      )
+    },
     getSchedule: (startDate, endDate) => {
       return fetch(`${db.baseURL}/schedules/${startDate}/${endDate}`).then(
         (res) => res.json()
@@ -121,7 +126,7 @@ const db = {
       }).then((res) => res.json())
     },
     getClassBookings: (weekScheduleId) => {
-      return fetch(`${db.baseURL}/classes/bookings/${weekScheduleId}`).then(
+      return fetch(`${db.baseURL}/bookings/classes/${weekScheduleId}`).then(
         (res) => res.json()
       )
     },
@@ -135,11 +140,6 @@ const db = {
     },
     attendences: () => {
       return fetch(`${db.baseURL}/classes/attendences`).then((res) =>
-        res.json()
-      )
-    },
-    getDayClasses: (date) => {
-      return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
         res.json()
       )
     },
