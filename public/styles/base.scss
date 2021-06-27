@@ -30,6 +30,10 @@ ul {
   font-weight: 300;
 }
 
+.blue-text {
+  color: #5e54ac;
+}
+
 .button-home {
   cursor: pointer;
   border-style: solid;
@@ -47,7 +51,7 @@ ul {
 }
 
 .button-home.yellow {
-  background-color: #FFC67C;
+  background-color: #ffc67c;
   color: white;
   margin-right: 22px;
 }
@@ -60,8 +64,8 @@ ul {
   font-weight: bold;
 }
 
-svg>g>g:last-child {
-  pointer-events: none
+svg > g > g:last-child {
+  pointer-events: none;
 }
 
 #reactgooglegraph-1 svg {

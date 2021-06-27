@@ -15,7 +15,7 @@ export default function AdminSubscriptionCard({
     return subscription.discounts.map((disc, index) => {
       return (
         <p key={index}>
-          <span className='bold'>{disc.amount}%</span> off from all{' '}
+          <span className='bold-text'>{disc.amount}%</span> off from all{' '}
           <i>{disc.class_name}</i> {disc.class_type} classes
         </p>
       )
@@ -49,16 +49,18 @@ export default function AdminSubscriptionCard({
   const remainedEntrances = () => {
     return subscription.entrances == '' ? (
       <p>
-        <span className='bold blue'>No</span> remaining{' '}
-        <span className='bold'>regular</span> entrances
+        <span className='bold-text blue-text'>No</span> remaining{' '}
+        <span className='bold-text'>regular</span> entrances
       </p>
     ) : (
       subscription.entrances.map((entr, index) => {
         return (
           <p key={index}>
-            <span className='bold blue'>{entr.remained_entrances}</span>{' '}
+            <span className='bold-text blue-text'>
+              {entr.remained_entrances}
+            </span>{' '}
             remained entrances for{' '}
-            <span className='bold'>{entr.class_type}</span>{' '}
+            <span className='bold-text'>{entr.class_type}</span>{' '}
             <i>{entr.class_name}</i> class
           </p>
         )
@@ -69,15 +71,18 @@ export default function AdminSubscriptionCard({
   const remainedFreeEntrances = () => {
     return subscription.free_entrances == '' ? (
       <p>
-        <span className='bold blue'>No</span> remaining{' '}
-        <span className='bold'>free</span> entrances
+        <span className='bold-text blue-text'>No</span> remaining{' '}
+        <span className='bold-text'>free</span> entrances
       </p>
     ) : (
       subscription.free_entrances.map((entr, index) => {
         return (
           <p key={index}>
-            <span className='bold blue'>{entr.remained_entrances}</span> free
-            entrances for <span className='bold'>{entr.class_type}</span>{' '}
+            <span className='bold-text blue-text'>
+              {entr.remained_entrances}
+            </span>{' '}
+            free entrances for{' '}
+            <span className='bold-text'>{entr.class_type}</span>{' '}
             <i>{entr.class_name}</i> class
           </p>
         )

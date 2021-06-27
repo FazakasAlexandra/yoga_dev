@@ -30,6 +30,10 @@ ul {
   font-weight: 300;
 }
 
+.blue-text {
+  color: #5e54ac;
+}
+
 .button-home {
   cursor: pointer;
   border-style: solid;
@@ -47,7 +51,7 @@ ul {
 }
 
 .button-home.yellow {
-  background-color: #FFC67C;
+  background-color: #ffc67c;
   color: white;
   margin-right: 22px;
 }
@@ -996,9 +1000,6 @@ header .navItem {
   margin: 7px;
   font-size: 16px;
 }
-.admin-subscription-card p .bold {
-  font-weight: bolder;
-}
 .admin-subscription-card p .blue {
   color: #5e54ac;
 }
@@ -1416,6 +1417,11 @@ header .navItem {
     background-color: #76e294;
   }
 }
+.btn-class-attendence {
+  margin: 15px 0 0 30px;
+  padding: 0.5rem 1rem;
+}
+
 @media (max-width: 1240px) {
   .home-content {
     justify-content: center;

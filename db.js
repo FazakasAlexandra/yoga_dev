@@ -133,11 +133,6 @@ const db = {
     deleteClass: (id) => {
       return fetch(`${db.baseURL}/classes/dlt/${id}`).then((res) => res.json())
     },
-    attendences: () => {
-      return fetch(`${db.baseURL}/classes/attendences`).then((res) =>
-        res.json()
-      )
-    },
     dailyAttendences: (id) => {
       return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
         res.json()

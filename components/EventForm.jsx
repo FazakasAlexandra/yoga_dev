@@ -175,7 +175,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 type='text'
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
-                required={false}
+                //required={false}
               />
             </div>
             <TextField
@@ -188,7 +188,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder='Description of the event...'
-              required={true}
+              //required={true}
             />
           </div>
         </div>

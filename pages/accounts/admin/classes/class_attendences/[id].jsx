@@ -67,22 +67,22 @@ export default function Page() {
     thisWeek == '' && thisMonth == '' && lastThreeMonths == '' && thisYear == ''
       ? (numbers = null)
       : (numbers = [
-        [
-          'Element',
-          'Attendences',
-          { role: 'style' },
-          {
-            sourceColumn: 0,
-            role: 'annotation',
-            type: 'string',
-            calc: 'stringify',
-          },
-        ],
-        ['This week', thisWeek, '#F46565', null],
-        ['This month', thisMonth, '#FFC765', null],
-        ['Last three months', lastThreeMonths, '#8BDD7C', null],
-        ['This Year', thisYear, '#83BCFF', null],
-      ])
+          [
+            'Element',
+            'Attendences',
+            { role: 'style' },
+            {
+              sourceColumn: 0,
+              role: 'annotation',
+              type: 'string',
+              calc: 'stringify',
+            },
+          ],
+          ['This week', thisWeek, '#F46565', null],
+          ['This month', thisMonth, '#FFC765', null],
+          ['Last three months', lastThreeMonths, '#8BDD7C', null],
+          ['This Year', thisYear, '#83BCFF', null],
+        ])
 
     return numbers
   }
@@ -93,11 +93,7 @@ export default function Page() {
         <AdminClassesLayout activeTab={'list'}>
           <div className='button-add-class'>
             <button
-              className='button-white admin'
-              style={{
-                margin: '15px 0 0 30px ',
-                padding: '0.5rem 1rem',
-              }}
+              className='button-white admin btn-class-attendence'
               onClick={() => {
                 router.back()
               }}
@@ -116,7 +112,12 @@ export default function Page() {
                 width={'100%'}
                 height={'500px'}
                 chartType='BarChart'
-                loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
+                loader={
+                  <>
+                    <FontAwesomeIcon size='2x' icon={faSpinner} spin />
+                    <p>Loading chart...</p>
+                  </>
+                }
                 data={data}
                 options={{
                   title: className,
@@ -124,12 +125,12 @@ export default function Page() {
                   hAxis: { gridlines: { count: 4 } },
                   fontName: 'roboto, sans-serif',
                   fontSize: 17,
-                  legend:{
-                    position: "none"
+                  legend: {
+                    position: 'none',
                   },
-                  titleTextStyle : {
+                  titleTextStyle: {
                     fontSize: 20,
-                  }
+                  },
                 }}
               />
             )}
