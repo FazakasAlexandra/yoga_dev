@@ -44,6 +44,10 @@
       margin-right: auto;
       margin-left: auto;
       color: rgba(63, 127, 154, 1);
+      
+      span{
+        font-size: 20px;
+      }
 
       div:first-child {
         //width: 85%;
@@ -55,11 +59,13 @@
         }
         p {
           margin: 0;
+          font-size: 18px;
         }
       }
       .description {
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
+        line-height: 29px;
         color: rgba(137, 170, 184, 1);
       }
     }

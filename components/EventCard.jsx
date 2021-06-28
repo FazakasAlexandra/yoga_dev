@@ -31,7 +31,7 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
           <div>
             <h1>{event.title}</h1>
             <p>
-              <span className='bold-text'>Location:</span>{' '}
+              <span className='bold-text'>Location </span>{' '}
               {event.link != '' ? (
                 <a
                   href={`http://${event.link}/`}
@@ -46,7 +46,7 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
               )}
             </p>
             <p>
-              <span className='bold-text'>Date:</span>{' '}
+              <span className='bold-text'>Date </span>{' '}
               <i>
                 {new Date(event.date).toLocaleString('en-UK', {
                   weekday: 'long',

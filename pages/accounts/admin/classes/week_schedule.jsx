@@ -22,10 +22,6 @@ export default function WeekScheduleAdmin() {
     useEffect(() => {
         db.schedules.getLatestSchedule().then(res => {
             const sortedSchedule = res.data.sort((a,b) => new Date(a.date) - new Date(b.date));
-            // 2 -> 5
-            // 1 -> 7 
-            // 26   23
-            // 27   24
             const datedWeekSchedule = changeWeekScheduleDates(sortedSchedule)
 
             setWeekSchedule(datedWeekSchedule)

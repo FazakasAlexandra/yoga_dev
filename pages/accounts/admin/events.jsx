@@ -76,9 +76,9 @@ export default function Page() {
   }
 
   const deleteEvent = (ev) => {
-    db.getJWT().then((jwt) => {
+    db.getJWT().then(({jwtToken}) => {
       db.events
-        .deleteEvent(jwt, ev)
+        .deleteEvent(jwtToken, ev)
         .then((res) => setEvents(res.data.reverse()))
     })
   }

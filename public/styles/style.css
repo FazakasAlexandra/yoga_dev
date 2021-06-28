@@ -409,6 +409,24 @@ header .navItem {
   padding: 2rem;
   width: 400px;
   margin: 1rem;
+  height: fit-content;
+}
+.subscription-card .euro {
+  font-size: 23px;
+}
+.subscription-card .content {
+  width: 100%;
+}
+.subscription-card .content .percent {
+  font-size: 23px;
+}
+.subscription-card .content .free {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.subscription-card .content h3 {
+  letter-spacing: 1px;
 }
 .subscription-card .dlt-button-white {
   padding: 0.6rem 0.8rem;
@@ -447,6 +465,7 @@ header .navItem {
 }
 .subscription-card p {
   margin-left: 1rem;
+  font-size: 18px;
 }
 .subscription-card .price {
   font-weight: bold;
@@ -539,6 +558,9 @@ header .navItem {
 .admin-layout .header {
   padding: 1.5rem;
   padding-top: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .admin-layout .header a {
   margin: 0rem 2rem;
@@ -1374,6 +1396,9 @@ header .navItem {
   margin-left: auto;
   color: #3f7f9a;
 }
+.event-card .event-details-section .event-details span {
+  font-size: 20px;
+}
 .event-card .event-details-section .event-details div:first-child {
   margin-left: auto;
   margin-right: auto;
@@ -1383,10 +1408,12 @@ header .navItem {
 }
 .event-card .event-details-section .event-details div:first-child p {
   margin: 0;
+  font-size: 18px;
 }
 .event-card .event-details-section .event-details .description {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 29px;
   color: #89aab8;
 }
 .event-card .buttons-eventsform {
