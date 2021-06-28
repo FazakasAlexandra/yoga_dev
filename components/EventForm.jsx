@@ -44,7 +44,9 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
 
   return (
     <form className='event-card'>
-      <img src='http://localhost/yoga/public/assets/placeholder.png' />
+      <img
+        src={image || 'http://localhost/yoga/public/assets/placeholder.png'}
+      />
       <div className='event-details-section'>
         <div className='event-form'>
           <div className='buttons-eventsform'>
@@ -73,9 +75,9 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                   e.preventDefault()
                   const arr = [name, date, hour, location, description]
                   uploadedImage === false
-                    ? toast.error('Picture is required !')
+                    ? toast.error('Picture is required!')
                     : arr.findIndex((e) => e === '') > -1
-                    ? toast.error('All fields are required !')
+                    ? toast.error('All fields except for link are required!')
                     : addNewEvent(
                         e,
                         name,
@@ -100,7 +102,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 <FontAwesomeIcon icon={faRedo} />
               </button>
               <button
-                className='button-white'
+                className='button-white delete-event'
                 onClick={() => setEventsForm(false)}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
@@ -111,7 +113,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: '50% 25% 20%',
+                gridTemplateColumns: '46% 30% 20%',
                 justifyContent: 'space-between',
               }}
             >
@@ -123,7 +125,6 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder='Title of the event'
-                required={true}
               />
 
               <TextField
@@ -135,7 +136,6 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 type='date'
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                required={true}
               />
               <TextField
                 id='standard-basic'
@@ -146,13 +146,12 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 type='text'
                 value={hour}
                 onChange={(e) => setHour(e.target.value)}
-                required={true}
               />
             </div>
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: '45% 52%',
+                gridTemplateColumns: '46% 52%',
                 justifyContent: 'space-between',
               }}
             >
@@ -165,7 +164,6 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 type='text'
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                required={true}
               />
               <TextField
                 id='standard-basic'
@@ -176,7 +174,6 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 type='text'
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
-                required={false}
               />
             </div>
             <TextField
@@ -189,7 +186,6 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder='Description of the event...'
-              required={true}
             />
           </div>
         </div>

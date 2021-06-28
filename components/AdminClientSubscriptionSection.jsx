@@ -3,7 +3,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import db from '../db'
 
 export default function AdminClientSubscriptionSection({

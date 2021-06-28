@@ -75,8 +75,8 @@ const db = {
     getSubscriptions: () => {
       return fetch(`${db.baseURL}/subscriptions`).then((res) => res.json())
     },
-    removeSubscription: (jwt, id) =>
-      fetch(`${db.baseURL}/subscriptions/${id}`, {
+    removeSubscription: (jwt, id, image) =>
+      fetch(`${db.baseURL}/subscriptions/${id}/${image}`, {
         method: 'DELETE',
         headers: {
           Authorization: jwt,
@@ -138,11 +138,6 @@ const db = {
     deleteClass: (id) => {
       return fetch(`${db.baseURL}/classes/dlt/${id}`).then((res) => res.json())
     },
-    attendences: () => {
-      return fetch(`${db.baseURL}/classes/attendences`).then((res) =>
-        res.json()
-      )
-    },
     dailyAttendences: (id) => {
       return fetch(`${db.baseURL}/classes/dailyattendences/${id}`).then((res) =>
         res.json()
@@ -193,8 +188,8 @@ const db = {
         },
       }).then((res) => res.json())
     },
-    deleteEvent: (jwt, id) =>
-      fetch(`${db.baseURL}/events/dlt/${id}`, {
+    deleteEvent: (jwt, id, img) =>
+      fetch(`${db.baseURL}/events/dlt/${id}/${img}`, {
         method: 'DELETE',
         headers: {
           Authorization: jwt,

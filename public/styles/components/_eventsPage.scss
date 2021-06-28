@@ -29,6 +29,14 @@
     border-radius: 20px;
     padding: 20px;
 
+    .delete-event {
+      transition-duration: 0.4s;
+    }
+
+    .delete-event:hover {
+      background: #ff5d23;
+    }
+
     img:first-child {
       height: 60px;
       width: 60px;
@@ -87,18 +95,5 @@
     .button-white:first-child {
       background: #76e294;
     }
-
-    .button-white:last-child {
-      background: #ff5d23;
-    }
-  }
-}
-
-@keyframes highlightbutton2 {
-  100% {
-    background: rgba(243, 84, 84, 0.57);
-  }
-  0% {
-    background-color: #76e294;
   }
 }

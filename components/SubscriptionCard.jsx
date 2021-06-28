@@ -59,7 +59,7 @@ export default function SubscriptionCard({
     let yes = confirm(`Are you sure you want to delete ${name} subscription ?`)
     if (yes) {
       db.getJWT().then((jwt) => {
-        db.subscriptions.removeSubscription(jwt, id).then((res) => {
+        db.subscriptions.removeSubscription(jwt, id, image).then((res) => {
           removeSubscriptionCard(id)
         })
       })

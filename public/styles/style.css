@@ -47,7 +47,7 @@ ul {
 }
 
 .button-home.yellow {
-  background-color: #FFC67C;
+  background-color: #ffc67c;
   color: white;
   margin-right: 22px;
 }
@@ -739,6 +739,41 @@ header .navItem {
 .admin-clients .client-search {
   flex: 1;
 }
+.admin-clients .container {
+  margin-left: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+.admin-clients .dot {
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  background: #8d8d8d;
+  border-radius: 50%;
+  transition: all 0.35s ease;
+  backface-visibility: hidden;
+}
+.container.hover .admin-clients .dot {
+  background: transparent;
+}
+.admin-clients .dot::before, .admin-clients .dot::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  background: #8d8d8d;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition: all 0.35s ease;
+}
+.admin-clients .dot::before {
+  left: -18px;
+}
+.admin-clients .dot::after {
+  right: -18px;
+}
 
 .form-users {
   display: flex;
@@ -1018,17 +1053,11 @@ header .navItem {
   margin: 7px;
   font-size: 16px;
 }
-.admin-subscription-card p .bold {
-  font-weight: bolder;
-}
-.admin-subscription-card p .blue {
+.admin-subscription-card p .blue-text {
   color: #5e54ac;
 }
 .admin-subscription-card img {
   margin: 10px 0;
-}
-.admin-subscription-card hr {
-  margin: 10px;
 }
 
 .client-info {
@@ -1041,7 +1070,7 @@ header .navItem {
   margin: 0rem;
 }
 .client-info hr {
-  margin: 2rem 0rem;
+  margin: 1rem 0rem;
 }
 .client-info .bellowChart .client-active-booking {
   margin: 2rem 0rem;
@@ -1381,6 +1410,12 @@ header .navItem {
   border-radius: 20px;
   padding: 20px;
 }
+.event-card .event-details-section .delete-event {
+  transition-duration: 0.4s;
+}
+.event-card .event-details-section .delete-event:hover {
+  background: #ff5d23;
+}
 .event-card .event-details-section img:first-child {
   height: 60px;
   width: 60px;
@@ -1431,18 +1466,12 @@ header .navItem {
 .event-card .buttons-eventsform .button-white:first-child {
   background: #76e294;
 }
-.event-card .buttons-eventsform .button-white:last-child {
-  background: #ff5d23;
+
+.btn-class-attendence {
+  margin: 15px 0 0 30px;
+  padding: 0.5rem 1rem;
 }
 
-@keyframes highlightbutton2 {
-  100% {
-    background: rgba(243, 84, 84, 0.57);
-  }
-  0% {
-    background-color: #76e294;
-  }
-}
 @media (max-width: 1240px) {
   .home-content {
     justify-content: center;

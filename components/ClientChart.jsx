@@ -31,7 +31,7 @@ export default function ClientChart({ info }) {
       textStyle: {
         fontName: 'roboto, sans-serif',
         fontSize: 16,
-      }
+      },
     },
     chartArea: {
       left: 0,
@@ -58,7 +58,12 @@ export default function ClientChart({ info }) {
         width={'100%'}
         height={'250px'}
         chartType='PieChart'
-        loader={<><FontAwesomeIcon size="2x" icon={faSpinner} spin /><p>Loading chart...</p></>}
+        loader={
+          <>
+            <FontAwesomeIcon size='2x' icon={faSpinner} spin />
+            <p>Loading chart...</p>
+          </>
+        }
         data={[
           ['Classes', 'Attendence'],
           ['Attended classes', attendedClasses],

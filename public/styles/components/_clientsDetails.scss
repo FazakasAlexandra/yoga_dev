@@ -7,6 +7,48 @@
   .client-search {
     flex: 1;
   }
+
+  .container {
+    margin-left: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
+
+  .dot {
+    transform: translateX(-50%);
+    width: 9px;
+    height: 9px;
+    background: #8d8d8d;
+    border-radius: 50%;
+    transition: all 0.35s ease;
+    backface-visibility: hidden;
+
+    .container.hover & {
+      background: transparent;
+    }
+
+    &::before,
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      background: #8d8d8d;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      transition: all 0.35s ease;
+    }
+
+    &::before {
+      left: -((9px) * 2);
+    }
+
+    &::after {
+      right: -((9px) * 2);
+    }
+  }
 }
 
 .form-users {
@@ -332,20 +374,12 @@
     margin: 7px;
     font-size: 16px;
 
-    .bold {
-      font-weight: bolder;
-    }
-
-    .blue {
+    .blue-text {
       color: #5e54ac;
     }
   }
 
   img {
     margin: 10px 0;
-  }
-
-  hr {
-    margin: 10px;
   }
 }

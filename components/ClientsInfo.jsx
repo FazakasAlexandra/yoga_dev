@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import db from '../db'
 import ClientChart from '../components/ClientChart'
 import ActiveBookingCard from '../components/ActiveBookingCard'
-import db from '../db'
 import AdminClientSubscriptionSection from '../components/AdminClientSubscriptionSection'
 
 export default function ClientsInfo({ client, setClient, listSub }) {

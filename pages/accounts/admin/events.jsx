@@ -25,10 +25,11 @@ export default function Page() {
 
   const getEvents = () => {
     let content = []
-    eventsForm ? (content = [
+    eventsForm
+      ? (content = [
           <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
           events.map((event, index) => {
-            return <EventCard key={index} event={event} adminInterface={true}/>
+            return <EventCard key={index} event={event} adminInterface={true} />
           }),
         ])
       : (content = [
