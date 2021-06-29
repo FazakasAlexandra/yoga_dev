@@ -39,7 +39,7 @@ export default function Events() {
 
   return (
     <Layout activeTab={'events'}>
-      <div className='events-layout-admin'>{eventsLoading ? <Loader/> : getEvents()}</div>
+      <div className='events-layout'>{eventsLoading ? <Loader/> : getEvents()}</div>
     </Layout>
   )
 }

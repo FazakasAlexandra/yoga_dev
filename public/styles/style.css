@@ -1380,7 +1380,7 @@ header .navItem {
   right: -18px;
 }
 
-.events-layout-admin {
+.events-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
