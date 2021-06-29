@@ -8,7 +8,14 @@
   width: 900px;
   height: 800px;
   padding: 20px;
+  margin: 2rem 0rem;
   position: relative;
+
+  .button-white.delete-event{
+    position: absolute;
+    left: 88%;
+    color: #646262;
+  }
 
   img:first-child {
     width: 95%;
@@ -40,7 +47,7 @@
     img:first-child {
       height: 60px;
       width: 60px;
-      opacity: 0.6;
+      opacity: 0.3;
       position: absolute;
     }
 
@@ -52,7 +59,7 @@
       margin-right: auto;
       margin-left: auto;
       color: rgba(63, 127, 154, 1);
-      
+
       span{
         font-size: 20px;
       }
@@ -61,6 +68,7 @@
         //width: 85%;
         margin-left: auto;
         margin-right: auto;
+        z-index: 2;
 
         h1 {
           margin-bottom: 10px;

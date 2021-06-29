@@ -1390,7 +1390,13 @@ header .navItem {
   width: 900px;
   height: 800px;
   padding: 20px;
+  margin: 2rem 0rem;
   position: relative;
+}
+.event-card .button-white.delete-event {
+  position: absolute;
+  left: 88%;
+  color: #646262;
 }
 .event-card img:first-child {
   width: 95%;
@@ -1419,7 +1425,7 @@ header .navItem {
 .event-card .event-details-section img:first-child {
   height: 60px;
   width: 60px;
-  opacity: 0.6;
+  opacity: 0.3;
   position: absolute;
 }
 .event-card .event-details-section .event-details {
@@ -1437,6 +1443,7 @@ header .navItem {
 .event-card .event-details-section .event-details div:first-child {
   margin-left: auto;
   margin-right: auto;
+  z-index: 2;
 }
 .event-card .event-details-section .event-details div:first-child h1 {
   margin-bottom: 10px;
@@ -1486,6 +1493,11 @@ header .navItem {
   }
 }
 @media (max-width: 900px) {
+  .event-card {
+    width: 100%;
+    margin: 3rem 0rem;
+  }
+
   .admin-clients {
     display: flex;
     flex-direction: column;
@@ -1547,7 +1559,26 @@ header .navItem {
     width: 100%;
   }
 }
+@media (max-width: 600px) {
+  .event-card .event-details-section {
+    width: 90%;
+    left: 6%;
+  }
+}
 @media (max-width: 470px) {
+  .event-card {
+    padding: 0rem;
+  }
+  .event-card img:first-child {
+    width: 100%;
+  }
+  .event-card .event-details-section .event-details {
+    width: 90%;
+  }
+  .event-card .event-details-section .event-details h1 {
+    font-size: 30px;
+  }
+
   .day-schedule.card {
     width: 100%;
   }
@@ -1591,6 +1622,16 @@ header .navItem {
   }
 }
 @media (max-width: 420px) {
+  .event-card .event-details-section {
+    width: 100%;
+    left: 0px;
+    padding: 10px;
+  }
+  .event-card .button-white.delete-event {
+    left: 0px;
+    top: -1rem;
+  }
+
   .info {
     margin-right: 0px !important;
     border-right-style: solid;

@@ -76,10 +76,10 @@ export default function Page() {
     })
   }
 
-  const deleteEvent = (ev) => {
+  const deleteEvent = (ev, img) => {
     db.getJWT().then(({jwtToken}) => {
       db.events
-        .deleteEvent(jwtToken, ev)
+        .deleteEvent(jwtToken, ev ,img)
         .then((res) => setEvents(res.data.reverse()))
     })
   }
@@ -87,7 +87,7 @@ export default function Page() {
   return (
     <Layout activeTab={'account'}>
       <AdminLayout activeTab={'events'}>
-        <div>
+        <div style={{width: "100%"}}>
           <div className='button-add-class'>
             <button
               className='button-white admin'

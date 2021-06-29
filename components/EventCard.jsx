@@ -15,11 +15,6 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
             <button
               className='button-white delete-event'
               onClick={() => deleteEvent(event.id, event.image)}
-              style={{
-                position: 'absolute',
-                left: '88%',
-                color: '#646262',
-              }}
             >
               <FontAwesomeIcon icon={faTrashAlt} size='2x' />
             </button>
