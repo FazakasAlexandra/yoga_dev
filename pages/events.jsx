@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
 import EventCard from '../components/EventCard'
 import Feedback from '../components/Feedback'
+import Loader from '../components/Loader'
 import { useState, useEffect } from 'react'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
@@ -8,6 +9,7 @@ import { useSession } from 'next-auth/client'
 export default function Events() {
   const [session, loading] = useSession()
   const [events, setEvents] = useState([])
+  const [eventsLoading, setEventsLoading] = useState(true)
 
   useEffect(() => {
     if (!loading && !session) router.push({ pathname: '/' })
@@ -17,7 +19,8 @@ export default function Events() {
     db.events
       .getUpcomingEvents(new Date().toJSON().slice(0, 10))
       .then((res) => {
-        setEvents(res.data)
+        setEvents(res.data)        
+        setEventsLoading(false)
       })
   }, [])
 
@@ -36,7 +39,7 @@ export default function Events() {
 
   return (
     <Layout activeTab={'events'}>
-      <div className='events-layout-admin'>{getEvents()}</div>
+      <div className='events-layout-admin'>{eventsLoading ? <Loader/> : getEvents()}</div>
     </Layout>
   )
 }

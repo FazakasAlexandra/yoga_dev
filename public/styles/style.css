@@ -1393,6 +1393,9 @@ header .navItem {
   margin: 2rem 0rem;
   position: relative;
 }
+.event-card .event-form .button-white.delete-event {
+  position: initial;
+}
 .event-card .button-white.delete-event {
   position: absolute;
   left: 88%;

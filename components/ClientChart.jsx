@@ -1,6 +1,5 @@
 import Chart from 'react-google-charts'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import Loader from './Loader'
 
 export default function ClientChart({ info }) {
   const pieOptions = {
@@ -58,12 +57,7 @@ export default function ClientChart({ info }) {
         width={'100%'}
         height={'250px'}
         chartType='PieChart'
-        loader={
-          <>
-            <FontAwesomeIcon size='2x' icon={faSpinner} spin />
-            <p>Loading chart...</p>
-          </>
-        }
+        loader={<Loader/>}
         data={[
           ['Classes', 'Attendence'],
           ['Attended classes', attendedClasses],
