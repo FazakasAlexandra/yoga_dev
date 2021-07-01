@@ -21,8 +21,6 @@ export default function WeekSchedule() {
     },
   ])
 
-  const updateWeekData = () => {}
-
   const updateUserData = () =>
     db.users.queryUsers('email', session.user.email).then((res) => {
       const user = res.data
@@ -36,6 +34,7 @@ export default function WeekSchedule() {
 
       setUserBookings(userBookingsMap)
     })
+  const updateWeekData = () => {}
 
   useEffect(() => {
     if (session) updateUserData()
@@ -43,7 +42,9 @@ export default function WeekSchedule() {
 
   useEffect(() => {
     db.schedules.getLatestSchedule().then((res) => {
-      const sortedSchedule = res.data.sort((a,b) => new Date(a.date) - new Date(b.date));
+      const sortedSchedule = res.data.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      )
 
       setWeekSchedule(sortedSchedule)
 

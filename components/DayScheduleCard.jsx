@@ -118,7 +118,7 @@ export default function DayScheduleCard({
           updateSelectedClassLink={updateSelectedClassLink}
         />
       ) : null}
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   )
 }
