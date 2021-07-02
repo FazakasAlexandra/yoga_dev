@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { signIn, signOut, useSession, getSession, signout } from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
@@ -40,9 +40,7 @@ export default function Header({ activeTab }) {
   const logout = async (e) => {
     e.preventDefault()
 
-    const args = {
-      redirect: false,
-    }
+    const args = {}
 
     if (router.pathname.includes('accounts')) {
       args.callbackUrl = '/'

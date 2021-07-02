@@ -27,7 +27,6 @@ export default function Page() {
   useEffect(() => {
     db.schedules.getDayClasses(today).then((res) => {
       setClasses(res.data)
-      console.log(res.data)
     })
   }, [])
 
@@ -107,40 +106,42 @@ export default function Page() {
   }
 
   return (
-    <Layout activeTab={"account"}>
-      <AdminLayout activeTab={"classes"}>
-        <AdminClassesLayout activeTab={"bookings"}>
-          <div className="admin-bookings">
+    <Layout activeTab={'account'}>
+      <AdminLayout activeTab={'classes'}>
+        <AdminClassesLayout activeTab={'bookings'}>
+          <div className='admin-bookings'>
             <div>
-              <div className="week_schedule-form">
+              <div className='week_schedule-form'>
                 <TextField
-                  id="date"
-                  label="Date"
-                  type="date"
+                  id='date'
+                  label='Date'
+                  type='date'
                   defaultValue={date}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   inputProps={{
-                    min: new Date().toISOString().slice(0, 10)
+                    min: new Date().toISOString().slice(0, 10),
                   }}
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div className="day-schedule-cards bookings">
-                {
-                  classes.length > 0 ? getDayScheduleClasses() :
-                    <Feedback
-                      iconName="sadface"
-                      message={`No classes scheduled for ${formatDate(date, 'string')}`}
-                    />
-                }
+              <div className='day-schedule-cards bookings'>
+                {classes.length > 0 ? (
+                  getDayScheduleClasses()
+                ) : (
+                  <Feedback
+                    iconName='sadface'
+                    message={`No classes scheduled for ${formatDate(
+                      date,
+                      'string'
+                    )}`}
+                  />
+                )}
               </div>
             </div>
-            <div className="booking-cards">
-              {
-                bookings.length > 0 ? getBookings() : displayMessages()
-              }
+            <div className='booking-cards'>
+              {bookings.length > 0 ? getBookings() : displayMessages()}
             </div>
           </div>
         </AdminClassesLayout>

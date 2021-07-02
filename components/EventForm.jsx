@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from '@material-ui/core/Button'
 import { faRedo, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import TextField from '@material-ui/core/TextField'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 
 export default function EventForm({ setEventsForm, addNewEvent }) {

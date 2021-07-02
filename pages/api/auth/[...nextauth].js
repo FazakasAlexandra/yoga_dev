@@ -1,17 +1,16 @@
-import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
 
 export default NextAuth({
   providers: [
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-    })
+    }),
   ],
   secret: process.env.SECRET,
   session: {
     jwt: true,
   },
-  // Enable debug messages in the console if you are having problems
   debug: false,
 })

@@ -37,7 +37,7 @@ export default function ClassZoomLinkDialog({ isOpen, userData, yogaClass, close
                 }}
                 >
                     {
-                        userData.is_admin === 'true' ?
+                        userData && userData.is_admin === 'true' ?
                             <>
                                 <TextField
                                     value={link}

@@ -1455,6 +1455,12 @@ header .navItem {
   margin: 0;
   font-size: 18px;
 }
+.event-card .event-details-section .event-details div:first-child a {
+  margin: 0;
+  font-size: 18px;
+  color: #3f7f9a;
+  font-style: italic;
+}
 .event-card .event-details-section .event-details .description {
   text-align: center;
   font-size: 20px;
