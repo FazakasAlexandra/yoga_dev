@@ -16,6 +16,10 @@
 }
 
 @media (max-width: 900px) {
+  .event-card {
+    width: 100%;
+    margin: 3rem 0rem;
+  }
   .admin-clients {
     display: flex;
     flex-direction: column;
@@ -84,7 +88,31 @@
   }
 }
 
+@media(max-width: 600px) {
+  .event-card .event-details-section {
+    width: 90%;
+    left: 6%;
+  }
+}
+
 @media(max-width: 470px) {
+  .event-card {
+    padding: 0rem;
+    img:first-child{
+      width: 100%;
+    }
+
+    .event-details-section {
+      .event-details {
+        width: 90%;
+
+        h1{
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
   .day-schedule.card {
     width: 100%;
   }
@@ -134,6 +162,18 @@
 }
 
 @media(max-width: 420px) {
+  .event-card {
+    .event-details-section{
+      width: 100%;
+      left: 0px;
+      padding: 10px;
+    }
+    .button-white.delete-event{
+      left: 0px;
+      top: -1rem;
+    }
+  }
+
   .info{
     margin-right: 0px !important;
     border-right-style: solid;

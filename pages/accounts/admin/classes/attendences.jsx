@@ -3,11 +3,10 @@ import { useSession } from 'next-auth/client'
 import Layout from '../../../../components/Layout'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../../components/AdminLayout'
+import Loader from '../../../../components/Loader'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import Chart from 'react-google-charts'
 import db from '../../../../db'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Page() {
   const router = useRouter()
@@ -72,12 +71,7 @@ export default function Page() {
               width={'99%'}
               height={'700px'}
               chartType='BarChart'
-              loader={
-                <>
-                  <FontAwesomeIcon size='2x' icon={faSpinner} spin />
-                  <p>Loading chart...</p>
-                </>
-              }
+              loader={<Loader/>}
               data={[
                 ['Class', 'This Month', 'Last Three Months', 'This Year'],
                 ...attendences,

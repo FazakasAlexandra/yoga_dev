@@ -1,4 +1,4 @@
-.events-layout-admin {
+.events-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,18 @@
   width: 900px;
   height: 800px;
   padding: 20px;
+  margin: 2rem 0rem;
   position: relative;
+
+  .event-form .button-white.delete-event {
+    position: initial;
+  }
+
+  .button-white.delete-event {
+    position: absolute;
+    left: 88%;
+    color: #646262;
+  }
 
   img:first-child {
     width: 95%;
@@ -40,7 +51,7 @@
     img:first-child {
       height: 60px;
       width: 60px;
-      opacity: 0.6;
+      opacity: 0.3;
       position: absolute;
     }
 
@@ -53,21 +64,35 @@
       margin-left: auto;
       color: rgba(63, 127, 154, 1);
 
+      span {
+        font-size: 20px;
+      }
+
       div:first-child {
         //width: 85%;
         margin-left: auto;
         margin-right: auto;
+        z-index: 2;
 
         h1 {
           margin-bottom: 10px;
         }
         p {
           margin: 0;
+          font-size: 18px;
+        }
+
+        a {
+          margin: 0;
+          font-size: 18px;
+          color: rgba(63, 127, 154, 1);
+          font-style: italic;
         }
       }
       .description {
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
+        line-height: 29px;
         color: rgba(137, 170, 184, 1);
       }
     }

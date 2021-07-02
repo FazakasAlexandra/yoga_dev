@@ -20,6 +20,10 @@
     .header {
         padding: 1.5rem;
         padding-top: 1.8rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
         a {
             margin: 0rem 2rem;
         }

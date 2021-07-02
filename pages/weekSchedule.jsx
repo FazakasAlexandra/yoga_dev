@@ -4,7 +4,6 @@ import { DateRange } from 'react-date-range'
 import { useEffect, useState } from 'react/cjs/react.development'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
-import Image from 'next/image'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
 

@@ -5,11 +5,11 @@ import {
   faChevronRight,
   faVideo,
 } from '@fortawesome/free-solid-svg-icons'
-import { duration, ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { theme } from '../utilities.js'
 
 export default function DayScheduleClass({

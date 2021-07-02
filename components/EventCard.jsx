@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faVideo } from '@fortawesome/free-solid-svg-icons'
 
 export default function EventCard({ event, adminInterface, deleteEvent }) {
   return (
@@ -15,11 +15,6 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
             <button
               className='button-white delete-event'
               onClick={() => deleteEvent(event.id, event.image)}
-              style={{
-                position: 'absolute',
-                left: '88%',
-                color: '#646262',
-              }}
             >
               <FontAwesomeIcon icon={faTrashAlt} size='2x' />
             </button>
@@ -30,23 +25,25 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
         <div className='event-details'>
           <div>
             <h1>{event.title}</h1>
+            {event.link != '' ? (
+              <a href={`http://${event.link}/`}>
+                <FontAwesomeIcon
+                  icon={faVideo}
+                  size='lg'
+                  style={{ color: '#C4E4E9', cursor: 'pointer' }}
+                  className='info-icon'
+                />{' '}
+                {event.link}
+              </a>
+            ) : (
+              ''
+            )}
             <p>
-              <span className='bold-text'>Location:</span>{' '}
-              {event.link != '' ? (
-                <a
-                  href={`http://${event.link}/`}
-                  passHref={true}
-                  style={{ color: '#1518e8' }}
-                  target='_blank'
-                >
-                  <i>{event.location}</i>
-                </a>
-              ) : (
-                <i>{event.location}</i>
-              )}
+              <span className='bold-text'>Location </span>
+              <i>{event.location}</i>
             </p>
             <p>
-              <span className='bold-text'>Date:</span>{' '}
+              <span className='bold-text'>Date </span>{' '}
               <i>
                 {new Date(event.date).toLocaleString('en-UK', {
                   weekday: 'long',

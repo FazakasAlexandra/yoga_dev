@@ -409,6 +409,24 @@ header .navItem {
   padding: 2rem;
   width: 400px;
   margin: 1rem;
+  height: fit-content;
+}
+.subscription-card .euro {
+  font-size: 23px;
+}
+.subscription-card .content {
+  width: 100%;
+}
+.subscription-card .content .percent {
+  font-size: 23px;
+}
+.subscription-card .content .free {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.subscription-card .content h3 {
+  letter-spacing: 1px;
 }
 .subscription-card .dlt-button-white {
   padding: 0.6rem 0.8rem;
@@ -447,6 +465,7 @@ header .navItem {
 }
 .subscription-card p {
   margin-left: 1rem;
+  font-size: 18px;
 }
 .subscription-card .price {
   font-weight: bold;
@@ -539,6 +558,9 @@ header .navItem {
 .admin-layout .header {
   padding: 1.5rem;
   padding-top: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .admin-layout .header a {
   margin: 0rem 2rem;
@@ -1358,7 +1380,7 @@ header .navItem {
   right: -18px;
 }
 
-.events-layout-admin {
+.events-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1368,7 +1390,16 @@ header .navItem {
   width: 900px;
   height: 800px;
   padding: 20px;
+  margin: 2rem 0rem;
   position: relative;
+}
+.event-card .event-form .button-white.delete-event {
+  position: initial;
+}
+.event-card .button-white.delete-event {
+  position: absolute;
+  left: 88%;
+  color: #646262;
 }
 .event-card img:first-child {
   width: 95%;
@@ -1397,7 +1428,7 @@ header .navItem {
 .event-card .event-details-section img:first-child {
   height: 60px;
   width: 60px;
-  opacity: 0.6;
+  opacity: 0.3;
   position: absolute;
 }
 .event-card .event-details-section .event-details {
@@ -1409,19 +1440,31 @@ header .navItem {
   margin-left: auto;
   color: #3f7f9a;
 }
+.event-card .event-details-section .event-details span {
+  font-size: 20px;
+}
 .event-card .event-details-section .event-details div:first-child {
   margin-left: auto;
   margin-right: auto;
+  z-index: 2;
 }
 .event-card .event-details-section .event-details div:first-child h1 {
   margin-bottom: 10px;
 }
 .event-card .event-details-section .event-details div:first-child p {
   margin: 0;
+  font-size: 18px;
+}
+.event-card .event-details-section .event-details div:first-child a {
+  margin: 0;
+  font-size: 18px;
+  color: #3f7f9a;
+  font-style: italic;
 }
 .event-card .event-details-section .event-details .description {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 29px;
   color: #89aab8;
 }
 .event-card .buttons-eventsform {
@@ -1459,6 +1502,11 @@ header .navItem {
   }
 }
 @media (max-width: 900px) {
+  .event-card {
+    width: 100%;
+    margin: 3rem 0rem;
+  }
+
   .admin-clients {
     display: flex;
     flex-direction: column;
@@ -1520,7 +1568,26 @@ header .navItem {
     width: 100%;
   }
 }
+@media (max-width: 600px) {
+  .event-card .event-details-section {
+    width: 90%;
+    left: 6%;
+  }
+}
 @media (max-width: 470px) {
+  .event-card {
+    padding: 0rem;
+  }
+  .event-card img:first-child {
+    width: 100%;
+  }
+  .event-card .event-details-section .event-details {
+    width: 90%;
+  }
+  .event-card .event-details-section .event-details h1 {
+    font-size: 30px;
+  }
+
   .day-schedule.card {
     width: 100%;
   }
@@ -1564,6 +1631,16 @@ header .navItem {
   }
 }
 @media (max-width: 420px) {
+  .event-card .event-details-section {
+    width: 100%;
+    left: 0px;
+    padding: 10px;
+  }
+  .event-card .button-white.delete-event {
+    left: 0px;
+    top: -1rem;
+  }
+
   .info {
     margin-right: 0px !important;
     border-right-style: solid;
