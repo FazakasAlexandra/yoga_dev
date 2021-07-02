@@ -1,16 +1,18 @@
 import Link from 'next/link'
-import { signIn, signOut, useSession, getSession } from 'next-auth/client'
+import { signIn, signOut, useSession, getSession, signout } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import db from '../db'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Header({ activeTab }) {
   const [session, loading] = useSession()
   const [is_admin, setIsAdmin] = useState(false)
   const [menuOn, setMenuOn] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     if (session) {
@@ -30,6 +32,26 @@ export default function Header({ activeTab }) {
     }
   }, [session])
 
+  const login = (e) => {
+    e.preventDefault()
+    signIn()
+  }
+
+  const logout = async (e) => {
+    e.preventDefault()
+
+    const args = {
+      redirect: false,
+    }
+
+    if (router.pathname.includes('accounts')) {
+      args.callbackUrl = '/'
+    }
+
+    const data = await signOut(args)
+    router.push(data.url)
+  }
+
   return (
     <header>
       <noscript>
@@ -45,10 +67,7 @@ export default function Header({ activeTab }) {
               <a
                 href={`/api/auth/signin`}
                 className='buttonPrimary'
-                onClick={(e) => {
-                  e.preventDefault()
-                  signIn()
-                }}
+                onClick={(e) => login(e)}
               >
                 Sign in
               </a>
@@ -70,10 +89,7 @@ export default function Header({ activeTab }) {
               <a
                 href={`/api/auth/signout`}
                 className='button'
-                onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                }}
+                onClick={async (e) => logout(e)}
               >
                 Sign out
               </a>
