@@ -806,17 +806,23 @@ header .navItem {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  margin-top: 15px;
   font-size: 22px;
 }
 .user-list-items .list-initial {
   background: #edecf4;
-  padding: 3px 12px;
-  border-radius: 50%;
+  border-radius: 100%;
   color: #646262;
+  margin: 0.2rem;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
 }
 .user-list-items .list-name {
   justify-content: start;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 .user-list-items div {
   display: flex;
@@ -963,7 +969,7 @@ header .navItem {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 .client-subscriptions .date {
   font-size: 15px;
@@ -1085,6 +1091,7 @@ header .navItem {
   display: flex;
   flex-direction: column;
   padding-left: 1rem;
+  max-width: 290px;
 }
 .client-info .bellowChart .active-booking-card .active-bookings-numbers {
   border-right: 1px solid #646263;
@@ -1103,6 +1110,18 @@ header .navItem {
 .client-info .bellowChart .active-booking-card .active-bookings-numbers p:last-child {
   font-size: 15px;
   margin: 0;
+}
+
+.loader {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loader p {
+  font-size: 20px;
+  margin-bottom: 0rem;
+  font-style: italic;
 }
 
 .home-main {
@@ -1257,18 +1276,21 @@ header .navItem {
   padding: 2%;
   font-family: "Roboto", sans-serif;
 }
+.client-account-wrapper .blue-text {
+  cursor: default;
+}
 .client-account-wrapper .client-account-name-section {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #646262;
-  padding-bottom: 15px;
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 1.5rem;
 }
 .client-account-wrapper .client-account-name-section .list-initial {
   background: #edecf4;
-  padding: 3px 12px;
+  padding: 7px 12px;
   border-radius: 50%;
   color: #646262;
   font-size: 48px;
@@ -1325,9 +1347,13 @@ header .navItem {
   margin: 0;
 }
 .client-account-wrapper .client-account-bookings .active-booking-card .buttonCancel {
+  cursor: pointer;
   justify-content: space-around;
   align-items: center;
   background: white;
+}
+.client-account-wrapper .client-account-bookings .active-booking-card .buttonCancel:hover {
+  font-weight: bold;
 }
 .client-account-wrapper .client-account-subs-section {
   display: flex;

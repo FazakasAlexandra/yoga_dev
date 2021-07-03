@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/client'
 import Layout from '../../../components/Layout'
 import { useRouter } from 'next/router'
 import ClientLayout from '../../../components/ClientLayout'
+import Loader from '../../../components/Loader'
 import db from '../../../db.js'
 
 export default function Clients() {
@@ -24,7 +25,7 @@ export default function Clients() {
 
   return (
     <Layout activeTab={'account'}>
-      {user ? <ClientLayout user={user} setUser={setUser} /> : null}
+      {user ? <ClientLayout user={user} setUser={setUser} /> : <Loader/>}
     </Layout>
   )
 }

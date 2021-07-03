@@ -5,7 +5,6 @@ import Loader from '../components/Loader'
 import { useState, useEffect } from 'react'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
-import { useRouter } from 'next/router'
 
 export default function Events() {
   const [session, loading] = useSession()

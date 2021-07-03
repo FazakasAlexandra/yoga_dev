@@ -14,18 +14,22 @@
   padding: 2%;
   font-family: 'Roboto', sans-serif;
 
+  .blue-text{
+    cursor: default;
+  }
+
   .client-account-name-section {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid #646262;
-    padding-bottom: 15px;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 1.5rem;
 
     .list-initial {
       background: $grayBackground;
-      padding: 3px 12px;
+      padding: 7px 12px;
       border-radius: 50%;
       color: $darkGreyWriting;
       font-size: 48px;
@@ -94,9 +98,13 @@
       }
 
       .buttonCancel {
+        cursor: pointer;
         justify-content: space-around;
         align-items: center;
         background: white;
+      }
+      .buttonCancel:hover{
+        font-weight: bold;
       }
     }
   }

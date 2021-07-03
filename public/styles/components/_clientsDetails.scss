@@ -85,18 +85,24 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  margin-top: 15px;
   font-size: 22px;
 
   .list-initial {
-    background: $grayBackground;
-    padding: 3px 12px;
-    border-radius: 50%;
-    color: $darkGreyWriting;
+    background: #edecf4;
+    border-radius: 100%;
+    color: #646262;
+    margin: 0.2rem;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
   }
 
   .list-name {
     justify-content: start;
-    margin-left: 20px;
+    margin-left: 15px;
   }
 
   div {
@@ -271,7 +277,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 1rem;
 
   .date {
     font-size: 15px;

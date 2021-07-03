@@ -16,11 +16,13 @@ const getWeekDates = (startDate) => {
 
 // recieves 2021-05-12
 // returns string 12 May 2021 or an object {day: 12, month: 'May', year: 2021}
-const formatDate = (dayDate, outputType) => {
+const formatDate = (dayDate, outputType, fullDate) => {
     let date = new Date(dayDate)
     const month = date.toLocaleString('default', { month: 'long' });
     const day = date.getUTCDate()
     const year = date.getFullYear()
+
+    if (outputType === 'string' && fullDate) return day + ' ' + month + ' ' + year
 
     if (outputType === 'string') return day + ' ' + month
 

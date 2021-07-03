@@ -1,5 +1,6 @@
 import Chart from 'react-google-charts'
 import Loader from './Loader'
+import Image from 'next/image'
 
 export default function ClientChart({ info }) {
   const pieOptions = {
@@ -53,20 +54,22 @@ export default function ClientChart({ info }) {
   return (
     <div className='client-chart'>
       <h3>Attendences</h3>
-      <Chart
-        width={'100%'}
-        height={'250px'}
-        chartType='PieChart'
-        loader={<Loader/>}
-        data={[
-          ['Classes', 'Attendence'],
-          ['Attended classes', attendedClasses],
-          ['Canceled Classes', canceledClasses],
-          ['Absent Classes', absentClasses],
-        ]}
-        options={pieOptions}
-        rootProps={{ 'data-testid': '7' }}
-      />
+      {info.length ?
+        <Chart
+          width={'100%'}
+          height={'250px'}
+          chartType='PieChart'
+          loader={<Loader />}
+          data={[
+            ['Classes', 'Attendence'],
+            ['Attended classes', attendedClasses],
+            ['Canceled Classes', canceledClasses],
+            ['Absent Classes', absentClasses],
+          ]}
+          options={pieOptions}
+          rootProps={{ 'data-testid': '7' }}
+        />
+        : <div style={{margin:"1rem 0rem 0rem 1rem"}}><Image src='/assets/noData.svg' width={220} height={230} /></div>}
     </div>
   )
 }

@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSearch,
   faTimesCircle,
   faTimes,
+  faEllipsisH
 } from '@fortawesome/free-solid-svg-icons'
 import IndividualName from '../components/IndividualName'
 import ClientsInfo from '../components/ClientsInfo'
@@ -12,14 +13,14 @@ export default function AdminClients({ myclients, listSub }) {
   const [clients, setClients] = useState(myclients)
   const [client, setClient] = useState(myclients[0])
   const [icon, setIcon] = useState(faSearch)
-  const [limitListClients, setLimitListClients] = useState(16)
-  const [display, setDisplay] = useState(false)
+  
+  const clientsDisplayNr = 10
+  const [limitListClients, setLimitListClients] = useState(clientsDisplayNr)
+  const [limitReached, setLimitReached] = useState(false)
 
   useEffect(() => {
-    const elements = document.querySelectorAll(
-      '.client-search .user-list-items'
-    ).length
-    elements < limitListClients && elements > 16 ? setDisplay(true) : ''
+    const elements = document.querySelectorAll('.client-search .user-list-items').length
+    elements < limitListClients && elements > clientsDisplayNr ? setLimitReached(true) : ''
   }, [limitListClients])
 
   const selectClient = (id) => {
@@ -36,16 +37,14 @@ export default function AdminClients({ myclients, listSub }) {
     setClient(updatedClient)
   }
 
-  const handleSubmit = (event) => {
+  const handleSearch = (event) => {
     event.preventDefault()
     if (icon == faTimesCircle) {
       setClients(myclients)
       setIcon(faSearch)
       event.target[0].value = ''
     } else {
-      setClients(
-        clients.filter(({ name }) => name.includes(event.target[0].value))
-      )
+      setClients(clients.filter(({ name }) => name.toLowerCase().includes(event.target[0].value.toLowerCase())))
       setIcon(faTimesCircle)
     }
   }
@@ -58,9 +57,7 @@ export default function AdminClients({ myclients, listSub }) {
           id={cl.id}
           name={cl.name}
           selectClient={selectClient}
-          classStyle={
-            +client.id === +cl.id ? 'classSelected' : 'classNotSelected'
-          }
+          classStyle={+client.id === +cl.id ? 'classSelected' : 'classNotSelected'}
         />
       )
     })
@@ -69,7 +66,8 @@ export default function AdminClients({ myclients, listSub }) {
   return (
     <div className='admin-clients'>
       <div className='client-search'>
-        <form className='form-users' onSubmit={handleSubmit} method='get'>
+
+        <form className='form-users' onSubmit={handleSearch}>
           <input type='text' id='user-search' name='search' />
           <button type='submit'>
             <FontAwesomeIcon
@@ -78,25 +76,25 @@ export default function AdminClients({ myclients, listSub }) {
             />
           </button>
         </form>
+
         <div className='users-list'>{listNames()}</div>
+
         <div className='container' style={{ marginTop: '1rem' }}>
-          <div
-            className='dot'
-            style={{ display: !display ? 'block' : 'none' }}
-            onClick={() => {
-              setLimitListClients(limitListClients + 16)
-            }}
-          ></div>
-          <div
-            style={{ display: display ? 'block' : 'none' }}
-            onClick={() => {
-              setLimitListClients(16)
-              setDisplay(false)
-            }}
-          >
-            <FontAwesomeIcon icon={faTimes} className='info-icon' />
-          </div>
+          {
+            !limitReached && clients.length > limitListClients ?
+              <FontAwesomeIcon icon={faEllipsisH} className='info-icon' size="2x" color="#8D8D8D"
+                onClick={() => setLimitListClients(limitListClients + clientsDisplayNr)}
+              />
+              : clients.length > clientsDisplayNr ?
+              <FontAwesomeIcon icon={faTimes} className='info-icon' size="lg" color="#8D8D8D"
+                onClick={() => {
+                  setLimitListClients(clientsDisplayNr)
+                  setLimitReached(false)
+                }}
+              /> : null
+          }
         </div>
+
       </div>
       <div className='client-info'>
         <ClientsInfo

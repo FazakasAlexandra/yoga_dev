@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function ClientLayout({ user, setUser }) {
-  const [limitActiveBooking, setLimitActiveBooking] = useState(2)
-  const [limitPastBooking, setLimitPastBooking] = useState(2)
+  const bookingsLimitNr = 2
+  const [limitActiveBooking, setLimitActiveBooking] = useState(bookingsLimitNr)
+  const [limitPastBooking, setLimitPastBooking] = useState(bookingsLimitNr)
   const [displayActive, setDisplayActive] = useState(false)
   const [displayPast, setDisplayPast] = useState(false)
 
@@ -21,14 +22,12 @@ export default function ClientLayout({ user, setUser }) {
     const elements = document.querySelectorAll(
       '.client-account-activeb .active-booking-card'
     ).length
-    elements < limitActiveBooking && elements > 2 ? setDisplayActive(true) : ''
+    elements < limitActiveBooking && elements > bookingsLimitNr ? setDisplayActive(true) : ''
   }, [limitActiveBooking])
 
   useEffect(() => {
-    const elements = document.querySelectorAll(
-      '.client-account-pastb .active-booking-card'
-    ).length
-    elements < limitPastBooking && elements > 2 ? setDisplayPast(true) : ''
+    const elements = document.querySelectorAll('.client-account-pastb .active-booking-card').length
+    elements < limitPastBooking && elements > bookingsLimitNr ? setDisplayPast(true) : ''
   }, [limitPastBooking])
 
   const activeBookings = () => {
@@ -126,13 +125,13 @@ export default function ClientLayout({ user, setUser }) {
               className='dot'
               style={{ display: !displayActive ? 'block' : 'none' }}
               onClick={() => {
-                setLimitActiveBooking(limitActiveBooking + 10)
+                setLimitActiveBooking(limitActiveBooking + bookingsLimitNr)
               }}
             ></div>
             <div
               style={{ display: displayActive ? 'block' : 'none' }}
               onClick={() => {
-                setLimitActiveBooking(2)
+                setLimitActiveBooking(bookingsLimitNr)
                 setDisplayActive(false)
               }}
             >
@@ -148,13 +147,13 @@ export default function ClientLayout({ user, setUser }) {
               className='dot'
               style={{ display: !displayPast ? 'block' : 'none' }}
               onClick={() => {
-                setLimitPastBooking(limitPastBooking + 10)
+                setLimitPastBooking(limitPastBooking + bookingsLimitNr)
               }}
             ></div>
             <div
               style={{ display: displayPast ? 'block' : 'none' }}
               onClick={() => {
-                setLimitPastBooking(2)
+                setLimitPastBooking(bookingsLimitNr)
                 setDisplayPast(false)
               }}
             >

@@ -5,7 +5,7 @@ const db = {
   },
   schedules: {
     getDayClasses: (date) => {
-      return fetch(`${db.baseURL}/classes/date/${date}`).then((res) =>
+      return fetch(`${db.baseURL}/schedules/classes/date/${date}`).then((res) =>
         res.json()
       )
     },

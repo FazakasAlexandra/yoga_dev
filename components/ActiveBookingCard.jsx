@@ -1,5 +1,6 @@
 import db from '../db'
 import ClassCoverage from './ClassCoverage'
+import { formatDate } from '../utilities.js'
 
 export default function ActiveBookingCard({
   history,
@@ -17,6 +18,7 @@ export default function ActiveBookingCard({
         })
     })
   }
+  
 
   return (
     <div className='active-booking-card'>
@@ -27,7 +29,7 @@ export default function ActiveBookingCard({
             <p>{history.online_price} lei</p>
           </div>
           <div className='active-bookings-details'>
-            <p style={{ fontSize: '16px' }}>{history.day}</p>
+            <p style={{ fontSize: '16px' }}>{history.day} {formatDate(history.date_day, 'string', true)}</p>
             <p>{history.name}</p>
             <p>{history.class_type}</p>
           </div>
@@ -58,7 +60,6 @@ export default function ActiveBookingCard({
           ) : (
             <p
               style={{
-                marginBlockStart: '4em',
                 marginBlockEnd: '0em',
                 marginInlineEnd: '10px',
                 fontSize: '16px',

@@ -11,6 +11,7 @@ export default function AdminClientSubscriptionSection({
   reloadClientInfo,
   subscriptions,
   clientid,
+  clientName
 }) {
   const [selectedSub, setSelectedSub] = useState('')
 
@@ -37,15 +38,18 @@ export default function AdminClientSubscriptionSection({
   }
 
   const listOfCards = () => {
-    return subscriptions.map((sub) => {
-      return (
-        <AdminSubscriptionCard
-          key={sub.usersSubscriptionID}
-          subscription={sub}
-          reloadClientInfo={reloadClientInfo}
-        />
-      )
-    })
+    if(subscriptions.length) {
+      return subscriptions.map((sub) => {
+        return (
+          <AdminSubscriptionCard
+            key={sub.usersSubscriptionID}
+            subscription={sub}
+            reloadClientInfo={reloadClientInfo}
+          />
+        )
+      })
+    }
+    return <i style={{margin: '0.5rem 0rem 1rem'}}>{clientName} has no subscriptions</i>
   }
 
   return (
