@@ -6,9 +6,7 @@ import AdminClientSubscriptionSection from '../components/AdminClientSubscriptio
 export default function ClientsInfo({ client, setClient, listSub }) {
   const reloadClientInfo = () => {
     db.users.getClients().then((res) => {
-      const targetClient = res.data.find(
-        (userClient) => +userClient.id === +client.id
-      )
+      const targetClient = res.data.find((userClient) => +userClient.id === +client.id)
       setClient(targetClient)
     })
   }
@@ -41,6 +39,7 @@ export default function ClientsInfo({ client, setClient, listSub }) {
   const latestBooking = () => {
     const latestBooking = client.history.slice(-1)
     console.log(latestBooking)
+    console.log(client.history)
     if (latestBooking.length) {
       return (
         <>

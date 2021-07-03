@@ -885,6 +885,7 @@ header .navItem {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-top: 1rem;
 }
 .active-booking-card .class-coverage-arrow .class-coverage-arrow:hover .class-coverag p {
   font-weight: bold;
@@ -923,6 +924,7 @@ header .navItem {
 }
 .active-booking-card .active-bookings-details p {
   word-wrap: break-word;
+  max-width: 250px;
   margin: 0;
   font-size: 19px;
 }

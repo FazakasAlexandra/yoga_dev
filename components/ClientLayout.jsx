@@ -117,7 +117,7 @@ export default function ClientLayout({ user, setUser }) {
         </div>
       </div>
       <div className='client-account-bookings'>
-        <h2>My bookings</h2>
+        <h2>Current bookings</h2>
         <div className='client-account-activeb'>
           {activeBookings()}
           <div className='container'>
