@@ -4,6 +4,7 @@ import Layout from '../../../components/Layout'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../components/AdminLayout'
 import AdminClients from '../../../components/AdminClients'
+import Feedback from '../../../components/Feedback'
 import db from '../../../db'
 
 export default function Clients() {
@@ -26,7 +27,11 @@ export default function Clients() {
       <AdminLayout activeTab={'clients'}>
         {clients.length > 0 ? (
           <AdminClients myclients={clients} listSub={listSub} />
-        ) : null}
+        ) :
+          <Feedback
+            iconName='sadface'
+            message="You have no clients yet"
+          />}
       </AdminLayout>
     </Layout>
   )
