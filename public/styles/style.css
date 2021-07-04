@@ -18,6 +18,12 @@ a {
   box-sizing: border-box;
 }
 
+.no-data-txt {
+  cursor: default;
+  z-index: 1;
+  font-weight: 300;
+}
+
 ul {
   margin: 0rem !important;
 }
@@ -427,6 +433,7 @@ header .navItem {
 }
 .subscription-card .content h3 {
   letter-spacing: 1px;
+  z-index: 1;
 }
 .subscription-card .dlt-button-white {
   padding: 0.6rem 0.8rem;

@@ -9,6 +9,7 @@ import db from '../../../db'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
+import Feedback from '../../../components/Feedback'
 
 export default function Page() {
   const router = useRouter()
@@ -76,8 +77,15 @@ export default function Page() {
           <FontAwesomeIcon icon={faPlus} size='lg' />
         </button>
         <div className='subscriptions-admin'>
-          {getSubscriptionForms()}
-          {getSubscriptions()}
+          {
+            subscriptions.length || subscriptionsForms.length ?
+              <>
+                {getSubscriptionForms()}
+                {getSubscriptions()}
+              </>
+              : <Feedback iconName='sadface' message="You haven't created any subscription yet" />
+          }
+
         </div>
       </AdminLayout>
     </Layout>

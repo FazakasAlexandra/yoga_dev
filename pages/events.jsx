@@ -15,7 +15,7 @@ export default function Events() {
     db.events
       .getUpcomingEvents(new Date().toJSON().slice(0, 10))
       .then((res) => {
-        setEvents(res.data)        
+        setEvents(res.data)
         setEventsLoading(false)
       })
   }, [])
@@ -26,16 +26,13 @@ export default function Events() {
         return <EventCard key={index} event={event} adminInterface={false} />
       })
     ) : (
-      <Feedback
-        message='Unfortunately, there are no upcoming events... Please check the page once again later!'
-        iconName='sadface'
-      />
+      <h2 className="no-data-txt">UPCOMING EVENTS NOT FOUND</h2>
     )
   }
 
   return (
     <Layout activeTab={'events'}>
-      <div className='events-layout'>{eventsLoading ? <Loader/> : getEvents()}</div>
+      <div className='events-layout'>{eventsLoading ? <Loader /> : getEvents()}</div>
     </Layout>
   )
 }

@@ -106,7 +106,7 @@ export default function Page() {
             {!data ? (
               <Feedback
                 iconName='sadface'
-                message='No statistics for this class so far...'
+                message={`This class has not enough attendances for statistics !`}
               />
             ) : (
               <Chart

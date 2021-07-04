@@ -18,6 +18,12 @@ a {
   box-sizing: border-box;
 }
 
+.no-data-txt {
+  cursor: default;
+  z-index: 1;
+  font-weight: 300;
+}
+
 ul {
   margin: 0rem !important;
 }

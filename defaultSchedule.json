@@ -1,0 +1,30 @@
+[
+    {
+        "day": "Monday",
+        "schedule": []
+    },
+    {
+        "day": "Tuesday",
+        "schedule": []
+    },
+    {
+        "day": "Wednesday",
+        "schedule": []
+    },
+    {
+        "day": "Thursday",
+        "schedule": []
+    },
+    {
+        "day": "Friday",
+        "schedule": []
+    },
+    {
+        "day": "Saturday",
+        "schedule": []
+    },
+    {
+        "day": "Sunday",
+        "schedule": []
+    }
+]

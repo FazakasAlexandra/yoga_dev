@@ -11,24 +11,27 @@ import { ThemeProvider } from '@material-ui/core'
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
 import { getWeekDates, weekScheduleValidator } from '../../../../utilities.js'
+import defaultSchedule from '../../../../defaultSchedule.json';
 
 export default function WeekScheduleAdmin() {
   const router = useRouter()
   const [session, loading] = useSession()
   const [weekSchedule, setWeekSchedule] = useState([])
-  const [weekStartDate, setWeekStartDate] = useState(
-    new Date().toISOString().slice(0, 10)
-  )
+  const [weekStartDate, setWeekStartDate] = useState(new Date().toISOString().slice(0, 10))
   const [weekDates, setWeekDates] = useState(getWeekDates(Date.now()))
 
   useEffect(() => {
-    db.schedules.getLatestSchedule().then((res) => {
-      const sortedSchedule = res.data.sort(
-        (a, b) => new Date(a.date) - new Date(b.date)
-      )
-      const datedWeekSchedule = changeWeekScheduleDates(sortedSchedule)
+    db.schedules.getLatestSchedule().then(({data}) => {
+      if(data.length) {
+        const sortedSchedule = data.sort((a, b) => new Date(a.date) - new Date(b.date))
+        
+        const datedWeekSchedule = changeWeekScheduleDates(sortedSchedule)
+        setWeekSchedule(datedWeekSchedule) 
 
-      setWeekSchedule(datedWeekSchedule)
+      } else {
+        const datedWeekSchedule = changeWeekScheduleDates(defaultSchedule)
+        setWeekSchedule(datedWeekSchedule) 
+      }
     })
   }, [])
 
@@ -57,6 +60,7 @@ export default function WeekScheduleAdmin() {
 
     db.getJWT().then(({ jwtToken }) => {
       const formatedWeekSchedule = formatWeekSchedule(weekSchedule)
+      console.log(formatedWeekSchedule)
       db.schedules
         .postSchedule(
           formatedWeekSchedule,

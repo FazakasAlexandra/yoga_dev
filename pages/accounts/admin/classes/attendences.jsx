@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../../components/AdminLayout'
 import Loader from '../../../../components/Loader'
 import AdminClassesLayout from '../../../../components/AdminClassesLayout'
+import Feedback from '../../../../components/Feedback'
 import Chart from 'react-google-charts'
 import db from '../../../../db'
 
@@ -67,31 +68,38 @@ export default function Page() {
       <AdminLayout activeTab={'classes'}>
         <AdminClassesLayout activeTab={'attendences'}>
           <div className='chart-container' style={{ width: '100%' }}>
-            <Chart
-              width={'99%'}
-              height={'700px'}
-              chartType='BarChart'
-              loader={<Loader/>}
-              data={[
-                ['Class', 'This Month', 'Last Three Months', 'This Year'],
-                ...attendences,
-              ]}
-              options={{
-                title: 'Classes Attendences',
-                bar: { groupWidth: '80%' },
-                colors: ['#8BDD7C', '#83BCFF', '#F46565'],
-                fontName: 'roboto, sans-serif',
-                fontSize: 17,
-                legend: {
-                  textStyle: {
-                    fontSize: 14,
-                  },
-                },
-                titleTextStyle: {
-                  fontSize: 20,
-                },
-              }}
-            />
+            {
+              attendences.length ?
+                <Chart
+                  width={'99%'}
+                  height={'700px'}
+                  chartType='BarChart'
+                  loader={<Loader />}
+                  data={[
+                    ['Class', 'This Month', 'Last Three Months', 'This Year'],
+                    ...attendences,
+                  ]}
+                  options={{
+                    title: 'Classes Attendences',
+                    bar: { groupWidth: '80%' },
+                    colors: ['#8BDD7C', '#83BCFF', '#F46565'],
+                    fontName: 'roboto, sans-serif',
+                    fontSize: 17,
+                    legend: {
+                      textStyle: {
+                        fontSize: 14,
+                      },
+                    },
+                    titleTextStyle: {
+                      fontSize: 20,
+                    },
+                  }}
+                /> :
+                <Feedback
+                  iconName='sadface'
+                  message="Your classes got not enough attendances for statistics !"
+                />
+            }
           </div>
         </AdminClassesLayout>
       </AdminLayout>

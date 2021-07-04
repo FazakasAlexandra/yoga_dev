@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../components/AdminLayout'
 import EventCard from '../../../components/EventCard'
 import EventForm from '../../../components/EventForm'
+import Feedback from '../../../components/Feedback'
 import db from '../../../db'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -27,23 +28,23 @@ export default function Page() {
     let content = []
     eventsForm
       ? (content = [
-          <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
-          events.map((event, index) => {
-            return <EventCard key={index} event={event} adminInterface={true} />
-          }),
-        ])
+        <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
+        events.map((event, index) => {
+          return <EventCard key={index} event={event} adminInterface={true} />
+        }),
+      ])
       : (content = [
-          events.map((event, index) => {
-            return (
-              <EventCard
-                key={index}
-                event={event}
-                adminInterface={true}
-                deleteEvent={deleteEvent}
-              />
-            )
-          }),
-        ])
+        events.map((event, index) => {
+          return (
+            <EventCard
+              key={index}
+              event={event}
+              adminInterface={true}
+              deleteEvent={deleteEvent}
+            />
+          )
+        }),
+      ])
     return content
   }
 
@@ -77,9 +78,9 @@ export default function Page() {
   }
 
   const deleteEvent = (ev, img) => {
-    db.getJWT().then(({jwtToken}) => {
+    db.getJWT().then(({ jwtToken }) => {
       db.events
-        .deleteEvent(jwtToken, ev ,img)
+        .deleteEvent(jwtToken, ev, img)
         .then((res) => setEvents(res.data.reverse()))
     })
   }
@@ -87,7 +88,7 @@ export default function Page() {
   return (
     <Layout activeTab={'account'}>
       <AdminLayout activeTab={'events'}>
-        <div style={{width: "100%"}}>
+        <div style={{ width: "100%" }}>
           <div className='button-add-class'>
             <button
               className='button-white admin'
@@ -102,6 +103,13 @@ export default function Page() {
             </button>
           </div>
           <div className='events-layout'>{getEvents()}</div>
+          {
+            !eventsForm && !events.length ?
+              <Feedback
+                iconName='sadface'
+                message="No events found !"
+              /> : null
+          }
         </div>
       </AdminLayout>
     </Layout>
