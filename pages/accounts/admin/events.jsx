@@ -8,6 +8,7 @@ import EventForm from '../../../components/EventForm'
 import db from '../../../db'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Feedback from '../../../components/Feedback'
 
 export default function Page() {
   const router = useRouter()
@@ -24,15 +25,28 @@ export default function Page() {
   }, [])
 
   const getEvents = () => {
-    let content = []
-    eventsForm
-      ? (content = [
+    return events.length === 0
+      ? eventsForm
+        ? [
+            <EventForm
+              setEventsForm={setEventsForm}
+              addNewEvent={addNewEvent}
+            />,
+          ]
+        : [
+            <Feedback
+              message='There are no events to display. Add your first event today!'
+              iconName='smile'
+            />,
+          ]
+      : eventsForm
+      ? [
           <EventForm setEventsForm={setEventsForm} addNewEvent={addNewEvent} />,
           events.map((event, index) => {
             return <EventCard key={index} event={event} adminInterface={true} />
           }),
-        ])
-      : (content = [
+        ]
+      : [
           events.map((event, index) => {
             return (
               <EventCard
@@ -43,8 +57,7 @@ export default function Page() {
               />
             )
           }),
-        ])
-    return content
+        ]
   }
 
   const addNewEvent = (
@@ -77,9 +90,9 @@ export default function Page() {
   }
 
   const deleteEvent = (ev, img) => {
-    db.getJWT().then(({jwtToken}) => {
+    db.getJWT().then(({ jwtToken }) => {
       db.events
-        .deleteEvent(jwtToken, ev ,img)
+        .deleteEvent(jwtToken, ev, img)
         .then((res) => setEvents(res.data.reverse()))
     })
   }
@@ -87,7 +100,7 @@ export default function Page() {
   return (
     <Layout activeTab={'account'}>
       <AdminLayout activeTab={'events'}>
-        <div style={{width: "100%"}}>
+        <div style={{ width: '100%' }}>
           <div className='button-add-class'>
             <button
               className='button-white admin'
