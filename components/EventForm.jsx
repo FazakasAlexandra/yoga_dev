@@ -42,6 +42,18 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
     })
   }
 
+  const fieldsValidation = (name, link, location, description) => {
+    return name.length > 100
+      ? 'name'
+      : location.length > 100
+      ? 'location'
+      : link.length > 100
+      ? 'link'
+      : description.length > 200
+      ? 'description'
+      : ''
+  }
+
   return (
     <form className='event-card'>
       <img
@@ -74,10 +86,20 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
                 onClick={(e) => {
                   e.preventDefault()
                   const arr = [name, date, hour, location, description]
+                  let field = fieldsValidation(
+                    name,
+                    link,
+                    location,
+                    description
+                  )
                   uploadedImage === false
                     ? toast.error('Picture is required!')
                     : arr.findIndex((e) => e === '') > -1
                     ? toast.error('All fields except for link are required!')
+                    : field != ''
+                    ? toast.error(
+                        `Too many characters insterted in ${field} field!`
+                      )
                     : addNewEvent(
                         e,
                         name,
@@ -180,6 +202,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
               width='100%'
               id='standard-basic'
               variant='outlined'
+              maxlength='10'
               style={style}
               multiline={true}
               rows={3}

@@ -39,16 +39,23 @@ export default function Page() {
     setSubscriptions([subscription, ...subscriptions])
 
   const getSubscriptions = () => {
-    return subscriptions.map((subscription) => {
-      return (
-        <SubscriptionCard
-          key={subscription.id}
-          subscription={subscription}
-          admin={true}
-          removeSubscriptionCard={removeSubscription}
-        />
-      )
-    })
+    return subscriptions.length == 0 && subscriptionsForms.length === 0 ? (
+      <Feedback
+        message='There are no subscriptions registered. Add your first subscription today!'
+        iconName='smile'
+      />
+    ) : (
+      subscriptions.map((subscription) => {
+        return (
+          <SubscriptionCard
+            key={subscription.id}
+            subscription={subscription}
+            admin={true}
+            removeSubscriptionCard={removeSubscription}
+          />
+        )
+      })
+    )
   }
 
   const getSubscriptionForms = () => {
@@ -83,7 +90,10 @@ export default function Page() {
                 {getSubscriptionForms()}
                 {getSubscriptions()}
               </>
-              : <Feedback iconName='sadface' message="You haven't created any subscription yet" />
+              : <Feedback
+              message='Time to add some subscriptions !'
+              iconName='smile'
+            />
           }
 
         </div>

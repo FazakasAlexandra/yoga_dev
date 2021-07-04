@@ -113,7 +113,7 @@ export default function Page() {
                 width={'100%'}
                 height={'500px'}
                 chartType='BarChart'
-                loader={<Loader/>}
+                loader={<Loader />}
                 data={data}
                 options={{
                   title: className,

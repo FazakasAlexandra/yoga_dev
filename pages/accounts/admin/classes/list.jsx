@@ -9,6 +9,7 @@ import ClassCardForm from '../../../../components/ClassCardForm'
 import db from '../../../../db.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Feedback from '../../../../components/Feedback'
 
 export default function Page() {
   const router = useRouter()
@@ -65,7 +66,21 @@ export default function Page() {
 
   const classesCards = () => {
     let content = []
-    classForm == 'true' && currentPage == 1
+    classesData.length === 0
+      ? classForm == 'true'
+        ? (content = [
+            <ClassCardForm
+              setClassForm={setClassForm}
+              addNewClass={addNewClass}
+            />,
+          ])
+        : (content = [
+            <Feedback
+              message='Time to add some classes !'
+              iconName='smile'
+            />,
+          ])
+      : classForm == 'true' && currentPage == 1
       ? (content = [
           <ClassCardForm
             setClassForm={setClassForm}
@@ -163,11 +178,15 @@ export default function Page() {
             ''
           )}
           <div className='class-body'>{classesCards()}</div>
-          <Pagination
-            cardsPerPage={cardsPerPage}
-            totalCards={classesData.length}
-            paginate={paginate}
-          />
+          {classesData.length === 0 ? (
+            ''
+          ) : (
+            <Pagination
+              cardsPerPage={cardsPerPage}
+              totalCards={classesData.length}
+              paginate={paginate}
+            />
+          )}
         </AdminClassesLayout>
       </AdminLayout>
     </Layout>

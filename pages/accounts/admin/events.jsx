@@ -105,10 +105,10 @@ export default function Page() {
           <div className='events-layout'>{getEvents()}</div>
           {
             !eventsForm && !events.length ?
-              <Feedback
-                iconName='sadface'
-                message="No events found !"
-              /> : null
+            <Feedback
+              message='Time to add some events !'
+              iconName='smile'
+            /> : null
           }
         </div>
       </AdminLayout>

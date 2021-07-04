@@ -5,13 +5,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
 import { useState } from 'react'
 import db from '../db'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function AdminClientSubscriptionSection({
   listSub,
   reloadClientInfo,
   subscriptions,
   clientid,
-  clientName
+  clientName,
 }) {
   const [selectedSub, setSelectedSub] = useState('')
 
@@ -38,7 +39,7 @@ export default function AdminClientSubscriptionSection({
   }
 
   const listOfCards = () => {
-    if(subscriptions.length) {
+    if (subscriptions.length) {
       return subscriptions.map((sub) => {
         return (
           <AdminSubscriptionCard
@@ -49,7 +50,11 @@ export default function AdminClientSubscriptionSection({
         )
       })
     }
-    return <i style={{margin: '0.5rem 0rem 1rem'}}>{clientName} has no subscriptions</i>
+    return (
+      <i style={{ margin: '0.5rem 0rem 1rem' }}>
+        {clientName} has no subscriptions
+      </i>
+    )
   }
 
   return (
@@ -68,13 +73,19 @@ export default function AdminClientSubscriptionSection({
           </Select>
           <button
             type='submit'
-            onClick={() => addSubs(clientid.id, selectedSub)}
+            onClick={() => {
+              selectedSub == ''
+                ? toast.error('Please select a subscription from the list')
+                : addSubs(clientid.id, selectedSub)
+              setSelectedSub('')
+            }}
           >
             +
           </button>
         </FormControl>
       </div>
       <div className='adminsubsection'>{listOfCards()}</div>
+      <ToastContainer />
     </>
   )
 }

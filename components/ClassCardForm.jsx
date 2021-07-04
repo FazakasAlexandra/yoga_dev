@@ -30,6 +30,14 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
     })
   }
 
+  const fieldsValidation = (name, description) => {
+    return name.length > 80
+      ? 'name'
+      : description.length > 110
+      ? 'description'
+      : ''
+  }
+
   const style = {
     fontSize: '16px',
     margin: '3px',
@@ -51,8 +59,13 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
                 offlinePrice,
                 description,
               ]
+              let field = fieldsValidation(nameClass, description)
               arr.findIndex((e) => e === '') > -1
                 ? toast.error('All fields are required!')
+                : field != ''
+                ? toast.error(
+                    `Too many characters insterted in ${field} field!`
+                  )
                 : addNewClass(
                     e,
                     nameClass,
