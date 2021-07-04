@@ -34,9 +34,8 @@ export default function SubscriptionCard({
     return free_entrences.map(({ amount, class_type, class_name }) => {
       return (
         <p key={_.uniqueId()}>
-          <b>{amount} <span className="free">free</span></b>{' '}
-          <i>{class_name}</i>
-          {class_type === 'online' ? 'online' : ''}
+          <b>{amount} <span className="free">free </span></b><i>{class_name} </i>
+          {class_type === 'online' ? 'online ' : ''}
           {amount > 1 ? ' entrences' : ' entrence'}
         </p>
       )

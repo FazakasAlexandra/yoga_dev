@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import { ThemeProvider } from '@material-ui/core'
 import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
-import { getWeekDates } from '../../../../utilities.js'
+import { getWeekDates, weekScheduleValidator } from '../../../../utilities.js'
 
 export default function WeekScheduleAdmin() {
   const router = useRouter()
@@ -48,6 +48,13 @@ export default function WeekScheduleAdmin() {
   }, [weekDates])
 
   const handlePostSchedule = () => {
+    const validationError = weekScheduleValidator(weekSchedule)
+    
+    if (validationError) {
+      toast.error(validationError.message)
+      return
+    }
+
     db.getJWT().then(({ jwtToken }) => {
       const formatedWeekSchedule = formatWeekSchedule(weekSchedule)
       db.schedules
