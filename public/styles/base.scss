@@ -112,3 +112,13 @@ svg > g > g:last-child {
 .button-green {
   background-color: #76e294 !important;
 }
+
+.MuiFormLabel-root.Mui-focused {
+  color: #3f51b5;
+  background: white;
+  padding: 0 5px;
+}
+
+.MuiOutlinedInput-input {
+  background: white !important;
+}

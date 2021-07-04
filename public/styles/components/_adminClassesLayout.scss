@@ -31,7 +31,7 @@
 
   .class-body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
 
@@ -40,6 +40,13 @@
       flex-direction: column;
       width: 100%;
       justify-content: flex-start;
+    }
+
+    .class-body-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
   }
 }

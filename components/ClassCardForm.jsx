@@ -81,7 +81,7 @@ export default function ClassCardForm({ setClassForm, addNewClass }) {
           <button
             className='button-white'
             onClick={() => {
-              setClassForm('false')
+              setClassForm(false)
             }}
           >
             <FontAwesomeIcon icon={faTimes} className='info-icon' />
