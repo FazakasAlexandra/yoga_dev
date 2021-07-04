@@ -8,8 +8,9 @@ import sectionsContent from '../homePageContent.json';
 
 export default function Home() {
   const getHomePageSections = () => {
-    return sectionsContent.map(({ src, title, content }, idx) => {
+    return sectionsContent.map(({ id, src, title, content }, idx) => {
       return <HomeSection
+        key={id}
         imgPosition={idx % 2 === 0 && idx != 0 ? 'left' : 'right'}
         title={title}
         src={src}

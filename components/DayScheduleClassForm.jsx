@@ -73,6 +73,7 @@ export default function DayScheduleClass({
                 id={`${yogaClass.id}-hour`}
                 onChange={(e) => setHour(e.target.value)}
                 style={{ width: '50px', marginBottom: '0.5rem' }}
+                inputProps={{ maxLength: 5 }}
               />
             ) : (
               <p>{hour}</p>

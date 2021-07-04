@@ -84,8 +84,18 @@ export default function Page() {
           <FontAwesomeIcon icon={faPlus} size='lg' />
         </button>
         <div className='subscriptions-admin'>
-          {getSubscriptionForms()}
-          {getSubscriptions()}
+          {
+            subscriptions.length || subscriptionsForms.length ?
+              <>
+                {getSubscriptionForms()}
+                {getSubscriptions()}
+              </>
+              : <Feedback
+              message='Time to add some subscriptions !'
+              iconName='smile'
+            />
+          }
+
         </div>
       </AdminLayout>
     </Layout>

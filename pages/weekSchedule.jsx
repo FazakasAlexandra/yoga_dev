@@ -1,9 +1,8 @@
 import DayScheduleCard from '../components/DayScheduleCard'
 import Layout from '../components/Layout'
+import Loader from '../components/Loader'
 import { DateRange } from 'react-date-range'
 import { useEffect, useState } from 'react/cjs/react.development'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
 
@@ -12,6 +11,8 @@ export default function WeekSchedule() {
   const [userData, setUserData] = useState(null)
   const [weekSchedule, setWeekSchedule] = useState([])
   const [userBookings, setUserBookings] = useState({})
+  const [dataLoading, setDataLoading] = useState(true);
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -40,30 +41,34 @@ export default function WeekSchedule() {
 
       setUserBookings(userBookingsMap)
     })
-  const updateWeekData = () => {}
+  const updateWeekData = () => { }
 
   useEffect(() => {
     if (session) updateUserData()
   }, [session])
 
   useEffect(() => {
-    db.schedules.getLatestSchedule().then((res) => {
-      const sortedSchedule = res.data.sort(
-        (a, b) => new Date(a.date) - new Date(b.date)
-      )
+    db.schedules.getLatestSchedule().then(({ data }) => {
+      setDataLoading(false)
+      
+      if (data.length) {
+        const sortedSchedule = data.sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        )
 
-      setWeekSchedule(sortedSchedule)
+        setWeekSchedule(sortedSchedule)
 
-      let startDate = new Date(res.data[0].dateWeekStart)
-      let endDate = new Date(res.data[0].dateWeekEnd)
+        let startDate = new Date(data[0].dateWeekStart)
+        let endDate = new Date(data[0].dateWeekEnd)
 
-      setDate([
-        {
-          startDate: startDate,
-          endDate: endDate,
-          key: 'selection',
-        },
-      ])
+        setDate([
+          {
+            startDate: startDate,
+            endDate: endDate,
+            key: 'selection',
+          },
+        ])
+      }
     })
   }, [])
 
@@ -99,12 +104,21 @@ export default function WeekSchedule() {
             moveRangeOnFirstSelection={true}
             dragSelectionEnabled={false}
             ranges={date}
+            onChange={(e) => console.log('hi')}
             showMonthAndYearPickers={false}
             showMonthArrow={false}
           />
         </div>
       </div>
-      <div className='day-schedule-cards'>{getDayScheduleCards()}</div>
+      {
+        dataLoading ? <Loader /> :
+          <div className='day-schedule-cards'>
+            {
+              weekSchedule.length ? getDayScheduleCards() : <h2 className="no-data-txt">NO SCHEDULE AVAILABLE</h2>
+            }
+          </div>
+      }
+
     </Layout>
   )
 }

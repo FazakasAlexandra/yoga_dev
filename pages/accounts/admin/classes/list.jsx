@@ -65,23 +65,8 @@ export default function Page() {
   const currentCards = classesData.slice(indexOfFirstCard, indexOfLastCard)
 
   const classesCards = () => {
-    let content = []
-    classesData.length === 0
-      ? classForm == 'true'
-        ? (content = [
-            <ClassCardForm
-              setClassForm={setClassForm}
-              addNewClass={addNewClass}
-            />,
-          ])
-        : (content = [
-            <Feedback
-              message='There are no classes registered. Add your first class today!'
-              iconName='smile'
-            />,
-          ])
-      : classForm == 'true' && currentPage == 1
-      ? (content = [
+    return classForm == 'true' && currentPage == 1
+      ? [
           <ClassCardForm
             setClassForm={setClassForm}
             addNewClass={addNewClass}
@@ -100,8 +85,8 @@ export default function Page() {
               />
             )
           }),
-        ])
-      : (content = [
+        ]
+      : [
           currentCards.map((classesData) => {
             return (
               <ClassCard
@@ -116,8 +101,7 @@ export default function Page() {
               />
             )
           }),
-        ])
-    return content
+        ]
   }
 
   const paginate = (pageNumber) => {
@@ -177,9 +161,9 @@ export default function Page() {
           ) : (
             ''
           )}
-          <div className='class-body'>{classesCards()}</div>
-          {classesData.length === 0 ? (
-            ''
+          <div className='class-body-list'>{classesCards()}</div>
+          {!classesData.length && !classForm ? (
+            <Feedback message='Time to add some classes !' iconName='smile' />
           ) : (
             <Pagination
               cardsPerPage={cardsPerPage}

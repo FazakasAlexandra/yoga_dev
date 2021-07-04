@@ -1,15 +1,18 @@
 [
     {
+        "id": 1,
         "title":"Gain flexibility",
         "content": "Flexibility is one of the key elements of good physical health. Over time, though, your body may lose flexibility due to aging, a sedentary lifestyle, stress, or improper posture and movement habits. Yoga is here to help !",
         "src":"fig1.svg"
     },
     {
+        "id": 2,
         "title":"Build strength",
         "content": "Yoga has been known for so long as the thing to do when you want to get more flexible. But here’s the thing: Yoga can also strengthen most of your muscles, if you make sure to practice the right poses.",
         "src":"fig2.svg"
     },
     {
+        "id": 3,
         "title":"Mindfulness and meditation",
         "content": "Bringing mindful awareness to any physical activity creates an alert focus to whatever you are doing in that exact moment, thereby transforming the movement into a form of meditation. Therefore mindful yoga is considered to be a form of meditation.",
         "src":"fig3.svg"

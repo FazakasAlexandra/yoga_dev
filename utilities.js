@@ -1,5 +1,35 @@
 import { createMuiTheme } from "@material-ui/core";
 
+const dayScheduleValidator = (schedule, dayName) => {
+    let message = ''
+    return {
+        invalidSchedule: schedule.find(({ editMode, name, hour, class_id }) => {
+            if (editMode) {
+                message = `Please save or discard your changes for ${dayName} !`
+                return true
+            }
+            if (!class_id) {
+                message = hour ? `Please fill the empty class field on ${dayName} at ${hour}` : `Please fill the empty class field on ${dayName} !`
+                return true
+            }
+            if (!hour) {
+                message = `Please set an hour for ${name} on ${dayName} !`
+                return true
+            }
+        }) || null,
+        message
+    }
+}
+
+const weekScheduleValidator = ( weekSchedule = [], i = 0 ) => {
+    if (i === weekSchedule.length) return false
+
+    let scheduleValidation = dayScheduleValidator(weekSchedule[i].schedule, weekSchedule[i].day)
+    if (scheduleValidation.invalidSchedule) return scheduleValidation
+
+    return weekScheduleValidator(weekSchedule, i + 1)
+}
+
 const getWeekDates = (startDate) => {
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -58,5 +88,6 @@ module.exports = {
     formatWeekSchedule,
     formatDate,
     getWeekDates,
+    weekScheduleValidator,
     theme
 }

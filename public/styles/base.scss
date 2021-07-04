@@ -18,6 +18,12 @@ a {
   box-sizing: border-box;
 }
 
+.no-data-txt {
+  cursor: default;
+  z-index: 1;
+  font-weight: 300;
+}
+
 ul {
   margin: 0rem !important;
 }
@@ -105,4 +111,14 @@ svg > g > g:last-child {
 
 .button-green {
   background-color: #76e294 !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #3f51b5;
+  background: white;
+  padding: 0 5px;
+}
+
+.MuiOutlinedInput-input {
+  background: white !important;
 }

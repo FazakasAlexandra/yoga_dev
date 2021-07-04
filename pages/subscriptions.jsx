@@ -5,7 +5,7 @@ import db from '../db.js'
 
 export default function Subscriptions() {
   const [subscriptions, setSubscriptions] = useState([])
-
+  console.log(subscriptions.length)
   useEffect(() => {
     db.subscriptions.getSubscriptions().then((res) => {
       setSubscriptions(res.data)
@@ -25,7 +25,7 @@ export default function Subscriptions() {
       <div className='subscriptions'>
         <div className='color'></div>
         <div className='radius'></div>
-        {getSubscriptions()}
+        {subscriptions.length ? getSubscriptions() : <h2 className="no-data-txt">NO SUBSCRIPTIONS AVAILABLE</h2>}
       </div>
     </Layout>
   )
