@@ -78,7 +78,7 @@ export default function SubscriptionCard({
       ) : null}
       <h1>{name}</h1>
       <img
-        src={`http://localhost/yoga/public/assets/subscriptions/${image}`}
+        src={`${db.baseURL}/public/assets/subscriptions/${image}`}
         alt={`subscription ${name} image`}
       />
       <div>

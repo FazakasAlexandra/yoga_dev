@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faVideo } from '@fortawesome/free-solid-svg-icons'
+import db from '../db'
 
 export default function EventCard({ event, adminInterface, deleteEvent }) {
   return (
     <div className='event-card'>
       <img
-        src={`http://localhost/yoga/public/assets/events/${event.image}`}
+        src={`${db.baseURL}/public/assets/events/${event.image}`}
         style={{}}
       />
       <div className='event-details-section'>
@@ -26,11 +27,12 @@ export default function EventCard({ event, adminInterface, deleteEvent }) {
           <div>
             <h1>{event.title}</h1>
             {event.link != '' ? (
-              <a href={`http://${event.link}/`}>
+              <a target="_blank" href={`http://${event.link}/`}>
                 <FontAwesomeIcon
                   icon={faVideo}
                   size='lg'
-                  style={{ color: '#C4E4E9', cursor: 'pointer' }}
+                  style={{ cursor: 'pointer' }}
+                  color="#3f7f9a"
                   className='info-icon'
                 />{' '}
                 {event.link}

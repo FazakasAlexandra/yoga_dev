@@ -1,8 +1,9 @@
-@media(max-width: 1240px){
-  .home-content{
+@media(max-width: 1240px) {
+  .home-content {
     justify-content: center;
-    .content{
-      h1{
+
+    .content {
+      h1 {
         margin-top: 3rem;
       }
     }
@@ -20,6 +21,7 @@
     width: 100%;
     margin: 3rem 0rem;
   }
+
   .admin-clients {
     display: flex;
     flex-direction: column;
@@ -64,6 +66,9 @@
 }
 
 @media(max-width: 799px) {
+  .client-account-wrapper {
+    width: 100%;
+  }
   .date-container {
     margin-bottom: 0px;
 
@@ -93,12 +98,24 @@
     width: 90%;
     left: 6%;
   }
+
+  .admin-layout {
+    .header{
+      padding: 1.5rem 0rem;
+      padding-top: 1.8rem;
+
+      a{
+        margin: 0rem 1rem;
+      }
+    }
+  }
 }
 
 @media(max-width: 470px) {
   .event-card {
     padding: 0rem;
-    img:first-child{
+
+    img:first-child {
       width: 100%;
     }
 
@@ -106,7 +123,7 @@
       .event-details {
         width: 90%;
 
-        h1{
+        h1 {
           font-size: 30px;
         }
       }
@@ -163,31 +180,34 @@
 
 @media(max-width: 420px) {
   .event-card {
-    .event-details-section{
+    .event-details-section {
       width: 100%;
       left: 0px;
       padding: 10px;
     }
-    .button-white.delete-event{
+
+    .button-white.delete-event {
       left: 0px;
       top: -1rem;
     }
   }
 
-  .info{
+  .info {
     margin-right: 0px !important;
     border-right-style: solid;
     border-width: thin;
     border-color: #dadada;
-    
-    div{
+
+    div {
       flex-direction: column-reverse;
     }
   }
-  .button-home{
+
+  .button-home {
     width: 100%;
   }
-  .button-home.yellow{
+
+  .button-home.yellow {
     margin-right: 0px;
   }
 
@@ -227,7 +247,7 @@
   .day-schedule.card {
     width: 100%;
 
-    .class.radio{
+    .class.radio {
       border-left-style: none;
     }
 
@@ -248,8 +268,18 @@
   }
 }
 
+@media(max-width: 380px) {
+  .admin-layout {
+    .header {
+      a:last-child {
+        margin: 1rem;
+      }
+    }
+  }
+}
 
 @media(max-width: 350px) {
+
   .date-container {
     min-height: fit-content;
     margin: 2rem 0rem;
@@ -258,9 +288,7 @@
   .admin-clients {
     padding: 10px;
   }
-}
 
-@media (max-width: 350px) {
   .date-container {
     min-height: fit-content;
     margin: 2rem 0rem;

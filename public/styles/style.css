@@ -618,6 +618,7 @@ header .navItem {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
 }
 .admin-classes-layout .class-body .button-add-class {
   display: flex;
@@ -703,6 +704,10 @@ header .navItem {
   flex-wrap: wrap;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   min-width: 400px;
+}
+.week_schedule-form .MuiFormLabel-root.Mui-focused {
+  background: none;
+  padding: 0rem;
 }
 .week_schedule-form .button-white {
   margin-left: 2rem;
@@ -1060,6 +1065,9 @@ header .navItem {
   padding: 0.5rem;
   width: 222px;
   margin: 0 10px 20px 0;
+}
+.admin-subscription-card .date {
+  font-size: 15px;
 }
 .admin-subscription-card .footer {
   display: flex;
@@ -1601,6 +1609,10 @@ header .navItem {
   }
 }
 @media (max-width: 799px) {
+  .client-account-wrapper {
+    width: 100%;
+  }
+
   .date-container {
     margin-bottom: 0px;
   }
@@ -1626,6 +1638,14 @@ header .navItem {
   .event-card .event-details-section {
     width: 90%;
     left: 6%;
+  }
+
+  .admin-layout .header {
+    padding: 1.5rem 0rem;
+    padding-top: 1.8rem;
+  }
+  .admin-layout .header a {
+    margin: 0rem 1rem;
   }
 }
 @media (max-width: 470px) {
@@ -1761,6 +1781,11 @@ header .navItem {
     margin-top: 1.2rem;
   }
 }
+@media (max-width: 380px) {
+  .admin-layout .header a:last-child {
+    margin: 1rem;
+  }
+}
 @media (max-width: 350px) {
   .date-container {
     min-height: fit-content;
@@ -1770,8 +1795,7 @@ header .navItem {
   .admin-clients {
     padding: 10px;
   }
-}
-@media (max-width: 350px) {
+
   .date-container {
     min-height: fit-content;
     margin: 2rem 0rem;

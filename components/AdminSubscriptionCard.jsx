@@ -96,7 +96,7 @@ export default function AdminSubscriptionCard({
       {getDate(formatDate(subscription.expiration_date))}
       <img
         style={{ width: '100px' }}
-        src={`http://localhost/yoga/public/assets/subscriptions/${subscription.image}`}
+        src={`${db.baseURL}/public/assets/subscriptions/${subscription.image}`}
         alt={`subscription ${subscription.image} image`}
       />
       <div className='footer'>

@@ -4,6 +4,7 @@ import { faRedo, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import TextField from '@material-ui/core/TextField'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import db from '../db'
 
 export default function EventForm({ setEventsForm, addNewEvent }) {
   const [uploadedImage, setUploadedImage] = useState(false)
@@ -57,7 +58,7 @@ export default function EventForm({ setEventsForm, addNewEvent }) {
   return (
     <form className='event-card'>
       <img
-        src={image || 'http://localhost/yoga/public/assets/placeholder.png'}
+        src={image || `${db.baseURL}/public/assets/placeholder.png`}
       />
       <div className='event-details-section'>
         <div className='event-form'>

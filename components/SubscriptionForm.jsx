@@ -8,12 +8,6 @@ import { theme } from '../utilities.js'
 import SubscriptionFormInputs from './SubscriptionFormInputs'
 import _ from 'lodash'
 
-const controlProps = (item) => ({
-  value: item,
-  theme: theme,
-  name: 'color-radio-button-demo',
-  inputProps: { 'aria-label': item },
-})
 
 export default function subscriptionsForm({
   removeForm,
