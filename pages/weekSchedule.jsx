@@ -2,9 +2,9 @@ import DayScheduleCard from '../components/DayScheduleCard'
 import Layout from '../components/Layout'
 import Loader from '../components/Loader'
 import { DateRange } from 'react-date-range'
-import { useEffect, useState } from 'react/cjs/react.development'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
+import React, {useState, useEffect} from 'react';
 
 export default function WeekSchedule() {
   const [session, loading] = useSession()
