@@ -64,7 +64,6 @@ export default function SubscriptionFormInputs({
             )
             setSelectedYogaClass(selectedClass)
           }}
-          //   label='select a class'
         >
           {getSelectOptions()}
         </Select>

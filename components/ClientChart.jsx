@@ -44,9 +44,11 @@ export default function ClientChart({ info }) {
   const attendedClasses = info.filter(
     (element) => element.state == 'present'
   ).length
+
   const absentClasses = info.filter(
     (element) => element.state == 'absent'
   ).length
+
   const canceledClasses = info.filter(
     (element) => element.state == 'canceled'
   ).length
@@ -54,7 +56,7 @@ export default function ClientChart({ info }) {
   return (
     <div className='client-chart'>
       <h3>Attendences</h3>
-      {info.length ?
+      {canceledClasses || absentClasses || attendedClasses ?
         <Chart
           width={'100%'}
           height={'250px'}
