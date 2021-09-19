@@ -1,0 +1,65 @@
+.editor {
+    border-radius: "10px";
+}
+
+.editor,
+.preview {
+    button {
+        cursor: pointer;
+        border: none;
+    }
+    p{
+        font-size: 16px;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    h2{
+        font-size: 20px;
+    }
+}
+
+.preview {
+    padding: 2rem;
+}
+
+.feature-image{
+    width: 100%;
+    cursor: pointer;
+    height: 700px;
+    object-fit: cover;
+}
+
+.base-button{
+    span {
+        font-size: 14px;
+    }
+}
+
+.link {
+    color: rgb(67, 95, 255);
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.toolbar {
+    box-shadow: 0 10px 15px -2px #80808030;;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.textfields {
+    position: sticky;
+    background: white;
+    z-index: 1;
+    left: 0;
+    top: 50px;
+    padding: 2rem;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 17%);
+    max-width: 400px;
+    margin-top: -10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

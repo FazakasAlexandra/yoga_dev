@@ -84,10 +84,19 @@ const theme = createMuiTheme({
     },
 });
 
+const toolbarTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#4976ED",
+        },
+    },
+});
+
 module.exports = {
     formatWeekSchedule,
     formatDate,
     getWeekDates,
     weekScheduleValidator,
-    theme
+    theme,
+    toolbarTheme
 }

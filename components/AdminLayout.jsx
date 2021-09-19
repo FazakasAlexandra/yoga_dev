@@ -25,6 +25,11 @@ export default function AdminLayout({ children, activeTab }) {
             Subscriptions
           </a>
         </Link>
+        <Link href='/accounts/admin/blog'>
+          <a className={activeTab === 'blog' ? 'active-tab' : null}>
+            Blog
+          </a>
+        </Link>
       </div>
 
       <hr />
