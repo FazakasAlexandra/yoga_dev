@@ -1,6 +1,6 @@
-import { serialize } from "../utils/serialize";
+import { serialize } from "./utils/serialize";
 import { BaseButton } from "./editorButtons/BaseButton";
-import Icon from './editorButtons/Icon'
+import { FeatureImage } from './FeatureImage'
 
 export const Preview = ({
     nodes,
@@ -32,9 +32,11 @@ export const Preview = ({
                         Back
                     </BaseButton>
                     <div className="preview-header">
-                        <h1>{title}</h1>
-                        <p>{description}</p>
-                        <img src={featureImage} />
+                        <div className="preview-header-txt">
+                            <h1>{title || "No title"}</h1>
+                            <p>{description || "No description"}</p>
+                        </div>
+                        <FeatureImage featureImage={featureImage}/>
                     </div>
                     <div className="preview">
                         {nodes.map(value => serialize(value))}

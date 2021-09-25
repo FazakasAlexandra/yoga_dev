@@ -1,5 +1,5 @@
 
-import { insertImage } from '../../utils/insertImage'
+import { insertImage } from '../utils/insertImage'
 import { useSlate } from 'slate-react'
 import { BaseButton } from './BaseButton'
 import Icon from './Icon'

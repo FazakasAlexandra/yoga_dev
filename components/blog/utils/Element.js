@@ -1,4 +1,4 @@
-import Image from '../components/Image'
+import Image from '../Image'
 
 export const Element = (props) => {
     const { attributes, children, element } = props
@@ -9,8 +9,6 @@ export const Element = (props) => {
             return <blockquote {...attributes}>{children}</blockquote>
         case 'bulleted-list':
             return <ul {...attributes}>{children}</ul>
-        case 'heading-one':
-            return <h1 {...attributes}>{children}</h1>
         case 'heading-two':
             return <h2 {...attributes}>{children}</h2>
         case 'list-item':

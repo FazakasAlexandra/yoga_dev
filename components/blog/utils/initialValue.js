@@ -1,11 +1,5 @@
 export const initialValue = [
     {
-        type: 'heading-one',
-        children: [
-            { text: 'This is better than a textarea ' },
-        ],
-    },
-    {
         type: 'paragraph',
         children: [
             { text: 'This is editable ' },

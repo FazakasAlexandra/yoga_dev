@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fauna+One&display=swap");
+@import url("http://fonts.cdnfonts.com/css/new-york-extra-large");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap");
 html,
 body {
   color: #646262;
@@ -1586,8 +1588,8 @@ header .navItem {
 .feature-image {
   width: 100%;
   cursor: pointer;
-  height: 700px;
   object-fit: cover;
+  height: 700px;
 }
 
 .base-button span {
@@ -1606,18 +1608,44 @@ header .navItem {
   border-bottom-right-radius: 10px;
 }
 
+.svg-container {
+  background: #CAC6EB;
+  padding-top: 280px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.svg-container h1 {
+  transition: all 0.9s ease-in-out;
+  position: absolute;
+  top: 10%;
+  color: #CAC6EB;
+  text-transform: uppercase;
+  max-width: 200px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 2px;
+}
+
+.svg-container:hover h1 {
+  color: white;
+  transition: all 0.9s ease-in-out;
+}
+
 .textfields {
   position: sticky;
   background: white;
   z-index: 1;
   left: 0;
-  top: 50px;
+  top: 70px;
   padding: 2rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.17);
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.17);
   max-width: 400px;
-  margin-top: -10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  margin: 15px;
+  border-radius: 10px;
 }
 
 .preview {
@@ -1626,6 +1654,28 @@ header .navItem {
   display: "flex";
   flex-direction: "column";
   margin: "0 auto";
+  max-width: 680px;
+}
+
+.preview p,
+.editor p {
+  font-family: "New York Medium", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 170%;
+  color: #000000cc;
+  margin-bottom: 30px;
+}
+.preview h2,
+.editor h2 {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 160%;
+  color: #000000cc;
+  margin-top: 50px;
 }
 
 .preview-header {
@@ -1635,6 +1685,27 @@ header .navItem {
   width: 100%;
   height: 700px;
   object-fit: cover;
+}
+
+.preview-header-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.preview-header-txt h1 {
+  font-size: 54px;
+  font-family: "New York Extra Large", sans-serif;
+  max-width: 800px;
+  text-align: center;
+  color: #000000cc;
+  margin-bottom: 30px;
+}
+.preview-header-txt p {
+  font-size: 20px;
+  max-width: 620px;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  margin: 0 0 50px;
 }
 
 @media (max-width: 1240px) {

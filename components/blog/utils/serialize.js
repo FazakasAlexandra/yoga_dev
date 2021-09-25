@@ -26,8 +26,6 @@ export const serialize = node => {
             return <blockquote><p>{children}</p></blockquote>
         case 'paragraph':
             return <p>{children}</p>
-        case 'heading-one':
-            return <h1>{children}</h1>
         case 'heading-two':
             return <h2>{children}</h2>
         case 'numbered-list':

@@ -1,11 +1,37 @@
+@import url('http://fonts.cdnfonts.com/css/new-york-extra-large');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
 .preview {
     cursor: "default";
     background: "#FFFFFF";
     display: 'flex';
     flex-direction: 'column';
     margin: '0 auto';
+    max-width: 680px;
 }
 
+.preview,
+.editor {
+    p {
+        font-family: 'New York Medium', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 170%;
+        color: #000000cc;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-family: sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 160%;
+        color: #000000cc;
+        margin-top: 50px;
+    }
+}
 .preview-header {
     width: 100%;
 
@@ -13,5 +39,28 @@
         width: 100%;
         height: 700px;
         object-fit: cover;
+    }
+}
+
+.preview-header-txt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 54px;
+        font-family: 'New York Extra Large', sans-serif;
+        max-width: 800px;
+        text-align: center;
+        color: #000000cc;
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 20px;
+        max-width: 620px;
+        text-align: center;
+        font-family: 'Roboto Mono', monospace;
+        margin: 0 0 50px;
     }
 }

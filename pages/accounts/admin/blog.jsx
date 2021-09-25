@@ -4,21 +4,21 @@ import { Editable, withReact, Slate } from 'slate-react'
 import {
     createEditor,
 } from 'slate'
-import { ThemeProvider } from '@material-ui/core'
 import { withHistory } from 'slate-history'
-import { Toolbar } from '../../../components/Toolbar'
-import { Leaf } from '../../../utils/Leaf'
-import { initialValue } from '../../../utils/initialValue'
-import { Element } from '../../../utils/Element'
-import { withImages } from '../../../utils/insertImage'
-import { withLinks } from '../../../utils/withLinks'
-import { toggleMark } from '../../../components/editorButtons/MarkButton'
-import { Preview } from '../../../components/Preview'
+import { Toolbar } from '../../../components/blog/Toolbar'
+import { Leaf } from '../../../components/blog/utils/Leaf'
+import { initialValue } from '../../../components/blog/utils/initialValue'
+import { Element } from '../../../components/blog/utils/Element'
+import { withImages } from '../../../components/blog/utils/insertImage'
+import { withLinks } from '../../../components/blog/utils/withLinks'
+import { toggleMark } from '../../../components/blog/editorButtons/MarkButton'
+import { Preview } from '../../../components/blog/Preview'
+import { FeatureImage } from '../../../components/blog/FeatureImage'
+import { Menu } from '../../../components/blog/Menu'
 // @refresh reset
 import AdminLayout from '../../../components/AdminLayout'
 import Layout from '../../../components/Layout'
-import { toolbarTheme } from '../../../utilities.js'
-import TextField from '@material-ui/core/TextField'
+
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -28,102 +28,90 @@ const HOTKEYS = {
 }
 
 const Blog = () => {
-    const [featureImage, setFeatureImage] = useState("https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640")
+    const [featureImage, setFeatureImage] = useState("")
     const [description, setDescription] = useState("")
     const [title, setTitle] = useState("")
-
-    const [editorContent, setEditorContent] = useState(initialValue)
     const [isPreview, setIsPreview] = useState(false)
+    const [showForm, setShowForm] = useState(false)
+    const [editorContent, setEditorContent] = useState(initialValue)
+    const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
     const renderElement = useCallback(props => <Element {...props} />, [])
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
-    const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
-
-    const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
         console.log(editorContent)
     }, [editorContent])
 
+    const setImage = () => {
+        const url = prompt("Enter an Image URL");
+        if (url) {
+            setFeatureImage(url);
+        }
+    }
+
+    const handleKeydown = (event) => {
+        for (const hotkey in HOTKEYS) {
+            if (isHotkey(hotkey, event)) {
+                event.preventDefault()
+                const mark = HOTKEYS[hotkey]
+                toggleMark(editor, mark)
+            }
+        }
+    }
+
     return (
         <Layout activeTab={'account'}>
             <AdminLayout activeTab="blog" style={{ padding: '2rem 0' }}>
-                {!isPreview ?
-                    <div
-                        className="editor"
-                        style={{
-                            borderRadius: "10px",
-                        }}
-                    >
-
-                        <Slate
-                            editor={editor}
-                            value={editorContent}
-                            onChange={value => setEditorContent(value)}>
-                            <Toolbar
-                                isPreview={isPreview}
-                                setPreview={setIsPreview}
-                                toggleForm={() => setShowForm(!showForm)}
-                                style={{ display: 'flex', justifyContent: 'space-between' }}
-                            />
-                            {showForm && <ThemeProvider theme={toolbarTheme}>
-                                <div className="textfields">
-                                    <TextField
-                                        label="Title"
-                                        fullWidth
-                                        margin="dense"
-                                        onChange={(e) => setTitle(e.target.value)}
+                {
+                    !isPreview ?
+                        <div className="editor">
+                            <Slate
+                                editor={editor}
+                                value={editorContent}
+                                onChange={value => setEditorContent(value)}
+                            >
+                                <Toolbar
+                                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                                    isPreview={isPreview}
+                                    showForm={showForm}
+                                    setPreview={setIsPreview}
+                                    toggleForm={() => setShowForm(!showForm)}
+                                />
+                                {
+                                    showForm && <Menu
+                                        title={title}
+                                        description={description}
+                                        setTitle={setTitle}
+                                        setDescription={setDescription}
                                     />
-                                    <TextField
-                                        label="Short description"
-                                        multiline
-                                        rows={5}
-                                        fullWidth
-                                        margin="dense"
-                                        onChange={(e) => setDescription(e.target.value)}
-                                    />
-                                </div>
-                            </ThemeProvider>}
-                            <img
-                                onClick={() => {
-                                    const url = prompt("Enter an Image URL");
-                                    if (url) {
-                                        setFeatureImage(url);
-                                    }
-                                }}
-                                className="feature-image"
-                                style={{ marginTop: showForm ? "-254px" : "-10px" }}
-                                src={featureImage}
-                                alt="feature image"
-                            />
-                            <Editable
-                                style={{ padding: '0 38px 38px' }}
-                                renderElement={renderElement}
-                                renderLeaf={renderLeaf}
-                                placeholder="Write anything…"
-                                spellCheck={false}
-                                autoFocus={false}
-                                autoCapitalize="false"
-                                autoCorrect="false"
-                                onKeyDown={event => {
-                                    for (const hotkey in HOTKEYS) {
-                                        if (isHotkey(hotkey, event)) {
-                                            event.preventDefault()
-                                            const mark = HOTKEYS[hotkey]
-                                            toggleMark(editor, mark)
-                                        }
-                                    }
-                                }}
-                            />
-                        </Slate>
-                    </div>
-                    : <Preview
-                        title={title}
-                        featureImage={featureImage}
-                        description={description}
-                        nodes={editorContent}
-                        isPreview={isPreview}
-                        setPreview={setIsPreview}
-                    />
+                                }
+                                <FeatureImage
+                                    featureImage={featureImage}
+                                    showForm={showForm}
+                                    setImage={setImage}
+                                />
+                                <Editable
+                                    style={{ padding: '20px 20%' }}
+                                    spellCheck={false}
+                                    autoFocus={false}
+                                    className="editable"
+                                    placeholder="Write anything…"
+                                    autoCapitalize="false"
+                                    autoCorrect="false"
+                                    renderElement={renderElement}
+                                    renderLeaf={renderLeaf}
+                                    onKeyDown={event => handleKeydown(event)}
+                                />
+                            </Slate>
+                        </div>
+                        : <Preview
+                            title={title}
+                            featureImage={featureImage}
+                            description={description}
+                            nodes={editorContent}
+                            isPreview={isPreview}
+                            setPreview={setIsPreview}
+                        />
                 }
             </AdminLayout>
         </Layout>
