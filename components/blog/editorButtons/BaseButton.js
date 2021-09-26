@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export const BaseButton = React.forwardRef(
   (
     {
-      className,
+      buttonClass,
       active,
       reversed,
       ...props
@@ -11,14 +11,14 @@ export const BaseButton = React.forwardRef(
   ) => {
     const [hover, setHover] = useState(false)
     return (
-      <div style={{ position: "relative" }}  className="base-button">
+      <div className="base-button">
         <button
+          className={props.class}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onMouseOver={() => setHover(true)}
           style={{
-            backgroundColor: active || hover ? '#e6d7f5' : 'inherit',
-            padding: '0.5rem',
+            backgroundColor: active || (hover && props.hoverEffect) ? '#e6d7f5' : 'inherit',
             borderRadius: '5px',
             cursor: 'pointer'
           }}
@@ -32,7 +32,6 @@ export const BaseButton = React.forwardRef(
             bottom: '-50px',
             left: '0px',
             backgroundColor: 'white',
-            padding: '10px',
             boxShadow: "0px 9px 61px rgb(0 0 0 / 25%)",
             borderRadius: '5px',
             width: '120px'

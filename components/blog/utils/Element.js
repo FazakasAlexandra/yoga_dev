@@ -21,3 +21,5 @@ export const Element = (props) => {
             return <p {...attributes}>{children}</p>
     }
 }
+
+export default Element;

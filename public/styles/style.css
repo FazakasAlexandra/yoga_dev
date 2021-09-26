@@ -580,21 +580,83 @@ header .navItem {
   border-radius: 15px;
   margin-bottom: 2rem;
 }
-.admin-layout hr {
-  border-color: #efeaea57;
-  width: 95%;
+.admin-layout .header,
+.admin-layout .mobile-header {
+  border-bottom: solid;
+  border-width: thin;
+  border-color: #E4E4E4;
+  width: 85%;
 }
 .admin-layout .header {
-  padding: 1.5rem;
-  padding-top: 1.8rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 .admin-layout .header a {
-  margin: 0rem 2rem;
+  padding: 1.9rem 1.9rem;
+  margin-top: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-right: 1rem;
+}
+.admin-layout .header a:last-child {
+  margin-right: 0;
+}
+.admin-layout .header .active-tab {
+  background: #E6D7F5;
+  font-weight: 700;
+}
+.admin-layout .header a:hover {
+  background: #E6D7F5;
+}
+.admin-layout .mobile-header {
+  display: none;
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: 1.9rem 0;
+  margin: 0 2rem;
+}
+.admin-layout .mobile-header a {
+  width: 90%;
+  text-align: center;
 }
 
+.dialog-content {
+  height: 400px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+.dialog-content a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dialog-content a:hover {
+  background: #E6D7F5;
+}
+.dialog-content .active-tab {
+  background: #E6D7F5;
+  font-weight: 700;
+}
+
+.close {
+  cursor: pointer;
+  align-self: end;
+  margin: 25px 25px 25px 0;
+}
+
+@media (max-width: 820px) {
+  .admin-layout .header {
+    display: none;
+  }
+  .admin-layout .mobile-header {
+    display: flex;
+    align-items: center;
+  }
+}
 .admin-classes-layout {
   width: 100%;
 }
@@ -1592,6 +1654,9 @@ header .navItem {
   height: 700px;
 }
 
+.base-button {
+  position: relative;
+}
 .base-button span {
   font-size: 14px;
 }
@@ -1620,7 +1685,7 @@ header .navItem {
 .svg-container h1 {
   transition: all 0.9s ease-in-out;
   position: absolute;
-  top: 10%;
+  top: 35%;
   color: #CAC6EB;
   text-transform: uppercase;
   max-width: 200px;
@@ -1640,7 +1705,7 @@ header .navItem {
   background: white;
   z-index: 1;
   left: 0;
-  top: 70px;
+  top: 100px;
   padding: 2rem;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.17);
   max-width: 400px;
@@ -1708,6 +1773,59 @@ header .navItem {
   margin: 0 0 50px;
 }
 
+.menu-editor {
+  box-shadow: 0 10px 15px -2px #80808030;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7.9%;
+}
+.menu-editor .wand {
+  display: none;
+  cursor: pointer;
+}
+.menu-editor .editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 4;
+}
+.menu-editor .editor-buttons-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.menu-editor .editor-buttons-container .editor-text-button {
+  padding: 1.9rem 15px;
+  color: #4976ED;
+  text-align: end;
+  color: "#4976ED";
+  background: none;
+  font-size: 18px;
+  border-width: revert;
+}
+
+@media (max-width: 820px) {
+  .menu-editor .wand {
+    display: block;
+  }
+  .menu-editor .editor-toolbar {
+    display: none;
+  }
+  .menu-editor .editor-buttons-container .base-button:first-child .editor-text-button {
+    padding-left: 0;
+  }
+  .menu-editor .editor-buttons-container .base-button:last-child .editor-text-button {
+    padding-right: 0;
+  }
+}
 @media (max-width: 1240px) {
   .home-content {
     justify-content: center;
@@ -1797,14 +1915,6 @@ header .navItem {
     width: 90%;
     left: 6%;
   }
-
-  .admin-layout .header {
-    padding: 1.5rem 0rem;
-    padding-top: 1.8rem;
-  }
-  .admin-layout .header a {
-    margin: 0rem 1rem;
-  }
 }
 @media (max-width: 470px) {
   .event-card {
@@ -1853,14 +1963,6 @@ header .navItem {
     width: 100%;
     padding: 1rem;
   }
-
-  .admin-layout .header {
-    padding: 1.5rem 0rem;
-    padding-top: 1.8rem;
-  }
-  .admin-layout .header a {
-    margin: 0rem 1rem;
-  }
 }
 @media (max-width: 420px) {
   .event-card .event-details-section {
@@ -1904,16 +2006,6 @@ header .navItem {
     width: 100%;
   }
 
-  .admin-layout .header {
-    padding: 1.5rem 0rem;
-    padding-top: 1.8rem;
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: space-around;
-  }
-  .admin-layout .header a {
-    margin: 0rem 1rem;
-  }
   .admin-layout .day-schedule-cards .class.wraper .buttons-container {
     flex-direction: row;
     align-self: flex-end;
@@ -1937,11 +2029,6 @@ header .navItem {
     text-align: center;
     margin: 0px;
     margin-top: 1.2rem;
-  }
-}
-@media (max-width: 380px) {
-  .admin-layout .header a:last-child {
-    margin: 1rem;
   }
 }
 @media (max-width: 350px) {

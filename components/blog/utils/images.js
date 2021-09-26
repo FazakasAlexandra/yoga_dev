@@ -57,3 +57,5 @@ export const isImageUrl = url => {
   const ext = new URL(url).pathname.split('.').pop()
   return imageExtensions.includes(ext)
 }
+
+export default withImages;

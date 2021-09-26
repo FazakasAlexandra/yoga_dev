@@ -1,24 +1,27 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import isHotkey from 'is-hotkey'
-import { Editable, withReact, Slate } from 'slate-react'
-import {
-    createEditor,
-} from 'slate'
-import { withHistory } from 'slate-history'
-import { Toolbar } from '../../../components/blog/Toolbar'
-import { Leaf } from '../../../components/blog/utils/Leaf'
-import { initialValue } from '../../../components/blog/utils/initialValue'
-import { Element } from '../../../components/blog/utils/Element'
-import { withImages } from '../../../components/blog/utils/insertImage'
-import { withLinks } from '../../../components/blog/utils/withLinks'
-import { toggleMark } from '../../../components/blog/editorButtons/MarkButton'
-import { Preview } from '../../../components/blog/Preview'
-import { FeatureImage } from '../../../components/blog/FeatureImage'
-import { Menu } from '../../../components/blog/Menu'
 // @refresh reset
-import AdminLayout from '../../../components/AdminLayout'
-import Layout from '../../../components/Layout'
-
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Editable, withReact, Slate } from 'slate-react'
+import { createEditor, } from 'slate'
+import { withHistory } from 'slate-history'
+import { toggleMark } from '../../../components/blog/editorButtons/MarkButton'
+import {
+    AdminLayout,
+    Layout
+} from '../../../components/'
+import {
+    MenuEditor,
+    FeatureImage,
+    Preview,
+    MenuPost
+} from '../../../components/blog/'
+import {
+    Leaf,
+    Element,
+    withLinks,
+    withImages,
+    initialValue,
+} from '../../../components/blog/utils'
+import isHotkey from 'is-hotkey'
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -70,7 +73,7 @@ const Blog = () => {
                                 value={editorContent}
                                 onChange={value => setEditorContent(value)}
                             >
-                                <Toolbar
+                                <MenuEditor
                                     style={{ display: 'flex', justifyContent: 'space-between' }}
                                     isPreview={isPreview}
                                     showForm={showForm}
@@ -78,7 +81,7 @@ const Blog = () => {
                                     toggleForm={() => setShowForm(!showForm)}
                                 />
                                 {
-                                    showForm && <Menu
+                                    showForm && <MenuPost
                                         title={title}
                                         description={description}
                                         setTitle={setTitle}

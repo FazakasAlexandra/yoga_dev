@@ -27,3 +27,5 @@ export const withLinks = editor => {
 
     return editor
 }
+
+export default withLinks;

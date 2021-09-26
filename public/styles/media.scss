@@ -98,17 +98,6 @@
     width: 90%;
     left: 6%;
   }
-
-  .admin-layout {
-    .header{
-      padding: 1.5rem 0rem;
-      padding-top: 1.8rem;
-
-      a{
-        margin: 0rem 1rem;
-      }
-    }
-  }
 }
 
 @media(max-width: 470px) {
@@ -165,17 +154,6 @@
     width: 100%;
     padding: 1rem;
   }
-
-  .admin-layout {
-    .header {
-      padding: 1.5rem 0rem;
-      padding-top: 1.8rem;
-
-      a {
-        margin: 0rem 1rem;
-      }
-    }
-  }
 }
 
 @media(max-width: 420px) {
@@ -225,17 +203,6 @@
   }
 
   .admin-layout {
-    .header {
-      padding: 1.5rem 0rem;
-      padding-top: 1.8rem;
-      display: flex;
-      flex-wrap: wrap-reverse;
-      justify-content: space-around;
-
-      a {
-        margin: 0rem 1rem;
-      }
-    }
 
     .day-schedule-cards .class.wraper .buttons-container {
       flex-direction: row;
@@ -263,16 +230,6 @@
         text-align: center;
         margin: 0px;
         margin-top: 1.2rem;
-      }
-    }
-  }
-}
-
-@media(max-width: 380px) {
-  .admin-layout {
-    .header {
-      a:last-child {
-        margin: 1rem;
       }
     }
   }

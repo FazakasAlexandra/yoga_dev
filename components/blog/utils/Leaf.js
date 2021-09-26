@@ -17,3 +17,5 @@ export const Leaf = ({ attributes, children, leaf }) => {
 
   return <span {...attributes}>{children}</span>
 }
+
+export default Leaf;

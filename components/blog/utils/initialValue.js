@@ -38,3 +38,4 @@ export const initialValue = [
         url: 'https://picsum.photos/1000/1000?random=1'
     }
 ]
+export default initialValue;

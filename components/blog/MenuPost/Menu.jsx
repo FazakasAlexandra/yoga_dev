@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@material-ui/core'
-import { toolbarTheme } from '../../utilities.js'
+import { toolbarTheme } from '../../../utilities.js'
 import TextField from '@material-ui/core/TextField'
 
 export const Menu = ({ setTitle, setDescription, title, description }) => {

@@ -6,15 +6,21 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
             <div
                 style={{
                     marginTop: showForm ? "-294px" : "-10px",
-                    cursor: setImage ? "cursor" : "default"
+                    cursor: setImage ? "cursor" : "default",
+                    background: "#E6D7F5",
+                    height: "700px",
+                    width: "100%"
                 }}
                 className="svg-container"
                 onClick={setImage}
             >
                 {setImage && <h1>Upload picture</h1>}
-                <SVG src="/assets/blog_placeholder.svg" />
             </div> :
             <img
+                style={{
+                    marginTop: showForm ? "-294px" : "-10px",
+                    cursor: setImage ? "cursor" : "default"
+                }}
                 className="feature-image"
                 alt="feature image"
                 src={featureImage}
@@ -22,3 +28,4 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
             />
     )
 }
+export default FeatureImage;

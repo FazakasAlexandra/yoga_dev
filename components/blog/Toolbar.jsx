@@ -4,6 +4,7 @@ import { BlockButton } from './editorButtons/BlockButton'
 import { ImageButton } from './editorButtons/ImageButton'
 import { BaseButton } from './editorButtons/BaseButton'
 import { LinkButton } from './editorButtons/LinkButton'
+import { MenuButton } from './MenuPost/MenuButton'
 import { RemoveLinkButton } from './editorButtons/RemoveLinkButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -95,4 +96,5 @@ export const Toolbar = React.forwardRef(
   }
 )
 
+export default Toolbar;
 Toolbar.displayName = 'Toolbar';

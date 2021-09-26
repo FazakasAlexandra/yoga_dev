@@ -40,3 +40,5 @@ export const serialize = node => {
             return children
     }
 }
+
+export default serialize;
