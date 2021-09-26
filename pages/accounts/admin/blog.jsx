@@ -4,6 +4,7 @@ import { Editable, withReact, Slate } from 'slate-react'
 import { createEditor, } from 'slate'
 import { withHistory } from 'slate-history'
 import { toggleMark } from '../../../components/blog/editorButtons/MarkButton'
+import { useMediaQuery } from 'beautiful-react-hooks';
 import {
     AdminLayout,
     Layout
@@ -12,7 +13,8 @@ import {
     MenuEditor,
     FeatureImage,
     Preview,
-    MenuPost
+    PostForm,
+    Toolbar
 } from '../../../components/blog/'
 import {
     Leaf,
@@ -31,11 +33,13 @@ const HOTKEYS = {
 }
 
 const Blog = () => {
+    const isMobile = useMediaQuery('(max-width: 820px)');
     const [featureImage, setFeatureImage] = useState("")
     const [description, setDescription] = useState("")
     const [title, setTitle] = useState("")
     const [isPreview, setIsPreview] = useState(false)
     const [showForm, setShowForm] = useState(false)
+    const [showToolbar, setShowToolbar] = useState(false)
     const [editorContent, setEditorContent] = useState(initialValue)
     const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
     const renderElement = useCallback(props => <Element {...props} />, [])
@@ -77,11 +81,15 @@ const Blog = () => {
                                     style={{ display: 'flex', justifyContent: 'space-between' }}
                                     isPreview={isPreview}
                                     showForm={showForm}
+                                    showToolbar={showToolbar}
+                                    setShowToolbar={setShowToolbar}
                                     setPreview={setIsPreview}
                                     toggleForm={() => setShowForm(!showForm)}
                                 />
                                 {
-                                    showForm && <MenuPost
+                                    showForm && <PostForm
+                                        close={() => setShowForm(false)}
+                                        showForm={showForm}
                                         title={title}
                                         description={description}
                                         setTitle={setTitle}
@@ -94,7 +102,6 @@ const Blog = () => {
                                     setImage={setImage}
                                 />
                                 <Editable
-                                    style={{ padding: '20px 20%' }}
                                     spellCheck={false}
                                     autoFocus={false}
                                     className="editable"
@@ -105,6 +112,10 @@ const Blog = () => {
                                     renderLeaf={renderLeaf}
                                     onKeyDown={event => handleKeydown(event)}
                                 />
+                                {isMobile && showToolbar && <Toolbar
+                                    showToolbar={showToolbar}
+                                    className="mobile-toolbar"
+                                /> || null}
                             </Slate>
                         </div>
                         : <Preview
