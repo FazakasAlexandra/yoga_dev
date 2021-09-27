@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactFragment} from 'react'
+import React, { useEffect, useState, ReactFragment } from 'react'
 import { BaseButton } from './editorButtons/BaseButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagic, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -60,7 +60,9 @@ export const MenuEditor = React.forwardRef(
                     Publish
                 </BaseButton>
             </div>
-            {!isMobile && <Toolbar class="toolbar"></Toolbar> || null}
+            {
+                !isMobile && <Toolbar class="toolbar"></Toolbar> || null
+            }
             {
                 isMobile && <span
                     className="wand"

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start-app": "yarn dev",
-    "sass": "sass --watch public/styles/style.scss public/styles/style.css"
+    "scss": "sass --watch public/styles/style.scss public/styles/style.css"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",

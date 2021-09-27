@@ -11,13 +11,13 @@
     border-radius: 10px;
 }
 
-.postForm-modal{
+.form-modal{
     display: none;
 }
 
 
 @media(max-width: 820px) {
-    .postForm-modal {
+    .form-modal {
         display: block;
     }
 }

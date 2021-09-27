@@ -598,6 +598,7 @@ header .navItem {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-right: 1rem;
+  transition: all 0.5s ease;
 }
 .admin-layout .header a:last-child {
   margin-right: 0;
@@ -1668,14 +1669,13 @@ header .navItem {
 }
 
 .feature-image-placeholder {
-  background: #CAC6EB;
+  background: #f0edf3;
   padding-top: 280px;
   display: flex;
   align-self: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  background: #E6D7F5;
   height: 700px;
   width: 100%;
 }
@@ -1808,7 +1808,7 @@ header .navItem {
   align-items: center;
 }
 .menu-editor .editor-buttons-container .editor-text-button {
-  padding: 1.9rem 15px;
+  padding: 1.9rem 10px;
   color: #4976ED;
   text-align: end;
   color: "#4976ED";
@@ -1844,29 +1844,85 @@ header .navItem {
   border-radius: 10px;
 }
 
-.postForm-modal {
+.form-modal {
   display: none;
 }
 
 @media (max-width: 820px) {
-  .postForm-modal {
+  .form-modal {
     display: block;
   }
 }
+.toolbar svg,
+.mobile-toolbar svg {
+  cursor: pointer;
+}
+.toolbar .toolbar-button-menu,
+.mobile-toolbar .toolbar-button-menu {
+  position: absolute;
+  background: white;
+  position: absolute;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+  left: 0;
+}
+.toolbar .toolbar-button-menu .menu-option,
+.mobile-toolbar .toolbar-button-menu .menu-option {
+  padding: 7px;
+  text-transform: capitalize;
+}
+.toolbar .toolbar-button-menu .menu-option:hover,
+.mobile-toolbar .toolbar-button-menu .menu-option:hover {
+  background: #E6D7F5;
+}
+.toolbar .toolbar-button-menu .menu-option:first-child,
+.mobile-toolbar .toolbar-button-menu .menu-option:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.toolbar .toolbar-button-menu .menu-option:last-child,
+.mobile-toolbar .toolbar-button-menu .menu-option:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.toolbar .toolbar-button,
+.mobile-toolbar .toolbar-button {
+  position: relative;
+  padding: 8px;
+  border-radius: 5px;
+  transition: all 0.35s ease;
+}
+.toolbar .toolbar-button .toolbar-icon,
+.mobile-toolbar .toolbar-button .toolbar-icon {
+  color: #4976ED;
+}
+.toolbar .toolbar-button:hover,
+.mobile-toolbar .toolbar-button:hover {
+  background: #E6D7F5;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
 }
+.toolbar .toolbar-button-menu {
+  top: 70px;
+}
 
 .mobile-toolbar {
+  padding: 20px 7.9%;
   position: fixed;
   bottom: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: white;
   width: 100%;
-  padding: 0 5%;
   box-shadow: 0px -3px 4px rgba(0, 0, 0, 0.08);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -1877,6 +1933,9 @@ header .navItem {
 }
 .mobile-toolbar .base-button:first-child {
   margin-left: 0;
+}
+.mobile-toolbar .toolbar-button-menu {
+  bottom: 65px;
 }
 
 @media (max-width: 1240px) {

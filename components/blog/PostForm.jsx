@@ -38,7 +38,7 @@ export const PostForm = ({
             </div> : <Dialog
                 fullScreen
                 open={showForm}
-                className="postForm-modal"
+                className="form-modal"
             >
                 <FontAwesomeIcon
                     className="close"
