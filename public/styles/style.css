@@ -1853,6 +1853,10 @@ header .navItem {
     display: block;
   }
 }
+.toolbar,
+.mobile-toolbar {
+  z-index: 2;
+}
 .toolbar svg,
 .mobile-toolbar svg {
   cursor: pointer;
@@ -1871,22 +1875,22 @@ header .navItem {
   cursor: pointer;
   left: 0;
 }
-.toolbar .toolbar-button-menu .menu-option,
-.mobile-toolbar .toolbar-button-menu .menu-option {
+.toolbar .toolbar-button-menu .menu-action,
+.mobile-toolbar .toolbar-button-menu .menu-action {
   padding: 7px;
   text-transform: capitalize;
 }
-.toolbar .toolbar-button-menu .menu-option:hover,
-.mobile-toolbar .toolbar-button-menu .menu-option:hover {
+.toolbar .toolbar-button-menu .menu-action:hover,
+.mobile-toolbar .toolbar-button-menu .menu-action:hover {
   background: #E6D7F5;
 }
-.toolbar .toolbar-button-menu .menu-option:first-child,
-.mobile-toolbar .toolbar-button-menu .menu-option:first-child {
+.toolbar .toolbar-button-menu .menu-action:first-child,
+.mobile-toolbar .toolbar-button-menu .menu-action:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-.toolbar .toolbar-button-menu .menu-option:last-child,
-.mobile-toolbar .toolbar-button-menu .menu-option:last-child {
+.toolbar .toolbar-button-menu .menu-action:last-child,
+.mobile-toolbar .toolbar-button-menu .menu-action:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

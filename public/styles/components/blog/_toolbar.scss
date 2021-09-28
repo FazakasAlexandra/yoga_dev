@@ -1,8 +1,11 @@
 .toolbar,
 .mobile-toolbar {
+    z-index: 2;
+    
     svg {
         cursor: pointer;
     }
+    
 
     .toolbar-button-menu {
         position: absolute;
@@ -17,21 +20,21 @@
         cursor: pointer;
         left: 0;
 
-        .menu-option {
+        .menu-action {
             padding: 7px;
             text-transform: capitalize;
         }
 
-        .menu-option:hover {
+        .menu-action:hover {
             background: #E6D7F5;
         }
 
-        .menu-option:first-child {
+        .menu-action:first-child {
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
         }
 
-        .menu-option:last-child {
+        .menu-action:last-child {
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
         }
