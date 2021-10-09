@@ -7,8 +7,10 @@ import { LinkButton } from './editorButtons/LinkButton'
 import { RemoveLinkButton } from './editorButtons/RemoveLinkButton'
 import {
   ToolbarButton,
-  useToolbarMenus
 } from './'
+import {
+  useToolbarMenus
+} from './hooks'
 
 export const Toolbar = React.forwardRef(
   ({ ...props }, ref) => {
@@ -23,8 +25,7 @@ export const Toolbar = React.forwardRef(
       className={props.class}
       {...props}
       ref={ref}
-    >
-
+    > 
       {
         toolbarMenus.map(({
           actions,

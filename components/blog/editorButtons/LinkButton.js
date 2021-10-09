@@ -15,7 +15,7 @@ export const LinkButton = ({ icon, label }) => {
         <BaseButton
             label={label}
             active={isLinkActive(editor)}
-            onMouseDown={event => {
+            onClick={event => {
                 event.preventDefault()
                 const url = window.prompt('Enter the URL of the link:')
                 if (!url) return
@@ -34,7 +34,8 @@ const insertLink = (editor, url) => {
 
 const wrapLink = (editor, url) => {
     if (isLinkActive(editor)) {
-        unwrapLink(editor)
+        unwrap
+        Link(editor)
     }
 
     const { selection } = editor
@@ -53,12 +54,6 @@ const wrapLink = (editor, url) => {
     }
 }
 
-const unwrapLink = editor => {
-    Transforms.unwrapNodes(editor, {
-        match: n =>
-            !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
-    })
-}
 
 const isLinkActive = editor => {
     const [link] = Editor.nodes(editor, {

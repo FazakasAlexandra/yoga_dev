@@ -6,49 +6,55 @@ import {
     faBars,
     faBold,
 } from '@fortawesome/free-solid-svg-icons'
+import { useLink, useMark, useBlock, useImage } from './';
 
-export const useToolbarMenus = () => {
+const useToolbarMenus = () => {
+    const { isLinkActive, insertLink, removeLink } = useLink()
+    const { toggleMark } = useMark();
+    const { toggleBlock } = useBlock();
+    const { insertImage } = useImage();
+
     const [toolbarMenus, setToolbarMenus] = useState([
         {
-            active: false,
-            action: "add",
+            active: isLinkActive,
+            action: "",
             icon: faLink,
             actions: [
                 {
                     name: "add",
                     handler: () => {
-                        console.log('hello')
+                        const url = window.prompt('Enter the URL of the link:')
+                        if (!url) return
+                        insertLink(url)
                     }
                 },
                 {
                     name: "remove",
-                    handler: () => {
-                        console.log('hello')
-                    }
+                    handler: removeLink
                 }
             ]
         },
         {
             active: false,
-            action: "bold",
+            action: "",
             icon: faBold,
             actions: [
                 {
                     name: "underline",
                     handler: () => {
-                        console.log('underline')
+                        toggleMark("underline")
                     }
                 },
                 {
                     name: "italic",
                     handler: () => {
-                        console.log('italic')
+                        toggleMark("italic")
                     }
                 },
                 {
                     name: "bold",
                     handler: () => {
-                        console.log('bold')
+                        toggleMark("bold")
                     }
                 }
             ]
@@ -62,21 +68,14 @@ export const useToolbarMenus = () => {
                     active: false,
                     name: "larget text",
                     handler: () => {
-                        console.log('large text')
-                    }
-                },
-                {
-                    active: false,
-                    name: "medium text",
-                    handler: () => {
-                        console.log('medium text')
+                        toggleBlock("heading-two");
                     }
                 },
                 {
                     active: false,
                     name: "quote",
                     handler: () => {
-                        console.log('quote list')
+                        toggleBlock("block-quote");
                     }
                 }
             ]
@@ -90,14 +89,14 @@ export const useToolbarMenus = () => {
                     active: false,
                     name: "numbers",
                     handler: () => {
-                        console.log('numbers list')
+                        toggleBlock("numbered-list");
                     }
                 },
                 {
                     active: false,
                     name: "bullets",
                     handler: () => {
-                        console.log('bullets list')
+                        toggleBlock("bulleted-list");
                     }
                 },
             ]
@@ -111,14 +110,15 @@ export const useToolbarMenus = () => {
                     active: false,
                     name: "random",
                     handler: () => {
-                        console.log('random image')
+                        insertImage("https://picsum.photos/1000/1000?random=1");
                     }
                 },
                 {
                     active: false,
                     name: "upload",
                     handler: () => {
-                        console.log('upload image')
+                        const url = prompt("Enter an Image URL");
+                        insertImage(url);
                     }
                 }
             ]

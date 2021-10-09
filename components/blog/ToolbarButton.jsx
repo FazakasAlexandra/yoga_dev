@@ -10,13 +10,13 @@ const ToolbarButton = ({
 }) => {
 
     const ToolbarMenu = () => {
-        return <div className="toolbar-button-menu">
+        return <button className="toolbar-button-menu">
             {actions.map(action => (
                 <span
                     className="menu-action"
                     onClick={() =>{
-                        actionClick(menuId, action.name)
                         action.handler();
+                        actionClick(menuId, action.name)
                     }}
                     style={{
                         backgroundColor: toolbarMenus[menuId].action === action.name && "#E6D7F5" || "none"
@@ -25,7 +25,7 @@ const ToolbarButton = ({
                     {action.name}
                 </span>
             ))}
-        </div>
+        </button>
     }
 
     return (

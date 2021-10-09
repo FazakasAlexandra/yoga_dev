@@ -1874,10 +1874,13 @@ header .navItem {
   border-radius: 5px;
   cursor: pointer;
   left: 0;
+  padding: 0;
 }
 .toolbar .toolbar-button-menu .menu-action,
 .mobile-toolbar .toolbar-button-menu .menu-action {
-  padding: 7px;
+  width: 100%;
+  text-align: start;
+  padding: 10px;
   text-transform: capitalize;
 }
 .toolbar .toolbar-button-menu .menu-action:hover,
