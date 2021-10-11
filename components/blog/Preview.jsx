@@ -71,7 +71,7 @@ export const Preview = ({
                             data-layout="button_count" data-size="small">
                             <a
                                 target="_blank"
-                                href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F${process.env.NEXT_PUBLIC_DOMAIN}/events/${id || null}`}
+                                href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F${process.env.NEXT_PUBLIC_DOMAIN}/posts/${id || null}`}
                                 class="fb-xfbml-parse-ignore"
                             >
                                 <FontAwesomeIcon icon={faShare} size="lg" className="social-icon" />
