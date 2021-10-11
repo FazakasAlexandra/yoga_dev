@@ -1,0 +1,251 @@
+@media (max-width: 1240px) {
+  .home-content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .home-content .content h1 {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .admin-layout {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .event-card {
+    width: 100%;
+    margin: 3rem 0rem;
+  }
+  .admin-clients {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .client-info {
+    margin-left: 0rem;
+  }
+  .client-search {
+    width: 100%;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    margin-bottom: 2rem;
+  }
+  .comboform {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .adminsubsection {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  header nav {
+    padding: 2rem 1rem;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  header nav .navItems {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  header nav .navItems .navItem {
+    padding: 1rem;
+  }
+  header nav .fa-bars {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (max-width: 799px) {
+  .client-account-wrapper {
+    width: 100%;
+  }
+  .date-container {
+    margin-bottom: 0px;
+  }
+  .date-container .wrapper {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .day-schedule.card {
+    width: 430px;
+  }
+  .dateRange {
+    width: 100%;
+  }
+  .dateRange .rdrMonth {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .event-card .event-details-section {
+    width: 90%;
+    left: 6%;
+  }
+}
+
+@media (max-width: 470px) {
+  .event-card {
+    padding: 0rem;
+  }
+  .event-card img:first-child {
+    width: 100%;
+  }
+  .event-card .event-details-section .event-details {
+    width: 90%;
+  }
+  .event-card .event-details-section .event-details h1 {
+    font-size: 30px;
+  }
+  .day-schedule.card {
+    width: 100%;
+  }
+  .date-container {
+    width: 100%;
+  }
+  .date-container .wrapper {
+    width: 100%;
+  }
+  .date-container .dateRange .rdrMonth {
+    min-width: 100%;
+  }
+  .admin-bookings .active-booking-card {
+    min-width: 100%;
+  }
+  .week_schedule-form {
+    margin: 0rem;
+    min-width: 100%;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
+  .admin-bookings .day-schedule-cards .class.wraper {
+    width: 100%;
+  }
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .event-card .event-details-section {
+    width: 100%;
+    left: 0px;
+    padding: 10px;
+  }
+  .event-card .button-white.delete-event {
+    left: 0px;
+    top: -1rem;
+  }
+  .info {
+    margin-right: 0px !important;
+    border-right-style: solid;
+    border-width: thin;
+    border-color: #dadada;
+  }
+  .info div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .button-home {
+    width: 100%;
+  }
+  .button-home.yellow {
+    margin-right: 0px;
+  }
+  .subscription-card {
+    width: 100%;
+    padding: 1rem;
+  }
+  .active-booking-card .active-bookings-status {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    flex-direction: row;
+    margin: 1rem 0rem;
+    width: 100%;
+  }
+  .admin-layout .day-schedule-cards .class.wraper .buttons-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    width: 100%;
+  }
+  .day-schedule.card {
+    width: 100%;
+  }
+  .day-schedule.card .class.radio {
+    border-left-style: none;
+  }
+  .day-schedule.card .class.wraper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .day-schedule.card .class.wraper .info-wraper {
+    width: 100%;
+  }
+  .day-schedule.card .class.wraper .button-white {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .date-container {
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    margin: 2rem 0rem;
+  }
+  .admin-clients {
+    padding: 10px;
+  }
+  .date-container {
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    margin: 2rem 0rem;
+  }
+}
+/*# sourceMappingURL=media.css.map */
