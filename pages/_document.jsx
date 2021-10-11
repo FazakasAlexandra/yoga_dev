@@ -19,9 +19,6 @@ export default class MyDocument extends Document {
                         }}
                     />
                     <link type="image/x-icon" rel="shortcut icon" href={favicon.src} />
-                    <meta property="og:title" content="Blog" />
-                    <meta property="og:description" content="Super blog" />
-                    <meta property="og:image" content="https://images.unsplash.com/photo-1627820751275-e44b937c5d33?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" />
                 </Head>
                 <body>
                     <div id="fb-root"></div>

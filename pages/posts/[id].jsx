@@ -8,7 +8,7 @@ import {
   Preview,
 } from '../../components/blog/'
 
-export default function Page() {
+export default function Page({description, feature_image, title}) {
   const router = useRouter()
   const [post, setPost] = useState(null)
 
@@ -23,11 +23,11 @@ export default function Page() {
   return (
     <Layout activeTab={'post'}>
       {post && <>
-      <Head>
-        <meta property="og:title" content={post.feature_image} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={post.feature_image} />
-      </Head>
+        <Head>
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image" content={feature_image} />
+        </Head>
         <div className="post">
           <Preview
             id={post.id}
@@ -42,4 +42,16 @@ export default function Page() {
       }
     </Layout>
   )
+}
+
+
+export async function getStaticProps() {
+  return {
+    props: {
+      id: "2",
+      title: "Hello",
+      feature_image: "https://lumiere-a.akamaihd.net/v1/images/ct_mickeymouseandfriends_mickey_ddt-16970_4e99445d.jpeg?region=0,0,600,600&width=480",
+      description: "Micky"
+    }
+  }
 }
