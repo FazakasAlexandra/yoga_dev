@@ -23,7 +23,9 @@ import {
     withImages,
     initialValue,
 } from '../../../components/blog/utils'
+import db from '../../../db'
 import isHotkey from 'is-hotkey'
+import { ToastContainer, toast } from 'react-toastify'
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -48,6 +50,22 @@ const Blog = () => {
     useEffect(() => {
         console.log(editorContent)
     }, [editorContent])
+
+    const publishPost = () => {
+        db.getJWT().then(({ jwtToken }) => {
+            db.posts.publish({
+                title,
+                description,
+                feature_image: featureImage,
+                content: editorContent
+            }, jwtToken)
+            .then(res => res.json())
+            .then(res => {
+                 console.log(res)
+                  toast.success(`Published !`)
+            })
+        })
+    }
 
     const setImage = () => {
         const url = prompt("Enter an Image URL");
@@ -79,6 +97,7 @@ const Blog = () => {
                             >
                                 <MenuEditor
                                     style={{ display: 'flex', justifyContent: 'space-between' }}
+                                    publishPost={publishPost}
                                     isPreview={isPreview}
                                     showForm={showForm}
                                     showToolbar={showToolbar}
@@ -128,6 +147,7 @@ const Blog = () => {
                         />
                 }
             </AdminLayout>
+            <ToastContainer />
         </Layout>
     )
 }

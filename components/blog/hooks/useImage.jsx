@@ -7,7 +7,6 @@ import isUrl from 'is-url'
 const useImage = () => {
     const editor = useSlate()
 
-
     const insertImage = (url) => {
         if (!url) return;
 

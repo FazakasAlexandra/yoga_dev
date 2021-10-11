@@ -4,6 +4,7 @@ import {
     Editor,
     Range,
     Element as SlateElement,
+    Link
 } from 'slate'
 
 const useLink = () => {
@@ -17,8 +18,7 @@ const useLink = () => {
 
     const wrapLink = (editor, url) => {
         if (isLinkActive(editor)) {
-            unwrap
-            Link(editor)
+            removeLink()
         }
 
         const { selection } = editor

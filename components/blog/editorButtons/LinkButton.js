@@ -6,7 +6,6 @@ import {
     Element as SlateElement,
 } from 'slate'
 import { BaseButton } from './BaseButton'
-import Icon from './Icon'
 
 export const LinkButton = ({ icon, label }) => {
     const editor = useSlate()
@@ -22,7 +21,6 @@ export const LinkButton = ({ icon, label }) => {
                 insertLink(editor, url)
             }}
         >
-            <Icon icon={icon}/>
         </BaseButton>
     )
 }

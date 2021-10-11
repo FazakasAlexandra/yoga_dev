@@ -14,6 +14,7 @@ export const MenuEditor = React.forwardRef(
         toggleForm,
         showForm,
         className,
+        publishPost,
         ...props
     }, ref) => {
         const isMobile = useMediaQuery('(max-width: 820px)');
@@ -55,6 +56,9 @@ export const MenuEditor = React.forwardRef(
                     Preview
                 </BaseButton>
                 <BaseButton
+                    onClick={() => {
+                        publishPost()
+                    }}
                     class="editor-text-button"
                 >
                     Publish

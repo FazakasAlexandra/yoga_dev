@@ -1,7 +1,6 @@
 import { useSlate } from 'slate-react'
 import { Editor } from 'slate'
 import { BaseButton } from './BaseButton'
-import Icon from './Icon'
 
 export const MarkButton = ({ format, icon, label }) => {
     const editor = useSlate()
@@ -14,7 +13,6 @@ export const MarkButton = ({ format, icon, label }) => {
                 toggleMark(editor, format)
             }}
         >
-            <Icon icon={icon}/>
         </BaseButton>
     )
 }

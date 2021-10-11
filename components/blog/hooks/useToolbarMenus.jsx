@@ -17,11 +17,11 @@ const useToolbarMenus = () => {
     const [toolbarMenus, setToolbarMenus] = useState([
         {
             active: isLinkActive,
-            action: "",
             icon: faLink,
             actions: [
                 {
                     name: "add",
+                    active: false,
                     handler: () => {
                         const url = window.prompt('Enter the URL of the link:')
                         if (!url) return
@@ -30,29 +30,32 @@ const useToolbarMenus = () => {
                 },
                 {
                     name: "remove",
+                    active: false,
                     handler: removeLink
                 }
             ]
         },
         {
             active: false,
-            action: "",
             icon: faBold,
             actions: [
                 {
                     name: "underline",
+                    active: false,
                     handler: () => {
                         toggleMark("underline")
                     }
                 },
                 {
                     name: "italic",
+                    active: false,
                     handler: () => {
                         toggleMark("italic")
                     }
                 },
                 {
                     name: "bold",
+                    active: false,
                     handler: () => {
                         toggleMark("bold")
                     }
@@ -61,19 +64,18 @@ const useToolbarMenus = () => {
         },
         {
             active: false,
-            action: "large",
             icon: faParagraph,
             actions: [
                 {
-                    active: false,
                     name: "larget text",
+                    active: false,
                     handler: () => {
                         toggleBlock("heading-two");
                     }
                 },
                 {
-                    active: false,
                     name: "quote",
+                    active: false,
                     handler: () => {
                         toggleBlock("block-quote");
                     }
@@ -82,19 +84,18 @@ const useToolbarMenus = () => {
         },
         {
             active: false,
-            action: "numbers",
             icon: faBars,
             actions: [
                 {
-                    active: false,
                     name: "numbers",
+                    active: false,
                     handler: () => {
                         toggleBlock("numbered-list");
                     }
                 },
                 {
-                    active: false,
                     name: "bullets",
+                    active: false,
                     handler: () => {
                         toggleBlock("bulleted-list");
                     }
@@ -103,19 +104,18 @@ const useToolbarMenus = () => {
         },
         {
             active: false,
-            action: "random",
             icon: faImage,
             actions: [
                 {
-                    active: false,
                     name: "random",
+                    active: false,
                     handler: () => {
                         insertImage("https://picsum.photos/1000/1000?random=1");
                     }
                 },
                 {
-                    active: false,
                     name: "upload",
+                    active: false,
                     handler: () => {
                         const url = prompt("Enter an Image URL");
                         insertImage(url);
@@ -125,11 +125,21 @@ const useToolbarMenus = () => {
         }
     ]);
 
-    const setToolbarMenuAction = (target, action) => {
+    const setToolbarMenuAction = (target, triggeredAction) => {
+        console.log(target, triggeredAction)
+
         setToolbarMenus(toolbarMenus.map((menu, idx) => {
             if (idx === target) {
-                menu.action = action
-                return menu
+                console.log(menu.actions)
+
+                const actions = menu.actions.map(action => {
+                    if (action.name === triggeredAction) {
+                        action.active = !action.active
+                    }
+                    return action
+
+                })
+                menu.actions = actions;
             }
             return menu
         }));

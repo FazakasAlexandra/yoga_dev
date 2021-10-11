@@ -111,6 +111,13 @@ export default function Header({ activeTab }) {
             </Link>
           </li>
           <li className='navItem'>
+            <Link href='/posts'>
+              <a className={activeTab === 'blog' || activeTab === 'post' ? 'active-tab' : null}>
+                Blog
+              </a>
+            </Link>
+          </li>
+          <li className='navItem'>
             <Link href='/events'>
               <a className={activeTab === 'events' ? 'active-tab' : null}>
                 Events

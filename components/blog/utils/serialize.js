@@ -35,7 +35,7 @@ export const serialize = node => {
         case 'block-quote':
             return <blockquote>{children}</blockquote>
         case 'image':
-            return <img src={node.url} alt={node.alt} style={{ width: "100%" }} />
+            return <img src={node.url} alt={node.alt}/>
         default:
             return children
     }

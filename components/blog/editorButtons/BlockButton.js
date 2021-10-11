@@ -1,7 +1,6 @@
 import { useSlate } from 'slate-react'
 import { BaseButton } from './BaseButton'
 import { Editor, Element as SlateElement, Transforms } from 'slate'
-import Icon from './Icon'
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
@@ -16,7 +15,6 @@ export const BlockButton = ({ format, icon, label }) => {
                 toggleBlock(editor, format)
             }}
         >
-            <Icon icon={icon}/>
         </BaseButton>
     )
 }

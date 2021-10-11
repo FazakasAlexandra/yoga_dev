@@ -196,6 +196,23 @@ const db = {
         },
       }).then((res) => res.json()),
   },
+  posts: {
+    publish: (post, jwt) => {
+      return fetch(`${db.baseURL}/posts`, {
+        method: 'POST',
+        body: JSON.stringify(post),
+        headers: {
+          Authorization: jwt,
+        },
+      })
+    },
+    getAll: () => {
+      return fetch(`${db.baseURL}/posts`)
+    },
+    getSingle: (id) => {
+      return fetch(`${db.baseURL}/posts/${id}`)
+    },
+  }
 }
 
 export default db

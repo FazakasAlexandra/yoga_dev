@@ -2,7 +2,6 @@
 import { insertImage } from '../utils/images'
 import { useSlate } from 'slate-react'
 import { BaseButton } from './BaseButton'
-import Icon from './Icon'
 
 export const ImageButton = ({ icon, label }) => {
   const editor = useSlate()
@@ -14,7 +13,6 @@ export const ImageButton = ({ icon, label }) => {
         insertImage(editor, url);
       }}
     >
-      <Icon icon={icon} />
     </BaseButton>
   )
 }

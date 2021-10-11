@@ -1,13 +1,53 @@
-@import url('http://fonts.cdnfonts.com/css/new-york-extra-large');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
-
 .preview {
     cursor: "default";
     background: "#FFFFFF";
-    display: 'flex';
-    flex-direction: 'column';
+    display: flex;
+    flex-direction: column;
     margin: '0 auto';
     max-width: 680px;
+    margin-bottom: 4rem;
+
+    blockquote{
+        line-height: 170%;
+    }
+
+    ol,
+    ul {
+        font-family: 'New York Medium', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 170%;
+        color: #000000cc;
+
+        li{
+            text-transform: capitalize;
+            margin-bottom: 0.5rem;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    img {
+        width: 120%;
+        align-self: center;
+    }
+    
+    .post-start-line {
+        width: 100%;
+        border-width: thin;
+        border-style: solid;
+        margin-top: 33px;
+        margin-bottom: 22px;
+    }
+
+    .post-end-line {
+        width: 100%;
+        border: 1px dashed #000000;
+        margin-bottom: 33px;
+    }
 }
 
 .preview,
@@ -37,7 +77,7 @@
 
     img {
         width: 100%;
-        height: 700px;
+        height: 900px;
         object-fit: cover;
     }
 }

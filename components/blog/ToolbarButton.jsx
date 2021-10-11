@@ -19,7 +19,7 @@ const ToolbarButton = ({
                         actionClick(menuId, action.name)
                     }}
                     style={{
-                        backgroundColor: toolbarMenus[menuId].action === action.name && "#E6D7F5" || "none"
+                        backgroundColor: "none"
                     }}
                 >
                     {action.name}
@@ -43,7 +43,7 @@ const ToolbarButton = ({
                 onClick={() => iconClick(menuId)}
             />
             {
-                toolbarMenus[menuId].active && <ToolbarMenu />
+                toolbarMenus[menuId].active && <ToolbarMenu /> || null
             }
         </span>
     );
