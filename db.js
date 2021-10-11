@@ -1,5 +1,5 @@
 const db = {
-  baseURL: 'http://localhost/yoga',
+  baseURL: process.env.NEXT_PUBLIC_API,
   getJWT: () => {
     return fetch('/api/examples/jwt').then((res) => res.json())
   },
