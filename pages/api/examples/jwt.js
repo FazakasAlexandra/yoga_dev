@@ -4,6 +4,7 @@ const jwtWebToken = require('jsonwebtoken');
 const secret = process.env.SECRET
 
 export default async (req, res) => {
+  console.log('/api/jwt request', req)
   const token = await jwt.getToken({ req, secret })
   console.log("SECRET", secret)
   console.log("REQ", req)
