@@ -23,7 +23,11 @@ export default function Header({ activeTab }) {
               email: session.user.email,
               name: session.user.name,
               jwt: res.jwtToken,
+            }).catch(err => {
+              console.log(err)
             })
+          }).catch(err => {
+            console.log(err)
           })
         } else {
           if (res.data.is_admin === 'true') setIsAdmin(true)

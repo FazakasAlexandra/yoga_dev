@@ -5,6 +5,9 @@ const secret = process.env.SECRET
 
 export default async (req, res) => {
   const token = await jwt.getToken({ req, secret })
+  console.log("SECRET", secret)
+  console.log("REQ", req)
+  console.log("TOKEN", token)
   const jwtToken = jwtWebToken.sign(token.email, secret);
   res.send(JSON.stringify({jwtToken}))
 }
