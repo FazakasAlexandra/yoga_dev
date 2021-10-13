@@ -7,9 +7,11 @@
         max-width: 650px;
         margin-top: 33px;
         margin-bottom: 65px;
+        border-width: revert;
+        border-style: solid;
     }
 
-    .post-top{
+    .post-top {
         font-family: 'New York Extra Large', sans-serif;
     }
 
@@ -49,7 +51,7 @@
         justify-content: space-between;
     }
 
-    .posts-thumb-heading{
+    .posts-thumb-heading {
         font-size: 40px;
         text-align: center;
         font-family: 'New York Extra Large', sans-serif;
@@ -83,17 +85,17 @@
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    color: black; 
+    color: black;
 }
 
-.post-author-container{
+.post-author-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 55px;
     flex-wrap: wrap;
-    
-    img{
+
+    img {
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -105,20 +107,21 @@
         align-items: center;
     }
 
-    .post-author-information{
+    .post-author-information {
         margin-left: 15px;
-        p{
+
+        p {
             letter-spacing: 0.03em;
         }
 
         p,
-        strong{
+        strong {
             font-family: sans-serif;
             font-size: 16px;
             margin: 0;
         }
 
-        strong{
+        strong {
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
@@ -132,11 +135,11 @@
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
     border-radius: 4px;
 
-    .social-icon{
+    .social-icon {
         color: #010002;
     }
 
-    a{
+    a {
         padding: 12px 25px;
     }
 
@@ -145,17 +148,17 @@
     }
 }
 
-.bottom.post-social{
+.bottom.post-social {
     justify-content: center;
     margin-top: 70px;
 
-    strong{
+    strong {
         font-family: sans-serif;
         color: black;
         margin-left: 16px;
     }
 
-    a{
+    a {
         padding: 20px 0;
     }
 
@@ -169,8 +172,8 @@
     font-weight: 500;
     letter-spacing: 0.03em;
     font-size: 16px;
-    
-    a{
+
+    a {
         color: black;
         margin-right: 5px;
         text-decoration: underline;
@@ -178,18 +181,43 @@
 }
 
 @media(max-width: 600px) {
-    .blog-main{
+    .blog-main {
         .posts-thumb-container {
             justify-content: center;
         }
     }
 }
+
 @media(max-width: 495px) {
-    .post-author-container{
+    .blog-main {
+        .posts-thumb-heading {
+            font-size: 22px;
+        }
+
+        hr {
+            max-width: 650px;
+            margin-top: 33px;
+            margin-bottom: 65px;
+        }
+
+        .post-top {
+            h1 {
+                font-size: 35px;
+                max-width: 330px;
+            }
+
+            h2 {
+                font-size: 16px;
+                max-width: 330px;
+            }
+        }
+    }
+
+    .post-author-container {
         margin-bottom: 30px;
     }
 
-    .post-social{
+    .post-social {
         margin-top: 30px;
     }
 }

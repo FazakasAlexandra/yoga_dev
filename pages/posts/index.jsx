@@ -1,10 +1,6 @@
 import Layout from '../../components/Layout'
-import EventCard from '../../components/EventCard'
-import Feedback from '../../components/Feedback'
-import Loader from '../../components/Loader'
 import { useState, useEffect } from 'react'
 import db from '../../db.js'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 
 export default function Posts() {
@@ -31,17 +27,17 @@ export default function Posts() {
                         <h1>{posts[posts.length - 2]?.title}</h1>
                         <h2>{posts[posts.length - 2]?.description}</h2>
                     </div>
-                    <hr/>
+                    <hr />
                     <h1 className="posts-thumb-heading">All articles</h1>
                     <div className="posts-thumb-container">
-                    {
-                        posts.map((post) => {
-                            return <div className="post-thumb" onClick={() => navigateToPost(post.id)}>
-                                <img src={post.feature_image} />
-                                <h1>{post.title}</h1>
-                            </div>
-                        })
-                    }
+                        {
+                            posts.map((post) => {
+                                return <div className="post-thumb" onClick={() => navigateToPost(post.id)}>
+                                    <img src={post.feature_image} />
+                                    <h1>{post.title}</h1>
+                                </div>
+                            })
+                        }
                     </div>
                 </>
             }

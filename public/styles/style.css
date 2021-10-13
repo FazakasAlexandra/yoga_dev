@@ -1992,6 +1992,8 @@ header .navItem {
   max-width: 650px;
   margin-top: 33px;
   margin-bottom: 65px;
+  border-width: revert;
+  border-style: solid;
 }
 .blog-main .post-top {
   font-family: "New York Extra Large", sans-serif;
@@ -2145,6 +2147,23 @@ header .navItem {
   }
 }
 @media (max-width: 495px) {
+  .blog-main .posts-thumb-heading {
+    font-size: 22px;
+  }
+  .blog-main hr {
+    max-width: 650px;
+    margin-top: 33px;
+    margin-bottom: 65px;
+  }
+  .blog-main .post-top h1 {
+    font-size: 35px;
+    max-width: 330px;
+  }
+  .blog-main .post-top h2 {
+    font-size: 16px;
+    max-width: 330px;
+  }
+
   .post-author-container {
     margin-bottom: 30px;
   }
