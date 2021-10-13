@@ -49,7 +49,7 @@ export const Preview = ({
                         <hr className="post-start-line" />
                         <div className="post-author-container">
                             <div className="post-author-data">
-                                <img src="https://scontent.fotp7-2.fna.fbcdn.net/v/t1.6435-9/95666084_2892816780834850_1221673073338482688_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=unsW1fcIXMAAX-PjZ6-&tn=xslcSqs3Bf_v3Iy_&_nc_ht=scontent.fotp7-2.fna&oh=64aaf6f3d4baba1f2955e367e47ef38a&oe=61877F51" />
+                                <img src="/assets/author.jpg" />
                                 <div className="post-author-information">
                                     <strong>Fabiola Muresan</strong>
                                     <p>Coach &#8226; Nutrition specialist</p>
@@ -84,7 +84,7 @@ export const Preview = ({
                         <hr className="post-end-line" />
                         <div className="post-author-container">
                             <div className="post-author-data">
-                                <img src="https://scontent.fotp7-2.fna.fbcdn.net/v/t1.6435-9/95666084_2892816780834850_1221673073338482688_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=unsW1fcIXMAAX-PjZ6-&tn=xslcSqs3Bf_v3Iy_&_nc_ht=scontent.fotp7-2.fna&oh=64aaf6f3d4baba1f2955e367e47ef38a&oe=61877F51" />
+                                <img src="/assets/author.jpg" />
                                 <div className="post-author-information">
                                     <strong>Fabiola Muresan</strong><span> is an author, coach and antreprenour. Owning her own fitness studio in Bistrita, she writes form her over 10 years experience of helping people reach their body goals.</span>
                                 </div>

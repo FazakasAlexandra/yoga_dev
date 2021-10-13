@@ -57,13 +57,14 @@ const Blog = () => {
                 title,
                 description,
                 feature_image: featureImage,
-                content: editorContent
+                content: editorContent,
+                created_at: new Date(Date.now()).toISOString(),
+                updated_at: new Date(Date.now()).toISOString()
             }, jwtToken)
-            .then(res => res.json())
-            .then(res => {
-                 console.log(res)
-                  toast.success(`Published !`)
-            })
+                .then(res => res.json())
+                .then(res => {
+                    toast.success(`Published !`)
+                })
         })
     }
 
