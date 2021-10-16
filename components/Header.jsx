@@ -66,7 +66,7 @@ export default function Header({ activeTab }) {
         >
           {!session && (
             <>
-              <span className='notSignedInText'>{t("common:Not logged in")}</span>
+              <span className='notSignedInText'>{t("common:not logged in")}</span>
               <a
                 href={`/api/auth/signin`}
                 className='buttonPrimary'
