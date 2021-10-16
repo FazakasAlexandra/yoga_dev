@@ -103,7 +103,7 @@ export default function Header({ activeTab }) {
       <nav>
         <div className='small-menu'>
           <Link href='/'>
-            <img style={{cursor:"pointer"}} src='/assets/logo.png' height="80px" width="fit-content" />
+            <img style={{cursor:"pointer"}} src='/assets/logo2.png' height="50px" width="fit-content" />
           </Link>
           <FontAwesomeIcon
             icon={faBars}

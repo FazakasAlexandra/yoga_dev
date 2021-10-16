@@ -22,7 +22,7 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
                 }}
                 className="feature-image"
                 alt="feature image"
-                src={featureImage || "/assets/fallback_image_large.png"}
+                src={featureImage || "/assets/fallback_image_large.jpg"}
                 onClick={setImage}
             />
     )

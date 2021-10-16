@@ -40,7 +40,7 @@ export default function Posts({posts}) {
                         {
                             posts.map((post) => {
                                 return <div className="post-thumb" onClick={() => navigateToPost(post.id)}>
-                                    <img src={post.feature_image || "/assets/fallback_image.png"} />
+                                    <img src={post.feature_image || "/assets/fallback_image_large.jpg"} />
                                     <h1>{post.title || t("blog:No title")}</h1>
                                 </div>
                             })
