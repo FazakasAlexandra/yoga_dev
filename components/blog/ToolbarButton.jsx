@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'next-i18next';
 
 const ToolbarButton = ({
     toolbarMenus,
@@ -8,6 +9,7 @@ const ToolbarButton = ({
     actionClick,
     actions,
 }) => {
+    const { t } = useTranslation(); 
 
     const ToolbarMenu = () => {
         return <button className="toolbar-button-menu">
@@ -22,7 +24,7 @@ const ToolbarButton = ({
                         backgroundColor: "none"
                     }}
                 >
-                    {action.name}
+                    {t(`common:${action.name}`)}
                 </span>
             ))}
         </button>

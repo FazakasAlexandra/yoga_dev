@@ -5,6 +5,16 @@ import { useRouter } from 'next/router'
 import ClientLayout from '../../../components/ClientLayout'
 import Loader from '../../../components/Loader'
 import db from '../../../db.js'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common']))
+    }
+  }
+}
+
 
 export default function Clients() {
   const router = useRouter()

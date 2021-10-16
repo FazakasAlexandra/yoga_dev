@@ -26,6 +26,8 @@ import {
 import db from '../../../db'
 import isHotkey from 'is-hotkey'
 import { ToastContainer, toast } from 'react-toastify'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -33,6 +35,15 @@ const HOTKEYS = {
     'mod+u': 'underline',
     'mod+`': 'code',
 }
+
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['blog', 'common'])),
+      }
+    }
+  }
+  
 
 const Blog = () => {
     const isMobile = useMediaQuery('(max-width: 820px)');
@@ -46,6 +57,7 @@ const Blog = () => {
     const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
     const renderElement = useCallback(props => <Element {...props} />, [])
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
+    const { t } = useTranslation(); 
 
     useEffect(() => {
         console.log(editorContent)
@@ -62,17 +74,17 @@ const Blog = () => {
                 .then(res => res.json())
                 .then(res => {
                     if(res.code === 500){
-                        toast.error(`Cannot publish. There was a server error!`)
+                        toast.error(t("common:publish error"))
                         return
                     } 
-                    toast.success(`Published !`)
+                    toast.success(t("common:published"))
 
                 })
         })
     }
 
     const setImage = () => {
-        const url = prompt("Enter an Image URL");
+        const url = prompt(t("common:enter url"));
         if (url) {
             setFeatureImage(url);
         }

@@ -8,7 +8,15 @@ import AdminClassesLayout from '../../../../components/AdminClassesLayout'
 import Feedback from '../../../../components/Feedback'
 import Chart from 'react-google-charts'
 import db from '../../../../db'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    }
+  }
+}
 export default function Page() {
   const router = useRouter()
   const [session, loading] = useSession()

@@ -309,6 +309,7 @@ header nav ul {
   align-items: center;
 }
 header nav ul a {
+  text-transform: capitalize;
   font-size: 20px;
 }
 header nav ul a:hover {
@@ -340,7 +341,7 @@ header .notSignedInText {
   position: absolute;
   padding-top: 0.8rem;
   left: 1rem;
-  right: 6.5rem;
+  right: 10rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -593,6 +594,7 @@ header .navItem {
   justify-content: center;
 }
 .admin-layout .header a {
+  text-transform: capitalize;
   padding: 1.9rem 1.9rem;
   margin-top: 1rem;
   border-top-left-radius: 10px;
@@ -1790,6 +1792,7 @@ header .navItem {
   align-items: center;
 }
 .preview-header-txt h1 {
+  text-transform: capitalize;
   font-size: 54px;
   font-family: "New York Extra Large", sans-serif;
   max-width: 800px;
@@ -1798,6 +1801,7 @@ header .navItem {
   margin-bottom: 30px;
 }
 .preview-header-txt p {
+  text-transform: capitalize;
   font-size: 20px;
   max-width: 620px;
   text-align: center;
@@ -1861,6 +1865,7 @@ header .navItem {
   align-items: center;
 }
 .menu-editor .editor-buttons-container .editor-text-button {
+  text-transform: capitalize;
   padding: 1.9rem 10px;
   color: #4976ED;
   text-align: end;
@@ -2237,6 +2242,7 @@ header .navItem {
   header nav .navItems {
     flex-direction: column;
     width: 100%;
+    padding-top: 2rem;
   }
   header nav .navItems .navItem {
     padding: 1rem;

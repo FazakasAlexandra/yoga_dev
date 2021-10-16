@@ -11,6 +11,15 @@ import Feedback from '../../../../components/Feedback'
 import TextField from '@material-ui/core/TextField'
 import db from '../../../../db'
 import { formatDate } from '../../../../utilities.js'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    }
+  }
+}
 
 export default function Page() {
   const router = useRouter()

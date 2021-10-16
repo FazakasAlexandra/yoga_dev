@@ -13,6 +13,15 @@ import { formatWeekSchedule, theme } from '../../../../utilities.js'
 import { ToastContainer, toast } from 'react-toastify'
 import { getWeekDates, weekScheduleValidator } from '../../../../utilities.js'
 import defaultSchedule from '../../../../defaultSchedule.json';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    }
+  }
+}
 
 export default function WeekScheduleAdmin() {
   const router = useRouter()

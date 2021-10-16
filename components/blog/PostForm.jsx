@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from 'beautiful-react-hooks';
+import { useTranslation } from 'next-i18next';
 
 export const PostForm = ({
     showForm,
@@ -15,19 +16,20 @@ export const PostForm = ({
     description
 }) => {
     const isMobile = useMediaQuery('(max-width: 820px)');
+    const { t } = useTranslation(); 
 
     return <ThemeProvider theme={toolbarTheme}>
         {
             !isMobile ? <div className="textfields">
                 <TextField
-                    label="Title"
+                    label={t("common:title")}
                     fullWidth
                     margin="dense"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <TextField
-                    label="Short description"
+                    label={t("common:short description")}
                     multiline
                     rows={5}
                     fullWidth
@@ -47,14 +49,14 @@ export const PostForm = ({
                     onClick={close}
                 />
                 <TextField
-                    label="Title"
+                    label={t("common:title")}
                     fullWidth
                     margin="dense"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <TextField
-                    label="Short description"
+                    label={t("common:short description")}
                     multiline
                     rows={5}
                     fullWidth

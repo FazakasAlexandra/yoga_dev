@@ -5,6 +5,15 @@ import { DateRange } from 'react-date-range'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
 import React, {useState, useEffect} from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common']))
+    }
+  }
+}
 
 export default function WeekSchedule() {
   const [session, loading] = useSession()

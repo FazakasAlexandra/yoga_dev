@@ -1,6 +1,10 @@
+import { useTranslation } from 'next-i18next';
+
 export const FeatureImage = ({ showForm, setImage, featureImage }) => {
+    const { t } = useTranslation(); 
+
     return (
-        !featureImage ?
+        setImage ?
             <div
                 style={{
                     marginTop: showForm ? "-294px" : "-10px",
@@ -9,7 +13,7 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
                 className="feature-image-placeholder"
                 onClick={setImage}
             >
-                {setImage && <h1>Upload picture</h1>}
+                <h1>{t("common:upload picture")}</h1>
             </div> :
             <img
                 style={{
@@ -18,7 +22,7 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
                 }}
                 className="feature-image"
                 alt="feature image"
-                src={featureImage}
+                src={featureImage || "/assets/fallback_image_large.png"}
                 onClick={setImage}
             />
     )

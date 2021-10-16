@@ -2,17 +2,24 @@ import Layout from '../../components/Layout'
 import { useState, useEffect } from 'react'
 import db from '../../db.js'
 import { useRouter } from 'next/router'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
-export default function Posts() {
+export async function getStaticProps({ locale }) {
+    const res = await  db.posts.getAll();
+    const posts = await res.json()
+  
+    return {
+      props: {
+        posts : posts.data,
+        ...(await serverSideTranslations(locale, ['blog', 'common']))
+      }
+    }
+  }
+
+export default function Posts({posts}) {
     const router = useRouter()
-    const [posts, setPosts] = useState([])
-
-    useEffect(() => {
-        db.posts.getAll().then(res => res.json()).then(res => {
-            console.log(res.data)
-            setPosts(res.data)
-        })
-    }, [])
+    const { t } = useTranslation(); 
 
     const navigateToPost = (id) => {
         router.push({ pathname: `/posts/${id}` })
@@ -28,13 +35,13 @@ export default function Posts() {
                         <h2>{posts[posts.length - 2]?.description}</h2>
                     </div>
                     <hr />
-                    <h1 className="posts-thumb-heading">All articles</h1>
+                    <h1 className="posts-thumb-heading">{t("blog:all articles")}</h1>
                     <div className="posts-thumb-container">
                         {
                             posts.map((post) => {
                                 return <div className="post-thumb" onClick={() => navigateToPost(post.id)}>
-                                    <img src={post.feature_image} />
-                                    <h1>{post.title}</h1>
+                                    <img src={post.feature_image || "/assets/fallback_image.png"} />
+                                    <h1>{post.title || t("blog:No title")}</h1>
                                 </div>
                             })
                         }

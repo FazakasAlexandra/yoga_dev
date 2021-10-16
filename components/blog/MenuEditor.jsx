@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagic, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from 'beautiful-react-hooks';
 import { Toolbar } from './'
+import { useTranslation } from 'next-i18next';
 
 export const MenuEditor = React.forwardRef(
     ({
@@ -18,6 +19,7 @@ export const MenuEditor = React.forwardRef(
         ...props
     }, ref) => {
         const isMobile = useMediaQuery('(max-width: 820px)');
+        const { t } = useTranslation(); 
 
         return <div
             className="menu-editor"
@@ -30,7 +32,7 @@ export const MenuEditor = React.forwardRef(
                         class="editor-text-button"
                         onClick={toggleForm}
                     >
-                        Menu
+                        {t("common:menu")}
                     </BaseButton> : <button
                         className="menu-close"
                         onClick={toggleForm}
@@ -48,7 +50,7 @@ export const MenuEditor = React.forwardRef(
                     class="editor-text-button"
                     onClick={() => setPreview(true)}
                 >
-                    Preview
+                    {t("common:preview")}
                 </BaseButton>
                 <BaseButton
                     onClick={() => {
@@ -57,7 +59,7 @@ export const MenuEditor = React.forwardRef(
                     }}
                     class="editor-text-button"
                 >
-                    Publish
+                    {t("common:publish")}
                 </BaseButton>
             </div>
             {

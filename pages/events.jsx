@@ -5,6 +5,16 @@ import Loader from '../components/Loader'
 import { useState, useEffect } from 'react'
 import db from '../db.js'
 import { useSession } from 'next-auth/client'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common']))
+    }
+  }
+}
+
 
 export default function Events() {
   const [session, loading] = useSession()

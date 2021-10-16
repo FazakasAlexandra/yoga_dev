@@ -3,16 +3,17 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
 import db from '../db'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next';
 
 export default function Header({ activeTab }) {
   const [session, loading] = useSession()
   const [is_admin, setIsAdmin] = useState(false)
   const [menuOn, setMenuOn] = useState(true)
   const router = useRouter()
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (session) {
@@ -65,13 +66,13 @@ export default function Header({ activeTab }) {
         >
           {!session && (
             <>
-              <span className='notSignedInText'>You are not signed in</span>
+              <span className='notSignedInText'>{t("common:Not logged in")}</span>
               <a
                 href={`/api/auth/signin`}
                 className='buttonPrimary'
                 onClick={(e) => login(e)}
               >
-                Sign in
+                {t("common:log in")}
               </a>
             </>
           )}
@@ -84,7 +85,7 @@ export default function Header({ activeTab }) {
                 />
               )}
               <span className='signedInText'>
-                <small>Signed in as</small>
+                <small>{t("common:logged in as")}</small>
                 <br />
                 <strong>{session.user.email || session.user.name}</strong>
               </span>
@@ -93,7 +94,7 @@ export default function Header({ activeTab }) {
                 className='button'
                 onClick={async (e) => logout(e)}
               >
-                Sign out
+                {t("common:log out")}
               </a>
             </>
           )}
@@ -101,7 +102,9 @@ export default function Header({ activeTab }) {
       </div>
       <nav>
         <div className='small-menu'>
-          <img src='/assets/logo.svg' height="50px" width="fit-content" />
+          <Link href='/'>
+            <img style={{cursor:"pointer"}} src='/assets/logo.png' height="80px" width="fit-content" />
+          </Link>
           <FontAwesomeIcon
             icon={faBars}
             size='2x'
@@ -110,21 +113,16 @@ export default function Header({ activeTab }) {
         </div>
         <ul className='navItems' style={{ display: menuOn ? 'flex' : 'none' }}>
           <li className='navItem'>
-            <Link href='/'>
-              <a className={activeTab === 'home' ? 'active-tab' : null}>Home</a>
-            </Link>
-          </li>
-          <li className='navItem'>
             <Link href='/posts'>
               <a className={activeTab === 'blog' || activeTab === 'post' ? 'active-tab' : null}>
-                Blog
+                {t("common:blog")}
               </a>
             </Link>
           </li>
           <li className='navItem'>
             <Link href='/events'>
               <a className={activeTab === 'events' ? 'active-tab' : null}>
-                Events
+                {t("common:events")}
               </a>
             </Link>
           </li>
@@ -137,7 +135,7 @@ export default function Header({ activeTab }) {
               <a
                 className={activeTab === 'week_schedule' ? 'active-tab' : null}
               >
-                Week Schedule
+                {t("common:week schedule")}
               </a>
             </Link>
           </li>
@@ -146,7 +144,7 @@ export default function Header({ activeTab }) {
               <a
                 className={activeTab === 'subscriptions' ? 'active-tab' : null}
               >
-                Subscriptions
+                {t("common:subscriptions")}
               </a>
             </Link>
           </li>
@@ -154,7 +152,7 @@ export default function Header({ activeTab }) {
             <li className='navItem'>
               <Link href='/accounts/client/bookings'>
                 <a className={activeTab === 'account' ? 'active-tab' : null}>
-                  Account
+                  {t("common:account")}
                 </a>
               </Link>
             </li>
@@ -163,7 +161,7 @@ export default function Header({ activeTab }) {
             <li className='navItem'>
               <Link href='/accounts/admin/clients'>
                 <a className={activeTab === 'account' ? 'active-tab' : null}>
-                  Account
+                  {t("common:account")}
                 </a>
               </Link>
             </li>

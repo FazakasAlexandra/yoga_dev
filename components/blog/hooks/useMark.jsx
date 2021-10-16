@@ -18,8 +18,6 @@ const useMark = () => {
     const toggleMark = (format) => {
         const isActive = isMarkActive(format)
 
-        console.log(isActive)
-
         if (isActive) {
             Editor.removeMark(editor, format)
         } else {

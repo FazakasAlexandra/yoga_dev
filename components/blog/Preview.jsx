@@ -4,6 +4,7 @@ import { FeatureImage } from './FeatureImage'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useTranslation } from 'next-i18next';
 
 export const Preview = ({
     nodes,
@@ -14,6 +15,7 @@ export const Preview = ({
     id,
     description
 }) => {
+    const { t } = useTranslation(); 
     return (
         <>
             {isPreview ?
@@ -35,13 +37,13 @@ export const Preview = ({
                             }}
                             onClick={() => setPreview(false)}
                         >
-                            Back
+                            {t('common:back')}
                         </BaseButton> || null
                     }
                     <div className="preview-header">
                         <div className="preview-header-txt">
-                            <h1>{title || "No title"}</h1>
-                            <p>{description || "No description"}</p>
+                            <h1>{title || t("blog:No title")}</h1>
+                            <p>{description || t("blog:No description")}</p>
                         </div>
                         <FeatureImage featureImage={featureImage} />
                     </div>
@@ -52,7 +54,7 @@ export const Preview = ({
                                 <img src="/assets/author.jpg" />
                                 <div className="post-author-information">
                                     <strong>Fabiola Muresan</strong>
-                                    <p>Coach &#8226; Nutrition specialist</p>
+                                    <p>{t('blog:coach')} &#8226; {t('blog:nutrition specialist')}</p>
                                 </div>
                             </div>
                             <div className="post-social">
@@ -75,18 +77,18 @@ export const Preview = ({
                                 class="fb-xfbml-parse-ignore"
                             >
                                 <FontAwesomeIcon icon={faShare} size="lg" className="social-icon" />
-                                <strong>Share on facebook</strong>
+                                <strong>{t('blog:share on facebook')}</strong>
                             </a>
                         </div>
                         <div className="post-categories">
-                            <span>Categories:</span> <a href="">fitness</a><a href="">diet</a><a href="">fasting</a>
+                            <span>{t('common:categories')}:</span> <a href="">fitness</a><a href="">diet</a><a href="">fasting</a>
                         </div>
                         <hr className="post-end-line" />
                         <div className="post-author-container">
                             <div className="post-author-data">
                                 <img src="/assets/author.jpg" />
                                 <div className="post-author-information">
-                                    <strong>Fabiola Muresan</strong><span> is an author, coach and antreprenour. Owning her own fitness studio in Bistrita, she writes form her over 10 years experience of helping people reach their body goals.</span>
+                                    <strong>Fabiola Muresan</strong><span> {t('blog:about author')}</span>
                                 </div>
                             </div>
                         </div>
