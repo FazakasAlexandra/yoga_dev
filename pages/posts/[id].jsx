@@ -6,9 +6,12 @@ import {
   Preview,
 } from '../../components/blog/'
 import { ArticleJsonLd } from 'next-seo';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 export default function Page({ post }) {
-
+  const { t } = useTranslation();
+  
   return (
     <Layout activeTab={'post'}>
       {post && <>
@@ -47,12 +50,15 @@ export default function Page({ post }) {
 }
 
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const res = await db.posts.getSingle(params.id);
   const post = await res.json()
 
   return {
-    props: { post: post.data[0] }
+    props: {
+      post: post.data[0],
+      ...(await serverSideTranslations(locale, ['blog']))
+    }
   }
 }
 

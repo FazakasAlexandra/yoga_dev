@@ -7,7 +7,7 @@
     max-width: 680px;
     margin-bottom: 4rem;
 
-    blockquote{
+    blockquote {
         line-height: 170%;
     }
 
@@ -20,7 +20,7 @@
         line-height: 170%;
         color: #000000cc;
 
-        li{
+        li {
             text-transform: capitalize;
             margin-bottom: 0.5rem;
         }
@@ -34,7 +34,7 @@
         width: 120%;
         align-self: center;
     }
-    
+
     .post-start-line {
         width: 100%;
         border-width: thin;
@@ -72,6 +72,7 @@
         margin-top: 50px;
     }
 }
+
 .preview-header {
     width: 100%;
 
@@ -109,10 +110,35 @@
     .preview {
         padding: 20px 8%;
     }
+
     .preview-header {
         img {
             height: 500%;
         }
     }
+
+}
+
+@media(max-width: 495px) {
+
+        .preview-header-txt {
+            h1 {
+                font-size: 35px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+        }
+
+        .preview {
+            h2 {
+                font-size: 25px;
+            }
+            p,ol{
+                font-size: 16px;
+            }
+        }
 
 }

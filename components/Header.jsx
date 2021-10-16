@@ -101,7 +101,7 @@ export default function Header({ activeTab }) {
       </div>
       <nav>
         <div className='small-menu'>
-          <Image src='/assets/logo.png' height={60} width={60} />
+          <img src='/assets/logo.svg' height="50px" width="fit-content" />
           <FontAwesomeIcon
             icon={faBars}
             size='2x'

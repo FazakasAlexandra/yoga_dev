@@ -5,8 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HomeSection from '../components/HomeSection';
 import Map from '../components/Map';
 import sectionsContent from '../homePageContent.json';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+
+export async function getStaticProps({locale}){
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['home']))
+    }
+  }
+}
 
 export default function Home() {
+  const { t } = useTranslation();
+
   const getHomePageSections = () => {
     return sectionsContent.map(({ id, src, title, content }, idx) => {
       return <HomeSection
@@ -21,6 +33,7 @@ export default function Home() {
 
   return (
     <Layout activeTab={"home"}>
+      <h2>{t('home:welcome_msg')}</h2>
       <div className="home-wraper">
         {getHomePageSections()}
         <div className="social-contact-container">

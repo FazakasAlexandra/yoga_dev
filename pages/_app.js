@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 import { StylesProvider } from '@material-ui/core/styles';
-import Head from 'next/head'
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,13 +16,10 @@ function MyApp({ Component, pageProps }) {
           keepAlive: 0
         }}
         session={pageProps.session} >
-        <Head>
-          <title>Yoga</title>
-        </Head>
         <Component {...pageProps} />
       </Provider>
     </StylesProvider>
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

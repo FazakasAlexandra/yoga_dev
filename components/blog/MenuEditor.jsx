@@ -18,11 +18,6 @@ export const MenuEditor = React.forwardRef(
         ...props
     }, ref) => {
         const isMobile = useMediaQuery('(max-width: 820px)');
-        const [mounted, setMounted] = useState(false);
-
-        useEffect(() => {
-            setMounted(true)
-        }, [])
 
         return <div
             className="menu-editor"
@@ -57,6 +52,7 @@ export const MenuEditor = React.forwardRef(
                 </BaseButton>
                 <BaseButton
                     onClick={() => {
+                        console.log('clicked')
                         publishPost()
                     }}
                     class="editor-text-button"
