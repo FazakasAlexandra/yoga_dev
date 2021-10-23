@@ -5,19 +5,16 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
-const getPosts = async () => {
+export async function getStaticProps({ locale }) {
     const res = await db.posts.getAll();
-    const posts = await res.json();
+    const posts = await res.json()
 
-    return posts.data;
-}
-
-export async function getServerSideProps({ locale }) {
     return {
         props: {
-            posts: await getPosts(),
+            posts: posts.data,
             ...(await serverSideTranslations(locale, ['blog', 'common']))
         },
+        revalidate: 10
     }
 }
 
