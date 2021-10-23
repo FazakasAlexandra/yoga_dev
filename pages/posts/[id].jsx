@@ -48,7 +48,7 @@ export default function Page({ post }) {
 }
 
 
-export async function getStaticProps({ params, locale }) {
+export async function getServerSideProps({ params, locale }) {
   const res = await db.posts.getSingle(params.id);
   const post = await res.json()
 
@@ -56,29 +56,6 @@ export async function getStaticProps({ params, locale }) {
     props: {
       post: post.data[0],
       ...(await serverSideTranslations(locale, ['blog', 'common']))
-    },
-    notFound: false,
-    revalidate: 10
-  }
-}
-
-export async function getStaticPaths({ locales }) {
-  const res = await db.posts.getAll();
-  const posts = await res.json();
-
-  let paths = []
-
-  posts.data.forEach((post) => {
-    for (const locale of locales) {
-      paths.push({
-        params: { id: post.id },
-        locale,
-      });
     }
-  });
-
-  return {
-    paths,
-    fallback: 'blocking'
   }
 }

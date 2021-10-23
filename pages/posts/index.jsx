@@ -12,14 +12,12 @@ const getPosts = async () => {
     return posts.data;
 }
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
     return {
         props: {
             posts: await getPosts(),
             ...(await serverSideTranslations(locale, ['blog', 'common']))
         },
-        notFound: false,
-        revalidate: 10
     }
 }
 
