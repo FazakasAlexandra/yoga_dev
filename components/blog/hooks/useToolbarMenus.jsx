@@ -70,7 +70,7 @@ const useToolbarMenus = () => {
             icon: faParagraph,
             actions: [
                 {
-                    name: "larget text",
+                    name: "large text",
                     active: false,
                     handler: () => {
                         toggleBlock("heading-two");

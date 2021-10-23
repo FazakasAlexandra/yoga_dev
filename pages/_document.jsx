@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v12.0&appId=381128173719978&autoLogAppEvents=1" nonce="izOwTzly"></script>
                     <script
                         dangerouslySetInnerHTML={{
                             __html: `(function(d, s, id) {
@@ -36,3 +37,4 @@ MyDocument.getInitialProps = async (ctx) => {
         styles: [...React.Children.toArray(initialProps.styles)],
     };
 };
+

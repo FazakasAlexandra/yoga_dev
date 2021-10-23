@@ -13,6 +13,7 @@ export default function Page({ post }) {
     <Layout activeTab={'post'}>
       {post && <>
         <Head>
+          <meta property="og:url" content={`https://${process.env.NEXT_PUBLIC_DOMAIN}/posts/${post.id}`} />
           <meta property="og:title" content={post.title || "Articol"} />
           <meta property="og:description" content={post.description || "Sfaturi de la Fabiola pentru un stil de viata mai sanatos."} />
           <meta property="og:image" content={post.feature_image || "/assets/fallback_image.png"} />
