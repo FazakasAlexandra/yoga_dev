@@ -8,6 +8,8 @@ import { useTranslation } from 'next-i18next';
 export async function getStaticProps({ locale }) {
     const res = await  db.posts.getAll();
     const posts = await res.json()
+
+    console.log(posts)
   
     return {
       props: {
@@ -22,6 +24,8 @@ export default function Posts({posts}) {
     const router = useRouter()
     const { t } = useTranslation(); 
 
+    console.log(posts);
+    
     const navigateToPost = (id) => {
         router.push({ pathname: `/posts/${id}` })
     }
