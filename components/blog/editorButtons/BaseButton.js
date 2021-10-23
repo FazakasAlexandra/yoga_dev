@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 
-export const BaseButton = React.forwardRef(
-  (
-    {
-      buttonClass,
-      active,
-      reversed,
-      ...props
-    },
-  ) => {
+export const BaseButton = ({
+    buttonClass,
+    active,
+    reversed,
+    ...props
+  }) => {
     const [hover, setHover] = useState(false)
     return (
       <div className="base-button">
         <button
-          className={props.class}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onMouseOver={() => setHover(true)}
@@ -42,6 +38,5 @@ export const BaseButton = React.forwardRef(
       </div>
     )
   }
-)
 
 BaseButton.displayName = 'BaseButton';

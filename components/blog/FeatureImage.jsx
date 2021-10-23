@@ -3,8 +3,10 @@ import { useTranslation } from 'next-i18next';
 export const FeatureImage = ({ showForm, setImage, featureImage }) => {
     const { t } = useTranslation(); 
 
+    console.log('rerenderme',featureImage)
+
     return (
-        setImage ?
+        setImage && !featureImage?
             <div
                 style={{
                     marginTop: showForm ? "-294px" : "-10px",

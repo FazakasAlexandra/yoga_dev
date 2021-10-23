@@ -16,7 +16,8 @@ const useToolbarMenus = () => {
 
     const [toolbarMenus, setToolbarMenus] = useState([
         {
-            active: isLinkActive,
+            id: 0,
+            active: false,
             icon: faLink,
             actions: [
                 {
@@ -36,6 +37,7 @@ const useToolbarMenus = () => {
             ]
         },
         {
+            id: 1,
             active: false,
             icon: faBold,
             actions: [
@@ -63,6 +65,7 @@ const useToolbarMenus = () => {
             ]
         },
         {
+            id: 2,
             active: false,
             icon: faParagraph,
             actions: [
@@ -83,6 +86,7 @@ const useToolbarMenus = () => {
             ]
         },
         {
+            id: 3,
             active: false,
             icon: faBars,
             actions: [
@@ -103,6 +107,7 @@ const useToolbarMenus = () => {
             ]
         },
         {
+            id: 4,
             active: false,
             icon: faImage,
             actions: [

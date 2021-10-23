@@ -29,7 +29,7 @@ export const MenuEditor = React.forwardRef(
             <div className="editor-buttons-container">
                 {
                     !showForm || isMobile ? <BaseButton
-                        class="editor-text-button"
+                        className="editor-text-button"
                         onClick={toggleForm}
                     >
                         {t("common:menu")}
@@ -47,7 +47,7 @@ export const MenuEditor = React.forwardRef(
                     </button>
                 }
                 <BaseButton
-                    class="editor-text-button"
+                    className="editor-text-button"
                     onClick={() => setPreview(true)}
                 >
                     {t("common:preview")}
@@ -57,7 +57,7 @@ export const MenuEditor = React.forwardRef(
                         console.log('clicked')
                         publishPost()
                     }}
-                    class="editor-text-button"
+                    className="editor-text-button"
                 >
                     {t("common:publish")}
                 </BaseButton>

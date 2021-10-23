@@ -24,9 +24,11 @@ export const Toolbar = React.forwardRef(
         toolbarMenus.map(({
           actions,
           icon,
-        }, idx) => {
+          id
+        }) => {
           return <ToolbarButton
-            menuId={idx}
+            key={id}
+            menuId={id}
             icon={icon}
             toolbarMenus={toolbarMenus}
             iconClick={toggleToolbarMenus}

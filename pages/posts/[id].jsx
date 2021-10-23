@@ -55,7 +55,8 @@ export async function getStaticProps({ params, locale }) {
     props: {
       post: post.data[0],
       ...(await serverSideTranslations(locale, ['blog', 'common']))
-    }
+    },
+    revalidate: 600
   }
 }
 
