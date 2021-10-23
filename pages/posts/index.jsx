@@ -6,23 +6,27 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
 export async function getStaticProps({ locale }) {
-    const res = await  db.posts.getAll();
-    const posts = await res.json()
+    const getPosts = async () => {
+        const res = await db.posts.getAll();
+        const posts = await res.json()
+        return posts.data;
+    }
 
     console.log(posts)
-  
-    return {
-      props: {
-        posts : posts.data,
-        ...(await serverSideTranslations(locale, ['blog', 'common']))
-      },
-      revalidate: 10
-    }
-  }
 
-export default function Posts({posts}) {
+    return {
+        props: {
+            posts: getPosts(),
+            ...(await serverSideTranslations(locale, ['blog', 'common']))
+        },
+        notFound: false,
+        revalidate: 10
+    }
+}
+
+export default function Posts({ posts }) {
     const router = useRouter()
-    const { t } = useTranslation(); 
+    const { t } = useTranslation();
 
     console.log(posts);
     const navigateToPost = (id) => {

@@ -57,7 +57,8 @@ export async function getStaticProps({ params, locale }) {
       post: post.data[0],
       ...(await serverSideTranslations(locale, ['blog', 'common']))
     },
-    revalidate: 600
+    notFound: false,
+    revalidate: 10
   }
 }
 
@@ -78,6 +79,6 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
