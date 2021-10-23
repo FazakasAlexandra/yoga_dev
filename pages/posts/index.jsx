@@ -5,18 +5,17 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
+const getPosts = async () => {
+    const res = await db.posts.getAll();
+    const posts = await res.json();
+
+    return posts.data;
+}
+
 export async function getStaticProps({ locale }) {
-    const getPosts = async () => {
-        const res = await db.posts.getAll();
-        const posts = await res.json()
-        return posts.data;
-    }
-
-    console.log(posts)
-
     return {
         props: {
-            posts: getPosts(),
+            posts: await getPosts(),
             ...(await serverSideTranslations(locale, ['blog', 'common']))
         },
         notFound: false,
@@ -28,7 +27,6 @@ export default function Posts({ posts }) {
     const router = useRouter()
     const { t } = useTranslation();
 
-    console.log(posts);
     const navigateToPost = (id) => {
         router.push({ pathname: `/posts/${id}` })
     }
