@@ -5,19 +5,29 @@ import db from '../../db'
 import {
   Preview,
 } from '../../components/blog/'
-import { ArticleJsonLd } from 'next-seo';
+import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Page({ post }) {
   return (
     <Layout activeTab={'post'}>
       {post && <>
-        <Head>
-          <meta property="og:url" content={`https://${process.env.NEXT_PUBLIC_DOMAIN}/posts/${post.id}`} />
-          <meta property="og:title" content={post.title || "Articol"} />
-          <meta property="og:description" content={post.description || "Sfaturi de la Fabiola pentru un stil de viata mai sanatos."} />
-          <meta property="og:image" content={post.feature_image || "/assets/fallback_image.png"} />
-        </Head>
+        <NextSeo
+          openGraph={{
+            type: 'website',
+            url: `https://${process.env.NEXT_PUBLIC_DOMAIN}/posts/${post.id}` ,
+            title: post.title || "Articol",
+            description: post.description || "Sfaturi de la Fabiola pentru un stil de viata mai sanatos.",
+            images: [
+              {
+                url: post.feature_image || "/assets/fallback_image.png",
+                width: 800,
+                height: 600,
+                alt: post.title,
+              }
+            ],
+          }}
+        />
         <ArticleJsonLd
           url={`https://${process.env.NEXT_PUBLIC_DOMAIN}/posts/${post.id}`}
           title={post.title}
