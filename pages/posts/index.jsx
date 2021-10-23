@@ -16,7 +16,7 @@ export async function getStaticProps({ locale }) {
         posts : posts.data,
         ...(await serverSideTranslations(locale, ['blog', 'common']))
       },
-      revalidate: 600
+      revalidate: 10
     }
   }
 
@@ -25,7 +25,6 @@ export default function Posts({posts}) {
     const { t } = useTranslation(); 
 
     console.log(posts);
-    
     const navigateToPost = (id) => {
         router.push({ pathname: `/posts/${id}` })
     }
