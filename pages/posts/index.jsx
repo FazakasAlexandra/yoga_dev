@@ -5,19 +5,23 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
     const res = await db.posts.getAll();
     const posts = await res.json()
+
+    const date = new Date(Date.now())
 
     return {
         props: {
             posts: posts.data,
+            updateDate: String(date),
             ...(await serverSideTranslations(locale, ['blog', 'common']))
-        }
+        },
+        revalidate: 10
     }
 }
 
-export default function Posts({ posts }) {
+export default function Posts({ posts, updateDate }) {
     const router = useRouter()
     const { t } = useTranslation();
 
@@ -27,6 +31,7 @@ export default function Posts({ posts }) {
 
     return (
         <Layout activeTab={'blog'}>
+            <p>Last update: {updateDate}</p>
             {
                 posts && <>
                     <div className="post-top" onClick={() => navigateToPost(posts[posts.length - 2]?.id)}>
