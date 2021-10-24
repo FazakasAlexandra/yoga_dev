@@ -5,9 +5,9 @@ import Head from "next/head";
 export default function Layout({ children, activeTab }) {
     return (
         <>
-            <Head>
+{/*             <Head>
                 <link rel="icon" href="/favicon.ico" />
-            </Head>
+            </Head> */}
             <Header activeTab={activeTab} />
             <main className={`${activeTab}-main`}>
                 {children}

@@ -1,6 +1,6 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import favicon from "../public/assets/logo.png";
+import favicon from "../public/favicon.ico";
 
 export default class MyDocument extends Document {
     render() {
