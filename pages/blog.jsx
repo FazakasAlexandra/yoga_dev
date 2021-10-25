@@ -1,6 +1,6 @@
-import Layout from '../../components/Layout'
+import Layout from '../components/Layout'
 import { useState, useEffect } from 'react'
-import db from '../../db.js'
+import db from '../db.js'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
