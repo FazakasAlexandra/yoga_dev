@@ -17,7 +17,7 @@ export async function getStaticProps({ locale }) {
             updateDate: String(date),
             ...(await serverSideTranslations(locale, ['blog', 'common']))
         },
-        revalidate: 10
+        revalidate: 500
     }
 }
 
