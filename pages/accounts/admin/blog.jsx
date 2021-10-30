@@ -37,15 +37,19 @@ const HOTKEYS = {
 }
 
 export async function getStaticProps({ locale }) {
-    return {
-      props: {
-        ...(await serverSideTranslations(locale, ['blog', 'common'])),
-      }
-    }
-  }
-  
+    const categoriesRes = await db.posts.getCategories();
+    const categories = await categoriesRes.json()
 
-const Blog = () => {
+    return {
+        props: {
+            categories: categories.data,
+            ...(await serverSideTranslations(locale, ['blog', 'common', 'categories']))
+        },
+    }
+}
+
+
+const Blog = (props) => {
     const isMobile = useMediaQuery('(max-width: 820px)');
     const [featureImage, setFeatureImage] = useState("")
     const [description, setDescription] = useState("")
@@ -53,32 +57,34 @@ const Blog = () => {
     const [isPreview, setIsPreview] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const [showToolbar, setShowToolbar] = useState(false)
+    const [categories, setCategories] = useState(props.categories.map((category) => {
+        return { ...category, isSelected: false };
+    }))
     const [editorContent, setEditorContent] = useState(initialValue)
     const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
     const renderElement = useCallback(props => <Element {...props} />, [])
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
-    const { t } = useTranslation(); 
-
-    useEffect(() => {
-        console.log(editorContent)
-    }, [editorContent])
+    const { t } = useTranslation();
 
     const publishPost = () => {
         db.getJWT().then(({ jwtToken }) => {
+
             db.posts.publish({
                 title,
                 description,
+                categories: categories.filter(category => category.isSelected).map(({ name, id }) => {
+                    return { name, id }
+                }),
                 feature_image: featureImage,
                 content: editorContent,
             }, jwtToken)
                 .then(res => res.json())
                 .then(res => {
-                    if(res.code === 500){
+                    if (res.code === 500) {
                         toast.error(t("common:publish error"))
                         return
-                    } 
+                    }
                     toast.success(t("common:published"))
-
                 })
         })
     }
@@ -129,6 +135,8 @@ const Blog = () => {
                                         description={description}
                                         setTitle={setTitle}
                                         setDescription={setDescription}
+                                        categories={categories}
+                                        setCategories={setCategories}
                                     />
                                 }
                                 <FeatureImage
@@ -155,6 +163,7 @@ const Blog = () => {
                         </div>
                         : <Preview
                             title={title}
+                            categories={categories.filter(category => category.isSelected)}
                             featureImage={featureImage}
                             description={description}
                             nodes={editorContent}

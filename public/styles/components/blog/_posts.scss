@@ -3,6 +3,34 @@
     margin: 0 auto;
     color: black;
 
+    .posts-not-found {
+        text-align: center;
+        padding: 250px 0;
+    }
+
+    .categories-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 60px;
+
+        a {
+            margin-right: 3%;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 16px;
+        }
+
+        a.active {
+            color: black;
+            font-weight: bolder;
+        }
+
+        a:last-child {
+            margin-right: 0;
+        }
+    }
+
     hr {
         max-width: 650px;
         margin-top: 33px;
@@ -56,6 +84,7 @@
         text-align: center;
         font-family: 'New York Extra Large', sans-serif;
         margin-bottom: 40px;
+
     }
 
     .post-thumb {
@@ -126,10 +155,6 @@
             text-transform: uppercase;
         }
     }
-}
-
-.post-author-container.bottom {
-
 }
 
 .post-social {

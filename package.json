@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "nexus": "i18nexus pull -k Vhm9mEiGRhLRojf2QYLbYA",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

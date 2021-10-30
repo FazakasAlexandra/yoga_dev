@@ -1,6 +1,8 @@
 import { ThemeProvider } from '@material-ui/core'
 import { toolbarTheme } from '../../utilities.js'
 import TextField from '@material-ui/core/TextField'
+import { OptionsList as CategoriesList } from './'
+
 import Dialog from '@material-ui/core/Dialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -13,10 +15,13 @@ export const PostForm = ({
     setTitle,
     setDescription,
     title,
-    description
+    description,
+    categories,
+    setCategories
 }) => {
     const isMobile = useMediaQuery('(max-width: 820px)');
-    const { t } = useTranslation(); 
+    const { t } = useTranslation();
+
 
     return <ThemeProvider theme={toolbarTheme}>
         {
@@ -36,6 +41,11 @@ export const PostForm = ({
                     margin="dense"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                />
+                <CategoriesList
+                    options={categories}
+                    setOptions={setCategories}
+                    label={t("categories:post categories")}
                 />
             </div> : <Dialog
                 fullScreen
@@ -63,6 +73,11 @@ export const PostForm = ({
                     margin="dense"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                />
+                <CategoriesList
+                    options={categories}
+                    setOptions={setCategories}
+                    label={t("categories:post categories")}
                 />
             </Dialog>
         }

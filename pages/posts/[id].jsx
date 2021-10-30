@@ -46,6 +46,7 @@ export default function Page({ post }) {
         <div className="post">
           <Preview
             id={post.id}
+            categories={post.categories}
             title={post.title}
             featureImage={post.feature_image}
             description={post.description}
@@ -66,10 +67,10 @@ export async function getStaticProps({ params, locale }) {
 
   return {
     props: {
-      post: post.data[0],
+      post: post.data,
       ...(await serverSideTranslations(locale, ['blog', 'common']))
     },
-    revalidate: 10
+    revalidate: 500
   }
 }
 

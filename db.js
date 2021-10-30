@@ -212,6 +212,12 @@ const db = {
     getSingle: (id) => {
       return fetch(`${db.baseURL}/posts/${id}`)
     },
+    getByCategory: (category) => {
+      return fetch(`${db.baseURL}/posts/category/${category}`)
+    },
+    getCategories: () => {
+      return fetch(`${db.baseURL}/posts/categories`)
+    }
   }
 }
 

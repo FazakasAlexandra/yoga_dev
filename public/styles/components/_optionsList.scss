@@ -1,0 +1,42 @@
+.list-label {
+    display: block;
+    font-size: 16px;
+    color: #909090;
+    margin: 30px 0 20px 0;
+}
+
+.neutral-option,
+.selected-option {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.selected-option.hovered,
+.selected-option.regular,
+.last-selected {
+    border-left: solid;
+    border-left-width: thick;
+}
+
+.selected-option.regular {
+    background-color: #EBEAFF;
+    border-left: solid;
+    border-color: #4976ED;
+    color: #4976ED;
+    border-left-width: thick;
+}
+
+.last-selected{
+    background-color: #EFFFCC;
+    border-color: #89C804;
+    color: #89C804;
+}
+
+.selected-option.hovered {
+    background-color: #FFCAC7;
+    border-color: #F46565;
+    color: #F46565
+}

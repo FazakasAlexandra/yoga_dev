@@ -1,10 +1,9 @@
 import { serialize } from "./utils/serialize";
 import { BaseButton } from "./editorButtons/BaseButton";
 import { FeatureImage } from './FeatureImage'
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next';
+import { AboutAuthor, FacebookShare } from './';
+import Link from 'next/link';
 
 export const Preview = ({
     nodes,
@@ -13,9 +12,11 @@ export const Preview = ({
     featureImage,
     title,
     id,
-    description
+    description,
+    categories
 }) => {
-    const { t } = useTranslation(); 
+    console.log(categories)
+    const { t } = useTranslation();
     return (
         <>
             {isPreview ?
@@ -49,49 +50,20 @@ export const Preview = ({
                     </div>
                     <div className="preview">
                         <hr className="post-start-line" />
-                        <div className="post-author-container">
-                            <div className="post-author-data">
-                                <img src="/assets/author.jpg" />
-                                <div className="post-author-information">
-                                    <strong>Fabiola Muresan</strong>
-                                    <p>{t('blog:coach')} &#8226; {t('blog:nutrition specialist')}</p>
-                                </div>
-                            </div>
-                            <div className="post-social">
-                                <a href="https://www.facebook.com/FABIOLAFHARAOANA/" target="_blank">
-                                    <FontAwesomeIcon icon={faFacebookF} size="lg" className="social-icon" />
-                                </a>
-                                <a href="#" target="_blank">
-                                    <FontAwesomeIcon icon={faInstagram} size="lg" className="social-icon" />
-                                </a>
-                            </div>
-                        </div>
+                        <AboutAuthor />
                         {nodes.map(value => serialize(value))}
-                        <div
-                            class="post-social bottom"
-                            data-href="https://yoga-fazakasalexandra.vercel.app/"
-                            data-layout="button_count" data-size="small">
-                            <a
-                                target="_blank"
-                                href={`https://www.facebook.com/sharer/sharer.php?u=https://${process.env.NEXT_PUBLIC_DOMAIN}/posts/${id}`}
-                                class="fb-xfbml-parse-ignore"
-                            >
-                                <FontAwesomeIcon icon={faShare} size="lg" className="social-icon" />
-                                <strong>{t('blog:share on facebook')}</strong>
-                            </a>
-                        </div>
+                        <FacebookShare postId={id} />
                         <div className="post-categories">
-                            <span>{t('common:categories')}:</span> <a href="">fitness</a><a href="">diet</a><a href="">fasting</a>
+                            <span>{t('common:categories')}:</span>
+                            {categories.map((category) => {
+                                const name = category.category_name && category.category_name || category.name;
+                                return <Link href={`/blog/${name}`}>
+                                    <a>{name}</a>
+                                </Link>
+                            })}
                         </div>
                         <hr className="post-end-line" />
-                        <div className="post-author-container">
-                            <div className="post-author-data">
-                                <img src="/assets/author.jpg" />
-                                <div className="post-author-information">
-                                    <strong>Fabiola Muresan</strong><span> {t('blog:about author')}</span>
-                                </div>
-                            </div>
-                        </div>
+                        <AboutAuthor isBiography={true} />
                     </div></> : null}
         </>
     );

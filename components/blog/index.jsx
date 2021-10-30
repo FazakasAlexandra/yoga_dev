@@ -4,3 +4,6 @@ export { default as MenuEditor } from "./MenuEditor";
 export { default as Toolbar } from "./Toolbar";
 export { default as ToolbarButton } from "./ToolbarButton";
 export { default as Preview } from "./Preview";
+export { default as AboutAuthor } from "../post/AboutAuthor";
+export { default as FacebookShare } from "../post/FacebookShare";
+export { default as OptionsList } from './OptionsList';

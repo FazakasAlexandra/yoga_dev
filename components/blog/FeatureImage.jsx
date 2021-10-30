@@ -7,7 +7,7 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
         setImage && !featureImage?
             <div
                 style={{
-                    marginTop: showForm ? "-294px" : "-10px",
+                    marginTop: showForm ? "-615px" : "-10px",
                     cursor: setImage ? "cursor" : "default",
                 }}
                 className="feature-image-placeholder"
@@ -17,7 +17,7 @@ export const FeatureImage = ({ showForm, setImage, featureImage }) => {
             </div> :
             <img
                 style={{
-                    marginTop: showForm ? "-294px" : "-10px",
+                    marginTop: showForm ? "-615px" : "-10px",
                     cursor: setImage ? "cursor" : "default"
                 }}
                 className="feature-image"

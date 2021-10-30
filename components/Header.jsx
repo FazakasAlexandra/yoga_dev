@@ -113,7 +113,7 @@ export default function Header({ activeTab }) {
         </div>
         <ul className='navItems' style={{ display: menuOn ? 'flex' : 'none' }}>
           <li className='navItem'>
-            <Link href='/blog'>
+            <Link href='/blog/all'>
               <a className={activeTab === 'blog' || activeTab === 'post' ? 'active-tab' : null}>
                 {t("common:blog")}
               </a>
