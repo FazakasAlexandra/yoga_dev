@@ -10,12 +10,12 @@ export const OptionsList = ({
     setOptions,
     label
 }) => {
-    const [hoveredCategory, setHoveredCategory] = useState(null);
+    const [hoveredOption, setHoveredOption] = useState(null);
     const [lastSelected, setLastSelected] = useState(null);
     const { t } = useTranslation();
 
     const getHoverState = (id) => (lastSelected?.id == id && 'last-selected') ||
-        (hoveredCategory === id && 'hovered') ||
+        (hoveredOption === id && 'hovered') ||
         'regular';
 
     const toggleOption = (id) => {
@@ -35,9 +35,9 @@ export const OptionsList = ({
                 options.map(({ id, name }, idx) => <div
                     key={id}
                     className={options[idx].isSelected ? `selected-option ${getHoverState(id)}` : `neutral-option ${getHoverState(id)}`}
-                    onMouseEnter={() => setHoveredCategory(id)}
+                    onMouseEnter={() => setHoveredOption(id)}
                     onMouseLeave={() => {
-                        setHoveredCategory(null)
+                        setHoveredOption(null)
                         if (lastSelected) {
                             setLastSelected(null)
                         }
@@ -49,7 +49,7 @@ export const OptionsList = ({
                     </span>
                     {
                         options[idx].isSelected &&
-                        hoveredCategory === id &&
+                        hoveredOption === id &&
                         lastSelected?.id !== id &&
                         <FontAwesomeIcon
                             color="#F46565"

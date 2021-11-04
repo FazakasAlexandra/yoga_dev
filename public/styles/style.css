@@ -1792,7 +1792,6 @@ header .navItem {
   align-items: center;
 }
 .preview-header-txt h1 {
-  text-transform: capitalize;
   font-size: 54px;
   font-family: "New York Extra Large", sans-serif;
   max-width: 800px;
@@ -1801,7 +1800,6 @@ header .navItem {
   margin-bottom: 30px;
 }
 .preview-header-txt p {
-  text-transform: capitalize;
   font-size: 20px;
   max-width: 620px;
   text-align: center;
@@ -1849,8 +1847,10 @@ header .navItem {
   padding: 0 7.9%;
 }
 .menu-editor .menu-close {
+  padding: 0;
   border-radius: 5px;
-  padding: 15px 1.9rem;
+  width: 69px;
+  height: 40px;
 }
 .menu-editor .wand {
   display: none;
@@ -1865,6 +1865,7 @@ header .navItem {
   align-items: center;
 }
 .menu-editor .editor-buttons-container .editor-text-button {
+  flex-grow: 0.1;
   text-transform: capitalize;
   padding: 1.9rem 10px;
   color: #4976ED;
@@ -2256,6 +2257,120 @@ header .navItem {
   background-color: #FFCAC7;
   border-color: #F46565;
   color: #F46565;
+}
+
+.close-gallery {
+  position: absolute;
+  right: 3%;
+  top: 2%;
+  cursor: pointer;
+}
+
+.gallery .categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  padding: 2rem 30%;
+  padding-top: 0;
+}
+.gallery .category {
+  padding: 4px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.gallery .category.fitness,
+.gallery div[data-category=fitness]::before {
+  background: #D6E0FF;
+  color: #2952CC;
+}
+.gallery .category.nutrition,
+.gallery div[data-category=nutrition]::before {
+  background: #D6FFDA;
+  color: #29CC7E;
+}
+.gallery .category.diet,
+.gallery div[data-category=diet]::before {
+  background: #FFEFD2;
+  color: #66460D;
+}
+.gallery .category.exercisess,
+.gallery div[data-category=exercisess]::before {
+  background: #D6E0FF;
+  color: #2952CC;
+}
+.gallery .category.wellness,
+.gallery div[data-category=wellness]::before {
+  background: #FBDDF3;
+  color: #8E3374;
+}
+.gallery .category.spiritual,
+.gallery div[data-category=spiritual]::before {
+  background: #D3F5F7;
+  color: #0F5156;
+}
+.gallery h1 {
+  width: 100%;
+  margin: 35px 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 40px;
+}
+.gallery .row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  justify-content: center;
+  min-width: 500px;
+  padding-bottom: 2rem;
+}
+.gallery .column {
+  -ms-flex: 33.3%;
+  flex: 33.3%;
+  max-width: 33.3%;
+  padding: 0 4px;
+}
+.gallery .column div {
+  position: relative;
+  margin-top: 8px;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery .column div::before {
+  margin: 0.5rem;
+  content: attr(data-category);
+  position: absolute;
+  padding: 4px 6px;
+  border-radius: 10px;
+  z-index: 2;
+}
+.gallery .column img {
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+.gallery .column img:hover {
+  transform: scale(1.5);
+}
+@media screen and (max-width: 850px) {
+  .gallery .row {
+    min-width: 100%;
+  }
+  .gallery .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+  .gallery .column div {
+    text-align: center;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  .gallery .column img {
+    max-width: 250px;
+  }
 }
 
 @media (max-width: 1240px) {

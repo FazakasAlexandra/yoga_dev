@@ -13,26 +13,18 @@ export const Toolbar = React.forwardRef(
       setToolbarMenuAction,
       toggleToolbarMenus,
       toggleToolbarMenuOptions
-    } = useToolbarMenus();
+    } = useToolbarMenus(props.pictures, props.openGallery);
 
     return <div
-      className={props.class}
-      {...props}
+      className={props.toolbarClassName}
       ref={ref}
     > 
       {
-        toolbarMenus.map(({
-          actions,
-          icon,
-          id
-        }) => {
+        toolbarMenus.map((toolbarMenu) => {
           return <ToolbarButton
-            key={id}
-            menuId={id}
-            icon={icon}
-            toolbarMenus={toolbarMenus}
+            key={toolbarMenu.id}
+            toolbarMenu={toolbarMenu}
             iconClick={toggleToolbarMenus}
-            actions={actions}
             actionClick={setToolbarMenuAction}
             toggleToolbarMenuOptions={toggleToolbarMenuOptions}
           />

@@ -16,10 +16,11 @@ export const MenuEditor = React.forwardRef(
         showForm,
         className,
         publishPost,
+        openGallery,
         ...props
     }, ref) => {
         const isMobile = useMediaQuery('(max-width: 820px)');
-        const { t } = useTranslation(); 
+        const { t } = useTranslation();
 
         return <div
             className="menu-editor"
@@ -63,7 +64,10 @@ export const MenuEditor = React.forwardRef(
                 </BaseButton>
             </div>
             {
-                !isMobile && <Toolbar class="toolbar"></Toolbar> || null
+                !isMobile && <Toolbar
+                    toolbarClassName="toolbar"
+                    openGallery={openGallery}
+                /> || null
             }
             {
                 isMobile && <span

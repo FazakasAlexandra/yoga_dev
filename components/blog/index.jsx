@@ -7,3 +7,4 @@ export { default as Preview } from "./Preview";
 export { default as AboutAuthor } from "../post/AboutAuthor";
 export { default as FacebookShare } from "../post/FacebookShare";
 export { default as OptionsList } from './OptionsList';
+export { default as Gallery } from './Gallery';

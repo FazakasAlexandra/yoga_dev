@@ -1,0 +1,134 @@
+.close-gallery {
+  position: absolute;  
+  right: 3%;
+  top: 2%;
+  cursor: pointer;
+}
+
+.gallery {
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    padding: 2rem 30%;
+    padding-top: 0;
+  }
+
+  .category {
+    padding: 4px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .category.fitness,
+  div[data-category="fitness"]::before {
+    background: #D6E0FF;
+    color: #2952CC
+  }
+
+  .category.nutrition,
+  div[data-category="nutrition"]::before {
+    background: #D6FFDA;
+    color: #29CC7E
+  }
+
+  .category.diet,
+  div[data-category="diet"]::before {
+    background: #FFEFD2;
+    color: #66460D
+  }
+
+  .category.exercisess,
+  div[data-category="exercisess"]::before {
+    background: #D6E0FF;
+    color: #2952CC
+  }
+
+  .category.wellness,
+  div[data-category="wellness"]::before {
+    background: #FBDDF3;
+    color: #8E3374
+  }
+
+  .category.spiritual,
+  div[data-category="spiritual"]::before {
+    background: #D3F5F7;
+    color: #0F5156
+  }
+
+  h1 {
+    width: 100%;
+    margin: 35px 0;
+    text-align: center;
+    font-weight: 300;
+    font-size: 40px;
+  }
+
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    justify-content: center;
+    min-width: 500px;
+    padding-bottom: 2rem;
+  }
+
+  .column {
+    -ms-flex: 33.3%;
+    flex: 33.3%;
+    max-width: 33.3%;
+    padding: 0 4px;
+  }
+
+  .column {
+    div {
+      position: relative;
+      margin-top: 8px;
+      width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    div::before {
+      margin: 0.5rem;
+      content: attr(data-category);
+      position: absolute;
+      padding: 4px 6px;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    img {
+      width: 100%;
+      transition: transform .5s ease;
+    }
+
+    img:hover{
+      transform: scale(1.5);
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .row {
+      min-width: 100%;
+    }
+    .column {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+
+      div{
+        text-align: center;
+        max-width: 250px;
+        margin: 0 auto;
+      }
+
+      img{
+        max-width: 250px;
+      }
+    }
+  }
+}

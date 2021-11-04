@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useLink, useMark, useBlock, useImage } from './';
 
-const useToolbarMenus = () => {
+const useToolbarMenus = (galleryContent, openGallery) => {
     const { isLinkActive, insertLink, removeLink } = useLink()
     const { toggleMark } = useMark();
     const { toggleBlock } = useBlock();
@@ -112,18 +112,12 @@ const useToolbarMenus = () => {
             icon: faImage,
             actions: [
                 {
-                    name: "random",
-                    active: false,
-                    handler: () => {
-                        insertImage("https://picsum.photos/1000/1000?random=1");
-                    }
-                },
-                {
                     name: "upload",
                     active: false,
                     handler: () => {
-                        const url = prompt("Enter an Image URL");
-                        insertImage(url);
+                        //const url = prompt("Enter an Image URL");
+                        openGallery();
+                        //insertImage(url);
                     }
                 }
             ]
@@ -131,12 +125,8 @@ const useToolbarMenus = () => {
     ]);
 
     const setToolbarMenuAction = (target, triggeredAction) => {
-        console.log(target, triggeredAction)
-
         setToolbarMenus(toolbarMenus.map((menu, idx) => {
             if (idx === target) {
-                console.log(menu.actions)
-
                 const actions = menu.actions.map(action => {
                     if (action.name === triggeredAction) {
                         action.active = !action.active

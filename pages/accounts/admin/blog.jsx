@@ -14,7 +14,8 @@ import {
     FeatureImage,
     Preview,
     PostForm,
-    Toolbar
+    Toolbar,
+    Gallery
 } from '../../../components/blog/'
 import {
     Leaf,
@@ -28,6 +29,7 @@ import isHotkey from 'is-hotkey'
 import { ToastContainer, toast } from 'react-toastify'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { createApi } from 'unsplash-js';
 
 const HOTKEYS = {
     'mod+b': 'bold',
@@ -38,10 +40,27 @@ const HOTKEYS = {
 
 export async function getStaticProps({ locale }) {
     const categoriesRes = await db.posts.getCategories();
-    const categories = await categoriesRes.json()
+    const categories = await categoriesRes.json();
+    const unsplash = createApi({ accessKey: "aJ5ihIDu6mMYikUes9w7fP9EoWQ1b8K1ZNPwTK4vKSg", });
+    let photos = [];
+
+    const results = await Promise.all(categories.data.map(({ name }) => unsplash.search.getPhotos({ query: name, perPage: 20 })))
+
+    results.forEach((result, idx) => {
+        if (result.errors) {
+            console.log('error occurred: ', result.errors[0]);
+        } else {
+            console.log(result.response)
+            photos.push({
+                category: categories.data[idx].name,
+                photos: result.response.results
+            });
+        }
+    })
 
     return {
         props: {
+            unsplashPhotos: photos,
             categories: categories.data,
             ...(await serverSideTranslations(locale, ['blog', 'common', 'categories']))
         },
@@ -61,10 +80,15 @@ const Blog = (props) => {
         return { ...category, isSelected: false };
     }))
     const [editorContent, setEditorContent] = useState(initialValue)
+    const [isGalleryOpened, setGallery] = useState(false)
     const editor = useMemo(() => withLinks(withImages(withHistory(withReact(createEditor())))), [])
     const renderElement = useCallback(props => <Element {...props} />, [])
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
     const { t } = useTranslation();
+
+    useEffect(() => {
+        console.log(editorContent)
+    }, [editorContent])
 
     const publishPost = () => {
         db.getJWT().then(({ jwtToken }) => {
@@ -126,6 +150,7 @@ const Blog = (props) => {
                                     setShowToolbar={setShowToolbar}
                                     setPreview={setIsPreview}
                                     toggleForm={() => setShowForm(!showForm)}
+                                    openGallery={() => setGallery(true)}
                                 />
                                 {
                                     showForm && <PostForm
@@ -157,8 +182,14 @@ const Blog = (props) => {
                                 />
                                 {isMobile && showToolbar && <Toolbar
                                     showToolbar={showToolbar}
-                                    className="mobile-toolbar"
+                                    toolbarClassName="mobile-toolbar"
+                                    openGallery={() => setGallery(true)}
                                 /> || null}
+                                <Gallery
+                                    pictures={props.unsplashPhotos}
+                                    closeGallery={() => setGallery(false)}
+                                    isOpen={isGalleryOpened}
+                                />
                             </Slate>
                         </div>
                         : <Preview

@@ -2,15 +2,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'next-i18next';
 
 const ToolbarButton = ({
-    toolbarMenus,
-    menuId,
-    icon,
+    toolbarMenu,
     iconClick,
     actionClick,
-    actions,
 }) => {
-    const { t } = useTranslation(); 
-
+    const { t } = useTranslation();
+    const {id, actions, icon, active} = toolbarMenu
+    const hasMultipleActions = actions.length > 1;
+ 
     const ToolbarMenu = () => {
         return <button className="toolbar-button-menu">
             {actions.map(action => (
@@ -18,7 +17,7 @@ const ToolbarButton = ({
                     className="menu-action"
                     onClick={() =>{
                         action.handler();
-                        actionClick(menuId, action.name)
+                        actionClick(id, action.name)
                     }}
                     style={{
                         backgroundColor: "none"
@@ -34,7 +33,7 @@ const ToolbarButton = ({
         <span
             className="toolbar-button"
             style={{
-                background: toolbarMenus[menuId].active && "#E6D7F5" || "none"
+                background: active && "#E6D7F5" || "none"
             }}
         >
             <FontAwesomeIcon
@@ -42,10 +41,17 @@ const ToolbarButton = ({
                 size="lg"
                 icon={icon}
                 fixedWidth
-                onClick={() => iconClick(menuId)}
+                onClick={() => {
+                    if(!hasMultipleActions) {
+                        toolbarMenu.actions[0].handler();
+                        return
+                    }
+
+                    iconClick(id)
+                }}
             />
             {
-                toolbarMenus[menuId].active && <ToolbarMenu /> || null
+                active && hasMultipleActions && <ToolbarMenu /> || null
             }
         </span>
     );

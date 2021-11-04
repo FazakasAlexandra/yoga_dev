@@ -3,6 +3,7 @@ import {
     Transforms,
 } from 'slate'
 import isUrl from 'is-url'
+import { useEffect } from 'react'
 
 const useImage = () => {
     const editor = useSlate()

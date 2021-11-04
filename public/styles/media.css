@@ -61,6 +61,7 @@
         -ms-flex-direction: column;
             flex-direction: column;
     width: 100%;
+    padding-top: 2rem;
   }
   header nav .navItems .navItem {
     padding: 1rem;
